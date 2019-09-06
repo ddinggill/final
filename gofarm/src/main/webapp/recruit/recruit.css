@@ -1,0 +1,26 @@
+.re_title {
+	font-size: 20px;
+	line-height: 25px;
+	margin-top: 20px
+}
+
+.getinfo {
+	margin-top: 20px
+}
+
+.font_color {
+	color: gray;
+	line-height: 25px;
+	margin-bottom: 10px;
+}
+
+.fastbutton {
+	height: 60px;
+	background-color: #778899;
+	color: white;
+	font-weight: bold;
+}
+
+.w3-button {
+	float: right;
+}

@@ -1,0 +1,22 @@
+@import url(//fonts.googleapis.com/earlyaccess/nanumgothiccoding.css);
+
+.ngc {
+	font-family: 'Nanum Gothic Coding', monospace;
+}
+
+.blink {
+    -webkit-animation: blink 1.5s linear infinite;
+} 
+@-webkit-keyframes blink {
+    0% { color: black; }
+    50% { color: 	#00CED1; }
+   
+
+}
+.plan {
+   font-family: 'Nanum Gothic Coding', monospace;
+   color: #598067;
+   text-align: center;
+   font-weight: bold;
+   font-size: 20px;
+}
