@@ -27,7 +27,7 @@ public class UserController {
 	
 	@RequestMapping("/signuppro.do")
 	public String signProc(UserDTO dto) {
-		//System.out.println(dto.getName());
+		System.out.println(dto.getName());
 		userService.signupProcess(dto);
 		return "redirect:/main.do";
 	}
