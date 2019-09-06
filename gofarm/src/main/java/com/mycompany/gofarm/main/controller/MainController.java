@@ -16,7 +16,7 @@ public class MainController {
 	}
 	
 	@RequestMapping("/recruit.do")
-	public String maingo2() {
+	public String recruit() {
 		return "job/recruit";
 	}
 	
