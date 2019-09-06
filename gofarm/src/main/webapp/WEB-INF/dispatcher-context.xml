@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+
+	
+	<mvc:annotation-driven></mvc:annotation-driven>
+	<context:component-scan base-package="com.mycompany.gofarm" />
+
+	<!-- 1. DataSource빈 선언 -->
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="oracle.jdbc.OracleDriver"></property>
+		<property name="url" value="jdbc:oracle:thin://@192.168.30.67:1521:xe"></property>
+		<property name="username" value="gofarm"></property>
+		<property name="password" value="a1234"></property>
+	</bean>
+
+	<!-- 2. SqlSessionFactoryBean 빈 선언 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"></property>
+		<property name="mapperLocations">
+			<list>
+				<value>classpath:config/userMapper.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- 3. SqlSessionTemplate 빈 생성 -->
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="sqlSessionFactory"></constructor-arg>
+	</bean>
+
+	<!-- Spring Jdbc나 Mybatis를 이용해서 DB연동을 처리하는 경우 DataSourceTransactionManager이 
+		트랙잭션 관리자로 사용된다. -->
+
+	<!-- 4. TransactionManager 빈 생성 -->
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+
+	<!-- 5. 선언적 트랜잭션: <tx:advice>태그를 이용한 트랜잭션 처리 -->
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<!-- Process라는 이름으로 끝나는 모든 메소드에 적용, java.lang.Exception 발생되면 롤백적용 -->
+			<tx:method name="*Process" rollback-for="java.lang.Exception" />
+			<!-- <tx:method name="deleteProcess" rollback-for="java.lang.NullPointerException"/> -->
+		</tx:attributes>
+	</tx:advice>
+
+	<!-- 첨부파일을 임시기억저장소에 저장한다(spring 버전 높아지면서 안해줘도 되서 안씀) -->
+	<!-- id값 임의로 정의 x, 정의된걸 쓰기때문에 꼭 맞게 -->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="1000000000"></property>
+	</bean>
+	<!-- 파일 업로드 끝 -->
+	
+	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/view/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+	
+
+</beans>
