@@ -15,4 +15,9 @@ public class MainController {
 		return "main/index";
 	}
 	
+	@RequestMapping("/recruit.do")
+	public String recruit() {
+		return "job/recruit";
+	}
+	
 }

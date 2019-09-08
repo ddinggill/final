@@ -12,11 +12,11 @@
 <link href="https://fonts.googleapis.com/css?family=Poppins:400,700"
 	rel="stylesheet">
 <!-- Stylesheets -->
-<link href="plugin-frameworks/bootstrap.min.css" rel="stylesheet">
-<link href="plugin-frameworks/swiper.css" rel="stylesheet">
-<link href="fonts/ionicons.css" rel="stylesheet">
-<link href="common/styles.css" rel="stylesheet">
-<link href="common/main_content.css" rel="stylesheet">
+<link href="main/plugin-frameworks/bootstrap.min.css" rel="stylesheet">
+<link href="main/plugin-frameworks/swiper.css" rel="stylesheet">
+<link href="main/fonts/ionicons.css" rel="stylesheet">
+<link href="main/common/styles.css" rel="stylesheet">
+<link href="main/common/main_content.css" rel="stylesheet">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 <script>
@@ -180,7 +180,7 @@ header>#topNav>ul.main-munu>li>a {
 										<!-- data-swiper-autoplay="1000"  -->
 										<div class="swiper-slide">
 											<div class="bg-white">
-												<img src="images/step111.png" width=200px height=175px
+												<img src="main/images/step111.png" width=200px height=175px
 													alt="">
 												<div class="plr-25 ptb-15">
 													<h5 class="color-ash">
@@ -200,7 +200,7 @@ header>#topNav>ul.main-munu>li>a {
 
 										<div class="swiper-slide">
 											<div class="bg-white">
-												<img src="images/step222.png" width=200px; height=175px;
+												<img src="main/images/step222.png" width=200px; height=175px;
 													alt="">
 
 												<div class="plr-25 ptb-15">
@@ -218,7 +218,7 @@ header>#topNav>ul.main-munu>li>a {
 
 										<div class="swiper-slide">
 											<div class="bg-white">
-												<img src="images/step333.png" width=200px; height=175px;
+												<img src="main/images/step333.png" width=200px; height=175px;
 													alt="">
 
 												<div class="plr-25 ptb-15">
@@ -237,7 +237,7 @@ header>#topNav>ul.main-munu>li>a {
 
 										<div class="swiper-slide">
 											<div class="bg-white">
-												<img src="images/step444.png" width=200px; height=175px;
+												<img src="main/images/step444.png" width=200px; height=175px;
 													alt="">
 
 												<div class="plr-25 ptb-15">
@@ -256,7 +256,7 @@ header>#topNav>ul.main-munu>li>a {
 
 										<div class="swiper-slide">
 											<div class="bg-white">
-												<img src="images/step555.png" width=200px; height=175px;
+												<img src="main/images/step555.png" width=200px; height=175px;
 													alt="">
 
 												<div class="plr-25 ptb-15">
@@ -668,7 +668,7 @@ header>#topNav>ul.main-munu>li>a {
 								</div>
 
 								<a class="mb-50 pos-relative dplay-block" href="#"> <img
-									src="images/sidebar_1_400X300.jpg" alt="">
+									src="main/images/sidebar_1_400X300.jpg" alt="">
 									<div class="abs-tblr z-10 bg-layer-4">
 
 										<div class="dplay-tbl text-center color-white">
@@ -693,7 +693,7 @@ header>#topNav>ul.main-munu>li>a {
 
 									<div class="sided-80x mb-20">
 										<div class="s-left">
-											<img src="images/top_2_120x120.jpg" alt="">
+											<img src="main/images/top_2_120x120.jpg" alt="">
 										</div>
 										<!-- s-left -->
 										<div class="s-right">
@@ -711,7 +711,7 @@ header>#topNav>ul.main-munu>li>a {
 
 									<div class="sided-80x mb-20">
 										<div class="s-left">
-											<img src="images/top_4_120x120.jpg" alt="">
+											<img src="main/images/top_4_120x120.jpg" alt="">
 										</div>
 										<!-- s-left -->
 										<div class="s-right">
@@ -745,14 +745,14 @@ header>#topNav>ul.main-munu>li>a {
 	<!-- footer 끝 -->
 	<!-- SCIPTS -->
 
-	<script src="plugin-frameworks/jquery-3.2.1.min.js"></script>
+	<script src="main/plugin-frameworks/jquery-3.2.1.min.js"></script>
 
-	<script src="plugin-frameworks/bootstrap.min.js"></script>
+	<script src="main/plugin-frameworks/bootstrap.min.js"></script>
 
-	<script src="plugin-frameworks/swiper.js"></script>
+	<script src="main/plugin-frameworks/swiper.js"></script>
 
 
-	<script src="common/scripts.js"></script>
+	<script src="main/common/scripts.js"></script>
 
 </body>
 </html>
