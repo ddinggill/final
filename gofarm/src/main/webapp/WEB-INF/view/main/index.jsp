@@ -19,7 +19,6 @@
 <link href="main/common/main_content.css" rel="stylesheet">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-
 <style>
 * {
 	margin: 0;
