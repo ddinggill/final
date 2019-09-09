@@ -11,14 +11,14 @@
 <body>
 	<header class="fixed-top">
 		<nav id="topNav">
-			<a class="logo" href="#"><img src="images/logo.png">GO FARM</a>
+			<a class="logo" href="#"><img src="main/images/logo.png">GO FARM</a>
 			<ul class="main-menu" id="main-menu">
 
 
 
 				<li><a href="index.html">HOME</a></li>
 				<li><a href="signup.do">INFO</a></li>
-				<li><a href="#">구인 | 구직</a></li>
+				<li><a href="recruit.do">구인 | 구직</a></li>
 				<li><a href="#">장터</a></li>
 				<li><a href="#">게시판</a></li>
 				<li class="drop-down"><a href="#!">김주희 님<i

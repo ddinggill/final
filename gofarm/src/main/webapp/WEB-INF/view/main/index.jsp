@@ -119,7 +119,7 @@ header>#topNav>ul.main-munu>li>a {
 </style>
 <body>
 
-	<jsp:include page="/WEB-INF/view/main/main_nav.jsp"></jsp:include>
+	<jsp:include page="/WEB-INF/view/common/main_nav.jsp"></jsp:include>
 
 
 	<div class="slider-main h-800x h-sm-auto pos-relative pt-95 pb-25">

@@ -97,7 +97,7 @@ h2{
 </script>
 </head>
 <body>
-   <jsp:include page="/WEB-INF/view/common/nav.jsp"></jsp:include>
+   <jsp:include page="/WEB-INF/view/common/main_nav.jsp"></jsp:include>
    <section class="ftco-section">
       <div class="container" id="write">
          <h2>채용 정보 등록하기</h2>

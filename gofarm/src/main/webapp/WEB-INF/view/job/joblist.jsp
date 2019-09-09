@@ -61,7 +61,7 @@ i {
 
 <body>
 
-	<jsp:include page="/WEB-INF/view/common/nav.jsp"></jsp:include>
+	<jsp:include page="/WEB-INF/view/common/main_nav.jsp"></jsp:include>
 
 
 	<div class="limiter">
