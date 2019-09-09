@@ -65,7 +65,7 @@
 </head>
 <body class="goto-here">
 	<!-- nav -->
-	<jsp:include page="/WEB-INF/view/common/nav.jsp"></jsp:include>
+	<jsp:include page="/WEB-INF/view/common/main_nav.jsp"></jsp:include>
 	<!-- END nav -->
 
 	<!-- <div class="hero-wrap hero-bread"

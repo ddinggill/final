@@ -11,7 +11,7 @@
 <body>
 	<header class="fixed-top">
 		<nav id="topNav">
-			<a class="logo" href="#"><img src="images/logo.png">GO FARM</a>
+			<a class="logo" href="#"><img src="main/images/logo.png">GO FARM</a>
 			<ul class="main-menu" id="main-menu">
 
 

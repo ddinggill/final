@@ -193,7 +193,7 @@ button.social-signin.kakao {
 </head>
 <body>
 
-<jsp:include page="/WEB-INF/view/common/nav.jsp" />
+<jsp:include page="/WEB-INF/view/common/main_nav.jsp" />
 <br><br><br><br><br><br><br>
 
 

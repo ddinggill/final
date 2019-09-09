@@ -24,7 +24,7 @@
 	<!-- ----------------------------------------------------------------------------------- -->
 	<div style="height: 1000px; margin-top: 300px;">
 
-		<jsp:include page="/WEB-INF/view/common/nav.jsp"></jsp:include>
+		<jsp:include page="/WEB-INF/view/common/main_nav.jsp"></jsp:include>
 
 		<div class="w3-row-padding"
 			style="margin: 0 350px 0 350px; height: 200px">
