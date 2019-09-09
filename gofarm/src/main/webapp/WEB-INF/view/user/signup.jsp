@@ -18,8 +18,7 @@
 <title>Insert title here</title>
 <style type="text/css">
 @import
-	url('https://fonts.googleapis.com/css?family=Black+Han+Sans|Do+Hyeon|Jua|Sunflower:300&display=swap')
-	;
+	url('https://fonts.googleapis.com/css?family=Black+Han+Sans|Do+Hyeon|Jua|Sunflower:300&display=swap');
 
 *:focus {
 	outline: none;
