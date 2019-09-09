@@ -5,4 +5,5 @@ import com.mycompany.gofarm.user.dto.UserDTO;
 public interface UserService {
 
 	public void signupProcess(UserDTO dto);
+	public UserDTO loginCheck(UserDTO dto);
 }

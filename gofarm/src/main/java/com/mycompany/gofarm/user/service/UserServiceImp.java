@@ -23,4 +23,10 @@ public class UserServiceImp implements UserService{
 	public void signupProcess(UserDTO dto) {
 		userDao.signupUser(dto);
 	}
+	
+	@Override
+	public UserDTO loginCheck(UserDTO dto) {
+		
+		return userDao.loginCheck(dto);
+	}
 }

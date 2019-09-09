@@ -4,6 +4,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<!-- Font -->
+<link href="https://fonts.googleapis.com/css?family=Poppins:400,700"
+	rel="stylesheet">
+<!-- Stylesheets -->
+<link href="main/plugin-frameworks/bootstrap.min.css" rel="stylesheet">
+<link href="main/plugin-frameworks/swiper.css" rel="stylesheet">
+<link href="main/fonts/ionicons.css" rel="stylesheet">
+<link href="main/common/styles.css" rel="stylesheet">
+<link href="main/common/main_content.css" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <title>Insert title here</title>
 <style type="text/css">
@@ -130,11 +139,11 @@ input[type="submit"]:active {
   padding-top: 50px;
   width: 300px;
   height: 400px;
-  background: url('https://goo.gl/YbktSj');
+  /* background: url('https://goo.gl/YbktSj'); */
   background-size: cover;
   background-position: center;
   border-radius: 0 2px 2px 0;
-  background-image: url("");
+  /* background-image: url(""); */
 }
 
 .right .loginwith {
@@ -190,6 +199,16 @@ button.social-signin.kakao {
 
 
 </style>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	console.log(1);
+	if("${loginCheck}" == "fail"){
+		 alert("로그인 실패했습니다 다시 입력하세요");
+	}
+});
+
+</script>
 </head>
 <body>
 
@@ -199,14 +218,14 @@ button.social-signin.kakao {
 
 
 <div id="login-box">
- <form action="" method="post" >
+ <form action="loginpro.do" method="post">
   <div class="left">
     <h2>로그인</h2>
    <br/>
    <br/>
    
-    <input type="text" name="username" placeholder="이름" />
-    <input type="password" name="password" placeholder="비밀번호" />
+    <input type="text" name="userid" placeholder="ID" />
+    <input type="password" name="userpw" placeholder="PASSWORD" />
  
     
     <input type="submit" name="signup_submit" value="로그인" />
