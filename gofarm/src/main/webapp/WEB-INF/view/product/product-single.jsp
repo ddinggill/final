@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -44,10 +45,10 @@
 
 <!-- Stylesheets -->
 
-<link href="plugin-frameworks/bootstrap.min.css" rel="stylesheet">
-<link href="plugin-frameworks/swiper.css" rel="stylesheet">
-<link href="fonts/ionicons.css" rel="stylesheet">
-<link href="common/styles.css" rel="stylesheet">
+<link href="product/p_plugin-frameworks/bootstrap.min.css" rel="stylesheet">
+<link href="product/p_plugin-frameworks/swiper.css" rel="stylesheet">
+<link href="product/p_fonts/ionicons\css\ionicons.css" rel="stylesheet">
+<link href="product/common/styles.css" rel="stylesheet">
 <style type="text/css">
 .ftco-section {
 	margin-top: 100px;
@@ -131,6 +132,7 @@
 .goods-view-form-table-heading {
 	width: 30%;
 }
+
 </style>
 
 <script type="text/javascript"
@@ -151,26 +153,26 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-6 mb-5 ftco-animate">
-					<a href="images/product-1.jpg" class="image-popup"><img
-						src="images/product-1.jpg" class="img-fluid"
+					<a href="${pd_dto.pd_file}" class="image-popup"><img
+						src="${pd_dto.pd_file}" class="img-fluid"
 						alt="Colorlib Template"></a>
 				</div>
 
 				<div class="goods-view-form-table-wrapper">
-					<h3>상품이름</h3>
+					<h3>${pd_dto.pd_name}</h3>
 					<table class="goods-view-form-table">
 						<tbody>
 							<tr>
 								<th scope="row" class="goods-view-form-table-heading">판매가</th>
-								<td class="goods-price">1,300원</td>
+								<td class="goods-price">${pd_dto.pd_price}</td>
 							</tr>
 							<tr>
-								<th scope="row" class="goods-view-form-table-heading">판매단위</th>
-								<td class="goods-view-form-table-cell">1봉</td>
+								<th scope="row" class="goods-view-form-table-heading">남은 수량</th>
+								<td class="goods-view-form-table-cell">${pd_dto.pd_cnt} 개</td>
 							</tr>
 							<tr>
-								<th scope="row" class="goods-view-form-table-heading">중량/용량</th>
-								<td class="goods-view-form-table-cell">200g</td>
+								<th scope="row" class="goods-view-form-table-heading">원산지</th>
+								<td class="goods-view-form-table-cell">${pd_dto.origin}</td>
 							</tr>
 							<tr>
 								<th scope="row" class="goods-view-form-table-heading">배송비</th>
@@ -178,8 +180,8 @@
 							</tr>
 
 							<tr>
-								<th scope="row" class="goods-view-form-table-heading">원산지</th>
-								<td class="goods-view-form-table-cell">국산</td>
+								<th scope="row" class="goods-view-form-table-heading">판매자</th>
+								<td class="goods-view-form-table-cell">${pd_dto.producer}</td>
 							</tr>
 							<tr>
 								<th scope="row" class="goods-view-form-table-heading">수량</th>
@@ -203,8 +205,12 @@
 
 						</tbody>
 					</table>
+					<c:url var="path" value="productPay.do">
+						<c:param name="prod_code" value="${pd_dto.prod_code}" />
+					</c:url>
 					<p>
-						<a href="cart.html" class="btn btn-black py-3 px-5">구매하기</a>
+					<input type="hidden" value="${pd_dto.prod_code}" >
+					<a href="${path}" class="btn btn-black py-3 px-5">구매하기</a>
 					</p>
 
 				</div>
@@ -228,7 +234,7 @@
 
 		<div class="container">
 			<div id="product_info">
-				내용 
+				<p>${pd_dto.pd_detail}</p>
 			</div>
 		</div>
 		
@@ -255,21 +261,21 @@
 	<jsp:include page="/WEB-INF/view/common/footer.jsp"></jsp:include>
 	<!-- footer -->
 </body>
-<script src="js/jquery.min.js"></script>
-<script src="js/jquery-migrate-3.0.1.min.js"></script>
-<script src="js/popper.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/jquery.easing.1.3.js"></script>
-<script src="js/jquery.waypoints.min.js"></script>
-<script src="js/jquery.stellar.min.js"></script>
-<script src="js/owl.carousel.min.js"></script>
-<script src="js/jquery.magnific-popup.min.js"></script>
-<script src="js/aos.js"></script>
-<script src="js/jquery.animateNumber.min.js"></script>
-<script src="js/bootstrap-datepicker.js"></script>
-<script src="js/scrollax.min.js"></script>
-<script
-	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-<script src="js/google-map.js"></script>
-<script src="js/main.js"></script>
+<script src="product/p_js/jquery.min.js"></script>
+<script src="product/p_js/jquery-migrate-3.0.1.min.js"></script>
+<script src="product/p_js/popper.min.js"></script>
+<script src="product/p_js/bootstrap.min.js"></script>
+<script src="product/p_js/jquery.easing.1.3.js"></script>
+<script src="product/p_js/jquery.waypoints.min.js"></script>
+<script src="product/p_js/jquery.stellar.min.js"></script>
+<script src="product/p_js/owl.carousel.min.js"></script>
+<script src="product/p_js/jquery.magnific-popup.min.js"></script>
+<script src="product/p_js/aos.js"></script>
+<script src="product/p_js/jquery.animateNumber.min.js"></script>
+<script src="product/p_js/bootstrap-datepicker.js"></script>
+<script src="product/p_js/scrollax.min.js"></script>
+<!-- <script
+	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script> -->
+<!-- <script src="product/js/google-map.js"></script> -->
+<script src="product/p_js/main.js"></script>
 </html>

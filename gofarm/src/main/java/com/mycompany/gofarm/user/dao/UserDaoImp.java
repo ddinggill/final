@@ -25,20 +25,6 @@ public class UserDaoImp implements UserDAO{
 	
 	@Override
 	public void signupUser(UserDTO dto) {
-		System.out.println(sqlSession);
-		System.out.println(dto.getUsercode());
-		System.out.println(dto.getUserid());
-		System.out.println(dto.getUserpw());
-		System.out.println(dto.getName());
-		System.out.println(dto.getBirth());
-		System.out.println(dto.getPhone());
-		System.out.println(dto.getEmail());
-		System.out.println(dto.getNickname());
-		System.out.println(dto.getUserlvl());
-		System.out.println(dto.getBank());
-		System.out.println(dto.getAccount());
-		System.out.println(dto.getMileage());
-		System.out.println(dto.getUser_home());
 		sqlSession.insert("user.signup", dto);
 	}
 
@@ -47,4 +33,19 @@ public class UserDaoImp implements UserDAO{
 		sqlSession.insert("user.signupdetail", dto);
 	}
 
-}
+	@Override
+	public UserDTO loginCheck(UserDTO dto) {
+		//System.out.println("로그인체크");
+		/*System.out.println((int)sqlSession.selectOne("user.logincheck", dto));
+		if((int)sqlSession.selectOne("user.logincheck", dto) == 1 ) {
+			System.out.println("회원");
+			return true;
+		}
+		else {
+			System.out.println("비회원");
+			return false;
+		}*/
+		return sqlSession.selectOne("user.logincheck", dto);
+	}//end loginCheck()
+
+}//end class

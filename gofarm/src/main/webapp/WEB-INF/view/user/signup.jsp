@@ -6,8 +6,8 @@
 <meta charset="UTF-8">
 
 <!-- Font -->
-<link href="https://fonts.googleapis.com/css?family=Poppins:400,700"
-	rel="stylesheet">
+<!-- <link href="https://fonts.googleapis.com/css?family=Poppins:400,700"
+	rel="stylesheet"> -->
 <!-- Stylesheets -->
 <link href="main/plugin-frameworks/bootstrap.min.css" rel="stylesheet">
 <link href="main/plugin-frameworks/swiper.css" rel="stylesheet">
@@ -32,7 +32,7 @@ body {
 	color: #222;
 	font-family: 'Sunflower';
 	font-weight: 300;
-	background-image: url("images/test1.jpg");
+	background-image: url("main/images/test1.jpg");
 }
 
 #login-box {
@@ -136,7 +136,7 @@ input[type="submit"]:active {
 	padding-top: 200px;
 	width: 300px;
 	height: 800px;
-	background: url('https://goo.gl/YbktSj');
+	/* background: url('https://goo.gl/YbktSj'); */
 	background-size: cover;
 	background-position: center;
 	border-radius: 0 2px 2px 0;

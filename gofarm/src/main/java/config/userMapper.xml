@@ -15,13 +15,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		values(users_seq.currval , #{bank}, #{account}, 0, #{user_home})
  	</insert>
 
-	<!-- <insert id="signup" parameterType="com.mycompany.gofarm.user.dto.UserDTO">
-		insert into users_test
-		values(users2_seq.nextval)
-	</insert>
-
-	<insert id="signupdetail" parameterType="com.mycompany.gofarm.user.dto.UserDTO">
-		insert into usersdetail_test
-		values(users2_seq.currval)
-	</insert> -->
+	<!-- <select id="logincheck" parameterType="com.mycompany.gofarm.user.dto.UserDTO"
+		resultType="int">
+		select count(*) from users
+		where userid=#{userid} and userpw=#{userpw}
+	</select> -->
+	
+	<select id="logincheck" parameterType="com.mycompany.gofarm.user.dto.UserDTO"
+		resultType="com.mycompany.gofarm.user.dto.UserDTO">
+		select * from users
+		where userid=#{userid} and userpw=#{userpw}
+	</select>
 </mapper>

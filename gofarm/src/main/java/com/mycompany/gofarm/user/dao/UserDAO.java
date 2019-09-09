@@ -6,4 +6,5 @@ public interface UserDAO {
 
 	public void signupUser(UserDTO dto);
 	public void signupdetail(UserDTO dto);
+	public UserDTO loginCheck(UserDTO dto);
 }
