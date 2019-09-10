@@ -78,7 +78,7 @@
       <li class="nav-item active">
         <a class="nav-link" href="intro.do">
           <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>마이페이지</span>
+          <span>개인정보수정</span>
         </a>
       </li>
       <li class="nav-item dropdown">

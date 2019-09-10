@@ -31,6 +31,7 @@ public class UserDaoImp implements UserDAO{
 	@Override
 	public void signupdetail(UserDTO dto) {
 		sqlSession.insert("user.signupdetail", dto);
+		sqlSession.update("user.chengelvl", dto.getUsercode());
 	}
 
 	@Override
@@ -47,5 +48,17 @@ public class UserDaoImp implements UserDAO{
 		}*/
 		return sqlSession.selectOne("user.logincheck", dto);
 	}//end loginCheck()
+
+	@Override
+	public int haskakaoid(String email) {
+		return sqlSession.selectOne("user.haskakaoid",email);
+	}
+
+	@Override
+	public UserDTO getkakaoinfo(String email) {
+		
+		return sqlSession.selectOne("user.kakaoinfo", email);
+	}
+
 
 }//end class

@@ -191,6 +191,22 @@ button.social-signin.kakao {
 	opacity: 0.9;
 }
 </style>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	
+	$(".kakao").click(function(){
+		console.log("카카오로그인 클릭");
+		window.location.href="kakaologin.do";
+	});
+	
+	$(".naver").click(function(){
+		console.log("네이버로그인 클릭");
+		window.location.href="naverlogin.do";
+	});
+	
+});
+</script>
 </head>
 <body>
 
@@ -200,18 +216,15 @@ button.social-signin.kakao {
 		<form action="signuppro.do" method="post">
 			<div class="left">
 				<h2>회원정보</h2>
-				<br> <input type="text" name="userid" placeholder="아이디" /> <input
-					type="password" name="userpw" placeholder="비밀번호" /> <input
-					type="password" name="passchk" placeholder="비밀번호 확인" /> <input
-					type="text" name="name" placeholder="이름" /> <input type="email"
-					name="email" placeholder="이메일" /> <input type="date" name="birth"
-					placeholder="생년월일" /> <input type="text" name="user_home"
-					placeholder="주소" /> <input type="text" name="phone"
-					placeholder="전화번호 - 없이 입력하세요." /> <input type="text"
-					name="nickname" placeholder="닉네임" /> <input type="text"
-					name="bank" placeholder="계좌은행" /> <input type="text"
-					name="account" placeholder="계좌번호 - 없이 입력하세요." /> <input
-					type="submit" name="signup_submit" value="회원 가입" />
+				<br><input type="text" name="userid" placeholder="아이디" /> 
+					<input type="password" name="userpw" placeholder="비밀번호" /> 
+					<input type="password" name="passchk" placeholder="비밀번호 확인" /> 
+					<input type="text" name="name" placeholder="이름" /> 
+					<input type="email" name="email" placeholder="이메일" /> 
+					<input type="date" name="birth" placeholder="생년월일" /> 
+					<input type="text" name="phone" placeholder="전화번호 - 없이 입력하세요." /> 
+					<input type="text" name="nickname" placeholder="닉네임" /> 
+					<input type="submit" name="signup_submit" value="회원 가입" />
 			</div>
 		</form>
 		<div class="right">

@@ -19,12 +19,12 @@
 <link href="main/fonts/ionicons.css" rel="stylesheet">
 <link href="main/common/styles.css" rel="stylesheet">
 <link href="recruit/recruit.css" rel="stylesheet">
-<body>
+<body style="background-color: #A297BD">
 	<!--common 네비바 -->
 	<!-- ----------------------------------------------------------------------------------- -->
-	<div style="height: 1000px; margin-top: 300px;">
-
 		<jsp:include page="/WEB-INF/view/common/main_nav.jsp"></jsp:include>
+	 <div style="height: 1000px; margin-top: 300px; ">
+
 
 		<div class="w3-row-padding"
 			style="margin: 0 350px 0 350px; height: 200px">
@@ -35,14 +35,15 @@
 					<div class="w3-container">
 						<h3 class="w3-text-indigo getinfo">
 							&nbsp;채용 정보 <a class="w3-button w3-circle w3-large"
-								href="recruit_info.jsp"><i class="fa fa-plus"></i></a>
+								href="jobsearch.do"><p class="fa fa-plus"></p></a>
 						</h3>
 						<hr>
 						<h6 class="font_color">근무자를 찾고 있습니다</h6>
 					</div>
 					<ul class="w3-ul w3-border-top">
 
-						<c:forEach var="dto" items="${aList}">
+						<c:forEach var="dto" items="${aList}" varStatus="status" begin="0"
+							end="3">
 							<li>
 								<p>${dto.j_company}</p>
 								<p>The response to the animations was ridiculous</p>
@@ -50,7 +51,7 @@
 						</c:forEach>
 					</ul>
 					<div class="w3-container fastbutton">
-						<span class="re_title">채용정보등록 바로가기</span>
+							<a href="personform.do"><span class="re_title">채용정보등록 바로가기</span></a>
 					</div>
 				</div>
 			</div>
@@ -59,27 +60,28 @@
 				<div class="w3-card " style="background-color: #FDF5E6;">
 					<div class="w3-container">
 						<h3 class="w3-text-indigo getinfo">
-							&nbsp;인력 정보 <a class="w3-button w3-circle w3-large "><i
-								class="fa fa-plus"></i></a>
+							&nbsp;인력 정보 <a class="w3-button w3-circle w3-large "
+								href="personsearch.do"><p class="fa fa-plus"></p></a>
 						</h3>
 						<hr>
 						<h6 class="font_color">일자리를 찾고 있습니다</h6>
 					</div>
 					<ul class="w3-ul w3-border-top">
 
-						<li></li>
+						<c:forEach var="dto" items="${aList2}" varStatus="status"
+							begin="0" end="4">
+							<li>
+								<p>${dto.js_name}</p>
+								<p>The response to the animations was ridiculous</p>
+							</li>
+						</c:forEach>
 					</ul>
 					<div class="w3-container fastbutton">
-						<span class="re_title">인력정보등록 바로가기</span>
+						<a href="recruitform.do"><span class="re_title">인력정보등록 바로가기</span></a>
 					</div>
 				</div>
 			</div>
 		</div>
-
-
-
-
-
 
 		<hr>
 

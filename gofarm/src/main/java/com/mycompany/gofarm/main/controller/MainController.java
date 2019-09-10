@@ -9,15 +9,11 @@ public class MainController {
 	public MainController() {
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	@RequestMapping("/main.do")
 	public String maingo() {
 		return "main/index";
 	}
-	
-	@RequestMapping("/recruit2.do")
-	public String recruit() {
-		return "job/recruit";
-	}
-	
+
+
 }

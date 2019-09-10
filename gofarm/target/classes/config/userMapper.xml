@@ -7,12 +7,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	<insert id="signup" parameterType="com.mycompany.gofarm.user.dto.UserDTO">
  		insert into users 
  		values(users_seq.nextval, #{userid}, #{userpw}, #{name}, 
- 			#{birth}, #{phone}, #{email}, #{nickname}, 0)
+ 			#{birth}, #{phone}, #{email}, #{nickname}, 1)
  	</insert>
  	
  	<insert id="signupdetail" parameterType="com.mycompany.gofarm.user.dto.UserDTO">
  		insert into user_detail
- 		values(users_seq.currval , #{bank}, #{account}, 0, #{user_home})
+ 		values(#{usercode} , #{bank}, #{account}, 0, #{user_home})
  	</insert>
 
 	<!-- <select id="logincheck" parameterType="com.mycompany.gofarm.user.dto.UserDTO"
@@ -26,4 +26,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from users
 		where userid=#{userid} and userpw=#{userpw}
 	</select>
+	
+	<select id="haskakaoid" parameterType="string" resultType="int">
+		select count(*) from users
+		where email=#{email}
+	</select>
+	
+	<select id="kakaoinfo" parameterType="string"
+		resultType="com.mycompany.gofarm.user.dto.UserDTO">
+		select * from users
+		where email=#{email}
+	</select>
+	
+	<update id="chengelvl" parameterType="int">
+		update users set userlvl=2 where usercode=#{usercode}
+	</update>
 </mapper>

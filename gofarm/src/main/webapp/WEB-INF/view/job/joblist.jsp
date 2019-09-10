@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -40,23 +41,7 @@
 <title>구인구직 리스트</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<style type="text/css">
-i {
-	border: solid #778899;
-	border-width: 0px 5px 5px 0;
-	display: inline-block;
-	padding: 7px;
-}
 
-.right {
-	transform: rotate(-45deg);
-	-webkit-transform: rotate(-45deg);
-}
-
-.gu_list {
-	margin-top: 100px;
-}
-</style>
 </head>
 
 <body>
@@ -69,148 +54,80 @@ i {
 		<div class="container-table100" style="background-color: #FFFAF0">
 
 			<div class="wrap-table100">
+
 				<div class="gu_list">
-					<span style="font-size: 25px; margin-bottom: 10px">인력 정보<i
-						class="arrow right"></i> &nbsp;&nbsp;<strong>구직 리스트</strong></span>
+				 <span style="color: #696969; font-size: 25px; margin-bottom: 10px;">채용정보&nbsp;&nbsp;<i
+						class="arrow right"></i><strong>&nbsp;&nbsp;구인 리스트</strong></span>
 				</div>
 
-				<div class="table">
+				<table class="table">
 
-					<div class="row header" style="background-color: #778899;">
-						<div class="cell">회사명 &nbsp;</div>
-						<div class="cell">근무 지역 &nbsp;</div>
-						<div class="cell">희망 작물 &nbsp;</div>
-						<div class="cell">작업 기간 &nbsp;</div>
-						<div class="cell">모집 인원 &nbsp;</div>
-						<div class="cell">등록일 &nbsp;</div>
-						<div class="cell">마감일 &nbsp;</div>
+					<tr class="row header" style="background-color: #778899;">
+						<td class="cell">회사명 &nbsp;</td>
+						<td class="cell">근무 지역 &nbsp;</td>
+						<td class="cell">모집 업종 &nbsp;</td>
+						<td class="cell">모집 인원 &nbsp;</td>
+						<td class="cell">작업 기간 &nbsp;</td>
+						<td class="cell">등록일 &nbsp;</td>
+						<td class="cell">마감일 &nbsp;</td>
 
-					</div>
+					</tr>
 
-					<div class="row">
-						<div class="cell" data-title="Full Name">Vincent Williamson
-						</div>
-						<div class="cell" data-title="Age">31</div>
-						<div class="cell" data-title="Age">31</div>
-						<div class="cell" data-title="Age">31</div>
-						<div class="cell" data-title="Job Title">iOS Developer</div>
-						<div class="cell" data-title="Location">Washington</div>
-						<div class="cell" data-title="Location">Washington</div>
-						<div class="cell" data-title="Location">Washington</div>
+					<c:forEach var="dto" items="${aList}">
+						<tr class="row">
+							<td>${dto.job}</td>
+							<c:url var="path" value="view.do">
+								<c:param name="currentPage" value="${pv.currentPage }" />
+								<c:param name="job" value="${dto.job}" />
+							</c:url>
+							<td class="cell"><a href="${path}">${dto.j_company}</a></td>
 
+							<td class="cell" data-title="Age">${dto.j_area }</td>
+							<td class="cell" data-title="Job Title">${dto.j_type }</td>
+							<td class="cell" data-title="Age">${dto.j_Recruitment }</td>
+							<td class="cell" data-title="Location">${dto.j_term }</td>
+							<td class="cell" data-title="Location">${dto.j_Registration }</td>
+							<td class="cell" data-title="Location">${dto.j_deadline }</td>
+						</tr>
 
-
-					</div>
-
-					<div class="row">
-						<div class="cell" data-title="Full Name">Vincent Williamson
-						</div>
-						<div class="cell" data-title="Age">31</div>
-						<div class="cell" data-title="Age">31</div>
-						<div class="cell" data-title="Age">31</div>
-						<div class="cell" data-title="Job Title">iOS Developer</div>
-						<div class="cell" data-title="Location">Washington</div>
-						<div class="cell" data-title="Location">Washington</div>
-						<div class="cell" data-title="Location">Washington</div>
+					</c:forEach>
 
 
-					</div>
+				</table>
+				<!-- 이전 출력 시작 -->
+				<div class="pageList">
+					<c:if test="${pv.startPage >1 }">
+						<a href="jobsearch.do?currentPage=${pv.startPage-pv.blockPage }">이전</a>
+					</c:if>
+					<!-- 이전 출력끝 -->
 
 
-					<div class="row">
-						<div class="cell" data-title="Full Name">Vincent Williamson
-						</div>
-						<div class="cell" data-title="Age">31</div>
 
-						<div class="cell" data-title="Age">31</div>
-						<div class="cell" data-title="Age">31</div>
-						<div class="cell" data-title="Job Title">iOS Developer</div>
-						<div class="cell" data-title="Location">Washington</div>
-						<div class="cell" data-title="Location">Washington</div>
-						<div class="cell" data-title="Location">Washington</div>
+					<!-- 페이지 출력시작 -->
+					<c:forEach var="i" begin="${pv.startPage }" end="${pv.endPage }">
+						<span> <c:url var="currPage" value="jobsearch.do">
+								<c:param name="currentPage" value="${i }" />
+							</c:url> <c:choose>
+								<c:when test="${i==pv.currentPage }">
+									<a href="${currPage }" class="pagecolor"> <c:out
+											value="${i }" /></a>
+								</c:when>
+								<c:otherwise>
+									<a href="${currPage }"><c:out value="${i}" /></a>
+								</c:otherwise>
+							</c:choose>
 
+						</span>
 
-					</div>
+					</c:forEach>
+					<!-- 페이지 출력끝 -->
 
-
-					<div class="row">
-						<div class="cell" data-title="Full Name">Vincent Williamson
-						</div>
-						<div class="cell" data-title="Age">31</div>
-
-						<div class="cell" data-title="Age">31</div>
-						<div class="cell" data-title="Age">31</div>
-						<div class="cell" data-title="Job Title">iOS Developer</div>
-						<div class="cell" data-title="Location">Washington</div>
-						<div class="cell" data-title="Location">Washington</div>
-						<div class="cell" data-title="Location">Washington</div>
-
-
-					</div>
-
-					<div class="row">
-						<div class="cell" data-title="Full Name">Vincent Williamson
-						</div>
-						<div class="cell" data-title="Age">31</div>
-
-						<div class="cell" data-title="Age">31</div>
-						<div class="cell" data-title="Age">31</div>
-						<div class="cell" data-title="Job Title">iOS Developer</div>
-						<div class="cell" data-title="Location">Washington</div>
-						<div class="cell" data-title="Location">Washington</div>
-						<div class="cell" data-title="Location">Washington</div>
-
-
-					</div>
-
-
-					<div class="row">
-						<div class="cell" data-title="Full Name">Vincent Williamson
-						</div>
-						<div class="cell" data-title="Age">31</div>
-						<div class="cell" data-title="Age">31</div>
-						<div class="cell" data-title="Age">31</div>
-						<div class="cell" data-title="Job Title">iOS Developer</div>
-						<div class="cell" data-title="Location">Vincent Williamson</div>
-						<div class="cell" data-title="Location">Washington</div>
-						<div class="cell" data-title="Location">Washington</div>
-
-
-					</div>
-
-
-					<div class="row">
-						<div class="cell" data-title="Full Name">Vincent Williamson
-						</div>
-						<div class="cell" data-title="Age">31</div>
-						<div class="cell" data-title="Age">31</div>
-						<div class="cell" data-title="Age">31</div>
-						<div class="cell" data-title="Job Title">iOS Developer</div>
-						<div class="cell" data-title="Location">Vincent Williamson</div>
-						<div class="cell" data-title="Location">Washington</div>
-						<div class="cell" data-title="Location">Washington</div>
-
-
-					</div>
-
-
-					<div class="row">
-						<div class="cell" data-title="Full Name">Vincent Williamson
-						</div>
-						<div class="cell" data-title="Age">31</div>
-						<div class="cell" data-title="Age">31</div>
-						<div class="cell" data-title="Age">31</div>
-						<div class="cell" data-title="Job Title">iOS Developer</div>
-						<div class="cell" data-title="Location">Vincent Williamson</div>
-						<div class="cell" data-title="Location">Washington</div>
-						<div class="cell" data-title="Location">Washington</div>
-
-
-					</div>
-
-
+					<c:if test="${pv.totalPage>pv.endPage }">
+						<a href="jobsearch.do?currentPage=${pv.startPage +pv.blockPage }">다음</a>
+					</c:if>
 				</div>
 			</div>
+
 		</div>
 	</div>
 
