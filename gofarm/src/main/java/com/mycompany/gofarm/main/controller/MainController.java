@@ -14,6 +14,4 @@ public class MainController {
 	public String maingo() {
 		return "main/index";
 	}
-
-
 }
