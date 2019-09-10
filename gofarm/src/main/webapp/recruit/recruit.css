@@ -24,3 +24,23 @@
 .w3-button {
 	float: right;
 }
+
+i {
+	border: solid #778899;
+	border-width: 0px 5px 5px 0;
+	display: inline-block;
+	padding: 7px;
+}
+
+.right {
+	transform: rotate(-45deg);
+	-webkit-transform: rotate(-45deg);
+}
+
+.gu_list {
+	margin-top: 100px;
+}
+
+.row .cell:nth-child(1) {
+	padding-left:100px;
+}

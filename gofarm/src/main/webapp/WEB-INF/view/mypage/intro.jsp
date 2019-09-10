@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -30,49 +30,53 @@
         <div class="card mb-3">
           <div class="card-header">
             <i class="fas fa-table"></i>마이페이지
+            <input type="hidden" value="${sessionScope.loginOk.userlvl}">
+            <c:if test="${sessionScope.loginOk.userlvl !=2 }">
+	            <button class="btn btn-dark"><a href="detailsignup.do">상세회원가입</a></button>
+            </c:if>
           </div>
           <div class="card-body">
             <div class="table-responsive">
               <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                   <tr>
-                  	<th>냉무</th>
+                  	<th>헤드</th>
                   </tr>
                 </thead>
-                <tfoot>
-                  <tr>
-                  	<th>냉무</th>
-                  </tr>
-                </tfoot>
                 <tbody>
                   <tr>
-                  	<th>냉무</th>
+                  	<td>냉무</td>
                   </tr>
                    <tr>
-                  	<th>냉무</th>
+                   	<td>냉무</td>
                   </tr>
                    <tr>
-                  	<th>냉무</th>
+                  	<td>냉무</td>
                   </tr>
                    <tr>
-                  	<th>냉무</th>
+                  	<td>냉무</td>
                   </tr>
                    <tr>
-                  	<th>냉무</th>
+                  	<td>냉무</td>
                   </tr>
                    <tr>
-                  	<th>냉무</th>
+                  	<td>냉무</td>
                   </tr>
                    <tr>
-                  	<th>냉무</th>
+                  	<td>냉무</td>
                   </tr>
                    <tr>
-                  	<th>냉무</th>
+                  	<td>냉무</td>
                   </tr>
                    <tr>
-                  	<th>냉무</th>
+                  	<td>냉무</td>
                   </tr>
                 </tbody>
+                 <tfoot>
+                  <tr>
+                  	<th>아래</th>
+                  </tr>
+                </tfoot>
               </table>
             </div>
           </div>

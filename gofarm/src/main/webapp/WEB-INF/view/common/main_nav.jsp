@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,13 +30,13 @@
 
 <style>
 
-
 /**** 상단 *****/
 header {
 	position: fixed;
 	z-index: 1;
 	top: 0;
 }
+
 header>#topNav {
 	position: fixed;
 	padding-top: 20px;
@@ -99,36 +99,41 @@ header>#topNav>ul.main-munu>li>a {
 </style>
 </head>
 <body>
+
 	<header class="fixed-top">
-		<nav id="topNav">
-			<a class="logo" href="#"><img src="main/images/logo.png">GO FARM</a>
+
+		<nav id="topNav" style="margin-left: 130px">
+			<a class="logo" href="#"><img src="main/images/logo.png">GO
+				FARM</a>
 			<ul class="main-menu" id="main-menu">
 
 
 
-				<li><a href="index.html">HOME</a></li>
-				<li><a href="signup.do">INFO</a></li>
-				<li><a href="recruit.do">구인 | 구직</a></li>
+				<li><a href="main.do">HOME</a></li>
+				<li><a href="#">INFO</a></li>
+				<li><a href="recruit2.do">구인 | 구직</a></li>
 				<li><a href="productList.do">장터</a></li>
 				<li><a href="#">게시판</a></li>
 				<c:choose>
-		  			<c:when test="${empty sessionScope.loginOk}">
-				  		<li><a href="login.do">로그인</a></li>
-		  			</c:when>
-		  			<c:otherwise>
-		  			<!-- 	<script type="text/javascript">
+					<c:when test="${empty sessionScope.loginOk}">
+						<li><a href="login.do">로그인</a></li>
+					</c:when>
+					<c:otherwise>
+						<!-- 	<script type="text/javascript">
 		  					timecount();
 		  				</script> -->
-						<li class="drop-down"><a href="#!">${loginOk.userid }<i class="ion-arrow-down-b"></i></a>
+						<li class="drop-down"><a href="#!">${loginOk.userid }<i
+								class="ion-arrow-down-b"></i></a>
 							<ul class="drop-down-menu drop-down-inner">
 								<li><a href="logout.do">logout</a></li>
 								<li><a href="mypage.do">mypage</a></li>
-							</ul>
-						</li>
-		  			</c:otherwise>
-		  		</c:choose>
+							</ul></li>
+					</c:otherwise>
+				</c:choose>
 			</ul>
 		</nav>
+
 	</header>
 </body>
+
 </html>

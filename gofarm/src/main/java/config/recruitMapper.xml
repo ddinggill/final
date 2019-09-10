@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="recruit">
+	<!--채용 첫 화면에 정보제공 -->
+	<select id="job" resultType="com.mycompany.gofarm.job.dto.JobDTO">
+		select * from job order by job desc
+	</select>
+
+
+	<!--인력 첫 화면에 정보제공 -->
+	<select id="jobsearch" resultType="com.mycompany.gofarm.job.dto.JobSearchDTO">
+		select * from jobsearch order
+		by jobsearchcode desc
+	</select>
+
+	<!-- 채용 페이징 하기위한 숫자세기 -->
+	<select id="count" resultType="int">
+		select count(*) from job
+	</select>
+
+	<!-- 구직자 페이징 하기위한 숫자세기 -->
+	<select id="count_person" resultType="int">
+		select count(*) from
+		jobsearch
+	</select>
+
+
+	<!-- 페이징 하기 위한 리스트 -->
+	<select id="job_list" parameterType="com.mycompany.gofarm.job.dto.PageDTO"
+		resultType="com.mycompany.gofarm.job.dto.JobDTO">
+	<![CDATA[
+	select b.* from
+	(select rownum as rm, a.* from (
+	select * from job order by job asc)a)b
+	where b.rm> #{startRow} and b.rm <= #{endRow}
+	]]>
+	</select>
+
+
+	<!-- 구인 페이징 하기 위한 리스트 -->
+	<select id="jobsearch_list" parameterType="com.mycompany.gofarm.job.dto.PageDTO"
+		resultType="com.mycompany.gofarm.job.dto.JobSearchDTO">
+	<![CDATA[
+	select b.* from
+	(select rownum as rm, a.* from (
+	select * from jobsearch order by jobsearchcode asc)a)b
+	where b.rm> #{startRow} and b.rm <= #{endRow}
+	]]>
+	</select>
+
+	<!-- 구직 상세 뷰 -->
+	<select id="resum" parameterType="int"
+		resultType="com.mycompany.gofarm.job.dto.JobDTO">
+		select JOB , USERCODE,J_COMPANY,
+		to_char(J_REGISTRATION,'yyyy-mm-dd'),J_DEADLINE,J_AREA
+		,J_RECRUITMENT,J_CAREER,J_GENDER,J_AGE,J_TYPE,J_TERM,J_INFO,J_ADDRESS
+		,J_PREFERENTIAL,CONTENT,J_CONTACT from job where job=#{job}
+
+	</select>
+
+	<!-- 구인 상세 뷰 -->
+	<select id="personlist" parameterType="int"
+		resultType="com.mycompany.gofarm.job.dto.JobSearchDTO">
+		select * from jobsearch where
+		jobsearchcode=#{jobsearchcode}
+
+	</select>
+
+
+
+	<!-- 이력서 -->
+	<insert id="resume" parameterType="com.mycompany.gofarm.job.dto.JobSearchDTO">
+		insert into
+		jobsearch(jobsearchcode,usercode,js_name,js_registration,js_area,js_crop,js_time,js_salary,js_address,js_phone,js_intro,
+		js_age,
+		js_gender)values(jobsearch_seq.nextval,#{usercode},#{js_name},sysdate,#{js_area},#{js_crop},#{js_time},#{js_salary},#{js_address},#{js_phone},#{js_intro},#{js_age},#{js_gender})
+	</insert>
+
+
+
+	<!-- 채용정보 -->
+	<insert id="person" parameterType="com.mycompany.gofarm.job.dto.JobDTO">insert into job values
+		(JOB_SEQ.nextval,#{usercode},#{j_company},
+		sysdate,#{j_deadline},#{j_area},#{j_recruitment},#{j_career},#{j_gender},#{j_age},#{j_type},#{j_term},#{j_info},#{j_address},#{j_preferential},#{content},#{j_contact})
+	</insert>
+
+
+
+	<!-- <insert id="career" parameterType="com.mycompany.gofarm.job.dto.careerDTO"> 
+		insert into career222 values <foreach separator="," item="dto" collection="list">(JOB_SEQ.currval,#{dto.career},#{dto.startdate},#{dto.enddate}) 
+		</foreach> </insert> -->
+
+	<!-- 이력서 구독자 유저코드 값 넣기 -->
+
+	<insert id="jobchk" parameterType="com.mycompany.gofarm.job.dto.JobSearchDTO">
+		insert into jobcheck
+		values(#{jobsearchcode}, #{jk_usercode})
+	</insert>
+
+
+</mapper>

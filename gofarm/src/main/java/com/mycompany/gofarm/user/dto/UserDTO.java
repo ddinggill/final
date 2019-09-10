@@ -2,13 +2,16 @@ package com.mycompany.gofarm.user.dto;
 
 import java.sql.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+
 public class UserDTO {
 	
 	private int usercode;
 	private String userid;
 	private String userpw;
 	private String name;
-	private Date birth;
+	private String birth;
 	private String phone;
 	private String email;
 	private String nickname;
@@ -54,11 +57,11 @@ public class UserDTO {
 		this.name = name;
 	}
 
-	public Date getBirth() {
+	public String getBirth() {
 		return birth;
 	}
-
-	public void setBirth(Date birth) {
+	
+	public void setBirth(String birth) {
 		this.birth = birth;
 	}
 

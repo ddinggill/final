@@ -33,6 +33,7 @@
 			<list>
 				<value>classpath:config/userMapper.xml</value>
 				<value>classpath:config/productMapper.xml</value>
+				<value>classpath:config/recruitMapper.xml</value>
 			</list>
 		</property>
 	</bean>

@@ -1,0 +1,80 @@
+* {
+	margin: 0;
+	paddig: 0;
+}
+
+body {
+	background: #c4d3f6;
+}
+
+table {
+	/* border: 1px black; */
+	background: white;
+	width: 50%;
+	hegith: auto;
+	margin: auto;
+}
+
+.t1 {
+	width: 150px;
+	height: 50px;
+	background: #6c7ae0;
+	font-size: 18px;
+	color: #fff;
+	line-height: 1.2;
+	font-weight: unset;
+	border: 2px solid #E7E5E5;
+}
+
+.t2 {
+	width: 200px;
+	height: 50px;
+}
+
+tr {
+	border: 3px solid #E7E5E5;
+}
+
+td {
+	text-align: center;
+}
+
+/* #tab>tbody>tr:nth-child(5)>td.aa {
+   width: 300px;
+}
+ */
+.detail {
+	width: 100%;
+	height: auto;
+	margin: auto;
+	background: white;
+	/* margin-top: 500px; */
+}
+
+.datail_title {
+	font-size: 30px;
+}
+
+.memo_title {
+	font-size: 30px;
+}
+
+.memo {
+	width: 100%;
+	margin: auto;
+	height: 100px;
+	background: white;
+}
+
+.main {
+	margin: auto;
+	width: 50%;
+	height: 60px;
+	background-color: #c4d3f6;
+	text-align: left;
+	margin-top: 180px;
+}
+
+.btn {
+	margin: auto;
+}
