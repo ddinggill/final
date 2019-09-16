@@ -36,6 +36,7 @@
 				<value>classpath:config/recruitMapper.xml</value>
 				<value>classpath:config/chatMapper.xml</value>
 				<value>classpath:config/mypageMapper.xml</value>
+				<value>classpath:config/auctionMapper.xml</value>
 			</list>
 		</property>
 	</bean>

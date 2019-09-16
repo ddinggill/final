@@ -100,7 +100,8 @@
 					<ul class="product-category">
 						<li><a href="productList.do" class="active">판매</a></li>
 						<li><a href="share">나눔</a></li>
-						<li><a href="auction">경매</a></li>
+						<li><a href="auctionList.do">경매</a></li>
+						<li><a href="productProduce.do">상품등록</a></li>
 					</ul>
 				</div>
 			</div> 
@@ -118,7 +119,7 @@
 					
 					<div class="product">
 						<a href="${path}" class="img-prod"><img class="img-fluid"
-							src="${dto.pd_file}" alt="Colorlib Template"> 
+							src="product/images/${dto.pd_file}" alt="Colorlib Template"> 
 							 </a>
 						<div class="text py-3 pb-4 px-3 text-center">
 							<h3>
@@ -179,6 +180,7 @@
 		<c:if test="${pv.totalPage >pv.endPage}">
 			<a href="list.sb?currentPage=${pv.startPage +pv.blockPage}">다음</a>
 		</c:if>
+		
 		<!-- 다음 출력 끝 -->
 		</div>
 		</div>

@@ -85,21 +85,32 @@
         <br>
         <div class="row block-9">
           <div class="col-md-6 order-md-last d-flex">
-            <form action="#" class="bg-white p-5 contact-form" >
+            <form action="productpay.do" class="bg-white p-5 contact-form" >
+            <input type="text" value="${pd_dto.prod_code}" name="prod_code"> 
+          <%--  <input type="text" value="${cnt}" name="cnt"> --%>
               <div class="form-group">
-                <input type="text" class="form-control" placeholder="이름" value="이름">
+              <label><h4>이름</h4></label>
+                <input type="text" class="form-control" placeholder="이름" value="${user.name}">
               </div>
               <div class="form-group">
-                <input type="text" class="form-control" placeholder="이메일" value="이메일">
+              <label><h4>이메일</h4></label>
+                <input type="text" class="form-control" placeholder="이메일" value="${user.email}">
               </div>
               <div class="form-group">
-                <input type="text" class="form-control" placeholder="주소" value="주소">
+              <label><h4>주소</h4></label>
+                <input type="text" class="form-control" placeholder="주소" value="${detail.user_home }">
               </div>
               <div class="form-group">
-                <input type="text" class="form-control" placeholder="마일리지" value="마일리지">
+              <label><h4>주문수량</h4></label>
+				<input type="number" id="quantity" name="cnt" class="form-control input-number" value="1" min="1" max="${pd_dto.pd_cnt}" >
               </div>
               <div class="form-group">
-                <textarea name="" id="" cols="10" rows="7" class="form-control" placeholder="배송 시 할말"></textarea>
+              <label><h4>배송시 요청사항</h4></label>
+                <textarea name="" id="" cols="20" rows="5" class="form-control" placeholder="배송 시 할말"></textarea>
+              </div>
+               <div class="form-group">
+               <label><h4>현재 마일리지</h4></label>
+                <input type="text" class="form-control" placeholder="마일리지" value="${detail.mileage}">
               </div>
               <div class="form-group">
                 <input type="submit" value="구 매 하 기" class="btn btn-primary py-3 px-5">
@@ -109,7 +120,7 @@
           </div>
 
           <div class="col-md-6 d-flex">
-          		<img alt="상품이미지" src="${pd_dto.pd_file}" >
+          		<img alt="상품이미지" src="product/images/${pd_dto.pd_file}" >
           </div>
         </div>
       </div>

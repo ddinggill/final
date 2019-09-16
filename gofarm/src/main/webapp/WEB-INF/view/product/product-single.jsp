@@ -133,6 +133,50 @@
 	width: 30%;
 }
 
+#product_review{
+	width: 100%;
+}
+
+table.type08 {
+    border-collapse: collapse;
+    text-align: left;
+    line-height: 1.5;
+    border-left: 1px solid #ccc;
+    margin: 20px 10px;
+    width: 100%;
+}
+
+table.type08 thead th {
+    padding: 10px;
+    font-weight: bold;
+    border-top: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    border-bottom: 2px solid black;
+    background: #82EB5A;
+}
+table.type08 tbody th {
+    width: 15%;
+    padding: 10px;
+    font-weight: bold;
+    vertical-align: top;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    background: #ececec;
+}
+table.type08 td {
+    width: 60%;
+    padding: 10px;
+    vertical-align: top;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+.title{
+	width: 20%;
+}
+#star{
+	width: 10%;
+}
+
 </style>
 
 <script type="text/javascript"
@@ -153,8 +197,8 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-6 mb-5 ftco-animate">
-					<a href="${pd_dto.pd_file}" class="image-popup"><img
-						src="${pd_dto.pd_file}" class="img-fluid"
+					<a href="product/images/${pd_dto.pd_file}" class="image-popup"><img
+						src="product/images/${pd_dto.pd_file}" class="img-fluid"
 						alt="Colorlib Template"></a>
 				</div>
 
@@ -184,21 +228,15 @@
 								<td class="goods-view-form-table-cell">${pd_dto.producer}</td>
 							</tr>
 							<tr>
-								<th scope="row" class="goods-view-form-table-heading">수량</th>
+								<th scope="row" class="goods-view-form-table-heading">남은수량</th>
 								<td class="goods-view-form-table-cell"><div
 										class="input-group col-md-6 d-flex mb-3">
 										<span class="input-group-btn mr-2">
-											<button type="button" class="quantity-left-minus btn"
-												data-type="minus" data-field="">
-												<i class="ion-ios-remove"></i>
-											</button>
-										</span> <input type="text" id="quantity" name="quantity"
-											class="form-control input-number" value="1" min="1" max="100">
+											
+										</span> <input type="text" id="quantity" name="cnt"
+											class="form-control input-number" value="${pd_dto.pd_cnt}"  >
 										<span class="input-group-btn ml-2">
-											<button type="button" class="quantity-right-plus btn"
-												data-type="plus" data-field="">
-												<i class="ion-ios-add"></i>
-											</button>
+											
 										</span>
 									</div></td>
 							</tr>
@@ -208,11 +246,27 @@
 					<c:url var="path" value="productPay.do">
 						<c:param name="prod_code" value="${pd_dto.prod_code}" />
 					</c:url>
+					<c:url var="update" value="productUpdate.do">
+						<c:param name="prod_code" value="${pd_dto.prod_code}" />
+					</c:url>
+					<c:url var="delete" value="productDelete.do">
+						<c:param name="prod_code" value="${pd_dto.prod_code}" />
+					</c:url>
 					<p>
 					<input type="hidden" value="${pd_dto.prod_code}" >
 					<a href="${path}" class="btn btn-black py-3 px-5">구매하기</a>
 					</p>
-
+					
+					<c:if test="${pd_dto.usercode == user.usercode}">
+					<p>
+					<input type="hidden" value="${pd_dto.prod_code}" >
+					<a href="${update}" class="btn btn-green py-3 px-5">수정하기</a>
+					</p>
+					<p>
+					<input type="hidden" value="${pd_dto.prod_code}" >
+					<a href="${delete}" class="btn btn-red py-3 px-5">삭제하기</a>
+					</p>
+					</c:if>
 				</div>
 			</div>
 		</div>
@@ -221,15 +275,10 @@
 	<section class="goods-info">
 		<div class="container">
 			<ul class="goods-view-infomation-tab-group">
-				<a href="#product_info"
-					class="goods-view-infomation-tab-anchor __active">
-					<li class="goods-view-infomation-tab1">상세정보</li>
-				</a>
-				<a href="#product_review" class="goods-view-infomation-tab-anchor">
-					<li class="goods-view-infomation-tab2">고객후기 <span>(0)</span></li>
-				</a>
+					<li class="goods-view-infomation-tab1"><a href="#product_info"
+					class="goods-view-infomation-tab-anchor __active">상세정보</a></li>
+					<li class="goods-view-infomation-tab2"><a href="#product_review" class="goods-view-infomation-tab-anchor">고객후기</a></li>
 			</ul>
-
 		</div>
 
 		<div class="container">
@@ -237,25 +286,63 @@
 				<p>${pd_dto.pd_detail}</p>
 			</div>
 		</div>
-		
+
 		<div class="container">
 			<ul class="goods-view-infomation-tab-group2">
-				<a href="#product_info" class="goods-view-infomation-tab-anchor __active">
-					<li class="goods-view-infomation-tab1">상세정보</li>
-				</a>
-				<a href="#product_review" class="goods-view-infomation-tab-anchor">
-					<li class="goods-view-infomation-tab2">고객후기 <span>(0)</span></li>
-				</a>
+					<li class="goods-view-infomation-tab1"><a href="#product_info" class="goods-view-infomation-tab-anchor __active">상세정보</a></li>
+					<li class="goods-view-infomation-tab2"><a href="#product_review" class="goods-view-infomation-tab-anchor">고객후기</a> </li>
 			</ul>
-
 		</div>
 
 		<div class="container">
 			<div id="product_review">
-				내용
+				<table class="type08">
+  					  <thead>
+  						  <tr>
+    					    <th scope="cols">제목</th>
+      					    <th scope="cols">내용</th>
+      					    <th id="star">평점</th>
+							 <th scope="cols">수정</th>
+							  <th scope="cols">삭제</th>
+ 						  </tr>
+   					 </thead>
+   				 <tbody>
+   				 <c:forEach items="${review}" var="review">
+  					  <tr>
+    				    <th scope="row">${review.re_title}</th>
+    				    <td>${review.content}</td>
+    				    <td>&starf; ${review.re_star}</td>
+    				    <td><a href=""><input type="button" value="수정"></a></td> 
+    				    <td><a href=""><input type="button" value="삭제"></a></td> 
+  					  </tr>
+				</c:forEach>
+  			  </tbody>
+			</table>
 			</div>
-		</div>
-
+			<!-- <div class="container">
+			<div id="product_review">
+				<table class="type08">
+					<thead>
+  						  <tr>
+    					    <td class="title" style="border-top: 1px solid #ccc;">제목</td>
+      				   		 <td style="border-top: 1px solid #ccc;">제목입니다</td>
+ 						  </tr>
+ 						  <tr>
+    					    <td class="title">작성자</td>
+      				    	<td>작성자 입니다.</td>
+ 						  </tr>
+ 						  <tr>
+    					    <td class="title">내용</td>
+      				   		 <td>내용입니다.</td>
+ 						  </tr>
+   					 </thead>
+					
+					
+					
+				</table>
+			</div>	
+		</div> -->
+</div>
 	</section>
 	<!-- footer -->
 	<jsp:include page="/WEB-INF/view/common/footer.jsp"></jsp:include>

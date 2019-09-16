@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,9 +12,9 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>마이페이지</title>
+  <title>마이페이지 - 내 마일리지</title>
 
-  <!-- Custom fonts for this template-->
+<!-- Custom fonts for this template-->
   <link href="mypage/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 
   <!-- Page level plugin CSS-->
@@ -22,9 +22,21 @@
 
   <!-- Custom styles for this template-->
   <link href="mypage/css/sb-admin.css" rel="stylesheet">
-
+  
+  <!-- mileage css-->
+  <link href="mypage/css/mileage.css" rel="stylesheet">
+  
 </head>
-
+<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!-- <script type="text/javascript" src="http://code.jquery.com/jquery-3.4.1.js"></script> -->
+<script src="https://cdn.bootpay.co.kr/js/bootpay-3.0.5.min.js" type="application/javascript"></script>
+<!-- mileage JavaScript-->
+<!-- <script src="mypage/js/mileage.js"></script> -->
+<script type="text/javascript">
+$(document).ready(function() {
+	
+});
+</script>
 <body id="page-top">
 	<!-- Navbar -->
 	<jsp:include page="/WEB-INF/view/mypage/common/mypage_nav.jsp"></jsp:include>
@@ -36,49 +48,46 @@
         <!-- DataTables Example -->
         <div class="card mb-3">
           <div class="card-header">
-            <i class="fas fa-table"></i>마이페이지
+            <i class="fas fa-table"></i>내정보
           </div>
           <div class="card-body">
+          <div class="my_detail">
+				<p id="my_detail_1">상세회원전환하기</p>
+				<p id="mileage_btn">
+					<input type="button" id="detail_charge_btn" value="전환하기" onClick="location.href='detailsignup.do'" /> 
+				</p>
+		  </div>
             <div class="table-responsive">
               <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                   <tr>
-                  	<th>냉무</th>
+                  	<th>아이디</th>
+                    <th>이름</th>
+                    <th>생년월일</th>
+                    <th>전화번호</th>
+                    <th>이메일</th>
+                    <th>닉네임</th>
                   </tr>
                 </thead>
                 <tfoot>
                   <tr>
-                  	<th>냉무</th>
+                 	<th>아이디</th>
+                    <th>이름</th>
+                    <th>생년월일</th>
+                    <th>전화번호</th>
+                    <th>이메일</th>
+                    <th>닉네임</th>
                   </tr>
                 </tfoot>
-                <tbody>
-                  <tr>
-                  	<th>냉무</th>
-                  </tr>
-                   <tr>
-                  	<th>냉무</th>
-                  </tr>
-                   <tr>
-                  	<th>냉무</th>
-                  </tr>
-                   <tr>
-                  	<th>냉무</th>
-                  </tr>
-                   <tr>
-                  	<th>냉무</th>
-                  </tr>
-                   <tr>
-                  	<th>냉무</th>
-                  </tr>
-                   <tr>
-                  	<th>냉무</th>
-                  </tr>
-                   <tr>
-                  	<th>냉무</th>
-                  </tr>
-                   <tr>
-                  	<th>냉무</th>
-                  </tr>
+                <tbody id="tbody">
+					<tr>
+						<td>${loginOk.userid}</td>							
+						<td>${loginOk.name}</td>
+						<td>${loginOk.birth}</td>
+						<td>${loginOk.phone}</td>
+						<td>${loginOk.email}</td>
+						<td>${loginOk.nickname}</td>
+					</tr>
                 </tbody>
               </table>
             </div>
@@ -89,7 +98,6 @@
         <p class="small text-center text-muted my-5">
           <em>More table examples coming soon...</em>
         </p>
-
 
 			</div>
 			<!-- /.container-fluid -->
