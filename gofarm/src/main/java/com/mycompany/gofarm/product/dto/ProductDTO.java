@@ -1,5 +1,7 @@
 package com.mycompany.gofarm.product.dto;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class ProductDTO {
 	private int prod_code;
 	private int usercode;
@@ -12,6 +14,17 @@ public class ProductDTO {
 	private String pd_phone;
 	private String pd_detail;
 	
+	private MultipartFile upload;
+	
+	
+	public MultipartFile getUpload() {
+		return upload;
+	}
+
+	public void setUpload(MultipartFile upload) {
+		this.upload = upload;
+	}
+
 	public ProductDTO() {
 		// TODO Auto-generated constructor stub
 	}

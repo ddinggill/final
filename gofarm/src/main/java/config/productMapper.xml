@@ -23,10 +23,43 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	<select id="view" parameterType="int" resultType="com.mycompany.gofarm.product.dto.ProductDTO">
  		select * from product where prod_code = #{prod_code} 
  	</select>
+ 	<insert id="deal" parameterType="com.mycompany.gofarm.product.dto.DealDTO">
+ 		insert into DEAL VALUES(DEAL_SEQ.nextval , #{prod_code} , sysdate , #{de_cnt} , #{de_usercode})
+ 	</insert>
+ 	 <update id="dealresult" parameterType="map">
+		 	UPDATE USER_DETAIL SET MILEAGE = MILEAGE - #{price} where usercode = #{usercode}
+ 	</update> 
+ 	<update id="product_cnt"  parameterType="com.mycompany.gofarm.product.dto.DealDTO">
+ 		update product set pd_cnt = pd_cnt - #{de_cnt} where prod_code = #{prod_code}
+ 	</update>
+ 	
+ 	<select id="userinfo" parameterType="int" 
+ 	resultType="com.mycompany.gofarm.user.dto.UserDTO">
+ 		select * from users where usercode = #{usercode}
+ 	</select>
+ 	
+ 	<select id="detailinfo"  parameterType="int" 
+ 		resultType="com.mycompany.gofarm.user.dto.UserDTO">
+ 		select * from user_detail where usercode = #{usercode}
+ 	</select>
+ 	
+ 	<insert id="productIns" parameterType="com.mycompany.gofarm.product.dto.ProductDTO">
+ 		insert into PRODUCT VALUES(PRODUCT_SEQ.nextval,#{usercode} ,#{pd_file} , #{pd_name} , #{pd_price} ,#{pd_cnt},#{producer} ,#{origin},#{pd_phone},#{pd_detail})
+
+ 	</insert>
+ 	
+ 	<update id="productUpd" parameterType="com.mycompany.gofarm.product.dto.ProductDTO">
+ 		update PRODUCT  set  pd_name = #{pd_name}, pd_price = #{pd_price}, pd_cnt =#{pd_cnt} ,
+ 		 producer =#{producer} , origin = #{origin}, pd_phone = #{pd_phone}, pd_detail =#{pd_detail} where prod_code =#{prod_code} 
+ 	</update>
+ 	
+ 	<delete id="productDel" parameterType="int">
+ 		delete from product where prod_code = #{prod_code}
+ 	</delete>
  	
  	
- 	
- 	
- 	
+ 	<select id="reviewList" parameterType="int" resultType="com.mycompany.gofarm.product.dto.ReviewDTO" >
+ 			select * from review where prod_code = #{prod_code}
+ 	</select>
  	
 </mapper>
