@@ -22,21 +22,6 @@
    href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700&display=swap"
    rel="stylesheet">
 
-<link rel="stylesheet"
-   href="personform/css/open-iconic-bootstrap.min.css">
-<link rel="stylesheet" href="personform/css/animate.css">
-
-<link rel="stylesheet" href="personform/css/owl.carousel.min.css">
-<link rel="stylesheet" href="personform/css/owl.theme.default.min.css">
-<link rel="stylesheet" href="personform/css/magnific-popup.css">
-
-<link rel="stylesheet" href="personform/css/aos.css">
-
-<link rel="stylesheet" href="personform/css/ionicons.min.css">
-
-<link rel="stylesheet" href="personform/css/bootstrap-datepicker.css">
-<link rel="stylesheet" href="personform/css/jquery.timepicker.css">
-
 
 <link rel="stylesheet" href="personform/css/flaticon.css">
 <link rel="stylesheet" href="personform/css/icomoon.css">
@@ -85,7 +70,10 @@ h2{
 <script type="text/javascript">
    $(document).ready(
          function() {
-            $('form').on(
+            
+        	 
+        	 
+        	 $('form').on(
                   'submit',
                   function() {
                      //입력한 내용의 엔터가 있으면 br로 줄바꿈
@@ -93,16 +81,18 @@ h2{
                            $('[name=contents]').val().replace(/\n/gi,
                                  '<br/>'));
                   });
+        	 
+        	 
          });
 </script>
 </head>
-<body>
+<body style="background-color:#A2BBCA;">
    <jsp:include page="/WEB-INF/view/common/main_nav.jsp"></jsp:include>
    <section class="ftco-section">
-      <div class="container" id="write">
-         <h2>채용 정보 등록하기</h2>
+      <div class="container" id="write" style="background-color:#FFFAF0;padding:20px" >
+         <h2 style="" >채용 정보 등록하기</h2>
          <form name="frm" method="post" enctype="multipart/form-data"
-            action="#">
+            action="personformOK.do">
             <table>
          
                <tr>

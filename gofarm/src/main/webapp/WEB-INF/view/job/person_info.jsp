@@ -184,7 +184,7 @@
 	<div class="btn" style="margin-left: 750px;">
 
 		<input type="submit" class="btn btn-black py-3 px-5" value="신청하기 " />
-		<input type="button" value="목록가기" class="btn btn-black py-3 px-5" />
+		<a href="personsearch.do"><input type="button" value="목록가기" class="btn btn-black py-3 px-5" /></a>
 	</div>
 	<form name="frm" id="frm" method="get">
 		<input type="hidden" name="jobsearchcode" value="${dto.jobsearchcode}" />

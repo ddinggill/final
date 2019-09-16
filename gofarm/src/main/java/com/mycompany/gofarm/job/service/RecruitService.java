@@ -2,11 +2,12 @@ package com.mycompany.gofarm.job.service;
 
 import java.util.List;
 
+import com.mycompany.gofarm.job.dto.CareerDTO;
 import com.mycompany.gofarm.job.dto.JobCheckDTO;
 import com.mycompany.gofarm.job.dto.JobDTO;
 import com.mycompany.gofarm.job.dto.JobSearchDTO;
 import com.mycompany.gofarm.job.dto.PageDTO;
-import com.mycompany.gofarm.job.dto.careerDTO;
+import com.mycompany.gofarm.user.dto.UserDTO;
 
 public interface RecruitService {
 
@@ -33,7 +34,16 @@ public interface RecruitService {
 
 	public void insert_personProcess(JobDTO dto);
 
-	public void insert_careerProcess(List<careerDTO> list);
+	public void insert_careerProcess(List<CareerDTO> list);
 	
 	public void insert_jobchkProcess(JobCheckDTO dto);
+	
+	public int jcountProcess(int usercode); //중복확인
+	public int jscountProcess(int usercode);
+	
+	public int view_chkProcess(JobCheckDTO jdto);
+
+	public int chk(JobCheckDTO jdto);
+	
+	public UserDTO getuserInfoProcess(int usercode);
 }

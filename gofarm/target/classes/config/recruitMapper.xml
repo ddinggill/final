@@ -32,24 +32,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 페이징 하기 위한 리스트 -->
 	<select id="job_list" parameterType="com.mycompany.gofarm.job.dto.PageDTO"
 		resultType="com.mycompany.gofarm.job.dto.JobDTO">
-	<![CDATA[
-	select b.* from
-	(select rownum as rm, a.* from (
-	select * from job order by job asc)a)b
-	where b.rm> #{startRow} and b.rm <= #{endRow}
-	]]>
+   <![CDATA[
+   select b.* from
+   (select rownum as rm, a.* from (
+   select * from job order by job desc)a)b
+   where b.rm>= #{startRow} and b.rm <= #{endRow}
+   ]]>
 	</select>
 
 
 	<!-- 구인 페이징 하기 위한 리스트 -->
 	<select id="jobsearch_list" parameterType="com.mycompany.gofarm.job.dto.PageDTO"
 		resultType="com.mycompany.gofarm.job.dto.JobSearchDTO">
-	<![CDATA[
-	select b.* from
-	(select rownum as rm, a.* from (
-	select * from jobsearch order by jobsearchcode asc)a)b
-	where b.rm> #{startRow} and b.rm <= #{endRow}
-	]]>
+   <![CDATA[
+   select b.* from
+   (select rownum as rm, a.* from (
+   select * from jobsearch order by jobsearchcode desc)a)b
+   where b.rm>= #{startRow} and b.rm <= #{endRow}
+   ]]>
 	</select>
 
 	<!-- 구직 상세 뷰 -->
@@ -70,36 +70,70 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	</select>
 
-
-
+	<!-- usercode 중복 확인 -->
+	<select id="jusercodecount" parameterType="int" resultType="int">
+		select count(*) from job where usercode=#{usercode}
+	</select>
+	
+	<select id="jsusercodecount" resultType="int" parameterType="int">
+		select count(*) from jobsearch where usercode=#{usercode}
+	</select>
+	
 	<!-- 이력서 -->
 	<insert id="resume" parameterType="com.mycompany.gofarm.job.dto.JobSearchDTO">
-		insert into
-		jobsearch(jobsearchcode,usercode,js_name,js_registration,js_area,js_crop,js_time,js_salary,js_address,js_phone,js_intro,
-		js_age,
-		js_gender)values(jobsearch_seq.nextval,#{usercode},#{js_name},sysdate,#{js_area},#{js_crop},#{js_time},#{js_salary},#{js_address},#{js_phone},#{js_intro},#{js_age},#{js_gender})
+		insert into jobsearch
+		values(jobsearch_seq.nextval,#{usercode},#{js_name},sysdate,#{js_area},#{js_crop},#{js_time},#{js_salary},#{js_address},#{js_phone},#{js_intro},#{js_age},#{js_gender})
+		<selectKey keyProperty="jobsearchcode" resultType="Integer"
+			order="AFTER">
+			SELECT jobsearch_seq.currval FROM dual
+		</selectKey>
+
+	</insert>
+	<!-- 커리어 인서트 -->
+	<insert id="career" parameterType="java.util.List">
+
+		<foreach collection="list" item="dto" open="insert all"
+			close="select * from dual" separator=" ">
+			into career(jobsearchcode , career, startdate, enddate)
+			values(#{dto.jobsearchcode},#{dto.career},#{dto.startdate},#{dto.enddate})
+		</foreach>
+
+
 	</insert>
 
 
-
 	<!-- 채용정보 -->
-	<insert id="person" parameterType="com.mycompany.gofarm.job.dto.JobDTO">insert into job values
+	<insert id="person" parameterType="com.mycompany.gofarm.job.dto.JobDTO">
+		insert into job values
 		(JOB_SEQ.nextval,#{usercode},#{j_company},
 		sysdate,#{j_deadline},#{j_area},#{j_recruitment},#{j_career},#{j_gender},#{j_age},#{j_type},#{j_term},#{j_info},#{j_address},#{j_preferential},#{content},#{j_contact})
 	</insert>
 
-
-
-	<!-- <insert id="career" parameterType="com.mycompany.gofarm.job.dto.careerDTO"> 
-		insert into career222 values <foreach separator="," item="dto" collection="list">(JOB_SEQ.currval,#{dto.career},#{dto.startdate},#{dto.enddate}) 
-		</foreach> </insert> -->
-
 	<!-- 이력서 구독자 유저코드 값 넣기 -->
 
-	<insert id="jobchk" parameterType="com.mycompany.gofarm.job.dto.JobSearchDTO">
-		insert into jobcheck
-		values(#{jobsearchcode}, #{jk_usercode})
+	<insert id="jobcheck" parameterType="com.mycompany.gofarm.job.dto.JobCheckDTO">
+		insert into jobcheck values
+		(#{jobsearchcode},#{jk_usercode})
 	</insert>
 
+	   <!-- 유저가 한번만 봤을때 count 해주는거 확인 -->
+   <select id="view_chk" resultType="int" parameterType="com.mycompany.gofarm.job.dto.JobCheckDTO">
+      select count(*)
+      from jobcheck
+      where jk_usercode=#{jk_usercode} and jobsearchcode=#{jobsearchcode}
+   </select>
+   
+   <!-- 유저가 구인글 올렸는지 확인 -->
+   <select id="chk" resultType="int" parameterType="com.mycompany.gofarm.job.dto.JobCheckDTO">
+   	select count(*)
+   	from job
+   	where usercode=#{jk_usercode}
+   </select>
 
+	<!-- 구인글 쓴 유저정보 얻어오기 -->
+	<select id="getinfo" parameterType="int"
+		resultType="com.mycompany.gofarm.user.dto.UserDTO">
+		select * from users
+		where usercode=#{usercode}
+	</select>
 </mapper>

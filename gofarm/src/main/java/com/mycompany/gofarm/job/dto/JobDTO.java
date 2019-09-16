@@ -1,12 +1,10 @@
 package com.mycompany.gofarm.job.dto;
 
-import java.sql.Clob;
-import java.util.Date;
 
 //구인 테이블  (job)
 public class JobDTO {
 
-	private int job, usercode, j_Recruitment;
+	private int job, usercode, j_recruitment;
 	private String j_company;
 	private String j_area;
 	private String j_career;
@@ -16,9 +14,9 @@ public class JobDTO {
 	private String j_term;
 	private String j_info;
 	private String j_address;
-	private String j_Preferential;
-	private String j_Contact;
-	private String j_Registration, j_deadline;
+	private String j_preferential;
+	private String j_contact;
+	private String j_registration, j_deadline;
 	private String content;
 
 	public JobDTO() {
@@ -41,12 +39,12 @@ public class JobDTO {
 		this.usercode = usercode;
 	}
 
-	public int getJ_Recruitment() {
-		return j_Recruitment;
+	public int getJ_recruitment() {
+		return j_recruitment;
 	}
 
-	public void setJ_Recruitment(int j_Recruitment) {
-		this.j_Recruitment = j_Recruitment;
+	public void setJ_recruitment(int j_recruitment) {
+		this.j_recruitment = j_recruitment;
 	}
 
 	public String getJ_company() {
@@ -121,28 +119,28 @@ public class JobDTO {
 		this.j_address = j_address;
 	}
 
-	public String getJ_Preferential() {
-		return j_Preferential;
+	public String getJ_preferential() {
+		return j_preferential;
 	}
 
-	public void setJ_Preferential(String j_Preferential) {
-		this.j_Preferential = j_Preferential;
+	public void setJ_preferential(String j_preferential) {
+		this.j_preferential = j_preferential;
 	}
 
-	public String getJ_Contact() {
-		return j_Contact;
+	public String getJ_contact() {
+		return j_contact;
 	}
 
-	public void setJ_Contact(String j_Contact) {
-		this.j_Contact = j_Contact;
+	public void setJ_contact(String j_contact) {
+		this.j_contact = j_contact;
 	}
 
-	public String getJ_Registration() {
-		return j_Registration;
+	public String getJ_registration() {
+		return j_registration;
 	}
 
-	public void setJ_Registration(String j_Registration) {
-		this.j_Registration = j_Registration;
+	public void setJ_registration(String j_registration) {
+		this.j_registration = j_registration;
 	}
 
 	public String getJ_deadline() {
@@ -161,4 +159,7 @@ public class JobDTO {
 		this.content = content;
 	}
 
+	
+
+	
 }

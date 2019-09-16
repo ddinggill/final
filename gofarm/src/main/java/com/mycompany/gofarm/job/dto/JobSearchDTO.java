@@ -1,5 +1,7 @@
 package com.mycompany.gofarm.job.dto;
 
+import java.util.List;
+
 public class JobSearchDTO {
 	private int jobsearchcode, usercode;
 	private String js_name;
@@ -13,24 +15,8 @@ public class JobSearchDTO {
 	private String js_intro;
 	private String js_age;
 	private String js_gender;
-
+	private List<CareerDTO> list;
 	
-	public String getJs_age() {
-		return js_age;
-	}
-
-	public void setJs_age(String js_age) {
-		this.js_age = js_age;
-	}
-
-	public String getJs_gender() {
-		return js_gender;
-	}
-
-	public void setJs_gender(String js_gender) {
-		this.js_gender = js_gender;
-	}
-
 	public JobSearchDTO() {
 
 	}
@@ -122,5 +108,33 @@ public class JobSearchDTO {
 	public void setJs_intro(String js_intro) {
 		this.js_intro = js_intro;
 	}
+
+	public String getJs_age() {
+		return js_age;
+	}
+
+	public void setJs_age(String js_age) {
+		this.js_age = js_age;
+	}
+
+	public String getJs_gender() {
+		return js_gender;
+	}
+
+	public void setJs_gender(String js_gender) {
+		this.js_gender = js_gender;
+	}
+
+	public List<CareerDTO> getList() {
+		return list;
+	}
+
+	public void setList(List<CareerDTO> list) {
+		this.list = list;
+	}
+	
+	
+
+	
 
 }

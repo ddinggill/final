@@ -44,14 +44,14 @@
 
 </head>
 
-<body>
+<body >
 
 	<jsp:include page="/WEB-INF/view/common/main_nav.jsp"></jsp:include>
 
 
 	<div class="limiter">
 
-		<div class="container-table100" style="background-color: #FFFAF0">
+		<div class="container-table100" style="background-color:#A2BBCA;">
 
 			<div class="wrap-table100" style="width: 55%;">
 

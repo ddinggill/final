@@ -44,20 +44,20 @@
 
 </head>
 
-<body>
+<body >
 
 	<jsp:include page="/WEB-INF/view/common/main_nav.jsp"></jsp:include>
 
 
 	<div class="limiter">
 
-		<div class="container-table100" style="background-color: #FFFAF0">
+		<div class="container-table100" style="background-color:#A2BBCA;">
 
-			<div class="wrap-table100">
+			<div class="wrap-table100" style="width:65%;">
 
 				<div class="gu_list">
 				 <span style="color: #696969; font-size: 25px; margin-bottom: 10px;">채용정보&nbsp;&nbsp;<i
-						class="arrow right"></i><strong>&nbsp;&nbsp;구인 리스트</strong></span>
+						class="arrow right" ></i>&nbsp;&nbsp;<strong>구인 리스트</strong></span>
 				</div>
 
 				<table class="table">
@@ -75,7 +75,6 @@
 
 					<c:forEach var="dto" items="${aList}">
 						<tr class="row">
-							<td>${dto.job}</td>
 							<c:url var="path" value="view.do">
 								<c:param name="currentPage" value="${pv.currentPage }" />
 								<c:param name="job" value="${dto.job}" />
@@ -84,9 +83,9 @@
 
 							<td class="cell" data-title="Age">${dto.j_area }</td>
 							<td class="cell" data-title="Job Title">${dto.j_type }</td>
-							<td class="cell" data-title="Age">${dto.j_Recruitment }</td>
+							<td class="cell" data-title="Age">${dto.j_recruitment }</td>
 							<td class="cell" data-title="Location">${dto.j_term }</td>
-							<td class="cell" data-title="Location">${dto.j_Registration }</td>
+							<td class="cell" data-title="Location">${dto.j_registration }</td>
 							<td class="cell" data-title="Location">${dto.j_deadline }</td>
 						</tr>
 
