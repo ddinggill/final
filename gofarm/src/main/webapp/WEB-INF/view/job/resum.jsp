@@ -65,6 +65,8 @@ $(document).ready(function(){
 	});
 });
 
+
+
 </script>
 </head>
 
@@ -185,7 +187,7 @@ $(document).ready(function(){
 	</div>
 	<div class="btn" style="margin-left: 750px;">
 
-		<input type="submit" class="btn btn-black py-3 px-5" value="신청하기 " />
+		<input type="submit" class="btn btn-black py-3 px-5" id="jobrequest" value="신청하기 "/>
 		<a href="jobsearch.do"><input type="button" value="목록가기" class="btn btn-black py-3 px-5" /></a>
 	</div>
 	<form name="frm" id="frm" method="post" action="jobrequest.do">

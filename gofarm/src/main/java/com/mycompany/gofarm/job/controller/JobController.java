@@ -50,7 +50,7 @@ public class JobController {
 		mav.setViewName("job/recruit");
 		
 		return mav;
-
+		//test
 	}
 
 	// 채용 정보 구인 리스트 페이지 ////////////////////////////////////////////////////
@@ -198,7 +198,7 @@ public class JobController {
 		session.getAttribute("loginOk");
 		dto.setUsercode(((UserDTO) session.getAttribute("loginOk")).getUsercode());
 		recruitService.insert_personProcess(dto);
-		return "redirect:/personform.do";
+		return "redirect:/recruit2.do";
 	}
 	////////////////////////////////////////////////////////////////////////////////////////////
 	// 구직 이력서
@@ -227,7 +227,7 @@ public class JobController {
 
 
 		}  
-		return "job/personform";
+		return "job/recruitform2";
 	}
 
 	/*
@@ -265,7 +265,7 @@ public class JobController {
 
 		recruitService.insert_careerProcess(dto.getList());
 		System.out.println("경력 후:" + dto.getJobsearchcode());
-		return "redirect:/jobsearch.do";
+		return "redirect:/recruit2.do";
 	}
 	
 	@RequestMapping("/jobrequest.do")
