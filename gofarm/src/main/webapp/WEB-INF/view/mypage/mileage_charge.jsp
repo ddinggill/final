@@ -12,7 +12,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>마이페이지 - 마일리지</title>
+  <title>마이페이지 - 마일리지 충전</title>
 
   <!-- Custom fonts for this template-->
   <link href="mypage/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -22,131 +22,78 @@
 
   <!-- Custom styles for this template-->
   <link href="mypage/css/sb-admin.css" rel="stylesheet">
+  
+<style type="text/css">
+	.m_chargelist li {
+	display:inline;
+    width: 130px;
+    margin-top: 5px;
+    margin-right: 50px;
+</style>
 
+<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdn.bootpay.co.kr/js/bootpay-3.0.5.min.js" type="application/javascript"></script>
+<script src="mypage/js/mileage_charge.js"></script>
 </head>
 
 <body id="page-top">
+	<!-- Navbar -->
+	<jsp:include page="/WEB-INF/view/mypage/common/mypage_nav.jsp"></jsp:include>
+	<div id="wrapper">
+		<!-- Sidebar -->
+		<jsp:include page="/WEB-INF/view/mypage/common/mypage_sidebar.jsp"></jsp:include>
+		<div id="content-wrapper">
+			<div class="container-fluid">
         <!-- DataTables Example -->
         <div class="card mb-3">
           <div class="card-header">
-            <i class="fas fa-table"></i>마일리지
+            <i class="fas fa-table"></i>마일리지 충전
+          </div>
+          
+          <div> 
+          	<input type="hidden" id="userName" value="${userDTO.name}" /> 
+          	<input type="hidden" id="userEmail" value="${userDTO.email}" /> 
+          	<input type="hidden" id="userHome" value="${userDTO.user_home}" /> 
+          	<input type="hidden" id="userPhone" value="${userDTO.phone}" /> 
+          	<input type="hidden" id="sysdate" value="${sysdate}" /> 
           </div>
           <div class="card-body">
-            <div class="table-responsive">
-              <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                <thead>
-                  <tr>
-                  	<th>번호</th>
-                    <th>이전 마일리지(현재마일리지-마일리지 증감량)</th>
-                    <th>마일리지 증감량</th>
-                    <th>마일리지 증감내용</th>
-                    <th>현재 마일리지</th>
-                    <th>일자</th>
-                  </tr>
-                </thead>
-                <tfoot>
-                  <tr>
-                 	 <th>번호</th>
-                    <th>이전 마일리지(현재마일리지-마일리지 증감량)</th>
-                    <th>마일리지 증감량</th>
-                    <th>마일리지 증감내용</th>
-                    <th>현재 마일리지</th>
-                    <th>일자</th>
-                  </tr>
-                </tfoot>
-                <tbody>
-                  <tr>
-                  	<th>1</th>
-                    <td>0</td>
-                    <td>+10,000</td>
-                    <td>마일리지 충전</td>
-                    <td>10,000</td>
-                    <td>2011/04/25</td>
-                  </tr>
-                  <tr>
-                  	<th>2</th>
-                    <td>10,000</td>
-                    <td>+60,000</td>
-                    <td>블링블링 마스카라 5개 판매</td>
-                    <td>70,000</td>
-                    <td>2011/05/16</td>
-                  </tr>
-                  </tr>
-                  <tr>
-                  	<th>3</th>
-                    <td>70,000</td>
-                    <td>-50,000</td>
-                    <td>마일리지 출금</td>
-                    <td>20,000</td>
-                    <td>2011/05/20</td>
-                  </tr>
-                  <tr>
-                 	<th>4</th>
-                    <td>Ashton Cox</td>
-                    <td>Junior Technical Author</td>
-                    <td>San Francisco</td>
-                    <td>66</td>
-                    <td>2009/01/12</td>
-                  </tr>
-                  <tr>
-                  	<th>5</th>
-                    <td>Airi Satou</td>
-                    <td>Accountant</td>
-                    <td>Tokyo</td>
-                    <td>33</td>
-                    <td>2008/11/28</td>
-                  </tr>
-                  <tr>
-                  	<th>6</th>
-                    <td>Integration Specialist</td>
-                    <td>New York</td>
-                    <td>61</td>
-                    <td>$372,000</td>
-                    <td>2012/12/02</td>
-                  </tr>
-                  <tr>
-                  	<th>7</th>
-                    <td>Sales Assistant</td>
-                    <td>San Francisco</td>
-                    <td>59</td>
-                    <td>$137,500</td>
-                    <td>2012/08/06</td>
-                  </tr>
-                  <tr>
-                  	<th>8</th>
-                    <td>Integration Specialist</td>
-                    <td>Tokyo</td>
-                    <td>55</td>
-                    <td>$327,900</td>
-                    <td>2010/10/14</td>
-                  </tr>
-                  <tr>
-                  	<th>9</th>
-                    <td>Colleen Hurst</td>
-                    <td>Javascript Developer</td>
-                    <td>San Francisco</td>
-                    <td>39</td>
-                    <td>2009/09/15</td>
-                  </tr>
-                  <tr>
-                  	<th>10</th>
-                    <td>Software Engineer</td>
-                    <td>Edinburgh</td>
-                    <td>23</td>
-                    <td>$103,600</td>
-                    <td>2008/12/13</td>
-                  </tr>
-                  <tr>
-                  	<th>11</th>
-                    <td>Office Manager</td>
-                    <td>London</td>
-                    <td>30</td>
-                    <td>$90,560</td>
-                    <td>2008/12/19</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+             <div id="charge_main">
+				<p id="my_mileage_charge">충전금액 선택</p>
+				<div id="my_mileage_charge_list">
+					<ul class="m_chargelist">
+						<li><input type="radio" name="selectPrice" id="selectPrice1"
+							value="3000" class="g_radio" checked="checked">
+							<label for="selectPrice1">3,000 원</label></li>
+						<li><input type="radio" name="selectPrice" id="selectPrice2"
+							value="5000" class="g_radio"> <label for="selectPrice2">5,000
+								원</label></li>
+						<li><input type="radio" name="selectPrice" id="selectPrice3"
+							value="10000" class="g_radio"> <label
+							for="selectPrice3">10,000 원</label></li>
+						<li><input type="radio" name="selectPrice" id="selectPrice4"
+							value="30000" class="g_radio"> <label
+							for="selectPrice4">30,000 원</label></li>
+						<li><input type="radio" name="selectPrice" id="selectPrice5"
+							value="50000" class="g_radio"> <label
+							for="selectPrice5">50,000 원</label></li>
+						<li><input type="radio" name="selectPrice" id="selectPrice6"
+							value="100000" class="g_radio"> <label
+							for="selectPrice6">100,000 원</label></li>
+						<li><input type="radio" name="selectPrice"
+							id="priceD" value="0" class="g_radio"> <input
+							type="text" id="price_custom" name="price_custom"
+							placeholder="직접입력" maxlength="7" class="g_text">
+							<label for="priceD">원</label>
+							</li>
+					</ul>
+				</div>
+				<p id="mileage_btn">
+					<input type="button" id="bootPay_btn" value="충전하기" /> 
+				</p>
+				<form id="f_mileage_charge" action="mileage_charge_end.do">
+				</form>
+			</div>
           </div>
           <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
         </div>
@@ -155,23 +102,15 @@
           <em>More table examples coming soon...</em>
         </p>
 
-      </div>
-      <!-- /.container-fluid -->
-
-      <!-- Sticky Footer -->
-      <footer class="sticky-footer">
-        <div class="container my-auto">
-          <div class="copyright text-center my-auto">
-            <span>Copyright © Your Website 2019</span>
-          </div>
-        </div>
-      </footer>
-
-    </div>
-    <!-- /.content-wrapper -->
-
-  </div>
-  <!-- /#wrapper -->
+			</div>
+			<!-- /.container-fluid -->
+			
+			<!-- Footer -->
+			<jsp:include page="/WEB-INF/view/mypage/common/mypage_footer.jsp"></jsp:include>
+		</div>
+		<!-- /.content-wrapper -->
+	</div>
+	<!-- /#wrapper -->
 
   <!-- Scroll to Top Button-->
   <a class="scroll-to-top rounded" href="#page-top">
