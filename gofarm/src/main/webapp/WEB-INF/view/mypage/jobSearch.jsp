@@ -26,6 +26,13 @@
 </head>
 
 <body id="page-top">
+	<!-- Navbar -->
+	<jsp:include page="/WEB-INF/view/mypage/common/mypage_nav.jsp"></jsp:include>
+	<div id="wrapper">
+		<!-- Sidebar -->
+		<jsp:include page="/WEB-INF/view/mypage/common/mypage_sidebar.jsp"></jsp:include>
+		<div id="content-wrapper">
+			<div class="container-fluid">
         <!-- DataTables Example -->
         <div class="card mb-3">
           <div class="card-header">
@@ -157,23 +164,15 @@
           <em>More table examples coming soon...</em>
         </p>
 
-      </div>
-      <!-- /.container-fluid -->
-
-      <!-- Sticky Footer -->
-      <footer class="sticky-footer">
-        <div class="container my-auto">
-          <div class="copyright text-center my-auto">
-            <span>Copyright © Your Website 2019</span>
-          </div>
-        </div>
-      </footer>
-
-    </div>
-    <!-- /.content-wrapper -->
-
-  </div>
-  <!-- /#wrapper -->
+			</div>
+			<!-- /.container-fluid -->
+			
+			<!-- Footer -->
+			<jsp:include page="/WEB-INF/view/mypage/common/mypage_footer.jsp"></jsp:include>
+		</div>
+		<!-- /.content-wrapper -->
+	</div>
+	<!-- /#wrapper -->
 
   <!-- Scroll to Top Button-->
   <a class="scroll-to-top rounded" href="#page-top">

@@ -1,0 +1,33 @@
+.my_mileage{
+	width: 200px;
+	height: 150px;
+	border: 3px solid;
+	border-bottom-color:rgb(222, 226, 230);
+	border-color: rgb(222, 226, 230);
+	margin: 5px;
+}
+
+#my_mileage_1 {
+	text-align: left;
+	font-family: '맑은 고딕','Malgun Gothic',돋움,dotum,sans-serif;
+    font-size: 20px;
+}
+
+#my_mileage_2 {
+ text-align: right;
+ font-family: '맑은 고딕','Malgun Gothic',돋움,dotum,sans-serif;
+ font-size: 24px;
+ color: #159efd !important;
+}
+
+#mileage_btn input{
+	height:34px;
+	width: 45%;
+	font-size: 12px;
+	text-align: center;
+}
+
+#mileage_charge_btn{
+	margin-left:8px;
+}
+

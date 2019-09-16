@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,57 +26,60 @@
 </head>
 
 <body id="page-top">
+	<!-- Navbar -->
+	<jsp:include page="/WEB-INF/view/mypage/common/mypage_nav.jsp"></jsp:include>
+	<div id="wrapper">
+		<!-- Sidebar -->
+		<jsp:include page="/WEB-INF/view/mypage/common/mypage_sidebar.jsp"></jsp:include>
+		<div id="content-wrapper">
+			<div class="container-fluid">
         <!-- DataTables Example -->
         <div class="card mb-3">
           <div class="card-header">
             <i class="fas fa-table"></i>마이페이지
-            <input type="hidden" value="${sessionScope.loginOk.userlvl}">
-            <c:if test="${sessionScope.loginOk.userlvl !=2 }">
-	            <button class="btn btn-dark"><a href="detailsignup.do">상세회원가입</a></button>
-            </c:if>
           </div>
           <div class="card-body">
             <div class="table-responsive">
               <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                   <tr>
-                  	<th>헤드</th>
+                  	<th>냉무</th>
                   </tr>
                 </thead>
-                <tbody>
+                <tfoot>
                   <tr>
-                  	<td>냉무</td>
-                  </tr>
-                   <tr>
-                   	<td>냉무</td>
-                  </tr>
-                   <tr>
-                  	<td>냉무</td>
-                  </tr>
-                   <tr>
-                  	<td>냉무</td>
-                  </tr>
-                   <tr>
-                  	<td>냉무</td>
-                  </tr>
-                   <tr>
-                  	<td>냉무</td>
-                  </tr>
-                   <tr>
-                  	<td>냉무</td>
-                  </tr>
-                   <tr>
-                  	<td>냉무</td>
-                  </tr>
-                   <tr>
-                  	<td>냉무</td>
-                  </tr>
-                </tbody>
-                 <tfoot>
-                  <tr>
-                  	<th>아래</th>
+                  	<th>냉무</th>
                   </tr>
                 </tfoot>
+                <tbody>
+                  <tr>
+                  	<th>냉무</th>
+                  </tr>
+                   <tr>
+                  	<th>냉무</th>
+                  </tr>
+                   <tr>
+                  	<th>냉무</th>
+                  </tr>
+                   <tr>
+                  	<th>냉무</th>
+                  </tr>
+                   <tr>
+                  	<th>냉무</th>
+                  </tr>
+                   <tr>
+                  	<th>냉무</th>
+                  </tr>
+                   <tr>
+                  	<th>냉무</th>
+                  </tr>
+                   <tr>
+                  	<th>냉무</th>
+                  </tr>
+                   <tr>
+                  	<th>냉무</th>
+                  </tr>
+                </tbody>
               </table>
             </div>
           </div>
@@ -87,23 +90,16 @@
           <em>More table examples coming soon...</em>
         </p>
 
-      </div>
-      <!-- /.container-fluid -->
 
-      <!-- Sticky Footer -->
-      <footer class="sticky-footer">
-        <div class="container my-auto">
-          <div class="copyright text-center my-auto">
-            <span>Copyright © Your Website 2019</span>
-          </div>
-        </div>
-      </footer>
-
-    </div>
-    <!-- /.content-wrapper -->
-
-  </div>
-  <!-- /#wrapper -->
+			</div>
+			<!-- /.container-fluid -->
+			
+			<!-- Footer -->
+			<jsp:include page="/WEB-INF/view/mypage/common/mypage_footer.jsp"></jsp:include>
+		</div>
+		<!-- /.content-wrapper -->
+	</div>
+	<!-- /#wrapper -->
 
   <!-- Scroll to Top Button-->
   <a class="scroll-to-top rounded" href="#page-top">

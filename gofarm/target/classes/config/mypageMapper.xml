@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper    
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"    
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mypage">
+ 	
+ 	<select id="mileage_list" resultType="com.mycompany.gofarm.mypage.dto.MileageDTO"
+ 	 parameterType="int">
+ 		<![CDATA[
+ 		select * from mileage where usercode= #{usercode} order by m_day desc
+	]]>
+ 	</select>
+ 	
+ 	<select id="payment_list" resultType="com.mycompany.gofarm.mypage.dto.MileageDTO"
+ 	 parameterType="int">
+ 		<![CDATA[
+ 		select * from mileage where usercode= #{usercode} and m_content = '마일리지 출금' order by m_day desc
+	]]>
+ 	</select>
+ 	
+ 	<select id="mileage_view" resultType="com.mycompany.gofarm.mypage.dto.MileageDTO"
+ 	 parameterType="int">
+ 		SELECT * FROM mileage WHERE usercode= #{usercode} and m_day = (SELECT MAX(m_day)AS m_day FROM mileage)
+ 	</select>
+ 	
+ 	<insert id="mileage_insert" parameterType="com.mycompany.gofarm.mypage.dto.MileageDTO">
+ 		insert into mileage values(#{usercode},#{m_list},#{m_total}, sysdate, #{m_content})
+ 	</insert>
+ 	
+ 	<update id="mileage_update" parameterType="com.mycompany.gofarm.mypage.dto.MileageDTO">
+ 		update USER_DETAIL set mileage=#{m_total} where usercode=#{usercode}
+ 	</update>
+ 	
+ 	<select id="userDetail_view" resultType="com.mycompany.gofarm.user.dto.UserDTO"
+ 	 parameterType="int">
+ 	 	SELECT * FROM USER_DETAIL WHERE usercode= #{usercode}
+ 	</select>
+ 	
+</mapper>
