@@ -55,6 +55,19 @@
 <link rel="stylesheet" href="recruit/resum.css">
 
 
+<script type="text/javascript">
+$(document).ready(function(){
+	console.log("${dto.job}");
+	console.log("${dto.usercode}");
+	
+	$("#jobrequest").click(function(){
+		$("#frm").submit();
+	});
+});
+
+
+
+</script>
 </head>
 
 
@@ -80,7 +93,7 @@
 				<td class="t1">회사명</td>
 				<td class="t2">${dto.j_company}</td>
 				<td class="t1">등록일</td>
-				<td class="t2">${dto.j_Registration}</td>
+				<td class="t2">${dto.j_registration}</td>
 
 			</tr>
 
@@ -94,7 +107,7 @@
 
 			<tr>
 				<td class="t1">모집인원</td>
-				<td class="t2">${dto.j_Recruitment }</td>
+				<td class="t2">${dto.j_recruitment }</td>
 				<td class="t1">경력</td>
 				<td class="t2">${dto.j_career}</td>
 
@@ -156,7 +169,7 @@
 					<div class="memo">
 
 						<p class="memo_title">우대 사항</p>
-						${dto.j_Preferential}
+						${dto.j_preferential}
 					</div>
 
 				</td>
@@ -174,13 +187,15 @@
 	</div>
 	<div class="btn" style="margin-left: 750px;">
 
-		<input type="submit" class="btn btn-black py-3 px-5" value="신청하기 " />
-		<input type="button" value="목록가기" class="btn btn-black py-3 px-5" />
+		<input type="submit" class="btn btn-black py-3 px-5" id="jobrequest" value="신청하기 "/>
+		<a href="jobsearch.do"><input type="button" value="목록가기" class="btn btn-black py-3 px-5" /></a>
 	</div>
-	<form name="frm" id="frm" method="get">
-		<input type="hidden" name="job" value="${dto.job}" /> <input
-			type="hidden" name="currentPage" id="currentPage"
-			value="${currentPage}" /> <input type="button" id="list" value="리스트" />
+	<form name="frm" id="frm" method="post" action="jobrequest.do">
+		<input type="hidden" name="job" value="${dto.job}" /> 
+		<input type="hidden" name="currentPage" id="currentPage"
+			value="${currentPage}" /> 
+		<input type="hidden" name="usercode" value="${dto.usercode }">
+		<input type="button" id="list" value="리스트" />
 	</form>
 </body>
 </html>

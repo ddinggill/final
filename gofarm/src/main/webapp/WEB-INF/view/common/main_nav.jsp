@@ -114,6 +114,7 @@ header>#topNav>ul.main-munu>li>a {
 				<li><a href="recruit2.do">구인 | 구직</a></li>
 				<li><a href="productList.do">장터</a></li>
 				<li><a href="#">게시판</a></li>
+				<li><a href="chatlist.do">오픈채팅</a></li>
 				<c:choose>
 					<c:when test="${empty sessionScope.loginOk}">
 						<li><a href="login.do">로그인</a></li>

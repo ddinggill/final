@@ -3,11 +3,12 @@ package com.mycompany.gofarm.job.dao;
 
 import java.util.List;
 
+import com.mycompany.gofarm.job.dto.CareerDTO;
 import com.mycompany.gofarm.job.dto.JobCheckDTO;
 import com.mycompany.gofarm.job.dto.JobDTO;
 import com.mycompany.gofarm.job.dto.JobSearchDTO;
 import com.mycompany.gofarm.job.dto.PageDTO;
-import com.mycompany.gofarm.job.dto.careerDTO;
+import com.mycompany.gofarm.user.dto.UserDTO;
 
 public interface RecruitDAO {
 
@@ -46,9 +47,20 @@ public interface RecruitDAO {
 	public void insert_person(JobDTO dto);
 
 	// 경력
-	public void insert_career(List<careerDTO> list);
+	public void insert_career(List<CareerDTO> list);
 	
 	//이력서 구독자 체크
 	public void insert_jobcheck(JobCheckDTO dto);
+	
+	public int jcount(int usercode);
 
+	public int jscount(int usercode);
+	
+	 //view 한번만 count 체크
+	public int view_check(JobCheckDTO jdto);
+
+	public int check(JobCheckDTO jdto);
+	
+	//구인글 작성자의 정보 얻어오기
+	public UserDTO getuserInfo(int usercode);
 }
