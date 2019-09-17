@@ -6,5 +6,6 @@ import com.mycompany.gofarm.chat.dto.ChatRoomDTO;
 
 public interface ChatDAO {
 
-	List<ChatRoomDTO> getroomList();
+	public List<ChatRoomDTO> getroomList();
+	public void createRoom(ChatRoomDTO dto);
 }

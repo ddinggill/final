@@ -184,6 +184,11 @@ table.type08 td {
 
 <script type="text/javascript">
 	
+	
+function fnMove(seq){
+    var offset = $("#"+ seq).offset();
+    $('html, body').animate({scrollTop : offset.top}, 400);
+}
 </script>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -252,10 +257,18 @@ table.type08 td {
 					<c:url var="delete" value="productDelete.do">
 						<c:param name="prod_code" value="${pd_dto.prod_code}" />
 					</c:url>
+					<c:if test="${pd_dto.pd_cnt eq 0} ">
 					<p>
 					<input type="hidden" value="${pd_dto.prod_code}" >
 					<a href="${path}" class="btn btn-black py-3 px-5">구매하기</a>
 					</p>
+					</c:if>
+					<c:if test="${pd_dto.pd_cnt ne 0}" >
+					<p>
+					<input type="hidden" value="${pd_dto.prod_code}" >
+					<a href="${path}" class="btn btn-black py-3 px-5">구매하기</a>
+					</p>
+					</c:if>
 					
 					<c:if test="${pd_dto.usercode == user.usercode}">
 					<p>
@@ -273,11 +286,11 @@ table.type08 td {
 	</section>
 
 	<section class="goods-info">
-		<div class="container">
+		<div class="container" id="detailInfo">
 			<ul class="goods-view-infomation-tab-group">
-					<li class="goods-view-infomation-tab1"><a href="#product_info"
-					class="goods-view-infomation-tab-anchor __active">상세정보</a></li>
-					<li class="goods-view-infomation-tab2"><a href="#product_review" class="goods-view-infomation-tab-anchor">고객후기</a></li>
+					<li class="goods-view-infomation-tab1"><a  class="goods-view-infomation-tab-anchor __active"  onclick="fnMove('detailInfo')">상세정보</a></li>
+					<li class="goods-view-infomation-tab2"><a  class="goods-view-infomation-tab-anchor" 
+					onclick="fnMove('reviewList')">고객후기</a></li>
 			</ul>
 		</div>
 
@@ -287,10 +300,11 @@ table.type08 td {
 			</div>
 		</div>
 
-		<div class="container">
+		<div class="container" id="reviewList">
 			<ul class="goods-view-infomation-tab-group2">
-					<li class="goods-view-infomation-tab1"><a href="#product_info" class="goods-view-infomation-tab-anchor __active">상세정보</a></li>
-					<li class="goods-view-infomation-tab2"><a href="#product_review" class="goods-view-infomation-tab-anchor">고객후기</a> </li>
+					<li class="goods-view-infomation-tab1" ><a  class="goods-view-infomation-tab-anchor __active"  onclick="fnMove('detailInfo')" >상세정보</a></li>
+					<li class="goods-view-infomation-tab2"><a  class="goods-view-infomation-tab-anchor" 
+					 onclick="fnMove('reviewList')">고객후기</a> </li>
 			</ul>
 		</div>
 

@@ -14,5 +14,7 @@ public interface AuctionDAO {
 	public AuctionDTO auctionView(int num);
 	public void au_recipeInsertMethod(Au_recipeDTO au_dto);
 	public void auctionInsertMethod(AuctionDTO adto);
-	
+	public void stateUpdateMethod(int auctioncode);
+	public int auctionSuccesfulMethod(int auctioncode);	
+	public UserDTO successfulUserMethod(int usercode);
 }

@@ -7,14 +7,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	
  	<select id="mileage_list" resultType="com.mycompany.gofarm.mypage.dto.MileageDTO"
  	 parameterType="int">
- 		<![CDATA[
+ 	<![CDATA[
  		select * from mileage where usercode= #{usercode} order by m_day desc
 	]]>
  	</select>
  	
  	<select id="payment_list" resultType="com.mycompany.gofarm.mypage.dto.MileageDTO"
  	 parameterType="int">
- 		<![CDATA[
+ 	<![CDATA[
  		select * from mileage where usercode= #{usercode} and m_content = '마일리지 출금' order by m_day desc
 	]]>
  	</select>
@@ -35,6 +35,29 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	<select id="userDetail_view" resultType="com.mycompany.gofarm.user.dto.UserDTO"
  	 parameterType="int">
  	 	SELECT * FROM USER_DETAIL WHERE usercode= #{usercode}
+ 	</select>
+ 	
+	<select id="job_view" resultType="com.mycompany.gofarm.job.dto.JobDTO"
+ 	 parameterType="int">
+ 	<![CDATA[
+ 		select * from job where usercode=#{usercode} order by j_Registration desc
+	]]>
+ 	</select>
+ 	
+ 	<select id="jobSearch_view" resultType="com.mycompany.gofarm.job.dto.JobSearchDTO"
+ 	 parameterType="int">
+ 	<![CDATA[
+ 		select * from jobsearch where usercode=#{usercode} order by js_registration desc
+	]]>
+ 	</select>
+ 	
+ 	<select id="jobcheck_list" resultType="com.mycompany.gofarm.job.dto.JobDTO"
+ 	 parameterType="int">
+ 	<![CDATA[
+ 		select a.name j_info, j.job job
+ 		from (select USERCODE, name from users u, jobcheck ch where ch.JK_USERCODE = u.USERCODE and ch.JOBSEARCHCODE=#{JOBSEARCHCODE}) a, job j 
+ 		where a.USERCODE = j.USERCODE
+	]]>
  	</select>
  	
 </mapper>

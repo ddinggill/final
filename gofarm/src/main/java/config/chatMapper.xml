@@ -7,4 +7,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="roomlist" resultType="com.mycompany.gofarm.chat.dto.ChatRoomDTO">
 		select * from chat
 	</select>
+	
+	<insert id="createroom" parameterType="com.mycompany.gofarm.chat.dto.ChatRoomDTO">
+		insert into chat
+		values(CHAT_SEQ.nextval, #{usercode}, #{ct_title}, #{ct_limit})
+	</insert>
 </mapper>

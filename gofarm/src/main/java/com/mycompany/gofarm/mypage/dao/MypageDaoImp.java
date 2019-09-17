@@ -5,6 +5,9 @@ import java.util.List;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import com.mycompany.gofarm.job.dto.JobDTO;
+import com.mycompany.gofarm.job.dto.JobSearchDTO;
 import com.mycompany.gofarm.mypage.dto.MileageDTO;
 import com.mycompany.gofarm.user.dto.UserDTO;
 
@@ -48,6 +51,22 @@ public class MypageDaoImp implements MypageDAO{
 	public List<MileageDTO> paymentListMethod(int usercode) {
 		return sqlsession.selectList("mypage.payment_list", usercode);
 	}
+
+	@Override
+	public JobDTO jobListMethod(int usercode) {
+		return sqlsession.selectOne("mypage.job_view", usercode);
+	}
+
+	@Override
+	public JobSearchDTO jobSearchListMethod(int usercode) {
+		return sqlsession.selectOne("mypage.jobSearch_view", usercode);
+	}
+
+	@Override
+	public List<JobDTO> jobcheckListMethod(int jobsearchcode) {
+		return sqlsession.selectList("mypage.jobcheck_list", jobsearchcode);
+	}
+
 
 	
 

@@ -73,7 +73,7 @@ $(document).ready(function() {
                 </thead>
                 <tfoot>
                   <tr>
-                 	 <th>번호</th>
+                 	<th>번호</th>
                     <th>이전 마일리지</th>
                     <th>마일리지 증감량</th>
                     <th>마일리지 증감내용</th>
@@ -84,7 +84,7 @@ $(document).ready(function() {
                 <tbody id="tbody">
 					<c:forEach items="${mileage_dto}" var="dto" varStatus="status">
 						<tr>
-							<th>${status.count}</th>
+							<td>${status.count}</td>
 
 							<td>${dto.m_total-dto.m_list}</td>
 							<c:choose>

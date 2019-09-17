@@ -19,4 +19,9 @@ public class ChatDaoImp implements ChatDAO{
 		return sqlSession.selectList("chat.roomlist");
 	}
 
+	@Override
+	public void createRoom(ChatRoomDTO dto) {
+		sqlSession.insert("chat.createroom", dto);
+	}
+
 }

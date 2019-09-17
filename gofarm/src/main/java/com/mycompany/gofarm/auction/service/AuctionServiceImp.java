@@ -9,6 +9,7 @@ import com.mycompany.gofarm.auction.dao.AuctionDAO;
 import com.mycompany.gofarm.auction.dto.Au_recipeDTO;
 import com.mycompany.gofarm.auction.dto.AuctionDTO;
 import com.mycompany.gofarm.auction.dto.PageDTO;
+import com.mycompany.gofarm.user.dto.UserDTO;
 
 @Service
 public class AuctionServiceImp implements AuctionService{
@@ -49,6 +50,23 @@ public class AuctionServiceImp implements AuctionService{
 	@Override
 	public void auctionInsertProcess(AuctionDTO adto) {
 		auctionDao.auctionInsertMethod(adto);
+	}
+
+	@Override
+	public void stateUpdeteProcess(int auctioncode) {
+			auctionDao.stateUpdateMethod(auctioncode);
+	}
+
+	@Override
+	public int auctionSuccessfulProcess(int auctioncode) {
+		// TODO Auto-generated method stub
+		return auctionDao.auctionSuccesfulMethod(auctioncode);
+	}
+
+	@Override
+	public UserDTO successfulUserProcess(int usercode) {
+		// TODO Auto-generated method stub
+		return auctionDao.successfulUserMethod(usercode);
 	}
     
     

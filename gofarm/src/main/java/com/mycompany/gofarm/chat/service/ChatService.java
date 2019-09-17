@@ -6,5 +6,6 @@ import com.mycompany.gofarm.chat.dto.ChatRoomDTO;
 
 public interface ChatService {
 
-	List<ChatRoomDTO> roomlistProcess();
+	public List<ChatRoomDTO> roomlistProcess();
+	public void createroomProcess(ChatRoomDTO dto);
 }

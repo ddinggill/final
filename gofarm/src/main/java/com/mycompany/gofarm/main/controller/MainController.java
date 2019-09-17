@@ -10,7 +10,7 @@ public class MainController {
 		// TODO Auto-generated constructor stub
 	}
 
-	@RequestMapping("/main.do")
+	@RequestMapping("main.do")
 	public String maingo() {
 		return "main/index";
 	}
