@@ -23,7 +23,7 @@ public class ChatController {
 	public void setChatService(ChatService chatService) {
 		this.chatService = chatService;
 	}
-	
+	//채팅목록
 	@RequestMapping("chatlist.do")
 	public ModelAndView chatList(ModelAndView mav) {
 		
