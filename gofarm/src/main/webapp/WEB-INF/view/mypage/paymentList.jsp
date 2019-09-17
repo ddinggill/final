@@ -48,7 +48,7 @@ tr th:nth-of-type(1) {
                 <tbody id="tbody">
 					<c:forEach items="${mileage_dto}" var="dto" varStatus="status">
 						<tr>
-							<th>${status.count}</th>
+							<td>${status.count}</td>
 
 							<td>${dto.m_total-dto.m_list}</td>
 							<c:choose>

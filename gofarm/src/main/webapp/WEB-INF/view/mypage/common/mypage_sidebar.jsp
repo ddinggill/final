@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>sidebar</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
@@ -23,8 +23,8 @@
           <span>구인/구직</span>
         </a>
         <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-          <a class="dropdown-item" href="job.do" id="job">구인</a>
-          <a class="dropdown-item" href="jobSearch.do" id="jobSearch">구직</a>
+          <a class="dropdown-item" href="jobView.do" id="job">구인</a>
+          <a class="dropdown-item" href="jobSearchView.do" id="jobSearch">구직</a>
         </div>
       </li>
       <li class="nav-item dropdown">

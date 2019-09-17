@@ -74,8 +74,10 @@ public class AuctionController {
 			UserDTO user = (UserDTO) session.getAttribute("loginOk");
 			mav.addObject("user", user);
 		}		
+		System.out.println("옥션코드"+ auctioncode);
+		int usercode = auctionService.auctionSuccessfulProcess(auctioncode);
 		
-		
+		mav.addObject("user", auctionService.successfulUserProcess(usercode));
 		mav.addObject("dto", dto);
 		mav.setViewName("auction/auction-single");
 		
@@ -96,7 +98,7 @@ public class AuctionController {
 			
 		}else {
 			System.out.println("로그인 필요");
-			go ="redirect:/auctionList.do";
+			go ="user/login";
 			
 		}
 		
@@ -115,7 +117,7 @@ public class AuctionController {
 			return "auction/auctionProduce";
 		}else {
 			
-			return "UserController/login.do";
+			return "user/login";
 		}
 	}
 	@RequestMapping(value="AuctionProduce.do" , method = RequestMethod.POST)
@@ -151,9 +153,15 @@ public class AuctionController {
 		adto.setFin_time(fintime);
 		auctionService.auctionInsertProcess(adto);
 		
+	
 		return "redirect:/auctionList.do";
 	}
 	
-	
+	@RequestMapping("stateUpdate.do")
+	public void auctionStateUpdate(int auctioncode) {
+		System.out.println(auctioncode);
+		auctionService.stateUpdeteProcess(auctioncode);
+		
+	}
 	
 }

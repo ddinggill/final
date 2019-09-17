@@ -14,7 +14,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	<![CDATA[
  		select b.* from (select rownum as rm , a.* from(
 		select * from auction order by auctioncode desc)a)b
-		where b.rm>=#{startRow} and b.rm<=#{endRow}
+		where b.rm>=#{startRow} and b.rm<=#{endRow} and state=0
  	]]>
  	</select>
  	
@@ -33,9 +33,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	
  	<insert id="auctionIns" parameterType="com.mycompany.gofarm.auction.dto.AuctionDTO">
  		insert into auction values(AUTION_SEQ.nextval , #{usercode} ,#{au_name} , #{au_file},
-#{stprice}, #{stprice}, null, 0, to_date(sysdate, 'YYYY-MM-DD HH24:MI') ,#{fin_time} , #{content})
+#{stprice}, #{stprice}, null, 0, to_date(sysdate, 'YYYY-MM-DD') ,#{fin_time} , #{content})
  	
  	</insert>
+ 	
+ 	<update id="stateUpd" parameterType="int">
+ 		update auction set state = 1 where auctioncode = #{auctioncode}
+ 	</update>
+ 	
+ 	<select id="Successful" parameterType="int" resultType="int">
+ 		select b.br_user from(select rownum as rm , a.* from(
+		select * from au_recipe where autioncode = #{auctioncode} order by br_date desc)a)b
+		where rm = 1
+ 	</select>
+ 	<select id="successfuluser" parameterType="int" 
+ 	resultType="com.mycompany.gofarm.user.dto.UserDTO"> 
+ 		select * from users where usercode = #{usercode}
+ 	</select>
  	
  	
 </mapper>

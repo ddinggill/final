@@ -1,0 +1,72 @@
+.t1 {
+	width: 150px;
+	height: 50px;
+	background: #e6b04d;
+	font-size: 22px;
+	color: #fff;
+	line-height: 1.2;
+	font-weight: unset;
+	border: 2px solid #E7E5E5;
+}
+
+.t2 {
+	width: 200px;
+	height: 50px;
+}
+
+td {
+	text-align: center;
+	display: table-cell;
+	vertical-align: inherit;
+	border: 2px solid #E7E5E5;
+}
+
+* {
+	margin: 0;
+	paddig: 0;
+}
+
+table {
+	border-collapse: separate;
+	border-spacing: 2px;
+}
+
+body {
+	font-size: 16px;
+	font-family: 'Poppins', sans-serif;
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	font-weight: 400;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	word-wrap: break-word;
+	overflow-x: hidden;
+	color: #333;
+}
+
+.datail_title {
+	font-size: 30px;
+}
+
+p {
+	line-height: 1.7;
+	font-size: 1.05em;
+	font-weight: 400;
+	color: #555;
+}
+
+.memo_title {
+	font-size: 30px;
+}
+
+.memo {
+	width: 100%;
+	margin: auto;
+	height: 100px;
+	background: white;
+}
+
+div.card-header{
+	font-size: 24px;
+}

@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>판매</title>
+<title>경매</title>
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -244,6 +244,21 @@ table.type08 td {
 		
 	
 };
+
+$(document).ready(function() {
+
+		$("#bidding").on('click' , function(){
+			if(${dto.ctprice} >= $("#price").val()){
+				alert("현재가 보다 낮거나 같은 값의 입찰은 불가합니다.");
+				return false;
+			}
+			alert("입찰이 완료 되었습니다. 마이페이지에서 확인하세요.");
+		});
+
+	
+	
+
+});
 	</script>
 </head>
 <body class="goto-here">
@@ -259,7 +274,7 @@ table.type08 td {
 						src="auction/images/${dto.au_file}" class="img-fluid"
 						alt="Colorlib Template"></a>
 				</div>
-<form action="auctionRecipe.do" method="get"  >
+            <form action="auctionRecipe.do" method="get"  >
 				<div class="goods-view-form-table-wrapper">
 					<h3>${dto.au_name}</h3>
 					<table class="goods-view-form-table">
@@ -270,7 +285,7 @@ table.type08 td {
 							</tr>
 							<tr>
 								<th scope="row" class="goods-view-form-table-heading">현재가</th>
-								<td class="goods-price">${dto.ctprice}</td>
+								<td class="goods-price" >${dto.ctprice}</td>
 							</tr>
 							<tr>
 								<th scope="row" class="goods-view-form-table-heading">시작일</th>
@@ -280,6 +295,10 @@ table.type08 td {
 							<tr>
 								<th scope="row" class="goods-view-form-table-heading">남은시간</th>
 								<td class="goods-view-form-table-cell" id="timetable"><script type="text/javascript">timecount();</script> </td>
+							</tr>
+							<tr>
+								<th scope="row" class="goods-view-form-table-heading">예상낙찰자</th>
+								<td class="goods-view-form-table-cell">${user.name}</td>
 							</tr>
 							<tr>
 							
@@ -306,7 +325,12 @@ table.type08 td {
 					<input type="hidden" value="${dto.auctioncode}" >
 					<a href="${path}" class="btn btn-black py-3 px-5">입찰하기</a>
 					</p> --%>
-					<input type="submit" class="btn btn-black py-3 px-5" value="입찰하기2">
+					<c:if test="${dto.state eq 0}">
+					<input type="submit" class="btn btn-black py-3 px-5" value="입찰하기" id="bidding">
+					</c:if>
+				<c:if test="${dto.state ne 0}">
+					<input type="text" class="btn btn-black py-3 px-5" value="경매종료" readonly="readonly">
+					</c:if>
 					</div>
 				</form>
 					<c:url var="update" value="auctionUpdate.do">
@@ -315,7 +339,7 @@ table.type08 td {
 					<c:url var="delete" value="auctionDelete.do">
 						<c:param name="auctioncode" value="${dto.auctioncode}" />
 					</c:url>
-					<c:if test="${dto.usercode == user.usercode}">
+					<%-- <c:if test="${dto.usercode == user.usercode}">
 					<p>
 					<input type="hidden" value="${dto.auctioncode}" >
 					<a href="${update}" class="btn btn-green py-3 px-5">수정하기</a>
@@ -324,7 +348,7 @@ table.type08 td {
 					<input type="hidden" value="${dto.auctioncode}" >
 					<a href="${delete}" class="btn btn-red py-3 px-5">삭제하기</a>
 					</p>
-					</c:if>
+					</c:if> --%>
 				</div>
 			</div>
 		<!-- </div> -->
@@ -335,7 +359,7 @@ table.type08 td {
 			<ul class="goods-view-infomation-tab-group">
 					<li class="goods-view-infomation-tab1"><a href="#product_info"
 					class="goods-view-infomation-tab-anchor __active">상세정보</a></li>
-					<li class="goods-view-infomation-tab2"><a href="#product_review" class="goods-view-infomation-tab-anchor">고객후기</a></li>
+					
 			</ul>
 		</div>
 

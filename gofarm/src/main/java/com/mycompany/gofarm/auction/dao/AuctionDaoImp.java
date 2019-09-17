@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.mycompany.gofarm.auction.dto.Au_recipeDTO;
 import com.mycompany.gofarm.auction.dto.AuctionDTO;
 import com.mycompany.gofarm.auction.dto.PageDTO;
+import com.mycompany.gofarm.user.dto.UserDTO;
 
 @Repository
 public class AuctionDaoImp implements AuctionDAO{
@@ -49,6 +50,29 @@ public class AuctionDaoImp implements AuctionDAO{
 		@Override
 		public void auctionInsertMethod(AuctionDTO adto) {
 				sqlsession.insert("auction.auctionIns", adto);
+		}
+
+		@Override
+		public void stateUpdateMethod(int auctioncode) {
+				sqlsession.update("auction.stateUpd",auctioncode);
+		}
+
+		@Override
+		public int auctionSuccesfulMethod(int auctioncode) {
+			System.out.println("dao옥션코드"+auctioncode);
+			Integer code = sqlsession.selectOne("auction.Successful", auctioncode);
+			
+			if(code == null) {
+				code = 0;
+			}
+			
+			return code;
+		}
+
+		@Override
+		public UserDTO successfulUserMethod(int usercode) {
+			// TODO Auto-generated method stub
+			return sqlsession.selectOne("auction.successfuluser", usercode);
 		}
 		
 		

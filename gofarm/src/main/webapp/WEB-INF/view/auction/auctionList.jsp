@@ -87,7 +87,65 @@
 	<script type="text/javascript">
 	
 
+	function timecount(time, count, code){
+		/* var end = $('#end').val();
+		console.log(end) //마감시간 */
+	var endtimeArr = time.split(":");
+		console.log(endtimeArr[0]);//마감시간 시
+		console.log(endtimeArr[1]);//마감시간 분
+		console.log(endtimeArr[2]);//마감시간 초
+		
+	 var nowtime = new Date();
+		console.log(endtimeArr[0] -nowtime.getHours());//현재 시간 -마감 시간
+		console.log(endtimeArr[1]- nowtime.getMinutes());//현재 분 -마감 분
+		console.log(endtimeArr[2]-  nowtime.getSeconds());//현재 초 -마감 초
+		
+		var hour = endtimeArr[0] -nowtime.getHours();
+		var minute = endtimeArr[1]- nowtime.getMinutes();
+		var second = endtimeArr[2]-  nowtime.getSeconds();
+		
+	 	if(minute < 0){
+			hour -= 1;
+			minute += 60;
+		}
+		if (second < 0 ){
+			minute -= 1;
+			second +=60;
+		} 
+		
+		console.log(hour);
+		console.log(minute);
+		console.log(second);
+		
 	
+		$("."+count).html(hour+": "+minute + ": " + second);
+		console.log("count: "+count);
+		var timer = setInterval(function(){
+			$("."+count).html(hour+": "+minute + ":"+ second);
+			
+			if(hour < 0){
+				$("."+count).html("경매종료");
+				clearInterval(timer);
+				$.ajax({
+					type: 'GET',
+					url : 'stateUpdate.do?auctioncode='+code
+				});
+			} 
+			second--;
+			 if(minute < 0){
+				hour -= 1;
+				minute += 60;
+			}
+			if (second < 0 ){
+				minute -= 1;
+				second +=60;
+			} 
+			
+			
+		},1000);
+		
+		
+	}
 
 	
 	</script>
@@ -115,7 +173,7 @@
 			
 			<!-- 상품 들어가는곳 -->
 			<div class="row">
-			<c:forEach items="${au_dto}" var="dto">
+			<c:forEach items="${au_dto}" var="dto" varStatus="status">
 			
 				<div class="col-md-6 col-lg-3 ftco-animate">
 				
@@ -145,11 +203,13 @@
 										<span class="price-sale">${dto.ctprice}</span>
 									</p>
 									<input type="hidden" value="${dto.fin_time}" id="end">
-									<p class="price">
-									<label>종료 시간</label>
-										<span class="price-sale" id="timetable">
-											${dto.fin_time}
-										</span>
+									<p class="price" >
+									<label>남은 시간</label>
+										<p class="price-sale  ${status.count } <%-- ${dto.fin_time} --%>" >
+											<script type="text/javascript">
+											timecount("${dto.fin_time}", ${status.count},${dto.auctioncode});
+											</script> 
+										</p>
 										
 									</p>
 								</div>

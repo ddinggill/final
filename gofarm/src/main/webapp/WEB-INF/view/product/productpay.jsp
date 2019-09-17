@@ -39,6 +39,44 @@
 <link href="main/fonts/ionicons.css" rel="stylesheet">
 <link href="main/common/styles.css" rel="stylesheet">
 <link href="main/common/main_content.css" rel="stylesheet">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+
+	$("#payGo").on('click',function(){
+		if(${detail.mileage} < $(".totalmoney").val()){
+			alert("마일리지가 부족합니다. 충전후 이용해 주세요.");
+			return false;
+		}
+		alert("결제 되었습니다. 마이페이지에서 확인하세요.");
+	});
+	/* 
+	$("#totalmoney").on('change',function(){
+	var total = $("#quantity").val() * ${pd_dto.pd_price};
+	console.log(total);
+	$("#quantity").val(total);
+	}); */
+	
+/* 	$("#totalmoney").change(function(){
+		alert("변경");
+	});
+	 */
+
+
+});
+function total(){
+	/* alert("변경");
+	alert($("#quantity").val());
+	alert($("#totalmoney").val()); */
+  var total = $("#quantity").val() *  $("#price").val();
+ /*  alert(total); */
+  $(".totalmoney").val(total);
+}
+
+
+
+</script>
   </head>
   <body class="goto-here">
   
@@ -78,7 +116,8 @@
           </div>
           <div class="col-md-3 d-flex">
           	<div class="info bg-white p-4">
-	            <p><span>총금액:</span>${pd_dto.pd_price}</p>
+          	<input type="hidden" value="${pd_dto.pd_price}" id="price">
+	            <p><span>총금액:</span> <input type="text" value="${pd_dto.pd_price}" class="totalmoney"> </p>
 	          </div>
           </div>
         </div>
@@ -86,7 +125,8 @@
         <div class="row block-9">
           <div class="col-md-6 order-md-last d-flex">
             <form action="productpay.do" class="bg-white p-5 contact-form" >
-            <input type="text" value="${pd_dto.prod_code}" name="prod_code"> 
+            <input type="hidden" value="${pd_dto.pd_price}" class="totalmoney">
+            <input type="hidden" value="${pd_dto.prod_code}" name="prod_code"> 
           <%--  <input type="text" value="${cnt}" name="cnt"> --%>
               <div class="form-group">
               <label><h4>이름</h4></label>
@@ -102,18 +142,18 @@
               </div>
               <div class="form-group">
               <label><h4>주문수량</h4></label>
-				<input type="number" id="quantity" name="cnt" class="form-control input-number" value="1" min="1" max="${pd_dto.pd_cnt}" >
+				<input type="number" id="quantity" name="cnt" class="form-control input-number" value="1" min="1" max="${pd_dto.pd_cnt}" onchange="total()">
               </div>
               <div class="form-group">
               <label><h4>배송시 요청사항</h4></label>
-                <textarea name="" id="" cols="20" rows="5" class="form-control" placeholder="배송 시 할말"></textarea>
+                <textarea name="" id="" cols="20" rows="5" class="form-control" placeholder="배송 시 요청사항"></textarea>
               </div>
                <div class="form-group">
                <label><h4>현재 마일리지</h4></label>
                 <input type="text" class="form-control" placeholder="마일리지" value="${detail.mileage}">
               </div>
               <div class="form-group">
-                <input type="submit" value="구 매 하 기" class="btn btn-primary py-3 px-5">
+                <input type="submit" value="구 매 하 기" class="btn btn-primary py-3 px-5" id="payGo">
               </div>
             </form>
           

@@ -109,7 +109,7 @@ public class ProductController {
 		return mav;
 		}else {
 			System.out.println("로그인해");
-			mav.setViewName("product/needlogin");
+			mav.setViewName("user/login");
 			
 		}
 		return mav;
@@ -141,7 +141,7 @@ public class ProductController {
 			return "redirect:/main.do";
 		}else {
 			System.out.println("로그인해");
-			return "product/needlogin";
+			return "user/login";
 		}
 	}
 	
@@ -155,7 +155,7 @@ public class ProductController {
 			return "product/productProduce";
 		}else {
 			System.out.println("로그인해");
-			return "product/needlogin";
+			return "user/login";
 		}
 		
 	}
