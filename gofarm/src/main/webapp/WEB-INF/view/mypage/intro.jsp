@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -36,48 +36,38 @@
         <!-- DataTables Example -->
         <div class="card mb-3">
           <div class="card-header">
-            <i class="fas fa-table"></i>마이페이지
+            <i class="fas fa-table"></i> 내정보
           </div>
           <div class="card-body">
+          		<c:if test="${loginOk.userlvl == 1 }">
+					<p id="mileage_btn">
+						<input type="button" id="mileage_charge_btn" value="상세회원전환하기" onClick="location.href='detailsignup.do'" /> 
+					</p>
+				</c:if>
             <div class="table-responsive">
               <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                <thead>
+               <thead>
                   <tr>
-                  	<th>냉무</th>
+                  	<th>ID</th>
+                    <th>PASSWORD</th>
+                    <th>NAME</th>
+                    <th>BIRTH</th>
+                    <th>PHONE</th>
+                    <th>EMAIL</th>
+                    <th>NICKNAME</th>
+                    <th>MODIFY</th>
                   </tr>
                 </thead>
-                <tfoot>
-                  <tr>
-                  	<th>냉무</th>
-                  </tr>
-                </tfoot>
                 <tbody>
                   <tr>
-                  	<th>냉무</th>
-                  </tr>
-                   <tr>
-                  	<th>냉무</th>
-                  </tr>
-                   <tr>
-                  	<th>냉무</th>
-                  </tr>
-                   <tr>
-                  	<th>냉무</th>
-                  </tr>
-                   <tr>
-                  	<th>냉무</th>
-                  </tr>
-                   <tr>
-                  	<th>냉무</th>
-                  </tr>
-                   <tr>
-                  	<th>냉무</th>
-                  </tr>
-                   <tr>
-                  	<th>냉무</th>
-                  </tr>
-                   <tr>
-                  	<th>냉무</th>
+                  	<td>${loginOk.userid }</td>
+                  	<td>${loginOk.userpw }</td>
+                  	<td>${loginOk.name }</td>
+                  	<td>${loginOk.birth }</td>
+                  	<td>${loginOk.phone }</td>
+                  	<td>${loginOk.email }</td>
+                  	<td>${loginOk.nickname }</td>
+                  	<td><input type="button" value="수정" id="modify" onClick="location.href='infochange.do'"></td>
                   </tr>
                 </tbody>
               </table>

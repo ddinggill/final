@@ -18,6 +18,7 @@ import com.mycompany.gofarm.job.dto.JobCheckDTO;
 import com.mycompany.gofarm.job.dto.JobDTO;
 import com.mycompany.gofarm.job.dto.JobSearchDTO;
 import com.mycompany.gofarm.mypage.dto.MileageDTO;
+import com.mycompany.gofarm.mypage.dto.MySellDTO;
 import com.mycompany.gofarm.mypage.service.MypageService;
 import com.mycompany.gofarm.user.dto.UserDTO;
 
@@ -44,11 +45,6 @@ public class MypageController {
 	public String intro() {
 		return "mypage/intro";
 	}
-			
-	@RequestMapping("/product.do")
-	public String product() {
-		return "mypage/product";
-	}
 	
 	@RequestMapping("/auction.do")
 	public String auction() {
@@ -60,14 +56,12 @@ public class MypageController {
 		return "mypage/donation";
 	}
 	
-	
-	
 	@RequestMapping("/mileage.do")
 	public ModelAndView mileage(HttpSession session, ModelAndView mav) {
 		UserDTO user = (UserDTO)session.getAttribute("loginOk");
 		if(user.getUserlvl()==2) {
-			int usercode = user.getUsercode();
-			mav.addObject("mileage_dto", mypageService.mileageListService(usercode));
+			mav.addObject("mileage_dto", mypageService.mileageListService(user.getUsercode()));
+			mav.addObject("userDetail_dto", mypageService.userDetailViewService(user.getUsercode()));
 			mav.setViewName("mypage/mileage");
 		}else {
 			mav.addObject("msg", "해당 기능을 사용하기에는 권한이 부족합니다.");
@@ -82,8 +76,7 @@ public class MypageController {
 	public ModelAndView mileage_charge(HttpSession session, ModelAndView mav) {
 		UserDTO user = (UserDTO)session.getAttribute("loginOk");
 		if(user.getUserlvl()==2) {
-			int usercode = user.getUsercode();
-			UserDTO userDetail = mypageService.userDetailViewService(usercode);
+			UserDTO userDetail = mypageService.userDetailViewService(user.getUsercode());
 			user.setUser_home(userDetail.getUser_home());
 			DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 			Date date = new Date();
@@ -102,10 +95,11 @@ public class MypageController {
 	@RequestMapping("/mileage_charge_end.do")
 	public String mileage_charge_end(HttpSession session, ModelAndView mav, int m_list) {
 		UserDTO user = (UserDTO)session.getAttribute("loginOk");
-		int usercode = user.getUsercode();
-		MileageDTO dto = mypageService.mileageViewService(usercode);
+		UserDTO userDetail = mypageService.userDetailViewService(user.getUsercode());
+		MileageDTO dto = new MileageDTO();
+		dto.setUsercode(user.getUsercode());
 		dto.setM_list(m_list);
-		dto.setM_total(dto.getM_total()+m_list);
+		dto.setM_total(userDetail.getMileage()+m_list);
 		dto.setM_content("마일리지 충전");
 		mav.addObject("mileage_dto", dto);
 		mypageService.mileageInsertService(dto);
@@ -130,10 +124,11 @@ public class MypageController {
 	@RequestMapping("/mileage_payment_end.do")
 	public String mileage_payment_end(HttpSession session, ModelAndView mav, int m_list) {
 		UserDTO user = (UserDTO)session.getAttribute("loginOk");
-		int usercode = user.getUsercode();
-		MileageDTO dto = mypageService.mileageViewService(usercode);
+		UserDTO userDetail = mypageService.userDetailViewService(user.getUsercode());
+		MileageDTO dto = new MileageDTO();
+		dto.setUsercode(user.getUsercode());
 		dto.setM_list(-m_list);
-		dto.setM_total(dto.getM_total()-m_list);
+		dto.setM_total(userDetail.getMileage()-m_list);
 		dto.setM_content("마일리지 출금");
 		mav.addObject("mileage_dto", dto);
 		mypageService.mileageInsertService(dto);
@@ -144,8 +139,7 @@ public class MypageController {
 	@RequestMapping("/paymentPorm.do")
 	public ModelAndView paymentPro(HttpSession session, ModelAndView mav) {
 		UserDTO user = (UserDTO)session.getAttribute("loginOk");
-		int usercode = user.getUsercode();
-		UserDTO dto = mypageService.userDetailViewService(usercode);
+		UserDTO dto = mypageService.userDetailViewService(user.getUsercode());
 		dto.setName(user.getName());
 		mav.addObject("userDTO", dto);
 		mav.setViewName("mypage/paymentPorm");
@@ -155,8 +149,7 @@ public class MypageController {
 	@RequestMapping("/paymentList.do")
 	public ModelAndView paymentList(HttpSession session, ModelAndView mav) {
 		UserDTO user = (UserDTO)session.getAttribute("loginOk");
-		int usercode = user.getUsercode();
-		mav.addObject("mileage_dto", mypageService.paymentListService(usercode));
+		mav.addObject("mileage_dto", mypageService.paymentListService(user.getUsercode()));
 		mav.setViewName("mypage/paymentList");
 		return mav;
 	}
@@ -164,8 +157,7 @@ public class MypageController {
 	@RequestMapping("/jobView.do")
 	public ModelAndView jobView(HttpSession session, ModelAndView mav) {
 		UserDTO user = (UserDTO)session.getAttribute("loginOk");
-		int usercode = user.getUsercode();
-		mav.addObject("job_dto", mypageService.jobListService(usercode));
+		mav.addObject("job_dto", mypageService.jobListService(user.getUsercode()));
 		mav.setViewName("mypage/job");
 		return mav;
 	}
@@ -173,12 +165,20 @@ public class MypageController {
 	@RequestMapping("/jobSearchView.do")
 	public ModelAndView jobSearchView(HttpSession session, ModelAndView mav) {
 		UserDTO user = (UserDTO)session.getAttribute("loginOk");
-		int usercode = user.getUsercode();
-		JobSearchDTO jobSearchDto = mypageService.jobSearchListService(usercode);
+		JobSearchDTO jobSearchDto = mypageService.jobSearchListService(user.getUsercode());
 		List<JobDTO> jobCheckDto = mypageService.jobcheckListService(jobSearchDto.getJobsearchcode());
 		mav.addObject("jobSearch_dto", jobSearchDto);
 		mav.addObject("jobCheck_dto", jobCheckDto);
 		mav.setViewName("mypage/jobSearch");
+		return mav;
+	}
+	
+	@RequestMapping("/product.do")
+	public ModelAndView product(HttpSession session, ModelAndView mav) {
+		UserDTO user = (UserDTO)session.getAttribute("loginOk");
+		List<MySellDTO> mySellDto = mypageService.mysellListService(user.getUsercode());
+		mav.addObject("mySell_dto", mySellDto);
+		mav.setViewName("mypage/product");
 		return mav;
 	}
 	

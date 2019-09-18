@@ -2,6 +2,7 @@ package com.mycompany.gofarm.product.service;
 
 import java.util.List;
 
+import com.mycompany.gofarm.mypage.dto.MileageDTO;
 import com.mycompany.gofarm.product.dto.DealDTO;
 import com.mycompany.gofarm.product.dto.PageDTO;
 import com.mycompany.gofarm.product.dto.ProductDTO;
@@ -22,6 +23,9 @@ public interface ProductService {
 	public void productUpdateService(ProductDTO prodto);
 	public void productDeleteService(int prod_code);
 	public List<ReviewDTO> reviewListService(int prod_code);
+	public void mileageInsertService(MileageDTO dto);
+	public MileageDTO mileageViewService(int usercode);
+	public void mileageUpdateService(MileageDTO dto);
 	
 	
 }

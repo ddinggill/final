@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.mycompany.gofarm.auction.dto.Au_recipeDTO;
 import com.mycompany.gofarm.auction.dto.AuctionDTO;
+import com.mycompany.gofarm.auction.dto.MileageDTO;
 import com.mycompany.gofarm.auction.dto.PageDTO;
 import com.mycompany.gofarm.user.dto.UserDTO;
 
@@ -74,8 +75,40 @@ public class AuctionDaoImp implements AuctionDAO{
 			// TODO Auto-generated method stub
 			return sqlsession.selectOne("auction.successfuluser", usercode);
 		}
+
+		@Override
+		public List<Au_recipeDTO> aureListMethod(int auctioncode) {
+			// TODO Auto-generated method stub
+			return sqlsession.selectList("auction.aurelist", auctioncode);
+		}
 		
+		@Override
+		public void finNameProcess(Au_recipeDTO rdto) {
+			sqlsession.update("auction.finnameUpd", rdto);
+		}
+
+		@Override
+		public void auctionUserMileageminus(AuctionDTO aucdto) {
+			//낙찰자 마일리지 감소
+			sqlsession.update("auction.mileageMinus", aucdto);
+			
+		}
+
+		@Override
+		public UserDTO auctionTotalMileage(int usercode) {
+			//낙찰자 경매 판매자 총마일리지 가져오기
+			return sqlsession.selectOne("auction.userselect", usercode);
+		}
+
+		@Override
+		public void mileageAddMethod(MileageDTO mdto) {
+			sqlsession.insert("auction.MileageAdd", mdto);
+		}
+
+		@Override
+		public void sellerMilPlusMethod(AuctionDTO aucdto) {
+			sqlsession.update("auction.sellerMilPlus", aucdto);
+		}
 		
-	
 	
 }

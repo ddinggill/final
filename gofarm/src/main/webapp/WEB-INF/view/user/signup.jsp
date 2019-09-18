@@ -32,7 +32,8 @@ body {
 	color: #222;
 	font-family: 'Sunflower';
 	font-weight: 300;
-	background-image: url("main/images/test1.jpg");
+	background-color: #D8D8D8;
+	/* background-image: url("main/images/test1.jpg"); */
 }
 
 #login-box {

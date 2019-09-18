@@ -61,4 +61,9 @@ public class UserServiceImp implements UserService{
 		return dto;
 	}//end kakaologinProcess()
 	
+	@Override
+	public void updateProcess(UserDTO dto) {
+		userDao.updateinfo(dto);
+	}
+	
 }//end class

@@ -96,6 +96,10 @@ header>#topNav>ul.main-munu>li>a {
    line-height: 1;
    padding: 15px;
 }
+
+.nav{
+   text-shadow: 0 0 2px #000000;
+}
 </style>
 </head>
 <body>
@@ -103,32 +107,32 @@ header>#topNav>ul.main-munu>li>a {
    <header class="fixed-top">
 
       <nav id="topNav" >
-         <a class="logo" href="#"><img src="main/images/logo.png">GO
+         <a class="logo nav" href="#"><img src="main/images/logo.png">GO
             FARM</a>
          <ul class="main-menu" id="main-menu"
           style="margin-left: 27%;">
 
 
 
-            <li><a href="main.do">HOME</a></li>
-            <li><a href="#">INFO</a></li>
-            <li><a href="recruit2.do">구인 | 구직</a></li>
-            <li><a href="productList.do">장터</a></li>
-            <li><a href="#">게시판</a></li>
-            <li><a href="chatlist.do">오픈채팅</a></li>
+            <li><a href="main.do" class="nav">HOME</a></li>
+            <li><a href="#" class="nav">INFO</a></li>
+            <li><a href="recruit2.do" class="nav">구인 | 구직</a></li>
+            <li><a href="productList.do" class="nav">장터</a></li>
+            <li><a href="#" class="nav">게시판</a></li>
+            <li><a href="chatlist.do" class="nav">오픈채팅</a></li>
             <c:choose>
                <c:when test="${empty sessionScope.loginOk}">
-                  <li><a href="login.do">로그인</a></li>
+                  <li><a href="login.do" class="nav">로그인</a></li>
                </c:when>
                <c:otherwise>
                   <!--    <script type="text/javascript">
                        timecount();
                     </script> -->
-                  <li class="drop-down"><a href="#!">${loginOk.userid }<i
+                  <li class="drop-down"><a href="#!" class="nav">${loginOk.userid }<i
                         class="ion-arrow-down-b"></i></a>
                      <ul class="drop-down-menu drop-down-inner">
-                        <li><a href="logout.do">logout</a></li>
-                        <li><a href="mypage.do">mypage</a></li>
+                        <li><a href="logout.do" class="nav">logout</a></li>
+                        <li><a href="mypage.do" class="nav">mypage</a></li>
                      </ul></li>
                </c:otherwise>
             </c:choose>

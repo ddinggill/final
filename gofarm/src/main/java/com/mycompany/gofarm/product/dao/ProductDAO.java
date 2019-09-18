@@ -2,6 +2,7 @@ package com.mycompany.gofarm.product.dao;
 
 import java.util.List;
 
+import com.mycompany.gofarm.mypage.dto.MileageDTO;
 import com.mycompany.gofarm.product.dto.DealDTO;
 import com.mycompany.gofarm.product.dto.PageDTO;
 import com.mycompany.gofarm.product.dto.ProductDTO;
@@ -20,5 +21,8 @@ public interface ProductDAO {
 	public void productUpdateMethod(ProductDTO prodto);
 	public void productDeleteMethod(int prod_code);
 	public List<ReviewDTO> reviewListMethod(int prod_code);
+	public void mileageInsertMethod(MileageDTO dto);
+	public MileageDTO mileageViewMethod(int usercode);
+	public void mileageUpdateMethod(MileageDTO dto);
 	
 }

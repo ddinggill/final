@@ -1,17 +1,15 @@
 package com.mycompany.gofarm.product.dao;
 
-import static org.hamcrest.CoreMatchers.instanceOf;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.sound.sampled.Port;
-
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.mycompany.gofarm.mypage.dto.MileageDTO;
 import com.mycompany.gofarm.product.dto.DealDTO;
 import com.mycompany.gofarm.product.dto.PageDTO;
 import com.mycompany.gofarm.product.dto.ProductDTO;
@@ -56,15 +54,14 @@ public class ProductDaoImp  implements ProductDAO{
 		public void productDealMethod(DealDTO dto) {
 			sqlsession.insert("product.deal", dto);
 			
-			ProductDTO prodto = sqlsession.selectOne("product.view", dto);
-			int price;
-			price = prodto.getPd_price() * dto.getDe_cnt();
-			Map<String,Integer> map = new HashMap<String, Integer>();
-			map.put("price", price);
-			map.put("usercode", dto.getDe_usercode());
+			//ProductDTO prodto = sqlsession.selectOne("product.view", dto);
+			//int price;
+			//price = prodto.getPd_price() * dto.getDe_cnt();
+			//Map<String,Integer> map = new HashMap<String, Integer>();
+			//map.put("price", price);
+			//map.put("usercode", dto.getDe_usercode());
 			
-			
-			sqlsession.update("product.dealresult", map);
+			//sqlsession.update("product.dealresult", map);
 			sqlsession.update("product.product_cnt", dto);
 		}
 
@@ -108,6 +105,24 @@ public class ProductDaoImp  implements ProductDAO{
 		@Override
 		public List<ReviewDTO> reviewListMethod(int prod_code) {
 			return sqlsession.selectList("product.reviewList", prod_code);	
+		}
+
+
+
+		@Override
+		public void mileageInsertMethod(MileageDTO dto) {
+			sqlsession.insert("product.mileage_insert", dto);
+			
+		}
+
+		@Override
+		public MileageDTO mileageViewMethod(int usercode) {
+			return sqlsession.selectOne("product.mileage_view", usercode);
+		}
+
+		@Override
+		public void mileageUpdateMethod(MileageDTO dto) {
+			sqlsession.update("product.mileage_update", dto);
 		}
 
 

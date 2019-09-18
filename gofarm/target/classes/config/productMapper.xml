@@ -26,9 +26,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	<insert id="deal" parameterType="com.mycompany.gofarm.product.dto.DealDTO">
  		insert into DEAL VALUES(DEAL_SEQ.nextval , #{prod_code} , sysdate , #{de_cnt} , #{de_usercode})
  	</insert>
- 	 <update id="dealresult" parameterType="map">
-		 	UPDATE USER_DETAIL SET MILEAGE = MILEAGE - #{price} where usercode = #{usercode}
- 	</update> 
+ 	
  	<update id="product_cnt"  parameterType="com.mycompany.gofarm.product.dto.DealDTO">
  		update product set pd_cnt = pd_cnt - #{de_cnt} where prod_code = #{prod_code}
  	</update>
@@ -62,4 +60,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  			select * from review where prod_code = #{prod_code}
  	</select>
  	
+ 	<insert id="mileage_insert" parameterType="com.mycompany.gofarm.mypage.dto.MileageDTO">
+ 		insert into mileage values(#{usercode},#{m_list},#{m_total}, sysdate, #{m_content})
+ 	</insert>
+ 	
+ 	<select id="mileage_view" resultType="com.mycompany.gofarm.mypage.dto.MileageDTO"
+ 	 parameterType="int">
+ 		SELECT * FROM mileage WHERE usercode= #{usercode} and m_day = (SELECT MAX(m_day)AS m_day FROM mileage)
+ 	</select>
+ 	
+ 	<update id="mileage_update" parameterType="com.mycompany.gofarm.mypage.dto.MileageDTO">
+ 		update USER_DETAIL set mileage=#{m_total} where usercode=#{usercode}
+ 	</update>
 </mapper>

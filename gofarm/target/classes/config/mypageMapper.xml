@@ -60,4 +60,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	]]>
  	</select>
  	
+ 	<select id="mySell_list" resultType="com.mycompany.gofarm.mypage.dto.MySellDTO"
+ 	 parameterType="int">
+ 	<![CDATA[
+ 		select b.pd_name pd_name, b.de_date de_date, b.de_cnt de_cnt, b.name name, b.phone phone, ud.USER_HOME USER_HOME 
+ 		from (select a.pd_name , a.de_date , a.de_cnt , name, phone, usercode 
+ 			from(select pd_name, de_date, de_cnt, de_usercode 
+ 				from product p, deal d 
+ 				where p.prod_code = d.prod_code and usercode=#{usercode})a, users u 
+ 			where a.de_usercode= u.USERCODE)b, user_detail ud 
+ 		where b.usercode = ud.usercode
+	]]>
+ 	</select>
 </mapper>

@@ -51,5 +51,34 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		select * from users where usercode = #{usercode}
  	</select>
  	
+ 	<select id="aurelist" parameterType="int" resultType="com.mycompany.gofarm.auction.dto.Au_recipeDTO">
+ 		<![CDATA[
+ 		select autioncode,br_user,br_price,to_char(br_date,'yyyy.mm.dd hh24:mi:ss')as br_date from au_recipe
+ 		where autioncode = #{auctioncode} and rownum<=5 order by br_price desc
+ 		]]>
+ 	</select>
  	
+ 	<!-- 경매정보에 낙찰자 코드 넣기 -->
+ 	<update id="finnameUpd" parameterType="com.mycompany.gofarm.auction.dto.Au_recipeDTO">
+ 			update auction set fin_name = #{br_user} where auctioncode= #{auctioncode}
+	 </update>
+	 <!-- 경매 낙찰자 마일리지 마이너스 -->
+	 <update id="mileageMinus" parameterType="com.mycompany.gofarm.auction.dto.AuctionDTO">
+	 update user_detail set mileage = mileage -#{ctprice} where usercode = #{fin_name}
+	 </update>
+	 
+ 	<!-- 총 마일리지 가져오기 -->
+ 	<select id="userselect" parameterType="int" 
+ 	resultType="com.mycompany.gofarm.user.dto.UserDTO">
+ 	select * from user_detail where usercode = #{usercode}
+ 	</select>
+ 	<!-- 마일리지 내역 추가 -->
+ 	<insert id="MileageAdd" parameterType="com.mycompany.gofarm.auction.dto.MileageDTO">
+ 		insert into mileage values(#{usercode} , #{m_list} , #{m_total}, sysdate , #{m_content})
+ 	</insert>
+ 	
+ 	<!-- 판매자 마일리지 + -->
+ 	<update id="sellerMilPlus" parameterType="com.mycompany.gofarm.auction.dto.AuctionDTO">
+ 		update user_detail set mileage = mileage + #{ctprice} where usercode = #{usercode}
+ 	</update>
 </mapper>

@@ -128,7 +128,14 @@
 							<div class="d-flex">
 								<div class="pricing">
 									<p class="price">
-										<span class="price-sale">${dto.pd_price}</span>
+										<c:choose>
+											<c:when test="${dto.pd_cnt == 0}">
+												<span class="price-sale">품절</span>
+											</c:when>
+											<c:otherwise>
+												<span class="price-sale">${dto.pd_price}</span>
+											</c:otherwise>
+										</c:choose>
 									</p>
 								</div>
 							</div>
@@ -203,9 +210,9 @@
 	<script src="product/p_js/jquery.animateNumber.min.js"></script>
 	<script src="product/p_js/bootstrap-datepicker.js"></script>
 	<script src="product/p_js/scrollax.min.js"></script>
-	<script
+	<!-- <script
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-	<script src="product/p_js/google-map.js"></script>
+	<script src="product/p_js/google-map.js"></script> -->
 	<script src="product/p_js/main.js"></script>
 	
 	<!-- SCIPTS -->

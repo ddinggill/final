@@ -101,6 +101,7 @@ function total(){
           <div class="w-100"></div>
           <div class="col-md-3 d-flex">
           	<div class="info bg-white p-4">
+          	<input type="hidden" value="${pd_dto.pd_name}" id="pd_name" name="pd_name">
 	            <p><span>상품명:</span>${pd_dto.pd_name}</p>
 	          </div>
           </div>
@@ -116,7 +117,7 @@ function total(){
           </div>
           <div class="col-md-3 d-flex">
           	<div class="info bg-white p-4">
-          	<input type="hidden" value="${pd_dto.pd_price}" id="price">
+          	<input type="hidden" value="${pd_dto.pd_price}" id="price" >
 	            <p><span>총금액:</span> <input type="text" value="${pd_dto.pd_price}" class="totalmoney"> </p>
 	          </div>
           </div>
@@ -125,7 +126,9 @@ function total(){
         <div class="row block-9">
           <div class="col-md-6 order-md-last d-flex">
             <form action="productpay.do" class="bg-white p-5 contact-form" >
-            <input type="hidden" value="${pd_dto.pd_price}" class="totalmoney">
+            <input type="hidden" value="${pd_dto.pd_name}" name="pd_name">
+            <input type="hidden" value="${pd_dto.usercode}" name="pd_usercode">
+            <input type="hidden" value="${pd_dto.pd_price}" class="totalmoney" name="price">
             <input type="hidden" value="${pd_dto.prod_code}" name="prod_code"> 
           <%--  <input type="text" value="${cnt}" name="cnt"> --%>
               <div class="form-group">
