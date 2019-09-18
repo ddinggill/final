@@ -5,12 +5,14 @@ import java.util.List;
 import com.mycompany.gofarm.job.dto.JobDTO;
 import com.mycompany.gofarm.job.dto.JobSearchDTO;
 import com.mycompany.gofarm.mypage.dto.MileageDTO;
+import com.mycompany.gofarm.mypage.dto.MySellDTO;
 import com.mycompany.gofarm.user.dto.UserDTO;
 
 public interface MypageDAO {
 	public List<MileageDTO> mileageListMethod(int usercode);
 	public List<MileageDTO> paymentListMethod(int usercode);
 	public List<JobDTO> jobcheckListMethod(int jobsearchcode);
+	public List<MySellDTO> mysellListMethod(int usercode);
 	public JobDTO jobListMethod(int usercode);
 	public JobSearchDTO jobSearchListMethod(int usercode);
 	public MileageDTO mileageViewMethod(int usercode);

@@ -177,18 +177,40 @@ table.type08 td {
 	width: 10%;
 }
 
+#reviewList{
+display: none;
+}
+#reviewbtn{
+display: none;
+}
+
 </style>
 
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-latest.js"></script>
 
 <script type="text/javascript">
+	$(document).ready(function() {
+		
+			$('#godetail').click(function(){
+				$('#detailInfo').css('display' , "none");
+				$('#reviewList').css('display' , 'block');
+				$('#detailbtn').css('display' , "none");
+				$('#reviewbtn').css('display' , "block");
+			});		
+		
+		$('#goreview').click(function(){
+			$('#detailInfo').css('display' , "block");
+			$('#reviewList').css('display' , 'none');
+			$('#reviewbtn').css('display' , "none");
+			$('#detailbtn').css('display' , "block");
+		});		
 	
-	
-function fnMove(seq){
-    var offset = $("#"+ seq).offset();
-    $('html, body').animate({scrollTop : offset.top}, 400);
-}
+			
+			
+		
+		
+	});
 </script>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -286,29 +308,29 @@ function fnMove(seq){
 	</section>
 
 	<section class="goods-info">
-		<div class="container" id="detailInfo">
+		<div class="container" id="detailbtn">
 			<ul class="goods-view-infomation-tab-group">
-					<li class="goods-view-infomation-tab1"><a  class="goods-view-infomation-tab-anchor __active"  onclick="fnMove('detailInfo')">상세정보</a></li>
-					<li class="goods-view-infomation-tab2"><a  class="goods-view-infomation-tab-anchor" 
-					onclick="fnMove('reviewList')">고객후기</a></li>
+					<li class="goods-view-infomation-tab1" ><a  class="goods-view-infomation-tab-anchor __active"  >상세정보</a></li>
+					<li class="goods-view-infomation-tab2" id="godetail"><a  class="goods-view-infomation-tab-anchor" 
+					>고객후기</a></li>
 			</ul>
 		</div>
 
-		<div class="container">
+		<div class="container"  id="detailInfo">
 			<div id="product_info">
 				<p>${pd_dto.pd_detail}</p>
 			</div>
 		</div>
 
-		<div class="container" id="reviewList">
+		<div class="container" id="reviewbtn">
 			<ul class="goods-view-infomation-tab-group2">
-					<li class="goods-view-infomation-tab1" ><a  class="goods-view-infomation-tab-anchor __active"  onclick="fnMove('detailInfo')" >상세정보</a></li>
+					<li class="goods-view-infomation-tab1" id="goreview"  ><a  class="goods-view-infomation-tab-anchor __active"   >상세정보</a></li>
 					<li class="goods-view-infomation-tab2"><a  class="goods-view-infomation-tab-anchor" 
-					 onclick="fnMove('reviewList')">고객후기</a> </li>
+					 >고객후기</a> </li>
 			</ul>
 		</div>
 
-		<div class="container">
+		<div class="container"  id="reviewList">
 			<div id="product_review">
 				<table class="type08">
   					  <thead>
@@ -333,29 +355,7 @@ function fnMove(seq){
   			  </tbody>
 			</table>
 			</div>
-			<!-- <div class="container">
-			<div id="product_review">
-				<table class="type08">
-					<thead>
-  						  <tr>
-    					    <td class="title" style="border-top: 1px solid #ccc;">제목</td>
-      				   		 <td style="border-top: 1px solid #ccc;">제목입니다</td>
- 						  </tr>
- 						  <tr>
-    					    <td class="title">작성자</td>
-      				    	<td>작성자 입니다.</td>
- 						  </tr>
- 						  <tr>
-    					    <td class="title">내용</td>
-      				   		 <td>내용입니다.</td>
- 						  </tr>
-   					 </thead>
-					
-					
-					
-				</table>
-			</div>	
-		</div> -->
+			
 </div>
 	</section>
 	<!-- footer -->

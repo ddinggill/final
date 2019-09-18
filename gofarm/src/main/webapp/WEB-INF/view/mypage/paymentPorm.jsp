@@ -65,7 +65,7 @@
 							<tr>
 								<th>출금할 마일리지</th>
 								<td><input type="text" name="m_list" id="m_list"
-									class="g_text" maxlength="13" value="0"> 원</td>
+									class="g_text" maxlength="13" value="0" max="${userDTO.mileage}"> 원</td>
 							</tr>
 							<!-- <tr>
 								<th colspan="2">실제 출금 마일리지 : <span id="spnPayment_mileage"

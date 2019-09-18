@@ -10,4 +10,5 @@ public interface UserDAO {
 	public int haskakaoid(String email);
 	//public UserDTO kakaosignup(UserDTO dto);
 	public UserDTO getkakaoinfo(String email);
+	public void updateinfo(UserDTO dto);
 }

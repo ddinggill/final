@@ -23,7 +23,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="logincheck" parameterType="com.mycompany.gofarm.user.dto.UserDTO"
 		resultType="com.mycompany.gofarm.user.dto.UserDTO">
-		select * from users
+		select usercode,userid,userpw,name,to_char(birth,'yyyy-mm-dd')as birth,phone,email,nickname,userlvl from users
 		where userid=#{userid} and userpw=#{userpw}
 	</select>
 	
@@ -40,5 +40,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<update id="chengelvl" parameterType="int">
 		update users set userlvl=2 where usercode=#{usercode}
+	</update>
+	
+	<update id="updateinfo" parameterType="com.mycompany.gofarm.user.dto.UserDTO">
+		update users set userid=#{userid}, userpw=#{userpw}, name=#{name},
+				birth=#{birth}, phone=#{phone}, email=#{email}, nickname=#{nickname}
+		where usercode=#{usercode}
 	</update>
 </mapper>

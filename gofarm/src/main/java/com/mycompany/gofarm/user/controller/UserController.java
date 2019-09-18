@@ -67,7 +67,7 @@ public class UserController {
 	public String loginProc(UserDTO dto, HttpServletRequest req, Model model) {
 		if(userService.loginCheckProcess(dto) != null) {
 			dto = userService.loginCheckProcess(dto);
-			System.out.println(dto.getNickname());
+			System.out.println(dto.getBirth());
 			HttpSession session = req.getSession();
 			session.setMaxInactiveInterval(30*60);//로그인유지시간 30분
 			session.setAttribute("loginOk", dto);
@@ -196,4 +196,18 @@ public class UserController {
 		return "redirect:/logout.do";
 	}
 	
+	@RequestMapping("/infochange.do")
+	public String infochangeForm() {
+		
+		return "user/infochange";
+	}
+	
+	@RequestMapping("/infochangepro.do")
+	public String infochangeProc(UserDTO dto, HttpServletRequest req) {
+		System.out.println("회원정보 수정");
+		HttpSession session = req.getSession();
+		dto.setUsercode(((UserDTO)session.getAttribute("loginOk")).getUsercode());
+		userService.updateProcess(dto);
+		return "redirect:/logout.do";
+	}
 }//end class

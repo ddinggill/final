@@ -34,7 +34,7 @@
 <!-- <script src="mypage/js/mileage.js"></script> -->
 <script type="text/javascript">
 $(document).ready(function() {
-	$('#my_mileage_2').append('${mileage_dto[0].m_total}');
+	$('#my_mileage_2').append('${userDetail_dto.mileage}');
 });
 </script>
 <body id="page-top">

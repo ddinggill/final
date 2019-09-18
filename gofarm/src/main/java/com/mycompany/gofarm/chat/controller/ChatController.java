@@ -1,6 +1,9 @@
 package com.mycompany.gofarm.chat.controller;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -19,16 +22,21 @@ public class ChatController {
 	
 	@Autowired
 	ChatService chatService;
-	
+	//List<UserDTO> chatuserinfo = new ArrayList<UserDTO>();
 	public void setChatService(ChatService chatService) {
 		this.chatService = chatService;
 	}
 	//채팅목록
 	@RequestMapping("chatlist.do")
-	public ModelAndView chatList(ModelAndView mav) {
+	public ModelAndView chatList(ModelAndView mav, HttpSession session) {
 		
-		mav.addObject("roomlist", chatService.roomlistProcess());
-		mav.setViewName("chat/chatlist");
+		if(session.getAttribute("loginOk") == null) {
+			mav.setViewName("redirect:login.do");
+		}
+		else {
+			mav.addObject("roomlist", chatService.roomlistProcess());
+			mav.setViewName("chat/chatlist");
+		}
 		
 		return mav;
 	}
@@ -50,11 +58,22 @@ public class ChatController {
 	}
 	
 	@RequestMapping("chatjoin.do")
-	public ModelAndView chatjoin(ChatRoomDTO dto, ModelAndView mav,HttpServletRequest req) {
-		System.out.println("참가한 방 번호: "+dto.getChatcode());
-		//System.out.println(dto.getUsercode());
-		mav.addObject("dto", dto);
-		mav.setViewName("chat/chat");
+	public ModelAndView chatjoin(ChatRoomDTO cdto, ModelAndView mav,HttpSession session, UserDTO dto) {
+		System.out.println("참가한 방 번호: "+cdto.getChatcode());
+		/*dto = ((UserDTO)(session.getAttribute("loginOk")));
+		dto.setChatcode(cdto.getChatcode());
+		chatuserinfo.add(dto);
+		List<UserDTO> userlist = new ArrayList<UserDTO>();
+		for(UserDTO dt : chatuserinfo) {
+			if(dt.getChatcode() == cdto.getChatcode()) {
+				if(dt.getUsercode() != ((UserDTO)(session.getAttribute("loginOk"))).getUsercode()) {
+					userlist.add(dt);
+				}
+			}
+		}*/
+		mav.addObject("chatcode", cdto.getChatcode());
+		//mav.addObject("userlist", userlist);
+		mav.setViewName("chat/chatting");
 		return mav;
 	}
 }

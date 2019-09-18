@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.mycompany.gofarm.mypage.dto.MileageDTO;
+import com.mycompany.gofarm.mypage.service.MypageService;
 import com.mycompany.gofarm.product.dto.DealDTO;
 import com.mycompany.gofarm.product.dto.PageDTO;
 import com.mycompany.gofarm.product.dto.ProductDTO;
@@ -137,7 +139,36 @@ public class ProductController {
 			dealdto.setDe_usercode(dto.getUsercode());
 			dealdto.setProd_code(code);
 			dealdto.setDe_cnt(cnt);
+			
 			productService.productDealProcess(dealdto);
+			
+			String pd_name = req.getParameter("pd_name"); //상품명
+			int price = Integer.parseInt(req.getParameter("price")); //상품 총 가격
+			int pd_usercode = Integer.parseInt(req.getParameter("pd_usercode")); //판매자 유저코드
+			
+			
+			MileageDTO mile_dto = new MileageDTO();
+			
+			//  구매자 구매내역 추가 및 마일리지 갱신 start  
+			UserDTO userDetail = productService.detailInfoService(dto.getUsercode());
+			mile_dto.setUsercode(dto.getUsercode());
+			mile_dto.setM_list(-price);
+			mile_dto.setM_total(userDetail.getMileage()-price);
+			mile_dto.setM_content(pd_name+" "+cnt+"개 구매");
+			productService.mileageInsertService(mile_dto); // 내역 추가
+			productService.mileageUpdateService(mile_dto); // 마일리지 갱신
+			//  구매자 구매내역 추가 및 마일리지 갱신 end 
+			
+			//  판매자 판매내역 추가 및 마일리지 갱신 start 
+			userDetail = productService.detailInfoService(pd_usercode);
+			mile_dto.setUsercode(pd_usercode);
+			mile_dto.setM_list(price);
+			mile_dto.setM_total(userDetail.getMileage()+price);
+			mile_dto.setM_content(pd_name+" "+cnt+"개 판매");
+			productService.mileageInsertService(mile_dto); // 내역 추가
+			productService.mileageUpdateService(mile_dto); // 마일리지 갱신
+			//  판매자 판매내역 추가 및 마일리지 갱신 end
+			
 			return "redirect:/main.do";
 		}else {
 			System.out.println("로그인해");

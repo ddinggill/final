@@ -60,5 +60,10 @@ public class UserDaoImp implements UserDAO{
 		return sqlSession.selectOne("user.kakaoinfo", email);
 	}
 
+	@Override
+	public void updateinfo(UserDTO dto) {
+		sqlSession.update("user.updateinfo", dto);
+	}
+
 
 }//end class

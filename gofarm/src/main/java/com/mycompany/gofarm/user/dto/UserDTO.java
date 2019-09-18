@@ -20,10 +20,22 @@ public class UserDTO {
 	private String account;
 	private int mileage;
 	private String user_home;
+	private int chatcode;
 	
 	public UserDTO() {
 		
 	}
+	
+	
+	public int getChatcode() {
+		return chatcode;
+	}
+
+
+	public void setChatcode(int chatcode) {
+		this.chatcode = chatcode;
+	}
+
 
 	public int getUsercode() {
 		return usercode;

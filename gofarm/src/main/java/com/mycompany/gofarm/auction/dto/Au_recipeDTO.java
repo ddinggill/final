@@ -8,10 +8,22 @@ public class Au_recipeDTO {
 	private int br_user;
 	private int br_price;
 	private String br_date;
+	private String nickname;
 	
 	public Au_recipeDTO() {
 		// TODO Auto-generated constructor stub
 	}
+
+	
+	public String getNickname() {
+		return nickname;
+	}
+
+
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+
 
 	public int getAuctioncode() {
 		return auctioncode;

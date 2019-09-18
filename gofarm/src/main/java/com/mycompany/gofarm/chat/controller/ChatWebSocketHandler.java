@@ -15,9 +15,8 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
 
 public class ChatWebSocketHandler extends TextWebSocketHandler {
 
-	private Map<String,WebSocketSession> users = new ConcurrentHashMap<String,WebSocketSession>();
-	private Map<String,WebSocketSession> user1 = new ConcurrentHashMap<String,WebSocketSession>();
-	private Map<String,WebSocketSession> user2 = new ConcurrentHashMap<String,WebSocketSession>();
+	private Map<Integer,WebSocketSession> users = new ConcurrentHashMap<Integer,WebSocketSession>();
+	
 	
 	private static final Log LOG = LogFactory.getLog(ChatWebSocketHandler.class);
 	
@@ -33,13 +32,9 @@ public class ChatWebSocketHandler extends TextWebSocketHandler {
 		LOG.info(session.getId()+"로그인 완료");
 		super.afterConnectionEstablished(session);
 		Map<String, Object> map = session.getAttributes();
-		System.out.println(map.get("num") + "방 접속");
-		int usernum = (int)map.get("num");
-		if(usernum == 1) {
-			users.put(session.getId(), session);
-		}else if(usernum == 2) {
-			user1.put(session.getId(), session);
-		}
+		System.out.println(map.get("chatcode") + "방 접속");
+		int chatcode = (int)map.get("chatcode");
+		
 		TextMessage welcomeMessage = new TextMessage("msg: 오픈채팅방에 참가하셨습니다.");
 		session.sendMessage(welcomeMessage);
 	}
@@ -63,7 +58,7 @@ public class ChatWebSocketHandler extends TextWebSocketHandler {
 					//System.out.println(s.getId() + "에 메시지 발송 : " + message.getPayload());
 			}
 		}else if(num == 2) {
-			for(WebSocketSession s : user1.values()) {
+			for(WebSocketSession s : users.values()) {
 				if(!(s.getId() == session.getId()))
 					s.sendMessage(sendmessage);
 					//System.out.println(s.getId() + "에 메시지 발송 : " + message.getPayload());

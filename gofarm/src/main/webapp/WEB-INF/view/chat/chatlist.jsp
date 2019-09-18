@@ -21,51 +21,21 @@
 	
 <style type="text/css">
 body{
-	background-color : #A2BBCA;
+	background-color : #D8D8D8;
 }
 </style>
 
 <script type="text/javascript">
-	var wsocket;
 	
 	$(document).ready(function(){
 		
 		$(".join").click(function(){
 			console.log($(this).parents("tr").children("#chatcode").val());
-			connect($(this).parents("tr").children("#chatcode").val());
-			//window.location.href="chatjoin.do?chatcode="+$(this).parents("tr").children("#chatcode").val();
+			//connect($(this).parents("tr").children("#chatcode").val());
+			window.location.href="chatjoin.do?chatcode="+$(this).parents("tr").children("#chatcode").val();
 		});
 	});
 	
-	function connect(num) {
-		var chatcode = num;
-		console.log("chatcode: "+chatcode);
-		wsocket = new WebSocket("ws://192.168.30.69:8090/gofarm/chat.do?chatcode="+chatcode);
-		//연결되면 호출되는 함수
-		wsocket.onopen = onOpen;
-		//서버로부터 메시지를 받으면 호출되는 함수 지정
-		wsocket.onmessage = onMessage;
-		//연결종료되면 호출되는 함수
-		wsocket.onclose = onClose;
-		
-		$('#message').attr('disabled',false);
-	}
-	
-	function onOpen(evt) {
-		console.log("접속성공");
-		/* var msg = 'msg:[' + $('#nickname').val() + '입장!]'+'${num}';
-		wsocket.send(msg); */
-	}
-	
-	function onMessage(evt){
-		console.log("메시지수신");
-		var data = evt.data;
-		console.log(data);
-	}
-	
-	function onClose(evt){
-		console.log("접속종료");
-	}
 </script>
 </head>
 <body>

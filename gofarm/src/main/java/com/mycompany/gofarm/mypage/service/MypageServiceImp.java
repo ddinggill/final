@@ -9,6 +9,7 @@ import com.mycompany.gofarm.job.dto.JobDTO;
 import com.mycompany.gofarm.job.dto.JobSearchDTO;
 import com.mycompany.gofarm.mypage.dao.MypageDAO;
 import com.mycompany.gofarm.mypage.dto.MileageDTO;
+import com.mycompany.gofarm.mypage.dto.MySellDTO;
 import com.mycompany.gofarm.user.dto.UserDTO;
 
 @Service
@@ -71,6 +72,9 @@ public class MypageServiceImp implements MypageService{
 		return mypageDao.jobcheckListMethod(jobsearchcode);
 	}
 
-	
+	@Override
+	public List<MySellDTO> mysellListService(int usercode) {
+		return mypageDao.mysellListMethod(usercode);
+	}
 
 }

@@ -177,6 +177,9 @@ table.type08 td {
 	width: 10%;
 }
 
+/* body{
+	background-color: #A2BBCA;
+} */
 </style>
 
 <script type="text/javascript"
@@ -248,11 +251,16 @@ table.type08 td {
 $(document).ready(function() {
 
 		$("#bidding").on('click' , function(){
-			if(${dto.ctprice} >= $("#price").val()){
-				alert("현재가 보다 낮거나 같은 값의 입찰은 불가합니다.");
-				return false;
+			if("${sessionScope.loginOk}" !=""){
+				console.log("로그인햇음");
+				if(${dto.ctprice} >= $("#price").val()){
+					alert("현재가 보다 낮거나 같은 값의 입찰은 불가합니다.");
+					return false;
+				}
+				alert("입찰이 완료 되었습니다. 마이페이지에서 확인하세요.");
+			}else{
+				alert("로그인이 필요합니다");
 			}
-			alert("입찰이 완료 되었습니다. 마이페이지에서 확인하세요.");
 		});
 
 	
@@ -298,7 +306,7 @@ $(document).ready(function() {
 							</tr>
 							<tr>
 								<th scope="row" class="goods-view-form-table-heading">예상낙찰자</th>
-								<td class="goods-view-form-table-cell">${user.name}</td>
+								<td class="goods-view-form-table-cell">${user.nickname}</td>
 							</tr>
 							<tr>
 							
@@ -333,6 +341,23 @@ $(document).ready(function() {
 					</c:if>
 					</div>
 				</form>
+					<table class="goods-view-form-table">
+						<thead>
+							<tr>
+								<th scope="row" class="goods-view-form-table-heading">입찰자</th>
+								<th scope="row" class="goods-view-form-table-heading">입찰금액</th>
+								<th scope="row" class="goods-view-form-table-heading">입찰시간</th>
+							</tr>
+							<c:forEach items="${aurelist }" var="adto">
+								<tr>
+									<th scope="row">${adto.nickname }</th>
+									<th scope="row">${adto.br_price }</th>
+									<th scope="row">${adto.br_date}</th>
+								</tr>
+							</c:forEach>
+						</thead>
+							
+					</table>
 					<c:url var="update" value="auctionUpdate.do">
 						<c:param name="auctioncode" value="${dto.auctioncode}" />
 					</c:url>

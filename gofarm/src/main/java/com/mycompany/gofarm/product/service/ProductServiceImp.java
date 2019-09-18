@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.mycompany.gofarm.mypage.dto.MileageDTO;
 import com.mycompany.gofarm.product.dao.ProductDAO;
 import com.mycompany.gofarm.product.dto.DealDTO;
 import com.mycompany.gofarm.product.dto.PageDTO;
@@ -97,5 +98,24 @@ public class ProductServiceImp implements ProductService{
 		
 		return productDao.reviewListMethod(prod_code);
 	}
+
+
+	@Override
+	public void mileageInsertService(MileageDTO dto) {
+		productDao.mileageInsertMethod(dto);
+		
+	}
+
+	@Override
+	public MileageDTO mileageViewService(int usercode) {
+		return productDao.mileageViewMethod(usercode);
+	}
+
+
+	@Override
+	public void mileageUpdateService(MileageDTO dto) {
+		productDao.mileageUpdateMethod(dto);
+	}
+
 
 }
