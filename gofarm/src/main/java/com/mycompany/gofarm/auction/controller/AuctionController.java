@@ -42,6 +42,7 @@ public class AuctionController {
 	
 	public AuctionController() {
 		// TODO Auto-generated constructor stub
+		
 	}
 	@RequestMapping("/auctionList.do")
 	public ModelAndView auctionList(ModelAndView mav , PageDTO pv) {
