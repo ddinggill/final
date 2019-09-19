@@ -63,4 +63,7 @@ public interface RecruitDAO {
 	
 	//구인글 작성자의 정보 얻어오기
 	public UserDTO getuserInfo(int usercode);
+
+	public List<CareerDTO> careerlist(int jobsearchcode);
+
 }

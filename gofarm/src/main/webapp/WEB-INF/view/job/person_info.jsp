@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -148,24 +149,25 @@
 			<tr>
 				<td colspan="5">
 					<div class="detail">
-						<p class="datail_title">상세 내용</p>
-						<p>반응형</p>
-						<p>테스트</p>
-						<p>입니다</p>
-						<p>입니다</p>
-						<p>입니다</p>
-						<p>입니다</p>
-						<p>입니다</p>
-						<p>입니다</p>
+						<p class="datail_title" style="border-bottom: 1px solid #E6E6E6">경력사항</p>
+						<c:forEach var="car" items="${car}">
+							<div class="career" style="border-bottom: 1px solid #E6E6E6;">
+							<p>&nbsp</p>
+							<p>회사명 : ${car.career}</p>
+							<p>입사일 : ${car.startdate}</p>
+							<p>퇴사일 : ${car.enddate}</p>
+							<p>&nbsp</p>
+							</div>							
+						</c:forEach>
 					</div>
 			</tr>
 
 			<tr>
 				<td colspan="5">
-					<div class="memo">
+					<div class="detail">
 
-						<p class="memo_title">우대 사항</p>
-						<%-- ${dto.j_preferential} --%>
+						<p class="datail_title">상세소개</p>
+						<p>${dto.js_intro}</p>
 					</div>
 
 				</td>
@@ -183,13 +185,12 @@
 	</div>
 	<div class="btn" style="margin-left: 750px;">
 
-		<input type="submit" class="btn btn-black py-3 px-5" value="신청하기 " />
 		<a href="personsearch.do"><input type="button" value="목록가기" class="btn btn-black py-3 px-5" /></a>
 	</div>
 	<form name="frm" id="frm" method="get">
 		<input type="hidden" name="jobsearchcode" value="${dto.jobsearchcode}" />
 		<input type="hidden" name="currentPage" id="currentPage"
-			value="${currentPage}" /> <input type="button" id="list" value="리스트" />
+			value="${currentPage}" /> 
 	</form>
 </body>
 </html>

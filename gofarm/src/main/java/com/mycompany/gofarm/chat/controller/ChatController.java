@@ -59,7 +59,7 @@ public class ChatController {
 	
 	@RequestMapping("chatjoin.do")
 	public ModelAndView chatjoin(ChatRoomDTO cdto, ModelAndView mav,HttpSession session, UserDTO dto) {
-		System.out.println("참가한 방 번호: "+cdto.getChatcode());
+		//System.out.println("참가한 방 번호: "+cdto.getChatcode());
 		//수정
 		/*dto = ((UserDTO)(session.getAttribute("loginOk")));
 		dto.setChatcode(cdto.getChatcode());
@@ -73,6 +73,7 @@ public class ChatController {
 			}
 		}*/
 		mav.addObject("chatcode", cdto.getChatcode());
+		mav.addObject("roominfo", chatService.getroominfoProcess(cdto.getChatcode()));
 		//mav.addObject("userlist", userlist);
 		mav.setViewName("chat/chatting");
 		return mav;

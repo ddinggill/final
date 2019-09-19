@@ -76,9 +76,9 @@ h2 {
    padding: 0px 0px 0px 20px;
 }
 
-.sub_button {
-   float: right;
-}
+/* .sub_button {
+  align:left;
+}  */
 </style>
 
 <script type="text/javascript">
@@ -91,11 +91,11 @@ $(document).ready(function() {
      
       var str='<div class="add_element"><div class="row">'+
       '<div class="input_title">경력</div><div class="resume_input">'+
-      '<input type="text" name="list['+ i +'].career" class="career" required="required" />'+
+      '<input type="text" placeholder="회사명" name="list['+ i +'].career" class="career" required="required" />'+
       '</div></div><div class="row"><div class="input_title">시작일</div>'+
-      '<div class="resume_input"><input type="text" name="list['+ i +'].startdate" class="startdate" required="required" />'+
+      '<div class="resume_input"><input type="date" name="list['+ i +'].startdate" class="startdate" required="required" />'+
       '</div></div><div class="row"><div class="input_title">종료일</div>'+
-      '<div class="resume_input"><input type="text" name="list['+ i +'].enddate" class="enddate" required="required" />'+
+      '<div class="resume_input"><input type="date" name="list['+ i +'].enddate" class="enddate" required="required" />'+
       '</div></div></div><hr>';
       
       $('.add_resume').append(str);
@@ -106,17 +106,17 @@ $(document).ready(function() {
 });         
 </script>
 </head>
-<body>
+<body style="background-color:#A2BBCA;">
    <jsp:include page="/WEB-INF/view/common/main_nav.jsp"></jsp:include>
    <section class="ftco-section">
-      <div class="container">
+      <div class="container" style="background-color:#FFFAF0;padding:20px">
          <h2>이력서 작성하기</h2>
          <form name="frm" method="post" action="resumeOK.do">
             <div class="container">
                <div class="row">
                   <div class="input_title">희망작물</div>
                   <div class="resume_input">
-                     <input type="text" name="js_crop" class="js_crop"
+                     <input type="text" name="js_crop" class="js_crop" placeholder="작물이름"
                         required="required" />
                   </div>
                </div>
@@ -130,10 +130,10 @@ $(document).ready(function() {
                </div>
 
                <div class="row">
-                  <div class="input_title">희망근무시간</div>
+                  <div class="input_title">희망근무기간</div>
                   <div class="resume_input">
                      <input type="text" name="js_time" class="js_time"
-                        required="required" />
+                        required="required" placeholder="ex)단기,장기"/>
                   </div>
                </div>
 
@@ -141,7 +141,7 @@ $(document).ready(function() {
                   <div class="input_title">희망급여</div>
                   <div class="resume_input">
                      <input type="text" name="js_salary" class="js_salary"
-                        required="required" />
+                        required="required" placeholder="ex)50000"/>
                   </div>
                </div>
 
@@ -179,7 +179,7 @@ $(document).ready(function() {
                   <div class="input_title">나이</div>
                   <div class="resume_input">
                      <input type="text" name="js_age" class="js_age"
-                        required="required" />
+                        required="required" placeholder="ex)21"/>
                   </div>
                </div>
 
@@ -196,7 +196,7 @@ $(document).ready(function() {
                   <div class="input_title">전화번호</div>
                   <div class="resume_input">
                      <input type="text" name="js_phone" class="js_phone"
-                        required="required" />
+                        required="required" placeholder="ex)02-1234-5678"/>
                   </div>
                </div>
                <div class="row">
@@ -207,12 +207,8 @@ $(document).ready(function() {
                </div>
                <br>
                <div class="row">
-                  <div class="input_title">경력유무</div>
+                  <div class="input_title">경력</div>
                   <div class="resume_input">
-                     <select name="js_area">
-                        <option value="경험유">경험 유</option>
-                        <option value="경험무">경험 무</option>
-                     </select>
                      <button type="button" id="add_form" class="btn btn-black">경력
                         추가</button>
                   </div>
@@ -228,7 +224,7 @@ $(document).ready(function() {
                
                <hr>
 
-               <div class="sub_button">
+               <div class="sub_button" align="right" >
                   <input type="submit" class="btn btn-black py-3 px-5" value="글쓰기" />
                   <input type="reset" value="취소" class="btn btn-black py-3 px-5" />
                </div>

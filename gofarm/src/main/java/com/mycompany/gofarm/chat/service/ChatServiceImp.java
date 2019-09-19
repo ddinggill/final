@@ -28,4 +28,9 @@ public class ChatServiceImp implements ChatService{
 		chatDAO.createRoom(dto);
 	}
 
+	@Override
+	public ChatRoomDTO getroominfoProcess(int chatcode) {
+		return chatDAO.getroominfo(chatcode);
+	}
+
 }

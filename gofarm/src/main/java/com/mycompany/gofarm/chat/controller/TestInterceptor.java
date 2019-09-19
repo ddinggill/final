@@ -33,11 +33,13 @@ public class TestInterceptor extends HttpSessionHandshakeInterceptor{
         // HttpSession 에 저장된 이용자의 아이디를 추출하는 경우
         //String id = (String)req.getSession().getAttribute("id");
         int chatcode = Integer.parseInt(req.getParameter("chatcode"));
+        String nickname = req.getParameter("nickname");
         System.out.println("인터셉서 chatcode:" + chatcode);
         //attributes.put("userId", id);
         attributes.put("chatcode", chatcode);
+        attributes.put("nickname", nickname);
         //System.out.println("HttpSession에 저장된 id:"+id);
-        System.out.println("HttpSession에 저장된 chatcode:"+chatcode);
+        //System.out.println("HttpSession에 저장된 chatcode:"+chatcode);
 		return super.beforeHandshake(request, response, wsHandler, attributes);
 	}
 }

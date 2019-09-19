@@ -164,7 +164,7 @@
 				<div class="col-md-10 mb-5 text-center">
 					<ul class="product-category">
 						<li><a href="productList.do" >판매</a></li>
-						<li><a href="share">나눔</a></li>
+						<li><a href="donationList.do">나눔</a></li>
 						<li><a href="auctionList.do" class="active">경매</a></li>
 						<li><a href="AuctionProduce.do">경매등록</a></li>
 					</ul>

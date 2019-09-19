@@ -12,4 +12,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		insert into chat
 		values(CHAT_SEQ.nextval, #{usercode}, #{ct_title}, #{ct_limit})
 	</insert>
+	
+	<select id="roominfo" parameterType="int" resultType="com.mycompany.gofarm.chat.dto.ChatRoomDTO">
+		select * from chat where chatcode=#{chatcode}
+	</select>
 </mapper>

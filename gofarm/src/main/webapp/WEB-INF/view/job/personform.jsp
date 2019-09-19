@@ -98,7 +98,7 @@ h2{
                <tr>
                   <td align="center">모집업종</td>
                   <td><input type="text" name="j_type" class="j_type"
-                     required="required" /></td>
+                     required="required" placeholder="작물이름"/></td>
                </tr>
                <tr>
                   <td align="center">회사명</td>
@@ -108,7 +108,7 @@ h2{
                
                <tr>
                   <td align="center">마감일</td>
-                  <td><input type="text" name="j_deadline" class="j_deadline"
+                  <td><input type="date" name="j_deadline" class="j_deadline"
                      required="required" /></td>
                </tr>
                
@@ -141,7 +141,7 @@ h2{
                <tr>
                   <td align="center">모집인원</td>
                   <td><input type="text" name="j_recruitment" class="j_recruitment"
-                     required="required" /></td>
+                     required="required" placeholder="ex)3"/></td>
                </tr>
                
                <tr>
@@ -153,32 +153,35 @@ h2{
                <tr>
                   <td align="center">구인연령</td>
                   <td><input type="text" name="j_age" class="j_age"
-                     required="required" /></td>
+                     required="required" placeholder="ex)20대"/></td>
                </tr>
                <tr>
                   <td align="center">경력</td>
-                  <td><input type="text" name="j_career" class="j_career"
-                     required="required" /></td>
+                  <td><select name="j_career">
+                  	<option value="무관">무관</option>
+                     <option value="경력">경력</option>
+                     <option value="신입">신입</option>
+                     </select></td>
                </tr>
                <tr>
                   <td align="center">우대사항</td>
                   <td><input type="text" name="j_preferential" class="j_preferential"
-                     required="required" /></td>
+                     required="required" placeholder="ex)경력직"/></td>
                </tr>
                <tr>
                   <td align="center">지원정보</td>
                   <td><input type="text" name="j_info" class="j_info"
-                     required="required" /></td>
+                     required="required" placeholder="ex)중식제공"/></td>
                </tr>
                <tr>
                   <td align="center">문의전화</td>
                   <td><input type="text" name="j_contact" class="j_contact"
-                     required="required" /></td>
+                     required="required" placeholder="ex)02-1234-5678"/></td>
                </tr>
                <tr>
                   <td align="center">작업기간</td>
                   <td><input type="text" name="j_term" class="j_term"
-                     required="required" /></td>
+                     required="required" placeholder="ex)3주,5일"/></td>
                </tr>
                <tr>
                   <td align="center">내용</td>
