@@ -63,13 +63,36 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	<select id="mySell_list" resultType="com.mycompany.gofarm.mypage.dto.MySellDTO"
  	 parameterType="int">
  	<![CDATA[
- 		select b.pd_name pd_name, b.de_date de_date, b.de_cnt de_cnt, b.name name, b.phone phone, ud.USER_HOME USER_HOME 
- 		from (select a.pd_name , a.de_date , a.de_cnt , name, phone, usercode 
- 			from(select pd_name, de_date, de_cnt, de_usercode 
+ 		select b.pd_name pd_name, b.de_date de_date, b.de_cnt de_cnt, b.name name, b.phone phone, ud.USER_HOME USER_HOME, b.prod_code prod_code 
+ 		from (select a.pd_name , a.de_date , a.de_cnt , name, phone, usercode, a.prod_code prod_code 
+ 			from(select pd_name, de_date, de_cnt, de_usercode, p.prod_code prod_code
  				from product p, deal d 
  				where p.prod_code = d.prod_code and usercode=#{usercode})a, users u 
  			where a.de_usercode= u.USERCODE)b, user_detail ud 
  		where b.usercode = ud.usercode
+	]]>
+ 	</select>
+ 	
+ 	<select id="myBuy_list" resultType="com.mycompany.gofarm.mypage.dto.MySellDTO"
+ 	 parameterType="int">
+ 	<![CDATA[
+ 		select pd_d.de_date de_date, pd_d.de_cnt de_cnt, pd_d.pd_name pd_name, pd_d.prod_code prod_code, u.name name, u.phone phone
+		from (select d.de_date de_date, d.de_cnt de_cnt, pd.pd_name pd_name, pd.usercode usercode, d.prod_code prod_code 
+			from deal d, product pd 
+			where d.prod_code=pd.prod_code and de_usercode=#{usercode})pd_d, users u
+		where pd_d.usercode=u.usercode
+	]]>
+ 	</select>
+ 	
+ 	<select id="myAuction_list" resultType="com.mycompany.gofarm.mypage.dto.MyAuctionDTO"
+ 	 parameterType="int">
+ 	<![CDATA[
+ 		select a.au_name au_name, a.ctprice ctprice, a.fin_time fin_time, a.state state, a.auctioncode auctioncode, a.name name, a.phone phone, ude.user_home user_home
+		from (select auc.au_name au_name, auc.ctprice ctprice, auc.fin_time fin_time, auc.state state, auc.auctioncode auctioncode, auc.fin_name fin_name, u.name name, u.phone phone
+ 				from auction auc, users u
+ 				where auc.fin_name = u.usercode(+) and auc.usercode=#{usercode})a, user_detail ude
+		where a.fin_name = ude.usercode(+)
+		order by a.state asc ,a.auctioncode desc
 	]]>
  	</select>
 </mapper>

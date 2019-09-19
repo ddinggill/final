@@ -1,6 +1,9 @@
 package com.mycompany.gofarm.chat.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -10,11 +13,17 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
+
+import com.google.gson.Gson;
+import com.google.gson.JsonParser;
+import com.mycompany.gofarm.chat.dto.ChatDTO;
 
 public class ChatWebSocketHandler extends TextWebSocketHandler {
 
@@ -33,6 +42,7 @@ public class ChatWebSocketHandler extends TextWebSocketHandler {
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
 		System.out.println(session.getId() + " 연결됨");
+		//멍미
 		LOG.info(session.getId()+"로그인 완료");
 		super.afterConnectionEstablished(session);
 		Map<String, Object> map = session.getAttributes();
@@ -44,9 +54,15 @@ public class ChatWebSocketHandler extends TextWebSocketHandler {
 		nicknameinfo.put(session, nickname);
 		nickandroominfo.put(nickname, chatcode);
 		System.out.println("새로운 사용자 접속,접속한 사람수: "+userlist.size());
-		TextMessage welcomeMessage = new TextMessage("운영자: 오픈채팅방에 참가하셨습니다.");
+		Date d = new Date();
+		SimpleDateFormat day = new SimpleDateFormat("yyyy-MM-dd kk:mm:ss");
+		ChatDTO welcomemsg = new ChatDTO(day.format(d),chatcode,"운영자","오픈채팅방에 참가하셨습니다.","welcome");
+		Gson gson = new Gson();
+		String objJson = gson.toJson(welcomemsg);
+		TextMessage welcomeMessage = new TextMessage(objJson);
 		session.sendMessage(welcomeMessage);
 		
+		ChatDTO joinmsg = new ChatDTO(day.format(d),chatcode,"운영자","오픈채팅방에 참가하셨습니다.","join");
 		TextMessage sendmessage = new TextMessage(nickname+"님이 접속하셨습니다");
 		for(WebSocketSession ws : userlist) {
 			if(roominfo.get(ws) == chatcode) {
@@ -85,15 +101,25 @@ public class ChatWebSocketHandler extends TextWebSocketHandler {
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
 		System.out.println(session.getId() + "로부터 메시지 수신 : " + message.getPayload());
 		LOG.info(session.getId()+" : "+message.getPayload());
-		/*int num = Integer.parseInt(message.getPayload().substring(message.getPayload().length()-1, message.getPayload().length()));
-		TextMessage sendmessage = new TextMessage(message.getPayload().substring(0, message.getPayload().length()-1));*/
-		int chatcode = roominfo.get(session);
-		System.out.println(chatcode+"방에서 메시지전송");
-		for(WebSocketSession ws : userlist) {
-			if(roominfo.get(ws) == chatcode) {
+		
+		ChatDTO msg = new Gson().fromJson(message.getPayload(),ChatDTO.class);
+		System.out.println(msg.getChatcode());
+		System.out.println(msg.getCt_content());
+		System.out.println(msg.getCt_nickname());
+		System.out.println(msg.getCt_time());
+		System.out.println(msg.getType());
+		
+		//System.out.println(chatcode+"방에서 메시지전송");
+		/*for(WebSocketSession ws : userlist) {
+			if(roominfo.get(ws) == msg.getChatcode()) {
 				if(ws != session) {
 					ws.sendMessage(message);
 				}
+			}
+		}*/
+		for(WebSocketSession ws : userlist) {
+			if(roominfo.get(ws) == msg.getChatcode()) {
+				ws.sendMessage(message);
 			}
 		}
 		

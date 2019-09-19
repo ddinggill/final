@@ -102,7 +102,7 @@
 						<li><a href="productList.do" >판매</a></li>
 						<li><a href="donationList.do" class="active">나눔</a></li>
 						<li><a href="auctionList.do" >경매</a></li>
-						<li><a href="AuctionProduce.do">나눔등록</a></li>
+						<li><a href="donationProduce.do">나눔등록</a></li>
 					</ul>
 				</div>
 			</div> 
@@ -115,14 +115,14 @@
 				
 				<input type="hidden" value="${dto.docode}" name="num" >
 				
-				<c:url var="path" value="auctionView.do">
+				<c:url var="path" value="donationView.do">
 						<c:param name="currentPage" value="${pv.currentPage}" />
-						<c:param name="auctioncode" value="${dto.docode}" />
+						<c:param name="docode" value="${dto.docode}" />
 					</c:url>
 					
 					<div class="product">
 						<a href="${path}" class="img-prod"><img class="img-fluid"
-							src="auction/images/${dto.do_file}" alt="Colorlib Template"> 
+							src="donation/images/${dto.do_file}" alt="Colorlib Template"> 
 							 </a>
 						<div class="text py-3 pb-4 px-3 text-center">
 							<h3>

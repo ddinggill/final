@@ -18,6 +18,7 @@ import com.mycompany.gofarm.job.dto.JobCheckDTO;
 import com.mycompany.gofarm.job.dto.JobDTO;
 import com.mycompany.gofarm.job.dto.JobSearchDTO;
 import com.mycompany.gofarm.mypage.dto.MileageDTO;
+import com.mycompany.gofarm.mypage.dto.MyAuctionDTO;
 import com.mycompany.gofarm.mypage.dto.MySellDTO;
 import com.mycompany.gofarm.mypage.service.MypageService;
 import com.mycompany.gofarm.user.dto.UserDTO;
@@ -46,11 +47,6 @@ public class MypageController {
 		return "mypage/intro";
 	}
 	
-	@RequestMapping("/auction.do")
-	public String auction() {
-		return "mypage/auction";
-	}
-	
 	@RequestMapping("/donation.do")
 	public String donation() {
 		return "mypage/donation";
@@ -58,37 +54,24 @@ public class MypageController {
 	
 	@RequestMapping("/mileage.do")
 	public ModelAndView mileage(HttpSession session, ModelAndView mav) {
-		UserDTO user = (UserDTO)session.getAttribute("loginOk");
-		if(user.getUserlvl()==2) {
-			mav.addObject("mileage_dto", mypageService.mileageListService(user.getUsercode()));
-			mav.addObject("userDetail_dto", mypageService.userDetailViewService(user.getUsercode()));
-			mav.setViewName("mypage/mileage");
-		}else {
-			mav.addObject("msg", "해당 기능을 사용하기에는 권한이 부족합니다.");
-			mav.addObject("url", "/gofarm/mypage.do"); 
-			mav.setViewName("mypage/redirect");
-		}
-
+		UserDTO user = (UserDTO) session.getAttribute("loginOk");
+		mav.addObject("mileage_dto", mypageService.mileageListService(user.getUsercode()));
+		mav.addObject("userDetail_dto", mypageService.userDetailViewService(user.getUsercode()));
+		mav.setViewName("mypage/mileage");
 		return mav;
 	}
 	
 	@RequestMapping("/mileage_charge.do")
 	public ModelAndView mileage_charge(HttpSession session, ModelAndView mav) {
-		UserDTO user = (UserDTO)session.getAttribute("loginOk");
-		if(user.getUserlvl()==2) {
-			UserDTO userDetail = mypageService.userDetailViewService(user.getUsercode());
-			user.setUser_home(userDetail.getUser_home());
-			DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-			Date date = new Date();
-			String sysdate = dateFormat.format(date).toString();
-			mav.addObject("sysdate", sysdate);
-			mav.addObject("userDTO", user);
-			mav.setViewName("mypage/mileage_charge");
-		}else {
-			mav.addObject("msg", "해당 기능을 사용하기에는 권한이 부족합니다.");
-			mav.addObject("url", "/gofarm/mypage.do"); 
-			mav.setViewName("mypage/redirect");
-		}
+		UserDTO user = (UserDTO) session.getAttribute("loginOk");
+		UserDTO userDetail = mypageService.userDetailViewService(user.getUsercode());
+		user.setUser_home(userDetail.getUser_home());
+		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		Date date = new Date();
+		String sysdate = dateFormat.format(date).toString();
+		mav.addObject("sysdate", sysdate);
+		mav.addObject("userDTO", user);
+		mav.setViewName("mypage/mileage_charge");
 		return mav;
 	}
 	
@@ -108,16 +91,8 @@ public class MypageController {
 	}
 		
 	@RequestMapping("/mileage_payment.do")
-	public ModelAndView mileage_payment(HttpSession session, ModelAndView mav) {
-		UserDTO user = (UserDTO)session.getAttribute("loginOk");
-		if(user.getUserlvl()==2) 
-			mav.setViewName("mypage/mileage_payment");
-		else {
-			mav.addObject("msg", "해당 기능을 사용하기에는 권한이 부족합니다.");
-			mav.addObject("url", "/gofarm/mypage.do"); 
-			mav.setViewName("mypage/redirect");
-		}
-		
+	public ModelAndView mileage_payment(ModelAndView mav) {
+		mav.setViewName("mypage/mileage_payment");
 		return mav;
 	}
 	
@@ -164,11 +139,16 @@ public class MypageController {
 	
 	@RequestMapping("/jobSearchView.do")
 	public ModelAndView jobSearchView(HttpSession session, ModelAndView mav) {
-		UserDTO user = (UserDTO)session.getAttribute("loginOk");
+		UserDTO user = (UserDTO) session.getAttribute("loginOk");
 		JobSearchDTO jobSearchDto = mypageService.jobSearchListService(user.getUsercode());
-		List<JobDTO> jobCheckDto = mypageService.jobcheckListService(jobSearchDto.getJobsearchcode());
+		System.out.println(mypageService.jobSearchListService(user.getUsercode()));
+		try {
+			List<JobDTO> jobCheckDto = mypageService.jobcheckListService(jobSearchDto.getJobsearchcode());
+			mav.addObject("jobCheck_dto", jobCheckDto);
+		} catch (NullPointerException e) {
+			System.out.println("mypageService.jobcheckListService(jobSearchDto.getJobsearchcode()) = Null");
+		}
 		mav.addObject("jobSearch_dto", jobSearchDto);
-		mav.addObject("jobCheck_dto", jobCheckDto);
 		mav.setViewName("mypage/jobSearch");
 		return mav;
 	}
@@ -179,6 +159,24 @@ public class MypageController {
 		List<MySellDTO> mySellDto = mypageService.mysellListService(user.getUsercode());
 		mav.addObject("mySell_dto", mySellDto);
 		mav.setViewName("mypage/product");
+		return mav;
+	}
+	
+	@RequestMapping("/myBuy.do")
+	public ModelAndView myBuy(HttpSession session, ModelAndView mav) {
+		UserDTO user = (UserDTO)session.getAttribute("loginOk");
+		List<MySellDTO> myBuyDto = mypageService.myBuyListService(user.getUsercode());
+		mav.addObject("myBuy_dto", myBuyDto);
+		mav.setViewName("mypage/myBuy");
+		return mav;
+	}
+	
+	@RequestMapping("/myAuction.do")
+	public ModelAndView myAuction(HttpSession session, ModelAndView mav) {
+		UserDTO user = (UserDTO)session.getAttribute("loginOk");
+		List<MyAuctionDTO> myAuctionDto = mypageService.myAuctionListService(user.getUsercode());
+		mav.addObject("myAuction_dto", myAuctionDto);
+		mav.setViewName("mypage/auction");
 		return mav;
 	}
 	
