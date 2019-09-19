@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="board">
+	<!-- 자유게시판 모든 목록 -->
+
+	<select id="all_list" resultType="com.mycompany.gofarm.board.dto.BoardDTO">
+		select * from board
+	</select>
+	
+	<!-- 페이징 하기위한 숫자세기 -->
+	<select id="boardcount" resultType="int" parameterType="String">
+		select count(*) from board where b_category=#{go}
+	</select>
+	
+	
+	<!-- 게시판 페이징 하기 위한 리스트 -->
+	<select id="blist" parameterType="com.mycompany.gofarm.job.dto.PageDTO"
+		resultType="com.mycompany.gofarm.board.dto.BoardDTO">
+   <![CDATA[
+   select b.* from
+   (select rownum as rm, 
+   BoardDTO.*,
+   UserDTO.nickname from (
+   select * from board order by boardcode)BoardDTO, users UserDTO where BoardDTO.usercode=UserDTO.usercode and b_category=#{b_category}
+   )b where b.rm>= #{startRow} and b.rm <= #{endRow}
+   ]]>
+
+	</select>
+	
+	<!-- 자유게시판 글 작성 insert -->
+   <insert id="b_insert" parameterType="com.mycompany.gofarm.board.dto.BoardDTO">
+      insert into board(boardcode,
+      usercode, b_title, content, b_day, b_file, b_category)
+      values(BOARD_SEQ.nextval, #{usercode}, #{b_title},
+      #{content}, sysdate
+      ,#{b_file}, #{b_category})
+
+   </insert>
+
+   <!-- usercode 중복 확인 -->
+   <select id="busercodecount" parameterType="int" resultType="int">
+      select count(*) from board where usercode=#{usercode}
+   </select>
+
+   <!-- 자유게시판 상세뷰 -->
+
+   <select id="bview" parameterType="int"
+      resultType="com.mycompany.gofarm.board.dto.BoardDTO">
+      select boardcode, usercode, content, b_title, b_day,
+      b_file, b_category
+      from board
+      where boardcode=#{boardcode}
+   </select>
+	
+	<!-- 댓글 뷰 -->
+   <select id="c_list" parameterType="int"
+      resultType="com.mycompany.gofarm.board.dto.CommentsDTO">
+      select * from comments where boardcode=#{boardcode} order
+      by commentcode asc
+   </select>
+
+   <!-- 댓글 insert -->
+   <insert id="c_insert" parameterType="com.mycompany.gofarm.board.dto.CommentsDTO">
+      insert into comments
+      values(comments_seq.nextval,#{boardcode},#{usercode},#{content},sysdate)
+
+   </insert>
+</mapper>

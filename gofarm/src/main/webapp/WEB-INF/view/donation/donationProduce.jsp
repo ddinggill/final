@@ -39,6 +39,7 @@
 <link href="main/fonts/ionicons.css" rel="stylesheet">
 <link href="main/common/styles.css" rel="stylesheet">
 <link href="main/common/main_content.css" rel="stylesheet">
+<script src="main/plugin-frameworks/jquery-3.2.1.min.js"></script>
   </head>
   <body class="goto-here">
   
@@ -120,5 +121,8 @@
   <script src="product/p_js/google-map.js"></script> -->
   <script src="product/p_js/main.js"></script>
     
+    <script src="main/plugin-frameworks/bootstrap.min.js"></script>
+	<script src="main/plugin-frameworks/swiper.js"></script>
+	<script src="main/common/scripts.js"></script>
   </body>
 </html>

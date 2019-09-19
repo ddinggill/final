@@ -19,6 +19,7 @@ import com.mycompany.gofarm.job.dto.JobDTO;
 import com.mycompany.gofarm.job.dto.JobSearchDTO;
 import com.mycompany.gofarm.mypage.dto.MileageDTO;
 import com.mycompany.gofarm.mypage.dto.MyAuctionDTO;
+import com.mycompany.gofarm.mypage.dto.MyDonationDTO;
 import com.mycompany.gofarm.mypage.dto.MySellDTO;
 import com.mycompany.gofarm.mypage.service.MypageService;
 import com.mycompany.gofarm.user.dto.UserDTO;
@@ -45,11 +46,6 @@ public class MypageController {
 	@RequestMapping("/intro.do")
 	public String intro() {
 		return "mypage/intro";
-	}
-	
-	@RequestMapping("/donation.do")
-	public String donation() {
-		return "mypage/donation";
 	}
 	
 	@RequestMapping("/mileage.do")
@@ -156,7 +152,7 @@ public class MypageController {
 	@RequestMapping("/product.do")
 	public ModelAndView product(HttpSession session, ModelAndView mav) {
 		UserDTO user = (UserDTO)session.getAttribute("loginOk");
-		List<MySellDTO> mySellDto = mypageService.mysellListService(user.getUsercode());
+		List<MySellDTO> mySellDto = mypageService.mySellListService(user.getUsercode());
 		mav.addObject("mySell_dto", mySellDto);
 		mav.setViewName("mypage/product");
 		return mav;
@@ -180,4 +176,21 @@ public class MypageController {
 		return mav;
 	}
 	
+	@RequestMapping("/myBid.do")
+	public ModelAndView myBid(HttpSession session, ModelAndView mav) {
+		UserDTO user = (UserDTO)session.getAttribute("loginOk");
+		List<MyAuctionDTO> myBidDto = mypageService.myBidListService(user.getUsercode());
+		mav.addObject("myBid_dto", myBidDto);
+		mav.setViewName("mypage/myBid");
+		return mav;
+	}
+	
+	@RequestMapping("/myDonation.do")
+	public ModelAndView myDonation(HttpSession session, ModelAndView mav) {
+		UserDTO user = (UserDTO)session.getAttribute("loginOk");
+		List<MyDonationDTO> myDonationDto = mypageService.myDonationListService(user.getUsercode());
+		mav.addObject("myDonation_dto", myDonationDto);
+		mav.setViewName("mypage/myDonation");
+		return mav;
+	}
 }

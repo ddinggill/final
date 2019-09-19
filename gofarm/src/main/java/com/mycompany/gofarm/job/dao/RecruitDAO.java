@@ -66,4 +66,6 @@ public interface RecruitDAO {
 
 	public List<CareerDTO> careerlist(int jobsearchcode);
 
+	public int samechk(JobCheckDTO jdto);
+
 }

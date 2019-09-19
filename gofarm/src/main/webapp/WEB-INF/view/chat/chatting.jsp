@@ -69,6 +69,9 @@
 	function bootsend(){
 		var nickname = "${loginOk.nickname}";
 		var msg = $('.write_msg').val();
+		if(msg==""){
+			return false;
+		}
 		var d = new Date();
 		var date = d.getFullYear()+'-'+(d.getMonth() + 1)+'-'+d.getDate()+' '+d.getHours()+':'+d.getMinutes()+":"+d.getSeconds();
 		console.log(date);
@@ -83,7 +86,7 @@
 		wsocket.send(JSON.stringify(senddate));
 		//wsocket.send(nickname + ':' + msg);
 		$('.write_msg').val('');
-		$('.msg_history').append('<div class="outgoing_msg"><div class="sent_msg"><p>'+msg+'</p><span class="time_date"> 11:01 AM    |    June 9</span> </div></div>');
+		$('.msg_history').append('<div class="outgoing_msg"><div class="sent_msg"><p>'+msg+'</p><span class="time_date">'+date+'</span> </div></div>');
 		$(".msg_history").scrollTop($(".msg_history")[0].scrollHeight);
 	}
 		
@@ -114,15 +117,36 @@
 	
 	function appendMessage(msg) {
 		var msg = JSON.parse(msg);
-		var ct_time = msg.ct_time;
-		var ct_nickname = msg.ct_nickname;
-		var ct_content = msg.ct_content;
-		var type = msg.type;
-		
-		$('.msg_history').append('<div class="incoming_msg"><img src="https://ptetutorials.com/images/user-profile.png" alt="sunil" width="6%" class="chatimg"> </div>'
-				+'<div class="received_msg"><div class="received_withd_msg"><p>'+ct_nickname+":"+ct_content+'</p>'
-				+'<span class="time_date">'+ct_time+'</span></div></div></div>');
-		$(".msg_history").scrollTop($(".msg_history")[0].scrollHeight); 
+		console.log("msg길이:"+msg.length);
+		if(msg.length >=1){
+			console.log("첫입장 기존내용 뿌려주기")
+			for(var i=0; i<msg.length; i++){
+				var ct_time = msg[i].ct_time;
+				var ct_nickname = msg[i].ct_nickname;
+				var ct_content = msg[i].ct_content;
+				var type = msg[i].type;
+				if(ct_nickname == "${loginOk.nickname}"){
+					$('.msg_history').append('<div class="outgoing_msg"><div class="sent_msg"><p>'+ct_content+'</p><span class="time_date">'+ct_time+'</span> </div></div>');
+					$(".msg_history").scrollTop($(".msg_history")[0].scrollHeight);
+				}else{
+					$('.msg_history').append('<div class="incoming_msg"><img src="https://ptetutorials.com/images/user-profile.png" alt="sunil" width="6%" class="chatimg"> </div>'
+							+'<div class="received_msg"><div class="received_withd_msg"><p>'+ct_nickname+":"+ct_content+'</p>'
+							+'<span class="time_date">'+ct_time+'</span></div></div></div>');
+					$(".msg_history").scrollTop($(".msg_history")[0].scrollHeight); 
+				}
+			}
+			$('.msg_history').append('<div>------------------------------------기존 채팅 내역입니다.---------------------------------</div>');
+		}else{
+			var ct_time = msg.ct_time;
+			var ct_nickname = msg.ct_nickname;
+			var ct_content = msg.ct_content;
+			var type = msg.type;
+			
+			$('.msg_history').append('<div class="incoming_msg"><img src="https://ptetutorials.com/images/user-profile.png" alt="sunil" width="6%" class="chatimg"> </div>'
+					+'<div class="received_msg"><div class="received_withd_msg"><p>'+ct_nickname+":"+ct_content+'</p>'
+					+'<span class="time_date">'+ct_time+'</span></div></div></div>');
+			$(".msg_history").scrollTop($(".msg_history")[0].scrollHeight); 
+		}
 	
 	}
 	
@@ -227,5 +251,8 @@ body{
 <!-- footer 시작-->
 	<jsp:include page="/WEB-INF/view/common/footer.jsp"></jsp:include>
 	<!-- footer 끝 -->
+	<script src="main/plugin-frameworks/bootstrap.min.js"></script>
+	<script src="main/plugin-frameworks/swiper.js"></script>
+	<script src="main/common/scripts.js"></script>
 </body>
 </html>

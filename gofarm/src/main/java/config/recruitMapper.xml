@@ -47,7 +47,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="jobsearch_list" parameterType="com.mycompany.gofarm.job.dto.PageDTO"
 		resultType="com.mycompany.gofarm.job.dto.JobSearchDTO">
    <![CDATA[
-   select b.* from
+   select b.jobsearchcode, b.usercode, b.js_name, to_char(b.js_registration,'yyyy.mm.dd')as js_registration,
+b.js_area, b.js_crop, b.js_time, b.js_salary, b.js_address, b.js_phone, b.js_intro, b.js_gender, b.js_age
+    from
    (select rownum as rm, a.* from (
    select * from jobsearch order by jobsearchcode desc)a)b
    where b.rm>= #{startRow} and b.rm <= #{endRow}
@@ -58,7 +60,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="resum" parameterType="int"
 		resultType="com.mycompany.gofarm.job.dto.JobDTO">
 		select JOB , USERCODE,J_COMPANY,
-		J_REGISTRATION,J_DEADLINE,J_AREA
+		to_char(J_REGISTRATION,'yyyy.mm.dd')as J_REGISTRATION,to_char(J_DEADLINE,'yyyy.mm.dd')as J_DEADLINE ,J_AREA
 		,J_RECRUITMENT,J_CAREER,J_GENDER,J_AGE,J_TYPE,J_TERM,J_INFO,J_ADDRESS
 		,J_PREFERENTIAL,CONTENT,J_CONTACT from job where job=#{job}
 
@@ -67,7 +69,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 구인 상세 뷰 -->
 	<select id="personlist" parameterType="int"
 		resultType="com.mycompany.gofarm.job.dto.JobSearchDTO">
-		select * from jobsearch where
+		select jobsearchcode, usercode, js_name, to_char(js_registration,'yyyy.mm.dd')as js_registration,
+		js_area, js_crop, js_time, js_salary, js_address, js_phone, js_intro, js_gender, js_age 
+		from jobsearch where
 		jobsearchcode=#{jobsearchcode}
 
 	</select>
@@ -85,7 +89,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="resume" parameterType="com.mycompany.gofarm.job.dto.JobSearchDTO">
 		insert into jobsearch
 		values(jobsearch_seq.nextval,#{usercode},#{js_name},sysdate,#{js_area},#{js_crop},
-		#{js_time},#{js_salary},#{js_address},#{js_phone},#{js_intro},#{js_age},#{js_gender})
+		#{js_time},#{js_salary},#{js_address},#{js_phone},#{js_intro},#{js_gender},#{js_age})
 		<selectKey keyProperty="jobsearchcode" resultType="Integer"
 			order="AFTER">
 			SELECT jobsearch_seq.currval FROM dual
@@ -131,6 +135,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    	from job
    	where usercode=#{jk_usercode}
    </select>
+   
+   <!-- 자기글인지 확인 -->
+   <select id="samechk" resultType="int" parameterType="com.mycompany.gofarm.job.dto.JobCheckDTO">
+   select count(*) from jobsearch where usercode=#{jk_usercode} and jobsearchcode=#{jobsearchcode}
+   </select>
 
 	<!-- 구인글 쓴 유저정보 얻어오기 -->
 	<select id="getinfo" parameterType="int"
@@ -141,6 +150,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 경력가져오기 -->
 	<select id="careerlist" parameterType="int" resultType="com.mycompany.gofarm.job.dto.CareerDTO">
-		select * from career where jobsearchcode=#{jobsearchcode}
+		select career, to_char(startdate,'yyyy.mm.dd')as startdate, to_char(enddate,'yyyy.mm.dd')as enddate from career where jobsearchcode=#{jobsearchcode}
 	</select>
 </mapper>

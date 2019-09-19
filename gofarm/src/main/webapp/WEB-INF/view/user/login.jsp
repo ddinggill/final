@@ -78,5 +78,8 @@ $(document).ready(function(){
 <br><br><br><br><br><br><br>
 <jsp:include page="/WEB-INF/view/common/footer.jsp" />
 
+<script src="main/plugin-frameworks/bootstrap.min.js"></script>
+<script src="main/plugin-frameworks/swiper.js"></script>
+<script src="main/common/scripts.js"></script>
 </body>
 </html>

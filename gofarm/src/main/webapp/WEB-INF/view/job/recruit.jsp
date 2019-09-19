@@ -21,22 +21,9 @@
 <link href="main/common/styles.css" rel="stylesheet">
 <link href="main/common/main_nav.css" rel="stylesheet">
 <link href="recruit/recruit.css" rel="stylesheet">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-<script type="text/javascript">
-$(document).ready(function(){
-		/* if("${userOK}"=="fail"){
- 		 alert("이미 채용글을 작성하셨습니다.");
-		} */ 
-	/* 	$('.re_title').on('click',function(){
-			console.log("로그인을 하세여");
-		}); */
-	
+<script src="main/plugin-frameworks/jquery-3.2.1.min.js"></script>
 
-});
-
-</script>
 </head>
 <body style="background-color: #A2BBCA;">
 	<!--common 네비바 -->
@@ -116,13 +103,8 @@ $(document).ready(function(){
 	<jsp:include page="/WEB-INF/view/common/footer.jsp"></jsp:include>
 	<!-- SCIPTS -->
 
-	<script src="main/plugin-frameworks/jquery-3.2.1.min.js"></script>
-
 	<script src="main/plugin-frameworks/bootstrap.min.js"></script>
-
 	<script src="main/plugin-frameworks/swiper.js"></script>
-
-
 	<script src="main/common/scripts.js"></script>
 
 </body>

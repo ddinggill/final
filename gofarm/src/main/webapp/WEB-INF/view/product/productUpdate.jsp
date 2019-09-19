@@ -39,6 +39,22 @@
 <link href="main/fonts/ionicons.css" rel="stylesheet">
 <link href="main/common/styles.css" rel="stylesheet">
 <link href="main/common/main_content.css" rel="stylesheet">
+
+<script src="main/plugin-frameworks/jquery-3.2.1.min.js"></script>
+<script type="text/javascript">
+
+$(document).ready(function() {
+
+		$("#poppop").click(function(){
+			alert("수정되었습니다. 마이페이지에서 확인하세요.");
+		});
+
+});
+function pop(){
+	alert("수정되었습니다. 마이페이지에서 확인하세요.");
+};
+
+</script>
   </head>
   <body class="goto-here">
   
@@ -99,7 +115,7 @@
               </div>
               
               <div class="form-group">
-                <input type="submit" value="등 록 하 기" class="btn btn-primary py-3 px-5">
+               <input type="submit" value="등 록 하 기" class="btn btn-primary py-3 px-5" id="poppop">
               </div>
             </form>
           
@@ -137,5 +153,9 @@
   <script src="product/p_js/google-map.js"></script> -->
   <script src="product/p_js/main.js"></script>
     
+    
+    <script src="main/plugin-frameworks/bootstrap.min.js"></script>
+	<script src="main/plugin-frameworks/swiper.js"></script>
+	<script src="main/common/scripts.js"></script>
   </body>
 </html>

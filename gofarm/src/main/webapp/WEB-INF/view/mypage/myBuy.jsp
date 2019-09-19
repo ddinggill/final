@@ -66,13 +66,16 @@
                 <tbody id="tbody">
 					<c:forEach items="${myBuy_dto}" var="dto" varStatus="status">
 						<tr>
+						<c:url var="write" value="reviewWriteForm.do">
+						<c:param name="prod_code" value="${dto.prod_code}" />
+						</c:url>
 							<td>${status.count}</td>
 							<td><a href="productView.do?currentPage=1&prod_code=${dto.prod_code}">${dto.pd_name}</a></td>
 							<td>${dto.de_cnt}</td>
 							<td>${dto.name}</td>
 							<td>${dto.phone}</td>
 							<td>${dto.de_date}</td>
-							<td><input type="button" value="쓰기" id="reviewBtn" name="reviewBtn" /></td>
+							<td><a href="${write}" ><input type="button" value="쓰기" id="reviewBtn" name="reviewBtn" /></a></td>
 						</tr>
 					</c:forEach>
                 </tbody>

@@ -419,4 +419,9 @@ $(document).ready(function() {
 	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script> -->
 <!-- <script src="product/js/google-map.js"></script> -->
 <script src="product/p_js/main.js"></script>
+<!-- SCIPTS -->
+<script src="main/plugin-frameworks/jquery-3.2.1.min.js"></script>
+<script src="main/plugin-frameworks/bootstrap.min.js"></script>
+<script src="main/plugin-frameworks/swiper.js"></script>
+<script src="main/common/scripts.js"></script>
 </html>

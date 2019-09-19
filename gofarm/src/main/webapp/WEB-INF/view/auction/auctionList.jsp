@@ -9,6 +9,7 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+
 <link
 	href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap"
 	rel="stylesheet">
@@ -276,15 +277,9 @@
 	<script src="product/p_js/main.js"></script>
 	
 	<!-- SCIPTS -->
-
 	<script src="main/plugin-frameworks/jquery-3.2.1.min.js"></script>
-
 	<script src="main/plugin-frameworks/bootstrap.min.js"></script>
-
 	<script src="main/plugin-frameworks/swiper.js"></script>
-
-
 	<script src="main/common/scripts.js"></script>
-	
 </body>
 </html>

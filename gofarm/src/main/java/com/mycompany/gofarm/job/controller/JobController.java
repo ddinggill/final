@@ -14,12 +14,18 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.mycompany.gofarm.board.service.FileUpload;
 import com.mycompany.gofarm.job.dto.JobCheckDTO;
 import com.mycompany.gofarm.job.dto.JobDTO;
 import com.mycompany.gofarm.job.dto.JobSearchDTO;
 import com.mycompany.gofarm.job.dto.PageDTO;
+
 import com.mycompany.gofarm.job.service.RecruitService;
 import com.mycompany.gofarm.user.dto.UserDTO;
 
@@ -30,6 +36,9 @@ public class JobController {
 	private RecruitService recruitService;
 
 	@Autowired
+	private FileUpload fileUpload;
+
+	@Autowired
 	private JavaMailSender mailSender;
 
 	public JobController() {
@@ -38,6 +47,10 @@ public class JobController {
 
 	public void setService(RecruitService recruitService) {
 		this.recruitService = recruitService;
+	}
+
+	public void setFileUpload(FileUpload fileUpload) {
+		this.fileUpload = fileUpload;
 	}
 
 	// 구인 구직 카테고리
@@ -136,8 +149,9 @@ public class JobController {
 
 			int jcount = recruitService.chk(jdto); // 구인글 올린사람 체크
 			int count = recruitService.view_chkProcess(jdto);
+			int samecheck = recruitService.same_chkProcess(jdto);
 
-			if (count == 0 && jcount == 1) {
+			if (count == 0 && jcount == 1 && samecheck == 0) {
 
 				mav.addObject("dto", recruitService.jobsearch_contentProcess(jobsearchcode));
 				mav.addObject("currentPage", currentPage);
@@ -186,6 +200,20 @@ public class JobController {
 
 		}
 		return "job/personform";
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/personform.do", method = RequestMethod.POST)
+	public String uploadImage(MultipartFile file, HttpServletRequest request) throws Exception {
+		String image_name = fileUpload.profileUpload(file, request);
+		System.out.println("image_name: " + image_name);
+		JsonObject obj = new JsonObject();
+
+		obj.addProperty("image_name", image_name);
+		System.out.printf("image_name2: ", image_name);
+
+		return new Gson().toJson(obj);
+
 	}
 
 	// 채용글 받은거
@@ -247,15 +275,15 @@ public class JobController {
 		 * System.out.println(cdto.getStartdate());
 		 * System.out.println(cdto.getEnddate()); }
 		 */
-		
+
 		// 경력 저장
-		if(dto.getList() != null) {
+		if (dto.getList() != null) {
 			for (int i = 0; i < dto.getList().size(); i++) {
 				dto.getList().get(i).setJobsearchcode(dto.getJobsearchcode());
 			}
 			recruitService.insert_careerProcess(dto.getList());
 		}
-		
+
 		return "redirect:/recruit2.do";
 
 	}

@@ -10,6 +10,7 @@ import com.mycompany.gofarm.job.dto.JobSearchDTO;
 import com.mycompany.gofarm.mypage.dao.MypageDAO;
 import com.mycompany.gofarm.mypage.dto.MileageDTO;
 import com.mycompany.gofarm.mypage.dto.MyAuctionDTO;
+import com.mycompany.gofarm.mypage.dto.MyDonationDTO;
 import com.mycompany.gofarm.mypage.dto.MySellDTO;
 import com.mycompany.gofarm.user.dto.UserDTO;
 
@@ -74,8 +75,8 @@ public class MypageServiceImp implements MypageService{
 	}
 
 	@Override
-	public List<MySellDTO> mysellListService(int usercode) {
-		return mypageDao.mysellListMethod(usercode);
+	public List<MySellDTO> mySellListService(int usercode) {
+		return mypageDao.mySellListMethod(usercode);
 	}
 
 	@Override
@@ -86,6 +87,16 @@ public class MypageServiceImp implements MypageService{
 	@Override
 	public List<MyAuctionDTO> myAuctionListService(int usercode) {
 		return mypageDao.myAuctionListMethod(usercode);
+	}
+
+	@Override
+	public List<MyAuctionDTO> myBidListService(int usercode) {
+		return mypageDao.myBidListMethod(usercode);
+	}
+
+	@Override
+	public List<MyDonationDTO> myDonationListService(int usercode) {
+		return mypageDao.myDonationListMethod(usercode);
 	}
 
 }

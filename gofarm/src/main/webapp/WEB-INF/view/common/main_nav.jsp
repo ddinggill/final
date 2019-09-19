@@ -6,8 +6,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script
-   src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 <script>
    ///// 스크롤 100픽셀 내리면 상단메뉴에 노란배경색이 생김 /////
@@ -107,18 +105,15 @@ header>#topNav>ul.main-munu>li>a {
    <header class="fixed-top">
 
       <nav id="topNav" >
-         <a class="logo nav" href="#"><img src="main/images/logo.png">GO
-            FARM</a>
+        <p class="logo nav" href="#"><img src="main/images/logo.png"><a style="margin-top:20px">GO FARM</a></p>
          <ul class="main-menu" id="main-menu"
           style="margin-left: 27%;">
-
-
 
             <li><a href="main.do" class="nav">HOME</a></li>
             <li><a href="#" class="nav">INFO</a></li>
             <li><a href="recruit2.do" class="nav">구인 | 구직</a></li>
             <li><a href="productList.do" class="nav">장터</a></li>
-            <li><a href="#" class="nav">게시판</a></li>
+            <li><a href="board.do" class="nav">게시판</a></li>
             <li><a href="chatlist.do" class="nav">오픈채팅</a></li>
             <c:choose>
                <c:when test="${empty sessionScope.loginOk}">
@@ -141,16 +136,6 @@ header>#topNav>ul.main-munu>li>a {
 
    </header>
    
-   <!-- SCIPTS -->
-
-	<script src="main/plugin-frameworks/jquery-3.2.1.min.js"></script>
-
-	<script src="main/plugin-frameworks/bootstrap.min.js"></script>
-
-	<script src="main/plugin-frameworks/swiper.js"></script>
-
-
-	<script src="main/common/scripts.js"></script>
 </body>
 
 </html>

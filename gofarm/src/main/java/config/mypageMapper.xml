@@ -92,7 +92,32 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  				from auction auc, users u
  				where auc.fin_name = u.usercode(+) and auc.usercode=#{usercode})a, user_detail ude
 		where a.fin_name = ude.usercode(+)
-		order by a.state asc ,a.auctioncode desc
+		order by state asc ,auctioncode desc
 	]]>
  	</select>
+ 	
+ 	<select id="myBid_list" resultType="com.mycompany.gofarm.mypage.dto.MyAuctionDTO"
+ 	 parameterType="int">
+ 	<![CDATA[
+ 		SELECT auc.au_name au_name, auc.ctprice ctprice, auc.fin_time fin_time, auc.state state, auc.auctioncode auctioncode
+		FROM (SELECT AUTIONCODE, max(BR_DATE) 
+   		 		FROM (select * from au_recipe where br_user=#{usercode}) 
+   		 		GROUP by AUTIONCODE)a, auction auc
+		where a.autioncode=auc.auctioncode
+		order by state, auctioncode desc
+	]]>
+ 	</select>
+ 	
+ 	<select id="myDonation_list" resultType="com.mycompany.gofarm.mypage.dto.MyDonationDTO"
+ 	 parameterType="int">
+ 	<![CDATA[
+ 		select d.docode docode, d.do_product do_product, d.do_cnt do_cnt, (select count(DO_NAME) from do_condition doc where d.docode=doc.docode(+) and doc.state=0) app_cnt
+		from donation d 
+		where d.usercode=#{usercode}
+		order by do_cnt desc, docode desc
+	]]>
+ 	</select>
+ 	
+ 	
+ 	
 </mapper>

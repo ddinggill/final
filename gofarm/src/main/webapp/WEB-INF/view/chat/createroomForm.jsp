@@ -28,9 +28,6 @@ body{
 </head>
 <body>
 
-<%-- <a href="${pageContext.request.contextPath}/chat.do?num=1">1번방 채팅하러가자</a>
-<a href="${pageContext.request.contextPath}/chat.do?num=2">2번방 채팅하러가자</a>
-<a href="${pageContext.request.contextPath}/chat.do?num=3">3번방 채팅하러가자</a> --%>
 <jsp:include page="/WEB-INF/view/common/main_nav.jsp" />
 <br><br><br><br><br><br><br>
 
@@ -60,17 +57,12 @@ body{
     <input type="submit" value="개설하기" />
   </div>
   </form>
- <!--  <div class="right">
-    <span class="loginwith">소셜 로그인</span> 
-    
-    <button class="social-signin naver">네이버 로그인</button>
-    <button class="social-signin kakao">카카오 로그인</button>
-   
-  </div> -->
-  <!-- <div class="or">OR</div> -->
+
 </div>
 <br><br><br><br><br><br><br>
 <jsp:include page="/WEB-INF/view/common/footer.jsp" />
-
+<script src="main/plugin-frameworks/bootstrap.min.js"></script>
+<script src="main/plugin-frameworks/swiper.js"></script>
+<script src="main/common/scripts.js"></script>
 </body>
 </html>

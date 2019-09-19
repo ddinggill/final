@@ -25,7 +25,7 @@ $(document).ready(function() {
       <li class="nav-item active">
         <a class="nav-link"  href="intro.do" >
           <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>마이페이지</span>
+          <span>내 정보</span>
         </a>
       </li>
       <li class="nav-item dropdown">
@@ -44,16 +44,17 @@ $(document).ready(function() {
           <span>장터</span>
         </a>
         <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-          <a class="dropdown-item" href="product.do" id="product">판매</a>
-          <a class="dropdown-item" href="myBuy.do" id="myBuy">구매</a>
-          <a class="dropdown-item" href="myAuction.do" id="auction">경매</a>
-          <a class="dropdown-item" href="donation.do" id="donation">나눔</a>
+          <a class="dropdown-item" href="product.do" id="product">판매목록</a>
+          <a class="dropdown-item" href="myBuy.do" id="myBuy">구매목록</a>
+          <a class="dropdown-item" href="myAuction.do" id="auction">경매목록</a>
+          <a class="dropdown-item" href="myBid.do" id="myBid">입찰목록</a>
+          <a class="dropdown-item" href="myDonation.do" id="myDonation">나눔목록</a>
         </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="charts.html">
+        <a class="nav-link" href="">
           <i class="fas fa-fw fa-chart-area"></i>
-          <span>Charts</span></a>
+          <span>게시판</span></a>
       </li>
 			<li class="nav-item dropdown" id="side_mileage">
 			 <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

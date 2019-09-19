@@ -5,82 +5,96 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<script src="main/plugin-frameworks/jquery-3.2.1.min.js"></script>
 
-<!--===============================================================================================-->
-<link rel="icon" type="image/png"
-	href="joblist/images/icons/favicon.ico" />
-<!--===============================================================================================-->
-<link rel="stylesheet" type="text/css"
-	href="joblist/vendor/bootstrap/css/bootstrap.min.css">
-<!--===============================================================================================-->
-<link rel="stylesheet" type="text/css"
-	href="joblist/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-<!--===============================================================================================-->
-<link rel="stylesheet" type="text/css"
-	href="joblist/vendor/animate/animate.css">
-<!--===============================================================================================-->
-<link rel="stylesheet" type="text/css"
-	href="joblist/vendor/select2/select2.min.css">
-<!--===============================================================================================-->
-<link rel="stylesheet" type="text/css"
-	href="joblist/vendor/perfect-scrollbar/perfect-scrollbar.css">
-<!--===============================================================================================-->
-<link rel="stylesheet" type="text/css" href="joblist/css/util.css">
-<link rel="stylesheet" type="text/css" href="joblist/css/main.css">
-<!-- Font -->
-<link href="https://fonts.googleapis.com/css?family=Poppins:400,700"
-	rel="stylesheet">
-<link rel="stylesheet"
-	href="https://www.w3schools.com/lib/w3-theme-black.css">
 <!-- Stylesheets -->
 <link href="main/plugin-frameworks/bootstrap.min.css" rel="stylesheet">
 <link href="main/fonts/ionicons.css" rel="stylesheet">
 <link href="main/common/styles.css" rel="stylesheet">
-<link href="recruit/recruit.css" rel="stylesheet">
+<link href="main/common/main_nav.css" rel="stylesheet">
+
 <!--===============================================================================================-->
 <title>구직 리스트</title>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
+<style type="text/css">
+.arrow {
+	border: solid black;
+	border-width: 0px 5px 5px 0;
+	display: inline-block;
+	padding: 7px;
+}
+
+.right {
+	transform: rotate(-45deg);
+	-webkit-transform: rotate(-45deg);
+}
+
+.personlistheader {
+	background-color: #2e2e2e;
+	color: white;
+	font-size: 18px;
+	font-weight: bolder;
+}
+
+.personlistrow {
+	background-color: white;
+}
+
+.personlistrow:hover {
+	background-color: #fff6d9;
+	cursor: pointer;
+}
+
+table {
+	border: 1px solid #8c8c8c;
+}
+
+</style>
 </head>
 
-<body >
+<body style="background-color: #FDF5E6;">
 
 	<jsp:include page="/WEB-INF/view/common/main_nav.jsp"></jsp:include>
 
 
 	<div class="limiter">
 
-		<div class="container-table100" style="background-color:#A2BBCA;">
+		<div class="container"
+			style="margin-top: 200px; margin-bottom: 200px;">
 
-			<div class="wrap-table100" style="width: 55%;">
+			<div class="wrap-table100">
 
 				<div class="gu_list">
-					<span style="color: #696969; font-size: 25px; margin-bottom: 10px;">인력정보&nbsp;&nbsp;<i
-						class="arrow right"></i><strong>&nbsp;&nbsp;구직 리스트</strong></span>
+					<span style="color: black; font-size: 25px; margin-bottom: 10px;">인력정보&nbsp;&nbsp;<i
+						class="arrow right"></i></span> <span
+						style="color: black; font-size: 25px; margin-bottom: 10px;"><strong>&nbsp;&nbsp;구직
+							리스트</strong></span>
 				</div>
 
 				<table class="table">
 
-					<tr class="row header" style="background-color: #A297BD;">
-						<td class="cell">이름&nbsp;</td>
-						<td class="cell">희망 근무 지역 &nbsp;</td>
-						<td class="cell">희망 작물 &nbsp;</td>
-						<td class="cell">등록일 &nbsp;</td>
+					<tr class="personlistheader">
+						<td class="cell">&nbsp;</td>
+						<td class="cell" width="20%">이름&nbsp;</td>
+						<td class="cell" width="23%">희망 근무 지역 &nbsp;</td>
+						<td class="cell" width="23%">희망 작물 &nbsp;</td>
+						<td class="cell" width="23%">등록일 &nbsp;</td>
 					</tr>
 
 					<c:forEach var="dto" items="${pList}">
-						<tr class="row">
 
 
-							<c:url var="path" value="viewperson.do">
-								<c:param name="currentPage" value="${pd.currentPage }" />
-								<c:param name="jobsearchcode" value="${dto.jobsearchcode}" />
-							</c:url>
-							<td class="cell"><a href="${path}">${dto.js_name }</a></td>
-							<td class="cell" data-title="Location">${dto.js_area }</td>
-							<td class="cell" data-title="Job Title">${dto.js_crop }</td>
-							<td class="cell" data-title="Location">${dto.js_registration}</td>
+						<c:url var="path" value="viewperson.do">
+							<c:param name="currentPage" value="${pd.currentPage }" />
+							<c:param name="jobsearchcode" value="${dto.jobsearchcode}" />
+						</c:url>
+						<tr class="personlistrow"
+							onclick="javascript:location.href='${path}'">
+							<td class="content">${dto.jobsearchcode }</td>
+							<td class="content">${dto.js_name }</td>
+							<td class="content" data-title="Location">${dto.js_area }</td>
+							<td class="content" data-title="Job Title">${dto.js_crop }</td>
+							<td class="content" data-title="Location">${dto.js_registration}</td>
 						</tr>
 
 					</c:forEach>
@@ -88,10 +102,10 @@
 
 				</table>
 				<!-- 이전 출력 시작 -->
-				<div class="pageList">
+				<div class="pageList" align="center">
 					<c:if test="${pd.startPage >1 }">
 						<a
-							href="personsearch.do?currentPage=${pd.startPage-pd.blockPage }">&laquo;</a>
+							href="personsearch.do?currentPage=${pd.startPage-pd.blockPage }"  style="font-size: 15px;">&laquo;</a>
 					</c:if>
 					<!-- 이전 출력끝 -->
 
@@ -126,19 +140,13 @@
 		</div>
 	</div>
 
-	<!-- Footer -->
+<!-- Footer -->
 	<jsp:include page="/WEB-INF/view/common/footer.jsp"></jsp:include>
-
-
-	<!--===============================================================================================-->
-	<script src="joblist/vendor/jquery/jquery-3.2.1.min.js"></script>
-	<!--===============================================================================================-->
-	<script src="joblist/vendor/bootstrap/js/popper.js"></script>
-	<script src="joblist/vendor/bootstrap/js/bootstrap.min.js"></script>
-	<!--===============================================================================================-->
-	<script src="joblist/vendor/select2/select2.min.js"></script>
-	<!--===============================================================================================-->
-	<script src="joblist/js/main.js"></script>
-
+	<!-- SCIPTS -->
+	<script src="main/plugin-frameworks/bootstrap.min.js"></script>
+	<script src="main/plugin-frameworks/swiper.js"></script>
+	<script src="main/common/scripts.js"></script>
+	<!----//End-footer--->
+	<!---//End-wrap---->
 </body>
 </html>
