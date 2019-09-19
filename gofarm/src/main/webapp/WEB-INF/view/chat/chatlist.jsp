@@ -7,9 +7,6 @@
 <meta charset="UTF-8">
 <title>웹소켓</title>
 
-<!-- Font -->
-<link href="https://fonts.googleapis.com/css?family=Poppins:400,700"
-	rel="stylesheet">
 <!-- Stylesheets -->
 <link href="main/plugin-frameworks/bootstrap.min.css" rel="stylesheet">
 <link href="main/plugin-frameworks/swiper.css" rel="stylesheet">
@@ -64,6 +61,8 @@ body{
 <!-- footer 시작-->
 	<jsp:include page="/WEB-INF/view/common/footer.jsp"></jsp:include>
 	<!-- footer 끝 -->
-
+	<script src="main/plugin-frameworks/bootstrap.min.js"></script>
+	<script src="main/plugin-frameworks/swiper.js"></script>
+	<script src="main/common/scripts.js"></script>
 </body>
 </html>

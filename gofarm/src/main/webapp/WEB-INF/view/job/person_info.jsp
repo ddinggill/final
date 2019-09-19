@@ -6,86 +6,67 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-<link
-	href="https://fonts.googleapis.com/css?family=Do+Hyeon&display=swap"
-	rel="stylesheet">
-<link
-	href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap"
-	rel="stylesheet">
-<link
-	href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i&display=swap"
-	rel="stylesheet">
-<link
-	href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700&display=swap"
-	rel="stylesheet">
-
-<link rel="stylesheet"
-	href="personform/css/open-iconic-bootstrap.min.css">
-<link rel="stylesheet" href="personform/css/animate.css">
-
-<link rel="stylesheet" href="personform/css/owl.carousel.min.css">
-<link rel="stylesheet" href="personform/css/owl.theme.default.min.css">
-<link rel="stylesheet" href="personform/css/magnific-popup.css">
-
-<link rel="stylesheet" href="personform/css/aos.css">
-
-<link rel="stylesheet" href="personform/css/ionicons.min.css">
-
-<link rel="stylesheet" href="personform/css/bootstrap-datepicker.css">
-<link rel="stylesheet" href="personform/css/jquery.timepicker.css">
+<script src="main/plugin-frameworks/jquery-3.2.1.min.js"></script>
 
 
-<link rel="stylesheet" href="personform/css/flaticon.css">
-<link rel="stylesheet" href="personform/css/icomoon.css">
-<link rel="stylesheet" href="personform/css/style.css">
-
-
-<!-- Font -->
-<link href="https://fonts.googleapis.com/css?family=Poppins:400,700"
-	rel="stylesheet">
-<link rel="stylesheet"
-	href="https://www.w3schools.com/lib/w3-theme-black.css">
 <!-- Stylesheets -->
 <link href="main/plugin-frameworks/bootstrap.min.css" rel="stylesheet">
 <link href="main/fonts/ionicons.css" rel="stylesheet">
 <link href="main/common/styles.css" rel="stylesheet">
-<link href="recruit/recruit.css" rel="stylesheet">
-<link rel="stylesheet" href="recruit/resum.css">
+<link href="main/common/main_nav.css" rel="stylesheet">
+
+<!--===============================================================================================-->
+<style type="text/css">
+.arrow {
+	border: solid black;
+	border-width: 0px 5px 5px 0;
+	display: inline-block;
+	padding: 7px;
+}
+
+.right {
+	transform: rotate(-45deg);
+	-webkit-transform: rotate(-45deg);
+}
+
+.t1 {
+	background-color: #2e2e2e;
+	color: white;
+	font-weight: bolder;
+	text-align: center;
+}
+.t2{
+	background-color: white;
+	text-align: center;
+}
+
+table {
+	border: 1px solid #8c8c8c;
+}
 
 
+</style>
 </head>
 
 
 
-<body>
+<body style="background-color: #FDF5E6;">
 
 	<jsp:include page="/WEB-INF/view/common/main_nav.jsp"></jsp:include>
 
 
 
-	<div class="ffrom">
+	<div class="container"
+	style="margin-top: 200px; margin-bottom: 200px;">
 		<div class="main" id="main">
-
 			<span style="color: black; font-size: 25px; margin-bottom: 10px;">인력정보&nbsp;&nbsp;<i
-				class="arrow right"></i><strong>&nbsp;&nbsp;인력 정보</strong></span>
-
+				class="arrow right"></i></span> <span
+				style="color: black; font-size: 25px; margin-bottom: 10px;">&nbsp;&nbsp;<strong>
+					인력 정보</strong></span>
 		</div>
 
-		<table class="tab" id="tab" style="border-radius: 5px;">
-			<!--       <tr style="border: 0;">
-            <td colspan="5">
-               <div class="main" id="main">
-
-                  <span style="color: black; font-size: 25px; margin-bottom: 10px;">채용정보&nbsp;&nbsp;<i
-                     class="arrow right"></i><strong>&nbsp;&nbsp;채용 정보</strong></span>
-
-               </div>
-            </td>
-
-         </tr> -->
+		<table class="table">
 
 			<tr>
 				<td class="t1">이름</td>
@@ -106,71 +87,30 @@
 			<tr>
 				<td class="t1">가능 작물</td>
 				<td class="t2">${dto.js_crop }</td>
-				<%--    <td class="t1">경력</td>
-            <td class="t2">${dto.js_career}</td> --%>
-
-				<%-- </tr>
-
-         <tr>
-            <td class="t1">성별</td>
-            <td class="t2">${dto.j_gender}</td>
-            <td class="t1">구인연령</td>
-            <td class="t2">${dto.j_age}</td>
-
-         </tr>
-
-         <tr>
-            <td class="t1">모집 업종</td>
-            <td class="t2" colspan="4">${dto.j_type}</td>
-
-         </tr>
-
-         <tr>
-            <td class="t1">작업 기간</td>
-            <td class="t2" colspan="4">${dto.j_term}</td>
-
-
-         </tr>
-
-         <tr>
-            <td class="t1">지원 정보</td>
-            <td class="t2" colspan="4">${dto.j_info}</td>
-
-
-         </tr>
-
-         <tr>
-
-            <td class="t1">작업지 주소</td>
-            <td class="t2" colspan="4">${dto.j_address}</td>
-
-
-         </tr> --%>
+				<td class="t2"></td>
+				<td class="t2"></td>
+			</tr>
 			<tr>
-				<td colspan="5">
-					<div class="detail">
-						<p class="datail_title" style="border-bottom: 1px solid #E6E6E6">경력사항</p>
-						<c:forEach var="car" items="${car}">
+				<td class="t1" colspan="5">경력사항</td>
+			</tr>
+			<tr>
+				<td class="t2" colspan="5"><c:forEach var="car" items="${car}">
 							<div class="career" style="border-bottom: 1px solid #E6E6E6;">
-							<p>&nbsp</p>
 							<p>회사명 : ${car.career}</p>
 							<p>입사일 : ${car.startdate}</p>
 							<p>퇴사일 : ${car.enddate}</p>
-							<p>&nbsp</p>
 							</div>							
 						</c:forEach>
-					</div>
+						</td>
 			</tr>
 
 			<tr>
-				<td colspan="5">
-					<div class="detail">
-
-						<p class="datail_title">상세소개</p>
-						<p>${dto.js_intro}</p>
-					</div>
-
-				</td>
+				<td class="t1" colspan="5">상세소개</td>
+			</tr>
+			
+			<tr>
+				<td class="t2" colspan="5">${dto.js_intro}</td>
+			</tr>
 		</table>
 
 
@@ -180,17 +120,22 @@
       <p class="memo_title">우대 사항</p>
       ${dto.j_Preferential}
    </div> --%>
-
-
-	</div>
-	<div class="btn" style="margin-left: 750px;">
-
-		<a href="personsearch.do"><input type="button" value="목록가기" class="btn btn-black py-3 px-5" /></a>
+	<div class="btn" align="right">
+		<a href="personsearch.do"><input type="button" value="목록가기" class="btn btn-success" /></a>
 	</div>
 	<form name="frm" id="frm" method="get">
 		<input type="hidden" name="jobsearchcode" value="${dto.jobsearchcode}" />
 		<input type="hidden" name="currentPage" id="currentPage"
 			value="${currentPage}" /> 
 	</form>
+</div>
+<!-- Footer -->
+	<jsp:include page="/WEB-INF/view/common/footer.jsp"></jsp:include>
+	<!-- SCIPTS -->
+	<script src="main/plugin-frameworks/bootstrap.min.js"></script>
+	<script src="main/plugin-frameworks/swiper.js"></script>
+	<script src="main/common/scripts.js"></script>
+	<!----//End-footer--->
+	<!---//End-wrap---->
 </body>
 </html>

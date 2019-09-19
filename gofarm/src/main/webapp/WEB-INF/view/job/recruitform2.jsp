@@ -6,54 +6,16 @@
 <meta charset="UTF-8">
 <title>이력서 작성</title>
 
-<script
-   src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<link rel="stylesheet" type="text/css" href="../css/index_style.css">
-<link
-   href="https://fonts.googleapis.com/css?family=Do+Hyeon&display=swap"
-   rel="stylesheet">
-<link
-   href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap"
-   rel="stylesheet">
-<link
-   href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i&display=swap"
-   rel="stylesheet">
-<link
-   href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700&display=swap"
-   rel="stylesheet">
+<script src="main/plugin-frameworks/jquery-3.2.1.min.js"></script>
 
-<link rel="stylesheet"
-   href="personform/css/open-iconic-bootstrap.min.css">
-<link rel="stylesheet" href="personform/css/animate.css">
-
-<link rel="stylesheet" href="personform/css/owl.carousel.min.css">
-<link rel="stylesheet" href="personform/css/owl.theme.default.min.css">
-<link rel="stylesheet" href="personform/css/magnific-popup.css">
-
-<link rel="stylesheet" href="personform/css/aos.css">
-
-<link rel="stylesheet" href="personform/css/ionicons.min.css">
-
-<link rel="stylesheet" href="personform/css/bootstrap-datepicker.css">
-<link rel="stylesheet" href="personform/css/jquery.timepicker.css">
-
-
-<link rel="stylesheet" href="personform/css/flaticon.css">
-<link rel="stylesheet" href="personform/css/icomoon.css">
 <link rel="stylesheet" href="personform/css/style.css">
 
-
-<!-- Font -->
-<link href="https://fonts.googleapis.com/css?family=Poppins:400,700"
-   rel="stylesheet">
-
 <!-- Stylesheets -->
+<link href="main/plugin-frameworks/bootstrap.min.css" rel="stylesheet">
+<link href="main/fonts/ionicons.css" rel="stylesheet">
+<link href="main/common/styles.css" rel="stylesheet">
+<link href="main/common/main_nav.css" rel="stylesheet">
 
-<link href="personform/plugin-frameworks/bootstrap.min.css"
-   rel="stylesheet">
-<link href="personform/plugin-frameworks/swiper.css" rel="stylesheet">
-<link href="personform/fonts/ionicons.css" rel="stylesheet">
-<link href="personform/common/styles.css" rel="stylesheet">
 <style type="text/css">
 div.container {
    margin-top: 50px;
@@ -232,6 +194,10 @@ $(document).ready(function() {
          </form>
       </div>
    </section>
-   <jsp:include page="/WEB-INF/view/common/footer.jsp"></jsp:include>
+   <!-- Footer -->
+	<jsp:include page="/WEB-INF/view/common/footer.jsp"></jsp:include>
+	<script src="main/plugin-frameworks/bootstrap.min.js"></script>
+	<script src="main/plugin-frameworks/swiper.js"></script>
+	<script src="main/common/scripts.js"></script>
 </body>
 </html>

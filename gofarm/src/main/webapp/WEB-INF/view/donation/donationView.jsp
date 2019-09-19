@@ -49,6 +49,8 @@
 <link href="product/p_plugin-frameworks/swiper.css" rel="stylesheet">
 <link href="product/p_fonts/ionicons\css\ionicons.css" rel="stylesheet">
 <link href="product/common/styles.css" rel="stylesheet">
+
+<script src="main/plugin-frameworks/jquery-3.2.1.min.js"></script>
 <style type="text/css">
 .ftco-section {
 	margin-top: 100px;
@@ -382,6 +384,9 @@ display: none;
 	<!-- footer -->
 	<jsp:include page="/WEB-INF/view/common/footer.jsp"></jsp:include>
 	<!-- footer -->
+	<script src="main/plugin-frameworks/bootstrap.min.js"></script>
+	<script src="main/plugin-frameworks/swiper.js"></script>
+	<script src="main/common/scripts.js"></script>
 </body>
 <script src="product/p_js/jquery.min.js"></script>
 <script src="product/p_js/jquery-migrate-3.0.1.min.js"></script>

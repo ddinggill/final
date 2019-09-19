@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.mycompany.gofarm.chat.dto.ChatDTO;
 import com.mycompany.gofarm.chat.dto.ChatRoomDTO;
 
 @Repository
@@ -27,6 +28,16 @@ public class ChatDaoImp implements ChatDAO{
 	@Override
 	public ChatRoomDTO getroominfo(int chatcode) {
 		return sqlSession.selectOne("chat.roominfo", chatcode);
+	}
+
+	@Override
+	public void insertmsg(ChatDTO dto) {
+		sqlSession.insert("chat.insertmsg",dto);
+	}
+
+	@Override
+	public List<ChatDTO> getdbchat(int chatcode) {
+		return sqlSession.selectList("chat.dbchat", chatcode);
 	}
 
 }

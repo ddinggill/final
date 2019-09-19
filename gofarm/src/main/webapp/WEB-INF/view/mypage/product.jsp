@@ -68,7 +68,6 @@
 						<tr>
 							<td>${status.count}</td>
 							<td><a href="productView.do?currentPage=1&prod_code=${dto.prod_code}">${dto.pd_name}</a></td>
-							<td>${dto.pd_name}</td>
 							<td>${dto.de_cnt}</td>
 							<td>${dto.name}</td>
 							<td>${dto.user_home}</td>

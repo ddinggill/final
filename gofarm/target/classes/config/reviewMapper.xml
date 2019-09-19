@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper    
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"    
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="review">
+ 	<!-- 리뷰글을 저장  -->
+ 	<insert id="reviewIns" parameterType="com.mycompany.gofarm.review.dto.ReviewDTO">
+ 		insert into review values(REVIEW_SEQ.nextval , #{prod_code},#{re_user} , #{re_star},#{re_title},
+ 		#{content}, null)
+ 	</insert>
+ 	<!--  업데이트를 위한 데이터를 불러옴 -->
+ 	<select id="reviewUpdForm" parameterType="int" resultType="com.mycompany.gofarm.review.dto.ReviewDTO">
+ 		select * from review where re_code = #{re_code}
+ 	</select>
+ 	
+ 	<!-- 리뷰 수정글 업데이트 -->
+ 	<update id="reviewUpdPro" parameterType="com.mycompany.gofarm.review.dto.ReviewDTO">
+ 		update review set re_star = #{re_star} , re_title = #{re_title} , content = #{content}
+ 		where re_code = #{re_code} 
+ 	</update>
+ 	
+ 	<!-- 리뷰글 삭제 -->
+ 	<delete id="reviewDel" parameterType="int">
+ 		delete from review where re_code = #{re_code}
+ 	</delete>
+</mapper>

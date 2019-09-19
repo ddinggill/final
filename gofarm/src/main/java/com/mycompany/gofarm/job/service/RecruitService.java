@@ -48,4 +48,6 @@ public interface RecruitService {
 	public UserDTO getuserInfoProcess(int usercode);
 
 	public List<CareerDTO> careerlist(int jobsearchcode);
+
+	public int same_chkProcess(JobCheckDTO jdto);
 }

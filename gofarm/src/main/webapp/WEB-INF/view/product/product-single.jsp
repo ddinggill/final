@@ -49,6 +49,8 @@
 <link href="product/p_plugin-frameworks/swiper.css" rel="stylesheet">
 <link href="product/p_fonts/ionicons\css\ionicons.css" rel="stylesheet">
 <link href="product/common/styles.css" rel="stylesheet">
+
+<script src="main/plugin-frameworks/jquery-3.2.1.min.js"></script>
 <style type="text/css">
 .ftco-section {
 	margin-top: 100px;
@@ -205,12 +207,17 @@ display: none;
 			$('#reviewbtn').css('display' , "none");
 			$('#detailbtn').css('display' , "block");
 		});		
-	
-			
-			
 		
+		
+		$("#reviewDelBtn").click(function(){
+			alert("삭제되었습니다. 마이페이지에서 확인하세요.");
+		});
 		
 	});
+	
+	function pop(){
+		alert("삭제되었습니다. 마이페이지에서 확인하세요.");
+	};
 </script>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -348,8 +355,24 @@ display: none;
     				    <th scope="row">${review.re_title}</th>
     				    <td>${review.content}</td>
     				    <td>&starf; ${review.re_star}</td>
-    				    <td><a href=""><input type="button" value="수정"></a></td> 
-    				    <td><a href=""><input type="button" value="삭제"></a></td> 
+    				    <c:choose>
+    				    	<c:when test="${review.re_user eq sessionScope.loginOk.usercode}">
+    				    	<c:url var="reviewUpd" value="reviewUpdate.do">
+								<c:param name="re_code" value="${review.re_code}" />
+							</c:url>
+    				    	<c:url var="reviewDel" value="reviewDelete.do">
+								<c:param name="re_code" value="${review.re_code}" />
+							</c:url>
+    				    	
+    				    	
+    				    	<td><a href="${reviewUpd}" ><input type="button" value="수정"></a></td> 
+    				  		  <td><a href="${reviewDel}" onclick="pop()"><input type="button" value="삭제" id="reviewDelBtn"></a></td> 
+    				    	</c:when>
+    				    	<c:otherwise>
+    				    		<td></td> 
+    				   			 <td></td> 
+    				    	</c:otherwise>
+    				    </c:choose>
   					  </tr>
 				</c:forEach>
   			  </tbody>
@@ -379,4 +402,9 @@ display: none;
 	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script> -->
 <!-- <script src="product/js/google-map.js"></script> -->
 <script src="product/p_js/main.js"></script>
+
+<script src="main/plugin-frameworks/bootstrap.min.js"></script>
+<script src="main/plugin-frameworks/swiper.js"></script>
+<script src="main/common/scripts.js"></script>
+
 </html>

@@ -229,5 +229,9 @@ $(document).ready(function(){
 	</div>
 
 	<jsp:include page="/WEB-INF/view/common/footer.jsp" />
+	
+	<script src="main/plugin-frameworks/bootstrap.min.js"></script>
+	<script src="main/plugin-frameworks/swiper.js"></script>
+	<script src="main/common/scripts.js"></script>
 </body>
 </html>

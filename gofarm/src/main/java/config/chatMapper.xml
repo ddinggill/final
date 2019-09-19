@@ -16,4 +16,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="roominfo" parameterType="int" resultType="com.mycompany.gofarm.chat.dto.ChatRoomDTO">
 		select * from chat where chatcode=#{chatcode}
 	</select>
+	
+	<insert id="insertmsg" parameterType="com.mycompany.gofarm.chat.dto.ChatDTO">
+		insert into chat_cont
+		values(to_date(#{ct_time},'yyyy-mm-dd hh24:mi:ss'),#{chatcode}, #{ct_nickname},#{ct_content})
+	</insert>
+	
+	<select id="dbchat" parameterType="int" resultType="com.mycompany.gofarm.chat.dto.ChatDTO">
+		select * from chat_cont where chatcode=#{chatcode}
+	</select>
 </mapper>

@@ -126,4 +126,9 @@ public class RecruitServiceImp implements RecruitService {
 		return recruitDAO.careerlist(jobsearchcode);
 	}
 
+	@Override
+	public int same_chkProcess(JobCheckDTO jdto) {
+		return recruitDAO.samechk(jdto);
+	}
+
 }

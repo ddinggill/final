@@ -81,17 +81,12 @@
 }
 
 </style>
-
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-	
+<script src="main/plugin-frameworks/jquery-3.2.1.min.js"></script>
 </head>
 <body class="goto-here">
 	<!-- nav -->
 	<jsp:include page="/WEB-INF/view/common/main_nav.jsp"></jsp:include>
 	<!-- END nav -->
-
-	
 	
 	<section class="ftco-section">
 	
@@ -212,14 +207,8 @@
 	<script src="product/p_js/main.js"></script>
 	
 	<!-- SCIPTS -->
-
-	<script src="main/plugin-frameworks/jquery-3.2.1.min.js"></script>
-
 	<script src="main/plugin-frameworks/bootstrap.min.js"></script>
-
 	<script src="main/plugin-frameworks/swiper.js"></script>
-
-
 	<script src="main/common/scripts.js"></script>
 	
 </body>

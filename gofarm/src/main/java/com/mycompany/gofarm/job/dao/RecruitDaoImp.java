@@ -127,4 +127,9 @@ public class RecruitDaoImp implements RecruitDAO {
 		return sqlSession.selectList("recruit.careerlist", jobsearchcode);
 	}
 
+	@Override
+	public int samechk(JobCheckDTO jdto) {
+		return sqlSession.selectOne("recruit.samechk", jdto);
+	}
+
 }

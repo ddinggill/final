@@ -40,6 +40,8 @@
 				<value>classpath:config/mypageMapper.xml</value>
 				<value>classpath:config/auctionMapper.xml</value>
 				<value>classpath:config/donationMapper.xml</value>
+				<value>classpath:config/reviewMapper.xml</value>
+				<value>classpath:config/boardMapper.xml</value>
 			</list>
 		</property>
 	</bean>
