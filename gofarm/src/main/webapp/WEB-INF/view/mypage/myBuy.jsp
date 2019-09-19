@@ -12,9 +12,9 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>마이페이지 - 경매</title>
+  <title>마이페이지 - 구매</title>
 
-  <!-- Custom fonts for this template-->
+ <!-- Custom fonts for this template-->
   <link href="mypage/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 
   <!-- Page level plugin CSS-->
@@ -28,16 +28,15 @@
 <body id="page-top">
 	<!-- Navbar -->
 	<jsp:include page="/WEB-INF/view/mypage/common/mypage_nav.jsp"></jsp:include>
-
 	<div id="wrapper">
 		<!-- Sidebar -->
 		<jsp:include page="/WEB-INF/view/mypage/common/mypage_sidebar.jsp"></jsp:include>
 		<div id="content-wrapper">
 			<div class="container-fluid">
-	<!-- DataTables Example -->
+        <!-- DataTables Example -->
         <div class="card mb-3">
           <div class="card-header">
-            <i class="fas fa-table"></i> 내 경매 목록
+            <i class="fas fa-table"></i> 내 구매 목록
           </div>
           <div class="card-body">
             <div class="table-responsive">
@@ -46,40 +45,34 @@
                   <tr>
                   	<th>번호</th>
                     <th>상품명</th>
-                    <th>현재가</th>
-                    <th>종료시간</th>
-                    <th>경매상태</th>
-                    <th>낙찰자 이름</th>
-                    <th>낙찰자 주소</th>
-                    <th>낙찰자 연락처</th>
+                    <th>구매수량</th>
+                    <th>판매자 이름</th>
+                    <th>판매자 연락처</th>
+                    <th>구매일자</th>
+                    <th>리뷰</th>
                   </tr>
                 </thead>
                 <tfoot>
                   <tr>
                  	<th>번호</th>
                     <th>상품명</th>
-                    <th>현재가</th>
-                    <th>종료시간</th>
-                    <th>경매상태</th>
-                    <th>낙찰자 이름</th>
-                    <th>낙찰자 주소</th>
-                    <th>낙찰자 연락처</th>
+                    <th>구매수량</th>
+                    <th>판매자 이름</th>
+                    <th>판매자 연락처</th>
+                    <th>구매일자</th>
+                    <th>리뷰</th>
                   </tr>
                 </tfoot>
                 <tbody id="tbody">
-					<c:forEach items="${myAuction_dto}" var="dto" varStatus="status">
+					<c:forEach items="${myBuy_dto}" var="dto" varStatus="status">
 						<tr>
 							<td>${status.count}</td>
-							<td><a href="auctionView.do?currentPage=1&auctioncode=${dto.auctioncode}">${dto.au_name}</a></td>
-							<td>${dto.ctprice}</td>
-							<td>${dto.fin_time}</td>
-							<td><c:choose>
-									<c:when test="${dto.state == 1}"> 경매 종료 </c:when>
-									<c:when test="${dto.state == 0}"> 경매 진행중 </c:when>
-								</c:choose></td>
+							<td><a href="productView.do?currentPage=1&prod_code=${dto.prod_code}">${dto.pd_name}</a></td>
+							<td>${dto.de_cnt}</td>
 							<td>${dto.name}</td>
-							<td>${dto.user_home}</td>
 							<td>${dto.phone}</td>
+							<td>${dto.de_date}</td>
+							<td><input type="button" value="쓰기" id="reviewBtn" name="reviewBtn" /></td>
 						</tr>
 					</c:forEach>
                 </tbody>
@@ -88,6 +81,10 @@
           </div>
           <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
         </div>
+
+        <p class="small text-center text-muted my-5">
+          <em>More table examples coming soon...</em>
+        </p>
 
 			</div>
 			<!-- /.container-fluid -->

@@ -8,8 +8,19 @@
 <title>sidebar</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+	$('#side_mileage').on('click', function() {
+		if($('#userLv').val()!=2){
+			alert('해당 기능을 사용하기에는 권한이 부족합니다.');
+			return false;
+		}
+	});
+});
+</script>
 </head>
 <body>
+	<input type="hidden" name="userLv" id="userLv" value="${sessionScope.loginOk.userlvl }" />	
 	 <ul class="sidebar navbar-nav">
       <li class="nav-item active">
         <a class="nav-link"  href="intro.do" >
@@ -34,7 +45,8 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="pagesDropdown">
           <a class="dropdown-item" href="product.do" id="product">판매</a>
-          <a class="dropdown-item" href="auction.do" id="auction">경매</a>
+          <a class="dropdown-item" href="myBuy.do" id="myBuy">구매</a>
+          <a class="dropdown-item" href="myAuction.do" id="auction">경매</a>
           <a class="dropdown-item" href="donation.do" id="donation">나눔</a>
         </div>
       </li>
@@ -43,7 +55,7 @@
           <i class="fas fa-fw fa-chart-area"></i>
           <span>Charts</span></a>
       </li>
-			 <li class="nav-item dropdown">
+			<li class="nav-item dropdown" id="side_mileage">
 			 <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					<i class="fas fa-fw fa-table"></i><span>마일리지</span>
 			</a>

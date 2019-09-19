@@ -8,6 +8,7 @@ public class MySellDTO {
 	private String user_home;
 	private String phone;
 	private int de_cnt;
+	private int prod_code;
 	private Date de_date;
 	
 	public MySellDTO() {
@@ -60,6 +61,14 @@ public class MySellDTO {
 
 	public void setDe_date(Date de_date) {
 		this.de_date = de_date;
+	}
+
+	public int getProd_code() {
+		return prod_code;
+	}
+
+	public void setProd_code(int prod_code) {
+		this.prod_code = prod_code;
 	}
 
 }

@@ -1,5 +1,7 @@
 package com.mycompany.gofarm.donation.dto;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class DonationDTO {
 
 	private int docode;
@@ -9,6 +11,7 @@ public class DonationDTO {
 	private String content;
 	private int do_cnt;
 	
+	private MultipartFile upload;
 	
 	public DonationDTO() {
 		// TODO Auto-generated constructor stub
@@ -17,6 +20,16 @@ public class DonationDTO {
 
 	public int getDocode() {
 		return docode;
+	}
+
+
+	public MultipartFile getUpload() {
+		return upload;
+	}
+
+
+	public void setUpload(MultipartFile upload) {
+		this.upload = upload;
 	}
 
 

@@ -99,7 +99,7 @@
 				<div class="col-md-10 mb-5 text-center">
 					<ul class="product-category">
 						<li><a href="productList.do" class="active">판매</a></li>
-						<li><a href="share">나눔</a></li>
+						<li><a href="donationList.do">나눔</a></li>
 						<li><a href="auctionList.do">경매</a></li>
 						<li><a href="productProduce.do">상품등록</a></li>
 					</ul>

@@ -4,11 +4,11 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"    
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="donation">
- 	
+ 	<!-- 나눔 리스트를 불러옴 -->
  	<select id="count" resultType="int">
  		select count(*) from donation
  	</select>
- 	
+ 	<!-- 나눔 리스트를 불러옴 -->
  	<select id="List" resultType="com.mycompany.gofarm.donation.dto.DonationDTO"
  		parameterType="com.mycompany.gofarm.donation.dto.PageDTO">
  	<![CDATA[
@@ -17,6 +17,43 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where b.rm>=#{startRow} and b.rm<=#{endRow} 
  	]]>
  	</select>
- 	
- 	
+ 	<!-- 나눔 상세페이지 정보 -->
+ 	<select id="view" parameterType="int" resultType="com.mycompany.gofarm.donation.dto.DonationDTO">
+ 		select * from donation where docode = #{docode}
+ 	</select>
+ 	<!-- 나눔 신청현황 정보 -->
+ 	<select id="conditionView" parameterType="int" resultType="com.mycompany.gofarm.donation.dto.Do_conditionDTO">
+ 		select * from do_condition where docode = #{docode}
+ 	</select>
+ 	<!-- 나눔글 생성 -->
+ 	<insert id="produce" parameterType="com.mycompany.gofarm.donation.dto.DonationDTO">
+ 		insert into donation values(DONATION_SEQ.nextval , #{usercode} , #{do_file} , #{do_product}
+ 		, #{content} , #{do_cnt})
+ 	</insert>
+ 	<!-- 나눔글 업데이트 -->
+ 	<update id="donaUpd" parameterType="com.mycompany.gofarm.donation.dto.DonationDTO">
+ 		update donation set do_product = #{do_product} , content = #{content} , do_cnt = #{do_cnt} 
+ 		where docode = #{docode}
+ 	</update>
+ 	<!-- 나눔글 삭제 -->
+ 	<delete id="donaDel" parameterType="int">
+ 		delete from  donation where docode = #{docode}
+ 	</delete>
+ 	<!-- 신청하기 클릭시 데이터저장 -->
+ 	<insert id="donationReq" parameterType="com.mycompany.gofarm.donation.dto.Do_conditionDTO">
+ 		insert into do_condition values(#{docode} , #{do_name} , 0 ,#{phoneNumber} , #{username})
+ 	</insert>
+ 	<!-- 작성자가 나눔을 승일 할 시  신청현황의 상태를 변경함 -->
+ 	<update id="stateUpd" parameterType="com.mycompany.gofarm.donation.dto.Do_conditionDTO">
+ 		update do_condition set state = 1 where docode = #{docode} and do_name = #{do_name}
+ 	</update>
+ 	<!-- 나눔 승인시 개수 감소 -->
+ 	<update id="donationCntUpd" parameterType="int">
+ 	 	 update donation set do_cnt = do_cnt-1 where docode = #{docode}
+ 	</update>
+ 	<!-- 나눔 신청인의 정보를 불러옴 -->
+ 	<select id="userInfo" parameterType="int" 
+ 	resultType="com.mycompany.gofarm.user.dto.UserDTO"> 
+ 	 select * from users where usercode = #{do_name}
+ 	</select>
 </mapper>

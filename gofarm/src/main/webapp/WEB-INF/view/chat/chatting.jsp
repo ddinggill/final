@@ -69,8 +69,19 @@
 	function bootsend(){
 		var nickname = "${loginOk.nickname}";
 		var msg = $('.write_msg').val();
+		var d = new Date();
+		var date = d.getFullYear()+'-'+(d.getMonth() + 1)+'-'+d.getDate()+' '+d.getHours()+':'+d.getMinutes()+":"+d.getSeconds();
+		console.log(date);
 		//wsocket.send("msg:" + nickname + ':' + msg +"${chatcode}");
-		wsocket.send(nickname + ':' + msg);
+		var senddate = {
+				type:"chat",
+				ct_nickname:nickname,
+				ct_content:msg,
+				ct_time:date,
+				chatcode:"${chatcode}"
+		}
+		wsocket.send(JSON.stringify(senddate));
+		//wsocket.send(nickname + ':' + msg);
 		$('.write_msg').val('');
 		$('.msg_history').append('<div class="outgoing_msg"><div class="sent_msg"><p>'+msg+'</p><span class="time_date"> 11:01 AM    |    June 9</span> </div></div>');
 		$(".msg_history").scrollTop($(".msg_history")[0].scrollHeight);
@@ -102,11 +113,17 @@
 	}
 	
 	function appendMessage(msg) {
+		var msg = JSON.parse(msg);
+		var ct_time = msg.ct_time;
+		var ct_nickname = msg.ct_nickname;
+		var ct_content = msg.ct_content;
+		var type = msg.type;
 		
 		$('.msg_history').append('<div class="incoming_msg"><img src="https://ptetutorials.com/images/user-profile.png" alt="sunil" width="6%" class="chatimg"> </div>'
-								+'<div class="received_msg"><div class="received_withd_msg"><p>'+msg+'</p>'
-								+'<span class="time_date"> 11:01 AM    |    June 9</span></div></div></div>');
+				+'<div class="received_msg"><div class="received_withd_msg"><p>'+ct_nickname+":"+ct_content+'</p>'
+				+'<span class="time_date">'+ct_time+'</span></div></div></div>');
 		$(".msg_history").scrollTop($(".msg_history")[0].scrollHeight); 
+	
 	}
 	
 	$(document).ready(function() {

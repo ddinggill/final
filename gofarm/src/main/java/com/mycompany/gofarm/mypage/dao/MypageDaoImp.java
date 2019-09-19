@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.mycompany.gofarm.job.dto.JobDTO;
 import com.mycompany.gofarm.job.dto.JobSearchDTO;
 import com.mycompany.gofarm.mypage.dto.MileageDTO;
+import com.mycompany.gofarm.mypage.dto.MyAuctionDTO;
 import com.mycompany.gofarm.mypage.dto.MySellDTO;
 import com.mycompany.gofarm.user.dto.UserDTO;
 
@@ -71,6 +72,16 @@ public class MypageDaoImp implements MypageDAO{
 	@Override
 	public List<MySellDTO> mysellListMethod(int usercode) {
 		return sqlsession.selectList("mypage.mySell_list", usercode);
+	}
+
+	@Override
+	public List<MySellDTO> myBuyListMethod(int usercode) {
+		return sqlsession.selectList("mypage.myBuy_list", usercode);
+	}
+
+	@Override
+	public List<MyAuctionDTO> myAuctionListMethod(int usercode) {
+		return sqlsession.selectList("mypage.myAuction_list", usercode);
 	}
 
 
