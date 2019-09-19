@@ -28,7 +28,7 @@ public class JobController {
 
 	@Autowired
 	private RecruitService recruitService;
-	
+
 	@Autowired
 	private JavaMailSender mailSender;
 
@@ -48,9 +48,9 @@ public class JobController {
 		mav.addObject("aList2", recruitService.jobsearch_listProcess());
 
 		mav.setViewName("job/recruit");
-		
+
 		return mav;
-		//test
+		// test
 	}
 
 	// 채용 정보 구인 리스트 페이지 ////////////////////////////////////////////////////
@@ -58,7 +58,7 @@ public class JobController {
 	public ModelAndView listMethod(PageDTO pv, ModelAndView mav) {
 
 		int totalRecord = recruitService.countProcess();
-		//System.out.println("총 레코드수"+totalRecord);
+		// System.out.println("총 레코드수"+totalRecord);
 		int currentPage = 0;
 		PageDTO pdto = null;
 		if (totalRecord >= 1) {
@@ -67,12 +67,12 @@ public class JobController {
 			} else {
 				currentPage = pv.getCurrentPage();
 			}
-			//System.out.println("currpage: "+currentPage);
+			// System.out.println("currpage: "+currentPage);
 			pdto = new PageDTO(currentPage, totalRecord);
 			mav.addObject("pv", pdto);
 			mav.addObject("aList", recruitService.listProcess(pdto));
 		}
-		//System.out.println("채용글리스트: "+recruitService.listProcess(pdto).size());
+		// System.out.println("채용글리스트: "+recruitService.listProcess(pdto).size());
 		mav.setViewName("job/joblist");
 		System.out.println("채용상세 리스트 성공");
 		return mav;
@@ -96,7 +96,7 @@ public class JobController {
 		int currentPage = 0;
 		PageDTO pdto = null;
 		int totalRecord = recruitService.jobsearch_countProcess();
-		//System.out.println(totalRecord);
+		// System.out.println(totalRecord);
 		if (totalRecord >= 1) {
 			if (pv.getCurrentPage() == 0) {
 				currentPage = 1;
@@ -104,13 +104,13 @@ public class JobController {
 				currentPage = pv.getCurrentPage();
 			}
 			pdto = new PageDTO(currentPage, totalRecord);
-			//System.out.println(pdto.getStartRow());
-			//System.out.println(pdto.getEndRow());
+			// System.out.println(pdto.getStartRow());
+			// System.out.println(pdto.getEndRow());
 
 			mav.addObject("pd", pdto);
 			mav.addObject("pList", recruitService.jobsearch_listProcess(pdto));
 		}
-		//System.out.println("구직글개수"+recruitService.jobsearch_listProcess(pdto).size());
+		// System.out.println("구직글개수"+recruitService.jobsearch_listProcess(pdto).size());
 		mav.setViewName("job/personlist");
 		System.out.println("구직글 리스트 성공");
 		return mav;
@@ -121,26 +121,27 @@ public class JobController {
 			HttpServletRequest req, JobCheckDTO jdto) {
 
 		HttpSession session = req.getSession();
-		if((session.getAttribute("loginOk"))== null) {
+		if ((session.getAttribute("loginOk")) == null) {
 
 			mav.addObject("dto", recruitService.jobsearch_contentProcess(jobsearchcode));
 			mav.addObject("currentPage", currentPage);
+			mav.addObject("car", recruitService.careerlist(jobsearchcode));
 			mav.setViewName("job/person_info");
 
 			return mav;
 
-		} else{
+		} else {
 			jdto.setJk_usercode(((UserDTO) session.getAttribute("loginOk")).getUsercode());
 			jdto.setJobsearchcode(jobsearchcode);
 
-
-			int jcount = recruitService.chk(jdto); //구인글 올린사람 체크
+			int jcount = recruitService.chk(jdto); // 구인글 올린사람 체크
 			int count = recruitService.view_chkProcess(jdto);
 
 			if (count == 0 && jcount == 1) {
 
 				mav.addObject("dto", recruitService.jobsearch_contentProcess(jobsearchcode));
 				mav.addObject("currentPage", currentPage);
+				mav.addObject("car", recruitService.careerlist(jobsearchcode));
 				mav.setViewName("job/person_info");
 
 				recruitService.insert_jobchkProcess(jdto);
@@ -150,25 +151,23 @@ public class JobController {
 
 				mav.addObject("dto", recruitService.jobsearch_contentProcess(jobsearchcode));
 				mav.addObject("currentPage", currentPage);
+				mav.addObject("car", recruitService.careerlist(jobsearchcode));
 				mav.setViewName("job/person_info");
 
 				return mav;
 			}
 		}
 
-
-		//System.out.println("count:" + recruitService.view_chkProcess(jdto));
+		// System.out.println("count:" + recruitService.view_chkProcess(jdto));
 
 	}
 
-	
 	// 채용글 폼 ////////////////////////////////////////////////////
 	@RequestMapping("/personform.do")
 	public String doGet4(HttpServletRequest req, HttpServletResponse res) throws IOException {
 		HttpSession session = req.getSession();
 
-
-		if((session.getAttribute("loginOk"))== null) {
+		if ((session.getAttribute("loginOk")) == null) {
 			res.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = res.getWriter();
 			out.println("<script>alert('로그인 정보를 확인해주세요.'); history.go(-1);</script>");
@@ -176,21 +175,19 @@ public class JobController {
 
 		} else {
 
-			int usercode=((UserDTO)session.getAttribute("loginOk")).getUsercode();
+			int usercode = ((UserDTO) session.getAttribute("loginOk")).getUsercode();
 
-			if(recruitService.jcountProcess(usercode)!=0) {
+			if (recruitService.jcountProcess(usercode) != 0) {
 				res.setContentType("text/html; charset=UTF-8");
 				PrintWriter out = res.getWriter();
 				out.println("<script>alert('이미 작성되었습니다'); history.go(-1);</script>");
-				out.flush();  
+				out.flush();
 			}
 
-
-		}  
+		}
 		return "job/personform";
 	}
 
-	
 	// 채용글 받은거
 	@RequestMapping(value = "/personformOK.do", method = RequestMethod.POST)
 	public String doGet8(JobDTO dto, HttpServletRequest req) {
@@ -200,6 +197,7 @@ public class JobController {
 		recruitService.insert_personProcess(dto);
 		return "redirect:/recruit2.do";
 	}
+
 	////////////////////////////////////////////////////////////////////////////////////////////
 	// 구직 이력서
 	// 폼//////////////////////////////////////////////////////////////////////////////////////////
@@ -207,8 +205,7 @@ public class JobController {
 	public String doGet6(JobSearchDTO dto, HttpServletRequest req, HttpServletResponse res) throws IOException {
 		HttpSession session = req.getSession();
 
-
-		if((session.getAttribute("loginOk"))== null) {
+		if ((session.getAttribute("loginOk")) == null) {
 			res.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = res.getWriter();
 			out.println("<script>alert('로그인 정보를 확인해주세요.'); history.go(-1);</script>");
@@ -216,17 +213,16 @@ public class JobController {
 
 		} else {
 
-			int usercode=((UserDTO)session.getAttribute("loginOk")).getUsercode();
+			int usercode = ((UserDTO) session.getAttribute("loginOk")).getUsercode();
 
-			if(recruitService.jscountProcess(usercode)!=0) {
+			if (recruitService.jscountProcess(usercode) != 0) {
 				res.setContentType("text/html; charset=UTF-8");
 				PrintWriter out = res.getWriter();
 				out.println("<script>alert('이미 작성되었습니다.'); history.go(-1);</script>");
-				out.flush();  	 
-			} 
+				out.flush();
+			}
 
-
-		}  
+		}
 		return "job/recruitform2";
 	}
 
@@ -243,54 +239,50 @@ public class JobController {
 		HttpSession session = req.getSession();
 		session.getAttribute("loginOk");
 		dto.setUsercode(((UserDTO) session.getAttribute("loginOk")).getUsercode());
-		System.out.println("전:" + dto.getJobsearchcode());
 		recruitService.insert_resumeProcess(dto);
-		System.out.println("후:" + dto.getJobsearchcode());
-		System.out.println(dto.getUsercode());
-
-		for (int i = 0; i < dto.getList().size(); i++) {
-			dto.getList().get(i).setJobsearchcode(dto.getJobsearchcode());
-		}
-
-		/*for (CareerDTO cdto : dto.getList()) {
-	         System.out.println(cdto.getJobsearchcode());
-	         System.out.println(cdto.getCareer());
-	         System.out.println(cdto.getStartdate());
-	         System.out.println(cdto.getEnddate());
-	      }*/
-
+		/*
+		 * for (CareerDTO cdto : dto.getList()) {
+		 * System.out.println(cdto.getJobsearchcode());
+		 * System.out.println(cdto.getCareer());
+		 * System.out.println(cdto.getStartdate());
+		 * System.out.println(cdto.getEnddate()); }
+		 */
+		
 		// 경력 저장
-		System.out.println("경력 전:" + dto.getJobsearchcode());
-
-
-		recruitService.insert_careerProcess(dto.getList());
-		System.out.println("경력 후:" + dto.getJobsearchcode());
+		if(dto.getList() != null) {
+			for (int i = 0; i < dto.getList().size(); i++) {
+				dto.getList().get(i).setJobsearchcode(dto.getJobsearchcode());
+			}
+			recruitService.insert_careerProcess(dto.getList());
+		}
+		
 		return "redirect:/recruit2.do";
+
 	}
-	
+
 	@RequestMapping("/jobrequest.do")
 	public String jobsendmail(HttpServletRequest req, int usercode, UserDTO dto) {
-		System.out.println("구직글작성한사람 코드: "+usercode);
+		System.out.println("구직글작성한사람 코드: " + usercode);
 		System.out.println(mailSender);
 		String from = "gofarm16@gmail.com";
 		String subject = "회원님의 구인글에 지원하신분의 정보입니다.";
 		HttpSession session = req.getSession();
 		dto = recruitService.getuserInfoProcess(usercode);
-		
+
 		try {
 			MimeMessage message = mailSender.createMimeMessage();
 			MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");
 			messageHelper.setTo(dto.getEmail());
-			messageHelper.setText("이름: "+((UserDTO)session.getAttribute("loginOk")).getName()+"\n"
-					+"이메일: "+((UserDTO)session.getAttribute("loginOk")).getEmail());
-			
+			messageHelper.setText("이름: " + ((UserDTO) session.getAttribute("loginOk")).getName() + "\n" + "이메일: "
+					+ ((UserDTO) session.getAttribute("loginOk")).getEmail());
+
 			messageHelper.setFrom(from);
 			messageHelper.setSubject(subject);
-			
+
 			mailSender.send(message);
 		} catch (Exception e) {
 			System.out.println(e.toString());
 		}
 		return "redirect:/jobsearch.do";
 	}
-}//end class
+}// end class

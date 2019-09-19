@@ -8,4 +8,5 @@ public interface ChatService {
 
 	public List<ChatRoomDTO> roomlistProcess();
 	public void createroomProcess(ChatRoomDTO dto);
+	public ChatRoomDTO getroominfoProcess(int chatcode);
 }

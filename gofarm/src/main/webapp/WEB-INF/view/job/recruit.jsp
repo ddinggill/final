@@ -22,7 +22,7 @@
 <link href="main/common/main_nav.css" rel="stylesheet">
 <link href="recruit/recruit.css" rel="stylesheet">
 <script
-   src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 <script type="text/javascript">
 $(document).ready(function(){
@@ -38,13 +38,13 @@ $(document).ready(function(){
 
 </script>
 </head>
-<body style="background-color:#A2BBCA;">
+<body style="background-color: #A2BBCA;">
 	<!--common 네비바 -->
 	<!-- ----------------------------------------------------------------------------------- -->
-		<jsp:include page="/WEB-INF/view/common/main_nav.jsp"></jsp:include>
-	 <div style="height: 1000px; margin-top: 300px; ">
+	<jsp:include page="/WEB-INF/view/common/main_nav.jsp"></jsp:include>
+	<div style="height: 1000px; margin-top: 300px;">
 
-<p>${userOK }</p>
+		<p>${userOK }</p>
 		<div class="w3-row-padding"
 			style="margin: 0 350px 0 350px; height: 200px">
 
@@ -54,23 +54,25 @@ $(document).ready(function(){
 					<div class="w3-container">
 						<h3 class="w3-text-indigo getinfo">
 							&nbsp;채용 정보 <a class="w3-button w3-circle w3-large"
-								href="jobsearch.do">목록<p class="fa fa-plus"></p></a>
+								href="jobsearch.do">목록
+								<p class="fa fa-plus"></p>
+							</a>
 						</h3>
 						<hr>
 						<h6 class="font_color">근무자를 찾고 있습니다</h6>
 					</div>
 					<ul class="w3-ul w3-border-top">
-
 						<c:forEach var="dto" items="${aList}" varStatus="status" begin="0"
 							end="4">
-							<li>
+							<li style="display: block;">
 								<p>${dto.j_company}</p>
-								<p>The response to the animations was ridiculous</p>
+								<p>${dto.j_area }&nbsp;>&nbsp;${dto.j_type }</p> <br>
 							</li>
 						</c:forEach>
 					</ul>
-					<div class="w3-container fastbutton" >
-							<a href="personform.do"><span class="re_title">채용정보등록 바로가기</span></a>
+					<div class="w3-container fastbutton">
+						<a href="personform.do"><span class="re_title">채용정보등록
+								바로가기</span></a>
 					</div>
 				</div>
 			</div>
@@ -80,7 +82,9 @@ $(document).ready(function(){
 					<div class="w3-container">
 						<h3 class="w3-text-indigo getinfo">
 							&nbsp;인력 정보 <a class="w3-button w3-circle w3-large "
-								href="personsearch.do">목록<p class="fa fa-plus"></p></a>
+								href="personsearch.do">목록
+								<p class="fa fa-plus"></p>
+							</a>
 						</h3>
 						<hr>
 						<h6 class="font_color">일자리를 찾고 있습니다</h6>
@@ -89,14 +93,15 @@ $(document).ready(function(){
 
 						<c:forEach var="dto" items="${aList2}" varStatus="status"
 							begin="0" end="4">
-							<li>
+							<li style="display: block;">
 								<p>${dto.js_name}</p>
-								<p>The response to the animations was ridiculous</p>
+								<p>${dto.js_area }&nbsp;> &nbsp;${dto.js_crop }</p> <br>
 							</li>
 						</c:forEach>
 					</ul>
-					<div class="w3-container fastbutton" >
-						<a href="recruitform.do"><span class="re_title">인력정보등록 바로가기</span></a>
+					<div class="w3-container fastbutton">
+						<a href="recruitform.do"><span class="re_title">인력정보등록
+								바로가기</span></a>
 					</div>
 				</div>
 			</div>
@@ -119,6 +124,6 @@ $(document).ready(function(){
 
 
 	<script src="main/common/scripts.js"></script>
-	
+
 </body>
 </html>

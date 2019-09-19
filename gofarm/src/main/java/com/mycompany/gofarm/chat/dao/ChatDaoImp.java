@@ -24,4 +24,9 @@ public class ChatDaoImp implements ChatDAO{
 		sqlSession.insert("chat.createroom", dto);
 	}
 
+	@Override
+	public ChatRoomDTO getroominfo(int chatcode) {
+		return sqlSession.selectOne("chat.roominfo", chatcode);
+	}
+
 }

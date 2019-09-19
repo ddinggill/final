@@ -8,4 +8,5 @@ public interface ChatDAO {
 
 	public List<ChatRoomDTO> getroomList();
 	public void createRoom(ChatRoomDTO dto);
+	public ChatRoomDTO getroominfo(int chatcode);
 }

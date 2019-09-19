@@ -9,7 +9,7 @@ public class JobSearchDTO {
 	private String js_area;
 	private String js_crop;
 	private String js_time;
-	private String js_salary;
+	private int js_salary;
 	private String js_address;
 	private String js_phone;
 	private String js_intro;
@@ -77,11 +77,11 @@ public class JobSearchDTO {
 		this.js_time = js_time;
 	}
 
-	public String getJs_salary() {
+	public int getJs_salary() {
 		return js_salary;
 	}
 
-	public void setJs_salary(String js_salary) {
+	public void setJs_salary(int js_salary) {
 		this.js_salary = js_salary;
 	}
 

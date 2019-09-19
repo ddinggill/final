@@ -66,7 +66,6 @@
 						<td class="cell">이름&nbsp;</td>
 						<td class="cell">희망 근무 지역 &nbsp;</td>
 						<td class="cell">희망 작물 &nbsp;</td>
-						<td class="cell">경력 &nbsp;</td>
 						<td class="cell">등록일 &nbsp;</td>
 					</tr>
 
@@ -81,7 +80,6 @@
 							<td class="cell"><a href="${path}">${dto.js_name }</a></td>
 							<td class="cell" data-title="Location">${dto.js_area }</td>
 							<td class="cell" data-title="Job Title">${dto.js_crop }</td>
-							<td class="cell" data-title="career">경력유무</td>
 							<td class="cell" data-title="Location">${dto.js_registration}</td>
 						</tr>
 

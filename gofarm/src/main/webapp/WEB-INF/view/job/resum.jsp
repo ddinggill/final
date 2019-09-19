@@ -153,14 +153,7 @@ $(document).ready(function(){
 				<td colspan="5">
 					<div class="detail">
 						<p class="datail_title">상세 내용</p>
-						<p>반응형</p>
-						<p>테스트</p>
-						<p>입니다</p>
-						<p>입니다</p>
-						<p>입니다</p>
-						<p>입니다</p>
-						<p>입니다</p>
-						<p>입니다</p>
+						<p>${dto.content }</p>
 					</div>
 			</tr>
 
@@ -195,7 +188,6 @@ $(document).ready(function(){
 		<input type="hidden" name="currentPage" id="currentPage"
 			value="${currentPage}" /> 
 		<input type="hidden" name="usercode" value="${dto.usercode }">
-		<input type="button" id="list" value="리스트" />
 	</form>
 </body>
 </html>

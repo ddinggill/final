@@ -35,7 +35,7 @@
 	function connect(num) {
 		var chatcode = num;
 		console.log("chatcode: "+chatcode);
-		wsocket = new WebSocket("ws://localhost:8090/gofarm/chat.do?chatcode="+chatcode);
+		wsocket = new WebSocket("ws://192.168.30.69:8090/gofarm/chat.do?chatcode="+chatcode+"&nickname=${loginOk.nickname}");
 		//연결되면 호출되는 함수
 		wsocket.onopen = onOpen;
 		//서버로부터 메시지를 받으면 호출되는 함수 지정
@@ -55,8 +55,10 @@
 		console.log("메시지수신");
 		var data = evt.data;
 		console.log(data);
-		if(data.substring(0,4) == 'msg:'){
-			appendMessage(data.substring(4));
+		if(data.substring(0,5) == 'users'){
+			appenduserlist(data.substring(6));
+		}else{
+			appendMessage(data);
 		}
 	}
 	
@@ -67,17 +69,40 @@
 	function bootsend(){
 		var nickname = "${loginOk.nickname}";
 		var msg = $('.write_msg').val();
-		wsocket.send("msg:" + nickname + ':' + msg +"${chatcode}");
+		//wsocket.send("msg:" + nickname + ':' + msg +"${chatcode}");
+		wsocket.send(nickname + ':' + msg);
 		$('.write_msg').val('');
 		$('.msg_history').append('<div class="outgoing_msg"><div class="sent_msg"><p>'+msg+'</p><span class="time_date"> 11:01 AM    |    June 9</span> </div></div>');
 		$(".msg_history").scrollTop($(".msg_history")[0].scrollHeight);
 	}
 		
+	function clearuserlist(){
+		$('.users').remove();
+	}
+	
+	function appenduserlist(userlist){
+		console.log(userlist);
+		var users = userlist.split(',');
+		console.log(users.length);
+		clearuserlist();
+		for(var i=0; i<users.length; i++){
+			if(users[i] =="${loginOk.nickname}"){
+				console.log("내정보다"+users[i]);
+			}
+			else{
+				console.log("users[i]: "+users[i]);
+				$('.inbox_chat').append('<div class="chat_list users"><div class="chat_people"><div class="chat_img"><img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>'
+						+'<div class="chat_ib">'
+						+'<h5>'+users[i]+'<span class="chat_date">Dec 25</span></h5>'
+						+'<p>Test, which is a new approach to have all solutions astrology under one roof.</p>'
+						+'</div></div></div>');	
+			}
+		}
+		
+	}
+	
 	function appendMessage(msg) {
-		$('#chatMessageArea').append(msg + '<br>');
-		var chatAreaHeight = $('#chatArea').height();
-		var maxScroll = $('#chatMessageArea').height() - chatAreaHeight;
-		$('#chatArea').scrollTop(maxScroll);
+		
 		$('.msg_history').append('<div class="incoming_msg"><img src="https://ptetutorials.com/images/user-profile.png" alt="sunil" width="6%" class="chatimg"> </div>'
 								+'<div class="received_msg"><div class="received_withd_msg"><p>'+msg+'</p>'
 								+'<span class="time_date"> 11:01 AM    |    June 9</span></div></div></div>');
@@ -87,6 +112,16 @@
 	$(document).ready(function() {
 		
 		connect("${chatcode}");
+		
+		$('.write_msg').keypress(function(event) {
+			var keycode = (event.keyCode ? event.keyCode : event.which);
+			if(keycode == '13') {
+				bootsend();
+			}
+			event.stopPropagation();
+		});
+		
+		
 		$(".msg_send_btn").click(function(){
 			bootsend();
 		});
@@ -110,7 +145,7 @@ body{
 <jsp:include page="/WEB-INF/view/common/main_nav.jsp"></jsp:include>
 <br><br><br><br><br><br><br>
 <div class="container">
-<h3 class=" text-center">Messaging</h3>
+<h3 class=" text-center">${roominfo.ct_title }</h3>
 <div class="messaging">
       <div class="inbox_msg">
         <div class="inbox_people">
@@ -137,8 +172,8 @@ body{
                 </div>
               </div>
             </div>
-            <c:forEach items="${userlist }" var="userdto">
-            <div class="chat_list">
+            
+            <%-- <div class="chat_list">
               <div class="chat_people">
                 <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
                 <div class="chat_ib">
@@ -147,8 +182,7 @@ body{
                     astrology under one roof.</p>
                 </div>
               </div>
-            </div>
-            </c:forEach>
+            </div> --%>
             
           </div>
         </div>
