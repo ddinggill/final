@@ -33,7 +33,6 @@ public class ChatWebSocketHandler extends TextWebSocketHandler {
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
 		System.out.println(session.getId() + " 연결됨");
-		//users.put(session.getId(), session);
 		LOG.info(session.getId()+"로그인 완료");
 		super.afterConnectionEstablished(session);
 		Map<String, Object> map = session.getAttributes();
