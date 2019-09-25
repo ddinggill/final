@@ -8,6 +8,7 @@
 
 <script src="main/plugin-frameworks/jquery-3.2.1.min.js"></script>
 
+
 <!-- Stylesheets -->
 <link href="main/plugin-frameworks/bootstrap.min.css" rel="stylesheet">
 <link href="main/fonts/ionicons.css" rel="stylesheet">
@@ -16,7 +17,8 @@
 
 <!--===============================================================================================-->
 <title>구인 리스트</title>
-
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <style type="text/css">
 .arrow {
 	border: solid black;

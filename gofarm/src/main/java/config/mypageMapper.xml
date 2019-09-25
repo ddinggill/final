@@ -118,6 +118,38 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	]]>
  	</select>
  	
+ 	<select id="myIndexCnt" resultType="com.mycompany.gofarm.mypage.dto.myIndexCntDTO"
+ 	 parameterType="int">
+ 	<![CDATA[
+ 		select (select mileage from USER_DETAIL where usercode = #{usercode}) mileage
+				,(select count(jk_usercode) from jobcheck where jobsearchcode = (select jobsearchcode from jobsearch where usercode = #{usercode})) jk_cnt
+				,(select count(de_code) from deal where prod_code in(select prod_code from product where usercode = #{usercode})) prod_cnt
+				,(select count(auctioncode) from auction where usercode = #{usercode} and state =0) auction_cnt
+		from dual
+	]]>
+ 	</select>
+ 	
+ 	<select id="myDailyMileage" resultType="com.mycompany.gofarm.mypage.dto.MileageDTO"
+ 	 parameterType="int">
+ 	<![CDATA[
+ 		select m_total, m_day 
+ 		from mileage 
+ 		where m_day in (
+ 			SELECT max(m_day)
+ 			FROM mileage
+ 			where usercode = #{usercode} and m_day BETWEEN sysdate-30 and sysdate
+ 			GROUP BY rollup (to_char(m_day, 'YYYY-MM-DD'))
+ 		)
+	]]>
+ 	</select>
+ 	
+ 	<select id="myBoardList" resultType="com.mycompany.gofarm.board.dto.BoardDTO"
+ 	 parameterType="int">
+ 	<![CDATA[
+ 		select boardcode, b_title, b_day,B_CATEGORY from board where usercode = #{usercode} order by b_day desc , boardcode desc
+	]]>
+ 	</select>
+ 	
  	
  	
 </mapper>

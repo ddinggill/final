@@ -60,7 +60,8 @@ b.js_area, b.js_crop, b.js_time, b.js_salary, b.js_address, b.js_phone, b.js_int
 	<select id="resum" parameterType="int"
 		resultType="com.mycompany.gofarm.job.dto.JobDTO">
 		select JOB , USERCODE,J_COMPANY,
-		to_char(J_REGISTRATION,'yyyy.mm.dd')as J_REGISTRATION,to_char(J_DEADLINE,'yyyy.mm.dd')as J_DEADLINE ,J_AREA
+		to_char(J_REGISTRATION,'yyyy.mm.dd')as
+		J_REGISTRATION,to_char(J_DEADLINE,'yyyy.mm.dd')as J_DEADLINE ,J_AREA
 		,J_RECRUITMENT,J_CAREER,J_GENDER,J_AGE,J_TYPE,J_TERM,J_INFO,J_ADDRESS
 		,J_PREFERENTIAL,CONTENT,J_CONTACT from job where job=#{job}
 
@@ -69,8 +70,11 @@ b.js_area, b.js_crop, b.js_time, b.js_salary, b.js_address, b.js_phone, b.js_int
 	<!-- 구인 상세 뷰 -->
 	<select id="personlist" parameterType="int"
 		resultType="com.mycompany.gofarm.job.dto.JobSearchDTO">
-		select jobsearchcode, usercode, js_name, to_char(js_registration,'yyyy.mm.dd')as js_registration,
-		js_area, js_crop, js_time, js_salary, js_address, js_phone, js_intro, js_gender, js_age 
+		select jobsearchcode, usercode, js_name,
+		to_char(js_registration,'yyyy.mm.dd')as js_registration,
+		js_area,
+		js_crop, js_time, js_salary, js_address, js_phone, js_intro,
+		js_gender, js_age
 		from jobsearch where
 		jobsearchcode=#{jobsearchcode}
 
@@ -80,11 +84,11 @@ b.js_area, b.js_crop, b.js_time, b.js_salary, b.js_address, b.js_phone, b.js_int
 	<select id="jusercodecount" parameterType="int" resultType="int">
 		select count(*) from job where usercode=#{usercode}
 	</select>
-	
+
 	<select id="jsusercodecount" resultType="int" parameterType="int">
 		select count(*) from jobsearch where usercode=#{usercode}
 	</select>
-	
+
 	<!-- 이력서 -->
 	<insert id="resume" parameterType="com.mycompany.gofarm.job.dto.JobSearchDTO">
 		insert into jobsearch
@@ -101,13 +105,14 @@ b.js_area, b.js_crop, b.js_time, b.js_salary, b.js_address, b.js_phone, b.js_int
 
 		<foreach collection="list" item="dto" open="insert all"
 			close="select * from dual" separator=" ">
-			into career(jobsearchcode , career, startdate, enddate)
+			into career(jobsearchcode ,
+			career, startdate, enddate)
 			values(#{dto.jobsearchcode},#{dto.career},#{dto.startdate},#{dto.enddate})
 		</foreach>
 
 
 	</insert>
-	
+
 	<!-- 채용정보 -->
 	<insert id="person" parameterType="com.mycompany.gofarm.job.dto.JobDTO">
 		insert into job values
@@ -122,24 +127,30 @@ b.js_area, b.js_crop, b.js_time, b.js_salary, b.js_address, b.js_phone, b.js_int
 		(#{jobsearchcode},#{jk_usercode})
 	</insert>
 
-	   <!-- 유저가 한번만 봤을때 count 해주는거 확인 -->
-   <select id="view_chk" resultType="int" parameterType="com.mycompany.gofarm.job.dto.JobCheckDTO">
-      select count(*)
-      from jobcheck
-      where jk_usercode=#{jk_usercode} and jobsearchcode=#{jobsearchcode}
-   </select>
-   
-   <!-- 유저가 구인글 올렸는지 확인 -->
-   <select id="chk" resultType="int" parameterType="com.mycompany.gofarm.job.dto.JobCheckDTO">
-   	select count(*)
-   	from job
-   	where usercode=#{jk_usercode}
-   </select>
-   
-   <!-- 자기글인지 확인 -->
-   <select id="samechk" resultType="int" parameterType="com.mycompany.gofarm.job.dto.JobCheckDTO">
-   select count(*) from jobsearch where usercode=#{jk_usercode} and jobsearchcode=#{jobsearchcode}
-   </select>
+	<!-- 유저가 한번만 봤을때 count 해주는거 확인 -->
+	<select id="view_chk" resultType="int"
+		parameterType="com.mycompany.gofarm.job.dto.JobCheckDTO">
+		select count(*)
+		from jobcheck
+		where
+		jk_usercode=#{jk_usercode} and jobsearchcode=#{jobsearchcode}
+	</select>
+
+	<!-- 유저가 구인글 올렸는지 확인 -->
+	<select id="chk" resultType="int"
+		parameterType="com.mycompany.gofarm.job.dto.JobCheckDTO">
+		select count(*)
+		from job
+		where usercode=#{jk_usercode}
+	</select>
+
+	<!-- 자기글인지 확인 -->
+	<select id="samechk" resultType="int"
+		parameterType="com.mycompany.gofarm.job.dto.JobCheckDTO">
+		select count(*) from jobsearch where
+		usercode=#{jk_usercode} and
+		jobsearchcode=#{jobsearchcode}
+	</select>
 
 	<!-- 구인글 쓴 유저정보 얻어오기 -->
 	<select id="getinfo" parameterType="int"
@@ -147,9 +158,45 @@ b.js_area, b.js_crop, b.js_time, b.js_salary, b.js_address, b.js_phone, b.js_int
 		select * from users
 		where usercode=#{usercode}
 	</select>
-	
+
 	<!-- 경력가져오기 -->
-	<select id="careerlist" parameterType="int" resultType="com.mycompany.gofarm.job.dto.CareerDTO">
-		select career, to_char(startdate,'yyyy.mm.dd')as startdate, to_char(enddate,'yyyy.mm.dd')as enddate from career where jobsearchcode=#{jobsearchcode}
+	<select id="careerlist" parameterType="int"
+		resultType="com.mycompany.gofarm.job.dto.CareerDTO">
+		select career, to_char(startdate,'yyyy.mm.dd')as startdate,
+		to_char(enddate,'yyyy.mm.dd')as enddate from career where
+		jobsearchcode=#{jobsearchcode}
 	</select>
+
+	<!-- 구인글 수정 -->
+	<select id="jobupdateselect" parameterType="int"
+		resultType="com.mycompany.gofarm.job.dto.JobDTO">
+		select * from job where job=#{job}
+	</select>
+
+	<update id="jobupdate" parameterType="com.mycompany.gofarm.job.dto.JobDTO">
+		update job set
+		j_type=#{j_type},
+		j_deadline=#{j_deadline},j_address=#{j_address},
+		j_area=#{j_area}, j_recruitment=#{j_recruitment},
+		j_gender=#{j_gender},
+		j_age=#{j_age}, j_career=#{j_career},
+		j_preferential=#{j_preferential},
+		j_info=#{j_info},
+		j_contact=#{j_contact},
+		j_term=#{j_term}, content=#{content } where
+		job=#{job}
+	</update>
+
+	<!-- 구인글 삭제 -->
+	<delete id="jobdelete" parameterType="int">
+		delete from job where
+		job=#{job}
+	</delete>
+
+	<!-- 이력서 삭제 -->
+
+	<delete id="jsdelete" parameterType="int">
+		delete from jobsearch where
+		jobsearchcode=#{jobsearchcode}
+	</delete>
 </mapper>

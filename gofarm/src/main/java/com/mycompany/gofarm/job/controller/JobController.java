@@ -59,7 +59,6 @@ public class JobController {
 
 		mav.addObject("aList", recruitService.job_listProcess());
 		mav.addObject("aList2", recruitService.jobsearch_listProcess());
-
 		mav.setViewName("job/recruit");
 
 		return mav;
@@ -312,5 +311,51 @@ public class JobController {
 			System.out.println(e.toString());
 		}
 		return "redirect:/jobsearch.do";
+	}
+
+	// 채용글 수정
+	@RequestMapping(value = "/updateview.do", method = RequestMethod.GET)
+	public ModelAndView updateMethod(int job, int currentPage, ModelAndView mav) {
+		mav.addObject("dto", recruitService.jobupdateSelectProcess(job));
+		mav.addObject("currentPage", currentPage);
+		mav.setViewName("job/updateperson");
+		return mav;
+	}
+
+	// 채용글 수정완료
+	@RequestMapping(value = "/updateOK.do", method = RequestMethod.POST)
+	public ModelAndView updateOK(JobDTO dto, int currentPage, ModelAndView mav) {
+		recruitService.jobupdateProcess(dto);
+		mav.addObject("currentPage", currentPage);
+		mav.setViewName("redirect:/jobsearch.do");
+		return mav;
+	}
+
+	// 채용글 삭제
+	@RequestMapping("/deleteview.do")
+	public ModelAndView deleteMethod(int job, int currentPage, ModelAndView mav) {
+
+		recruitService.jobdeleteProcess(job);
+		PageDTO pv = new PageDTO(currentPage, recruitService.countProcess());
+		if (pv.getTotalPage() <= currentPage)
+			mav.addObject("currentPage", pv.getTotalPage());
+		else
+			mav.addObject("currentPage", currentPage);
+		mav.setViewName("redirect:/jobsearch.do");
+		return mav;
+	}
+
+	// 이력서 삭체
+	@RequestMapping("/deleteviewperson.do")
+	public ModelAndView pdeleteMethod(int jobsearchcode, int currentPage, ModelAndView mav) {
+
+		recruitService.jsdeleteProcess(jobsearchcode);
+		PageDTO pv = new PageDTO(currentPage, recruitService.jobsearch_countProcess());
+		if (pv.getTotalPage() <= currentPage)
+			mav.addObject("currentPage", pv.getTotalPage());
+		else
+			mav.addObject("currentPage", currentPage);
+		mav.setViewName("redirect:/personsearch.do");
+		return mav;
 	}
 }// end class

@@ -5,62 +5,151 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>웹소켓</title>
+<title>오픈채팅</title>
+
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+<link
+	href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap"
+	rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i&display=swap"
+	rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700&display=swap"
+	rel="stylesheet">
+
+<link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
+<link rel="stylesheet" href="css/animate.css">
+
+<link rel="stylesheet" href="css/owl.carousel.min.css">
+<link rel="stylesheet" href="css/owl.theme.default.min.css">
+<link rel="stylesheet" href="css/magnific-popup.css">
+
+<link rel="stylesheet" href="css/aos.css">
+
+<link rel="stylesheet" href="css/ionicons.min.css">
+
+<link rel="stylesheet" href="css/bootstrap-datepicker.css">
+<link rel="stylesheet" href="css/jquery.timepicker.css">
+
+
+<link rel="stylesheet" href="css/flaticon.css">
+<link rel="stylesheet" href="css/icomoon.css">
+<link rel="stylesheet" href="css/style.css">
+
+<!-- Font -->
+<link href="https://fonts.googleapis.com/css?family=Poppins:400,700"
+	rel="stylesheet">
 
 <!-- Stylesheets -->
-<link href="main/plugin-frameworks/bootstrap.min.css" rel="stylesheet">
-<link href="main/plugin-frameworks/swiper.css" rel="stylesheet">
-<link href="main/fonts/ionicons.css" rel="stylesheet">
-<link href="main/common/styles.css" rel="stylesheet">
-<link href="main/common/main_content.css" rel="stylesheet">
-<link href="chat/css/login.css" rel="stylesheet">
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-	
+
+<link href="product/p_plugin-frameworks/bootstrap.min.css" rel="stylesheet">
+<link href="product/p_plugin-frameworks/swiper.css" rel="stylesheet">
+<link href="product\p_fonts\ionicons\css\ionicons.css" rel="stylesheet">
+<link href="product/common/styles.css" rel="stylesheet">
+
 <style type="text/css">
-body{
-	background-color : #D8D8D8;
+.ftco-section {
+	margin-top: 100px;
 }
+
+.bar {
+	float: left;
+	
+}
+.product-category{
+	margin-bottom: 50px;
+}
+
+.chat_title{
+	font-weight: bold;
+}
+
 </style>
 
-<script type="text/javascript">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	
-	$(document).ready(function(){
-		
-		$(".join").click(function(){
-			console.log($(this).parents("tr").children("#chatcode").val());
-			//connect($(this).parents("tr").children("#chatcode").val());
-			window.location.href="chatjoin.do?chatcode="+$(this).parents("tr").children("#chatcode").val();
-		});
-	});
-	
-</script>
 </head>
-<body>
-<%-- <a href="${pageContext.request.contextPath}/chat.do?num=1">1번방 채팅하러가자</a>
-<a href="${pageContext.request.contextPath}/chat.do?num=2">2번방 채팅하러가자</a>
-<a href="${pageContext.request.contextPath}/chat.do?num=3">3번방 채팅하러가자</a> --%>
-<jsp:include page="/WEB-INF/view/common/main_nav.jsp"></jsp:include>
-<br><br><br><br><br><br><br>
-<div class="mb-3">
-	<input type="button" id="croom" onclick="location.href='createroomform.do'" value="채팅방 만들기">
-</div>
-<table>
-	<c:forEach items="${roomlist}" var="dto">
-		<tr>
-			<input type="hidden" value="${dto.chatcode }" id="chatcode">
-			<input type="hidden" value="${dto.usercode }">
-			<input type="hidden" value="${dto.ct_title }">
-			<input type="hidden" value="${dto.ct_limit }">
-			<th>${dto.ct_title}</th>
-			<td><input type="button" value="참가하기" class="join"></td>
-		</tr>
-	</c:forEach>
-</table>
+<body class="goto-here">
 
-<br><br><br><br><br><br><br>
-<!-- footer 시작-->
+<jsp:include page="/WEB-INF/view/common/main_nav.jsp"></jsp:include>
+
+	<section class="ftco-section">
+	
+		  <div class="container">
+			<div class="row justify-content-center">
+				<div class="col-md-10 mb-5 text-center">
+					<ul class="product-category">
+						<li><a href="createroomform.do" class="active">오픈 채팅방 만들기</a></li>
+					</ul>
+				</div>
+			</div> 
+			
+			<!-- 상품 들어가는곳 -->
+			<div class="row">
+			<c:forEach items="${roomlist}" var="dto" varStatus="status">
+			
+				<div class="col-md-6 col-lg-3 ftco-animate">
+				<input type="hidden" value="${dto.chatcode }" id="chatcode">
+				<input type="hidden" value="${dto.usercode }">
+				<input type="hidden" value="${dto.ct_title }">
+				<input type="hidden" value="${dto.ct_limit }">
+				
+				<c:url var="path" value="chatjoin.do">
+						<c:param name="chatcode" value="${dto.chatcode}" />
+				</c:url>
+					<div class="product">
+						<a href="${path}" class="img-prod"><img class="img-fluid"
+							src="chat/images/chatimg.png" alt="Colorlib Template"> 
+						</a>
+						<div class="text py-3 pb-4 px-3 text-center">
+							<p class="price">${dto.ct_title}</p>
+							<div class="d-flex">
+								<div class="pricing">
+									<h3>
+									<label>최대참가인원</label>
+										<span class="price-sale">${dto.ct_limit}</span>
+									</h3>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				</c:forEach>
+				
+			</div>
+			
+		</div>
+		
+	</section>
+
+<!-- footer -->
 	<jsp:include page="/WEB-INF/view/common/footer.jsp"></jsp:include>
-	<!-- footer 끝 -->
+	<!-- footer -->
+
+	<script src="product/p_js/jquery.min.js"></script>
+	<script src="product/p_js/jquery-migrate-3.0.1.min.js"></script>
+	<script src="product/p_js/popper.min.js"></script>
+	<script src="product/p_js/bootstrap.min.js"></script>
+	<script src="product/p_js/jquery.easing.1.3.js"></script>
+	<script src="product/p_js/jquery.waypoints.min.js"></script>
+	<script src="product/p_js/jquery.stellar.min.js"></script>
+	<script src="product/p_js/owl.carousel.min.js"></script>
+	<script src="product/p_js/jquery.magnific-popup.min.js"></script>
+	<script src="product/p_js/aos.js"></script>
+	<script src="product/p_js/jquery.animateNumber.min.js"></script>
+	<script src="product/p_js/bootstrap-datepicker.js"></script>
+	<script src="product/p_js/scrollax.min.js"></script>
+	
+	<script src="product/p_js/main.js"></script>
+	
+	<!-- SCIPTS -->
+	<script src="main/plugin-frameworks/jquery-3.2.1.min.js"></script>
 	<script src="main/plugin-frameworks/bootstrap.min.js"></script>
 	<script src="main/plugin-frameworks/swiper.js"></script>
 	<script src="main/common/scripts.js"></script>

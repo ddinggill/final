@@ -29,6 +29,10 @@ public class BoardServiceImp implements BoardService {
 		return boardDAO.board_list();
 	}
 
+	@Override
+	public int countProcess() {
+		return boardDAO.count();
+	}
 
 	@Override
 	public int boardcount(String go) {
@@ -56,17 +60,51 @@ public class BoardServiceImp implements BoardService {
 	public BoardDTO contentProcess(int boardcode) {
 		return boardDAO.bcontent(boardcode);
 	}
-	
-	//댓글
+
+	// 댓글
 	@Override
 	public List<CommentsDTO> replyListProcess(CommentsDTO cdto) {
 		boardDAO.commentInstMethod(cdto);
 		return boardDAO.commentview(cdto.getBoardcode());
 	}
-	
+
+	@Override
+	public List<CommentsDTO> replyUpProcess(CommentsDTO rdto) {
+		boardDAO.commentUpMethod(rdto);
+		return boardDAO.commentview(rdto.getBoardcode());
+	}
+
 	@Override
 	public List<CommentsDTO> commentList(int boardcode) {
 		return boardDAO.commentview(boardcode);
+	}
+
+	@Override
+	public void replyDelProcess(int commentcode) {
+		boardDAO.commentDelMethod(commentcode);
+
+	}
+
+	@Override
+	public BoardDTO updatenumProcess(int boardcode) {
+		return boardDAO.update_boardNum(boardcode);
+	}
+
+	@Override
+	public void bupdateProcess(BoardDTO dto) {
+		boardDAO.update_board(dto);
+
+	}
+
+	@Override
+	public String fileSelectProcess(int boardcode) {
+		return boardDAO.getFile(boardcode);
+	}
+
+	@Override
+	public void bdeleteProcess(int boardcode) {
+
+		boardDAO.delete_board(boardcode);
 	}
 
 }

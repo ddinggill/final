@@ -206,7 +206,51 @@ $(document).ready(function(){
 		window.location.href="naverlogin.do";
 	});
 	
+	
+	$("[name=userid]").on('change',function(){
+		var regExpId = /([a-z]{1,12})[a-z0-9]{3,12}$/;
+		if(!(regExpId.test($("[name=userid]").val()))){
+			alert("아이디는 4~12자 영문자와 숫자여야 합니다.");
+			return false;
+		};
+		//id정규식 조건 통과하면 서버에 중복된 아이디 있는지 체크요청
+		var userid = $("[name=userid]").val();
+		idchkprocess(userid);
+	});
+	
+	$("[name=passchk]").on("change",function(){
+		console.log("비밀번호 체크");
+		var pw = $("[name=userpw]").val();
+		var pwchk = $("[name=passchk]").val();
+		console.log(pw);
+		console.log(pwchk);
+		if(pw !="" || pwchk !=""){
+			if(pw == pwchk){
+				alert("비밀번호가 일치합니다.");
+			}else{
+				alert("비밀번호를 확인하세요.");
+			}
+		}
+	});
 });
+
+//서버에 중복된 아이디 있는지 요청
+function idchkprocess(userid){
+	
+	$.ajax({
+		type:'POST',
+		dataType:'text',
+		data:'userid='+userid,
+		url:'idchk.do',
+		success: function(res){
+			if(res == "true"){
+				alert("사용가능한 아이디 입니다.");
+			}else{
+				alert("이미 존재하는 아이디입니다. 다른 아이디를 입력하세요.");
+			}
+		}
+	});
+}///////////////////////////////////
 </script>
 </head>
 <body>
@@ -217,15 +261,15 @@ $(document).ready(function(){
 		<form action="signuppro.do" method="post">
 			<div class="left">
 				<h2>회원정보</h2>
-				<br><input type="text" name="userid" placeholder="아이디" /> 
-					<input type="password" name="userpw" placeholder="비밀번호" /> 
-					<input type="password" name="passchk" placeholder="비밀번호 확인" /> 
-					<input type="text" name="name" placeholder="이름" /> 
-					<input type="email" name="email" placeholder="이메일" /> 
-					<input type="date" name="birth" placeholder="생년월일" /> 
-					<input type="text" name="phone" placeholder="전화번호 - 없이 입력하세요." /> 
-					<input type="text" name="nickname" placeholder="닉네임" /> 
-					<input type="submit" name="signup_submit" value="회원 가입" />
+				<br><input type="text" name="userid" placeholder="아이디" required="required"/> 
+					<input type="password" name="userpw" placeholder="비밀번호" required="required"/> 
+					<input type="password" name="passchk" placeholder="비밀번호 확인" required="required"/> 
+					<input type="text" name="name" placeholder="이름" required="required"/> 
+					<input type="email" name="email" placeholder="이메일" required="required"/> 
+					<input type="date" name="birth" placeholder="생년월일" required="required"/> 
+					<input type="text" name="phone" placeholder="전화번호 - 없이 입력하세요." required="required"/> 
+					<input type="text" name="nickname" placeholder="닉네임" required="required"/> 
+					<input type="submit" name="signup_submit" value="회원 가입" required="required"/>
 			</div>
 		</form>
 		<div class="right">

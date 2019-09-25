@@ -6,6 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+
 <!-- SCIPTS -->
 <script src="main/plugin-frameworks/jquery-3.2.1.min.js"></script>
 
@@ -33,7 +34,7 @@
 }
 
 .boardlistheader {
-	background-color: #2e2e2e;
+	background-color: #778899;
 	color: white;
 	font-size: 18px;
 	font-weight: bolder;
@@ -44,7 +45,7 @@
 }
 
 .boardlistrow:hover {
-	background-color: #d8f2c2;
+	background-color: #FFF8DC;
 	cursor: pointer;
 }
 
@@ -53,7 +54,7 @@ table {
 }
 </style>
 </head>
-<body style="background-color: #f7ffe3;">
+<body style="background-color: #FFFAF0;">
 	<jsp:include page="/WEB-INF/view/common/main_nav.jsp"></jsp:include>
 
 	<div class="container" style="margin-top: 200px; margin-bottom: 200px;">
@@ -90,7 +91,7 @@ table {
 		<hr />
 		<div align="right">
 			<a href="writeform.do"><input type="button" value="글쓰기"
-				class="btn btn-success" style="cursor: pointer;" /></a>
+				class="btn " style="cursor: pointer; background-color: #6495ED" /></a>
 		</div>
 		<div class="text-center">
 			<div class="pageList" style="margin-bottom: 50px;">

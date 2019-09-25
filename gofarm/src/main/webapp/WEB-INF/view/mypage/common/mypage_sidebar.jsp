@@ -10,8 +10,15 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
-	$('#side_mileage').on('click', function() {
+	/* $('#side_mileage').on('click', function() {
 		if($('#userLv').val()!=2){
+			alert('해당 기능을 사용하기에는 권한이 부족합니다.');
+			return false;
+		}
+	}); */
+	
+	$('#side_mileage').on('click', function() {
+		if('${loginOk.userlvl}' != 2){
 			alert('해당 기능을 사용하기에는 권한이 부족합니다.');
 			return false;
 		}
@@ -20,8 +27,14 @@ $(document).ready(function() {
 </script>
 </head>
 <body>
-	<input type="hidden" name="userLv" id="userLv" value="${sessionScope.loginOk.userlvl }" />	
+	<%-- <input type="hidden" name="userLv" id="userLv" value="${sessionScope.loginOk.userlvl }" /> --%>	
 	 <ul class="sidebar navbar-nav">
+	 <li class="nav-item active">
+        <a class="nav-link"  href="mypage.do" >
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>마이페이지</span>
+        </a>
+      </li>
       <li class="nav-item active">
         <a class="nav-link"  href="intro.do" >
           <i class="fas fa-fw fa-tachometer-alt"></i>
@@ -52,7 +65,7 @@ $(document).ready(function() {
         </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="">
+        <a class="nav-link" href="myBoard.do">
           <i class="fas fa-fw fa-chart-area"></i>
           <span>게시판</span></a>
       </li>

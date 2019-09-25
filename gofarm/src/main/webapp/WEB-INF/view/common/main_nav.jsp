@@ -108,9 +108,11 @@ header>#topNav>ul.main-munu>li>a {
         <p class="logo nav" href="#"><img src="main/images/logo.png"><a style="margin-top:20px">GO FARM</a></p>
          <ul class="main-menu" id="main-menu"
           style="margin-left: 27%;">
-
+          
+         
+          
             <li><a href="main.do" class="nav">HOME</a></li>
-            <li><a href="#" class="nav">INFO</a></li>
+            <li><a href="info.do" class="nav">INFO</a></li>
             <li><a href="recruit2.do" class="nav">구인 | 구직</a></li>
             <li><a href="productList.do" class="nav">장터</a></li>
             <li><a href="board.do" class="nav">게시판</a></li>
@@ -127,7 +129,16 @@ header>#topNav>ul.main-munu>li>a {
                         class="ion-arrow-down-b"></i></a>
                      <ul class="drop-down-menu drop-down-inner">
                         <li><a href="logout.do" class="nav">logout</a></li>
-                        <li><a href="mypage.do" class="nav">mypage</a></li>
+                        <c:choose>
+                        <c:when test="${loginOk.userlvl == 3 }">
+                        <li><a href="adminUserList.do" class="nav">관리자 페이지</a></li>
+                        </c:when>
+                        <c:otherwise>
+                         <li><a href="mypage.do" class="nav">mypage</a></li>
+                        </c:otherwise>
+                        
+                        
+                        </c:choose>
                      </ul></li>
                </c:otherwise>
             </c:choose>

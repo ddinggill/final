@@ -19,28 +19,24 @@
 
 <!----webfonts---->
 <link
-	href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+	href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800'
+	rel='stylesheet' type='text/css'>
 <!----//webfonts---->
 <!-- Global CSS for the page and tiles -->
 <link rel="stylesheet" href="board/index/css/main.css">
 <!-- //Global CSS for the page and tiles -->
 <!---start-click-drop-down-menu----->
 
-<style type="text/css">
-i {
-	margin-top:30px;
-}
-</style>
 </head>
 <body style="background-color: #A2BBCA;">
-<jsp:include page="/WEB-INF/view/common/main_nav.jsp"></jsp:include>
+	<jsp:include page="/WEB-INF/view/common/main_nav.jsp"></jsp:include>
 	<!---start-content---->
 	<div class="content" style="margin-top: 185px; margin-bottom: 150px">
 		<div class="wrap">
-			<div id="main" role="main" >
-				<ul id="tiles" >
+			<div id="main" role="main">
+				<ul id="tiles">
 					<!-- These are our grid blocks -->
-					<li onclick="location.href='#';"><img
+					<li onclick="location.href='board_job.do';"><img
 						src="board/index/images/img1.jpg" width="282" height="118">
 						<div class="post-info">
 							<div class="post-basic-info">
@@ -49,7 +45,8 @@ i {
 								</h3>
 								<span><a href="board_job.do"><label> </label> Job </a></span>
 								<p>구인과 구직에 관련된 정보로 소통하세요</p>
-								<p>Communicate with information on job openings and job openings.</p>
+								<p>Communicate with information on job openings and job
+									openings.</p>
 							</div>
 							<div class="post-info-rate-share">
 								<div class="rateit">
@@ -61,7 +58,7 @@ i {
 								<div class="clear"></div>
 							</div>
 						</div></li>
-					<li onclick="location.href='single-page.html';"><img
+					<li onclick="location.href='board_trade.do';"><img
 						src="board/index/images/img2.jpg" width="282" height="344">
 						<div class="post-info">
 							<div class="post-basic-info">
@@ -82,7 +79,7 @@ i {
 								<div class="clear"></div>
 							</div>
 						</div></li>
-					<li onclick="location.href='single-page.html';"><img
+					<li onclick="location.href='board_shard.do';"><img
 						src="board/index/images/img3.jpg" width="282" height="210">
 						<div class="post-info">
 							<div class="post-basic-info">
@@ -103,12 +100,12 @@ i {
 								<div class="clear"></div>
 							</div>
 						</div></li>
-					<li onclick="location.href='single-page.html';"><img
+					<li onclick="location.href='board_talk.do';"><img
 						src="board/index/images/img4.jpg" width="282" height="385">
 						<div class="post-info">
 							<div class="post-basic-info">
 								<h3>
-									<a href="board_talk.do">D. 수다</a>
+									<a href="board_talk.do">D. 사담</a>
 								</h3>
 								<span><a href="board_talk.do"><label> </label>Talk</a></span>
 								<p>사람들과 즐겁게 소통하세요</p>
@@ -124,7 +121,28 @@ i {
 								<div class="clear"></div>
 							</div>
 						</div></li>
-						
+					<li onclick="location.href='notice.do';"><img src="board/index/images/laf.jpg"
+						width="282" height="210">
+						<div class="post-info">
+							<div class="post-basic-info">
+								<h3>
+									<a href="notice.do">F. 공지 </a>
+								</h3>
+								<span><a href="notice.do"><label></label>Notice</a></span>
+								<p>유익한 공지사항을 확인해보세요</p>
+								<p>Check out the many announcements</p>
+							</div>
+							<div class="post-info-rate-share">
+								<div class="rateit">
+									<span> </span>
+								</div>
+								<div class="post-share">
+									<span> </span>
+								</div>
+								<div class="clear"></div>
+							</div>
+						</div></li>
+
 					<!----//--->
 
 					<!-- End of grid blocks -->
@@ -132,45 +150,45 @@ i {
 			</div>
 		</div>
 	</div>
-	
+
 	<!---//End-content---->
 	<!----wookmark-scripts---->
 	<script src="board/index/js/jquery.imagesloaded.js"></script>
 	<script src="board/index/js/jquery.wookmark.js"></script>
 	<script type="text/javascript">
-		(function($) {
-			var $tiles = $('#tiles'), $handler = $('li', $tiles), $main = $('#main'), $window = $(window), $document = $(document), options = {
-				autoResize : true, // This will auto-update the layout when the browser window is resized.
-				container : $main, // Optional, used for some extra CSS styling
-				offset : 20, // Optional, the distance between grid items
-				itemWidth : 280
-			// Optional, the width of a grid item
-			};
-			/**
-			 * Reinitializes the wookmark handler after all images have loaded
-			 */
-			function applyLayout() {
-				$tiles.imagesLoaded(function() {
-					// Destroy the old handler
-					if ($handler.wookmarkInstance) {
-						$handler.wookmarkInstance.clear();
-					}
+      (function($) {
+         var $tiles = $('#tiles'), $handler = $('li', $tiles), $main = $('#main'), $window = $(window), $document = $(document), options = {
+            autoResize : true, // This will auto-update the layout when the browser window is resized.
+            container : $main, // Optional, used for some extra CSS styling
+            offset : 20, // Optional, the distance between grid items
+            itemWidth : 280
+         // Optional, the width of a grid item
+         };
+         /**
+          * Reinitializes the wookmark handler after all images have loaded
+          */
+         function applyLayout() {
+            $tiles.imagesLoaded(function() {
+               // Destroy the old handler
+               if ($handler.wookmarkInstance) {
+                  $handler.wookmarkInstance.clear();
+               }
 
-					// Create a new layout handler.
-					$handler = $('li', $tiles);
-					$handler.wookmark(options);
-				});
-			}
+               // Create a new layout handler.
+               $handler = $('li', $tiles);
+               $handler.wookmark(options);
+            });
+         }
 
-			// Call the layout function for the first time
-			applyLayout();
+         // Call the layout function for the first time
+         applyLayout();
 
-		
-		})(jQuery);
-	</script>
+      
+      })(jQuery);
+   </script>
 	<!----//wookmark-scripts---->
 	<!----start-footer--->
-   <!-- Footer -->
+	<!-- Footer -->
 	<jsp:include page="/WEB-INF/view/common/footer.jsp"></jsp:include>
 	<!-- SCIPTS -->
 

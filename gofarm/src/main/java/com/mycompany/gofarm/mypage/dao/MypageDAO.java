@@ -2,12 +2,14 @@ package com.mycompany.gofarm.mypage.dao;
 
 import java.util.List;
 
+import com.mycompany.gofarm.board.dto.BoardDTO;
 import com.mycompany.gofarm.job.dto.JobDTO;
 import com.mycompany.gofarm.job.dto.JobSearchDTO;
 import com.mycompany.gofarm.mypage.dto.MileageDTO;
 import com.mycompany.gofarm.mypage.dto.MyAuctionDTO;
 import com.mycompany.gofarm.mypage.dto.MyDonationDTO;
 import com.mycompany.gofarm.mypage.dto.MySellDTO;
+import com.mycompany.gofarm.mypage.dto.myIndexCntDTO;
 import com.mycompany.gofarm.user.dto.UserDTO;
 
 public interface MypageDAO {
@@ -25,5 +27,8 @@ public interface MypageDAO {
 	public void mileageInsertMethod(MileageDTO dto);
 	public void mileageUpdateMethod(MileageDTO dto);
 	public UserDTO userDetailViewMethod(int usercode);
+	public myIndexCntDTO myIndexCntMethod(int usercode);
+	public List<MileageDTO> myDailyMileageMethod(int usercode);
+	public List<BoardDTO> myBoardListMethod(int usercode);
 	
 }

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,6 +14,20 @@
 <link href="main/common/main_nav.css" rel="stylesheet">
 
 <!--===============================================================================================-->
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#updatej').on('click', updateRun);
+		$('#deletej').on('click', deleteRun);
+	});
+
+	function updateRun() {
+		$('#frm2').attr('action', "updateview.do").submit();
+	}
+
+	function deleteRun() {
+		$('#frm').attr('action', "deleteview.do").submit();
+	}
+</script>
 
 <style type="text/css">
 .arrow {
@@ -33,7 +48,8 @@
 	font-weight: bolder;
 	text-align: center;
 }
-.t2{
+
+.t2 {
 	background-color: white;
 	text-align: center;
 }
@@ -42,11 +58,17 @@ table {
 	border: 1px solid #8c8c8c;
 }
 
+#frm2 {
+	float: left;
+}
 
+#frm {
+	float: left;
+	margin-right: 4px;
+}
 </style>
+
 </head>
-
-
 
 <body style="background-color: #e6eff2;">
 
@@ -62,8 +84,6 @@ table {
 		</div>
 
 		<table class="table">
-
-
 			<tr>
 				<td class="t1">회사명</td>
 				<td class="t2">${dto.j_company}</td>
@@ -95,7 +115,7 @@ table {
 				<td class="t2">${dto.j_age}</td>
 
 			</tr>
-			
+
 			<tr>
 				<td class="t1">모집 업종</td>
 				<td class="t2">${dto.j_type}</td>
@@ -117,11 +137,11 @@ table {
 
 				<td class="t1">작업지 주소</td>
 				<td class="t2">${dto.j_address}</td>
-				<td class="t2"></td>
-				<td class="t2"></td>
+				<td class="t2">문의 전화</td>
+				<td class="t2">${dto.j_contact }</td>
 			</tr>
-			
-			
+
+
 			<tr>
 				<td class="t1" colspan="4">상세내용</td>
 			</tr>
@@ -130,22 +150,39 @@ table {
 			</tr>
 
 		</table>
-	<!-- <div class="btn">
+		<!-- <div class="btn">
 
-		<input type="submit" class="btn btn-success" id="jobrequest"
-			value="신청하기 " /> <a href="jobsearch.do"><input type="button"
-			value="목록가기" class="btn btn-success" /></a>
-	</div> -->
-	
-	<form name="frm" id="frm" method="post" action="jobrequest.do">
-		<input type="hidden" name="job" value="${dto.job}" /> <input
-			type="hidden" name="currentPage" id="currentPage"
-			value="${currentPage}" /> <input type="hidden" name="usercode"
-			value="${dto.usercode }">
-		<input type="submit" class="btn btn-success" id="jobrequest"
-			value="신청하기 " /> <a href="jobsearch.do"><input type="button"
-			value="목록가기" class="btn btn-success" /></a>
-	</form>
+      <input type="submit" class="btn btn-success" id="jobrequest"
+         value="신청하기 " /> <a href="jobsearch.do"><input type="button"
+         value="목록가기" class="btn btn-success" /></a>
+   </div> -->
+
+		<form name="frm" id="frm" method="post" action="jobrequest.do">
+			<input type="hidden" name="job" value="${dto.job}" /> <input
+				type="hidden" name="currentPage" id="currentPage"
+				value="${currentPage}" /> <input type="hidden" name="usercode"
+				value="${dto.usercode }"> <input type="submit"
+				class="btn btn-success" id="jobrequest" value="신청하기 " /> <a
+				href="jobsearch.do"><input type="button" value="목록가기"
+				class="btn btn-success" /></a>
+		</form>
+		<form name="frm2" id="frm2" method="get">
+			<input type="hidden" name="job" value="${dto.job}" /> <input
+				type="hidden" name="currentPage" id="currentPage"
+				value="${currentPage}" />
+			<c:choose>
+				<c:when test="${sessionScope.loginOk.usercode eq dto.usercode}">
+					<input type="button" value="수정하기" class="btn btn-success"
+						id="updatej" />
+
+					<input type="button" value="삭제하기" class="btn btn-success"
+						id="deletej" />
+
+				</c:when>
+			</c:choose>
+
+		</form>
+
 	</div>
 	<!-- Footer -->
 	<jsp:include page="/WEB-INF/view/common/footer.jsp"></jsp:include>

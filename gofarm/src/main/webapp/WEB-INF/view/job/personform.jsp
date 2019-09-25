@@ -6,12 +6,18 @@
 <meta charset="UTF-8">
 <title>글쓰기</title>
 
+
+
 <script src="main/plugin-frameworks/jquery-3.2.1.min.js"></script>
 <script src="main/plugin-frameworks/bootstrap.min.js"></script>
 <link href="main/plugin-frameworks/bootstrap.min.css" rel="stylesheet">
 <link href="main/fonts/ionicons.css" rel="stylesheet">
 <link href="main/common/styles.css" rel="stylesheet">
 <link href="main/common/main_nav.css" rel="stylesheet">
+
+
+
+
 
 <!-- 스마트 에디터 적용 -->
 <!--  include libraries(jQuery, bootstrap)-->
@@ -229,5 +235,7 @@ h2 {
 	<jsp:include page="/WEB-INF/view/common/footer.jsp"></jsp:include>
 	<script src="main/plugin-frameworks/swiper.js"></script>
 	<script src="main/common/scripts.js"></script>
+
+
 </body>
 </html>

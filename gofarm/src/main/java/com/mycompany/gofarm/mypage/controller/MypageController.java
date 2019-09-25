@@ -4,6 +4,8 @@ import java.text.DateFormat;
 import static javax.swing.JOptionPane.*;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -14,6 +16,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
+import com.mycompany.gofarm.board.dto.BoardDTO;
 import com.mycompany.gofarm.job.dto.JobCheckDTO;
 import com.mycompany.gofarm.job.dto.JobDTO;
 import com.mycompany.gofarm.job.dto.JobSearchDTO;
@@ -21,6 +25,7 @@ import com.mycompany.gofarm.mypage.dto.MileageDTO;
 import com.mycompany.gofarm.mypage.dto.MyAuctionDTO;
 import com.mycompany.gofarm.mypage.dto.MyDonationDTO;
 import com.mycompany.gofarm.mypage.dto.MySellDTO;
+import com.mycompany.gofarm.mypage.dto.myIndexCntDTO;
 import com.mycompany.gofarm.mypage.service.MypageService;
 import com.mycompany.gofarm.user.dto.UserDTO;
 
@@ -39,8 +44,17 @@ public class MypageController {
 	}
 	
 	@RequestMapping("/mypage.do")
-	public String mypage() {
-		return "mypage/mypage";
+	public ModelAndView mypage(HttpSession session, ModelAndView mav) {
+		UserDTO user = (UserDTO)session.getAttribute("loginOk");
+		myIndexCntDTO myCntDto = mypageService.myIndexCntService(user.getUsercode());
+		List<MileageDTO> myDailyMileageDto = mypageService.myDailyMileageService(user.getUsercode());
+		Gson dbchatgson = new Gson();
+		String dbchatJson = dbchatgson.toJson(myDailyMileageDto);
+		
+		mav.addObject("myCnt_dto", myCntDto);  
+		mav.addObject("alldata", dbchatJson);  
+		mav.setViewName("mypage/myIndex");
+		return mav;
 	}
 	
 	@RequestMapping("/intro.do")
@@ -191,6 +205,26 @@ public class MypageController {
 		List<MyDonationDTO> myDonationDto = mypageService.myDonationListService(user.getUsercode());
 		mav.addObject("myDonation_dto", myDonationDto);
 		mav.setViewName("mypage/myDonation");
+		return mav;
+	}
+	
+	@RequestMapping("/myIndex.do")
+	public ModelAndView myIndex(HttpSession session, ModelAndView mav) {
+		UserDTO user = (UserDTO)session.getAttribute("loginOk");
+		myIndexCntDTO myCntDto = mypageService.myIndexCntService(user.getUsercode());
+		List<MileageDTO> myDailyMileageDto = mypageService.myDailyMileageService(user.getUsercode());
+		mav.addObject("myCnt_dto", myCntDto);  
+		mav.addObject("myDailyMileage_dto", myDailyMileageDto);  
+		mav.setViewName("mypage/myIndex");
+		return mav;
+	}
+	
+	@RequestMapping("/myBoard.do")
+	public ModelAndView myBoard(HttpSession session, ModelAndView mav) {
+		UserDTO user = (UserDTO)session.getAttribute("loginOk");
+		List<BoardDTO> myBoardDto = mypageService.myBoardListService(user.getUsercode());
+		mav.addObject("myBoard_dto", myBoardDto);  
+		mav.setViewName("mypage/myBoard");
 		return mav;
 	}
 }

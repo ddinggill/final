@@ -3,7 +3,7 @@
 <!DOCTYPE html >
 <html>
 <head>
-    <title>구매정보 페이지</title>
+    <title>나눔 수정</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     

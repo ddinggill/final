@@ -10,63 +10,122 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="all_list" resultType="com.mycompany.gofarm.board.dto.BoardDTO">
 		select * from board
 	</select>
-	
+
+
+	<!-- 자유게시판 모든 글 개수 -->
+	<select id="b_count" resultType="int">
+		select count(*) from board
+	</select>
+
 	<!-- 페이징 하기위한 숫자세기 -->
 	<select id="boardcount" resultType="int" parameterType="String">
-		select count(*) from board where b_category=#{go}
+		select
+		count(*) from board where b_category=#{go}
 	</select>
-	
-	
+
+
 	<!-- 게시판 페이징 하기 위한 리스트 -->
 	<select id="blist" parameterType="com.mycompany.gofarm.job.dto.PageDTO"
 		resultType="com.mycompany.gofarm.board.dto.BoardDTO">
    <![CDATA[
-   select b.* from
+   select b.boardcode, nickname, b.usercode, b.b_title, b.content, to_char(b.b_day,'yyyy.mm.dd')as b_day, b.b_file, b.b_category from
    (select rownum as rm, 
-   BoardDTO.*,
-   UserDTO.nickname from (
-   select * from board order by boardcode)BoardDTO, users UserDTO where BoardDTO.usercode=UserDTO.usercode and b_category=#{b_category}
+   BoardDTO.*, UserDTO.nickname from (
+   select * from board order by boardcode desc)BoardDTO, users UserDTO where BoardDTO.usercode=UserDTO.usercode and b_category=#{b_category}
    )b where b.rm>= #{startRow} and b.rm <= #{endRow}
    ]]>
 
 	</select>
-	
+
 	<!-- 자유게시판 글 작성 insert -->
-   <insert id="b_insert" parameterType="com.mycompany.gofarm.board.dto.BoardDTO">
-      insert into board(boardcode,
-      usercode, b_title, content, b_day, b_file, b_category)
-      values(BOARD_SEQ.nextval, #{usercode}, #{b_title},
-      #{content}, sysdate
-      ,#{b_file}, #{b_category})
+	<insert id="b_insert" parameterType="com.mycompany.gofarm.board.dto.BoardDTO">
+		insert into board(boardcode,
+		usercode, b_title, content, b_day, b_file, b_category)
+		values(BOARD_SEQ.nextval, #{usercode}, #{b_title},
+		#{content}, sysdate
+		,#{b_file,jdbcType=VARCHAR}, #{b_category})
 
-   </insert>
+	</insert>
 
-   <!-- usercode 중복 확인 -->
-   <select id="busercodecount" parameterType="int" resultType="int">
-      select count(*) from board where usercode=#{usercode}
-   </select>
+	<!-- usercode 중복 확인 -->
+	<select id="busercodecount" parameterType="int" resultType="int">
+		select count(*) from board where usercode=#{usercode}
+	</select>
 
-   <!-- 자유게시판 상세뷰 -->
+	<!-- 자유게시판 상세뷰 -->
 
-   <select id="bview" parameterType="int"
-      resultType="com.mycompany.gofarm.board.dto.BoardDTO">
-      select boardcode, usercode, content, b_title, b_day,
-      b_file, b_category
-      from board
-      where boardcode=#{boardcode}
-   </select>
-	
+	<select id="bview" parameterType="int"
+		resultType="com.mycompany.gofarm.board.dto.BoardDTO">
+		<!-- select boardcode, usercode, content, b_title, b_day, b_file, b_category 
+			from board where boardcode=#{boardcode} -->
+
+
+		select b.boardcode, u.nickname, b.usercode, b.content, b.b_title,
+		b.b_day,
+		b.b_file, b.b_category
+		from board b, users u
+		where b.usercode =
+		u.usercode
+		AND boardcode = #{boardcode}
+
+	</select>
+
+	<select id="bcode" parameterType="int"
+		resultType="com.mycompany.gofarm.board.dto.BoardDTO">
+		select * from board where boardcode = #{boardcode}
+	</select>
+
+
+	<select resultType="String" id="uploadFile" parameterType="int">
+		select b_file from board where boardcode=#{boardcode}
+	</select>
+
+	<!-- 자유게시판 글 수정 -->
+	<update id="bupdate" parameterType="com.mycompany.gofarm.board.dto.BoardDTO">
+
+		update board set
+		b_category=#{b_category}, b_title=#{b_title},
+		content=#{content},b_day=sysdate
+		<if test="b_file!=null">,b_file=#{b_file}</if>
+		where
+		boardcode=#{boardcode}
+
+	</update>
+
+	<!-- 자유게시판 글 삭제 -->
+	<delete id="bdelete" parameterType="int">
+		delete from board where
+		boardcode=#{boardcode}
+	</delete>
+
 	<!-- 댓글 뷰 -->
-   <select id="c_list" parameterType="int"
-      resultType="com.mycompany.gofarm.board.dto.CommentsDTO">
-      select * from comments where boardcode=#{boardcode} order
-      by commentcode asc
-   </select>
+	<select id="c_list" parameterType="int"
+		resultType="com.mycompany.gofarm.board.dto.CommentsDTO">
+		select c.content, c.com_day,c.commentcode,( select nickname
+		from users u
+		where u.usercode
+		= c.usercode) nickname
+		from comments c
+		where
+		boardcode=#{boardcode} order by commentcode asc
+	</select>
 
-   <!-- 댓글 insert -->
-   <insert id="c_insert" parameterType="com.mycompany.gofarm.board.dto.CommentsDTO">
-      insert into comments
-      values(comments_seq.nextval,#{boardcode},#{usercode},#{content},sysdate)
+	<!-- 댓글 insert -->
+	<insert id="c_insert" parameterType="com.mycompany.gofarm.board.dto.CommentsDTO">
+		insert into comments
+		values(comments_seq.nextval,#{boardcode},#{usercode},#{content},sysdate)
 
-   </insert>
+	</insert>
+
+	<!-- 댓글 update -->
+	<update id="c_update" parameterType="com.mycompany.gofarm.board.dto.CommentsDTO">
+		update comments set
+		content=#{content} where commentcode=#{commentcode}
+	</update>
+
+	<!-- 댓글 삭제 -->
+	<delete id="c_delete" parameterType="int">
+		delete from comments where commentcode=#{commentcode}
+	</delete>
+
 </mapper>

@@ -29,6 +29,11 @@ public class BoardDaoImp implements BoardDAO {
 		return sqlSession.selectList("board.all_list");
 	}
 
+	@Override
+	public int count() {
+		return sqlSession.selectOne("board.b_count");
+	}
+
 	// 댓글 적고 저장
 	@Override
 	public void commentInstMethod(CommentsDTO cdto) {
@@ -36,10 +41,21 @@ public class BoardDaoImp implements BoardDAO {
 
 	}
 
+	// 댓글 수정
+	@Override
+	public void commentUpMethod(CommentsDTO rdto) {
+		sqlSession.update("board.c_update", rdto);
+	}
+
 	// 댓글 뷰
 	@Override
 	public List<CommentsDTO> commentview(int boardcode) {
 		return sqlSession.selectList("board.c_list", boardcode);
+	}
+
+	@Override
+	public void commentDelMethod(int commentcode) {
+		sqlSession.delete("board.c_delete", commentcode);
 	}
 
 	@Override
@@ -68,4 +84,26 @@ public class BoardDaoImp implements BoardDAO {
 	public BoardDTO bcontent(int boardcode) {
 		return sqlSession.selectOne("board.bview", boardcode);
 	}
+
+	@Override
+	public BoardDTO update_boardNum(int boardcode) {
+		return sqlSession.selectOne("board.bcode", boardcode);
+	}
+
+	@Override
+	public void update_board(BoardDTO dto) {
+		sqlSession.update("board.bupdate", dto);
+	}
+
+	@Override
+	public String getFile(int boardcode) {
+		return sqlSession.selectOne("board.uploadFile", boardcode);
+	}
+
+	@Override
+	public void delete_board(int boardcode) {
+
+		sqlSession.selectOne("board.bdelete", boardcode);
+	}
+
 }

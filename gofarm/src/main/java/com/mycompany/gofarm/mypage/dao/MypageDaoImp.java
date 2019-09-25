@@ -6,12 +6,14 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.mycompany.gofarm.board.dto.BoardDTO;
 import com.mycompany.gofarm.job.dto.JobDTO;
 import com.mycompany.gofarm.job.dto.JobSearchDTO;
 import com.mycompany.gofarm.mypage.dto.MileageDTO;
 import com.mycompany.gofarm.mypage.dto.MyAuctionDTO;
 import com.mycompany.gofarm.mypage.dto.MyDonationDTO;
 import com.mycompany.gofarm.mypage.dto.MySellDTO;
+import com.mycompany.gofarm.mypage.dto.myIndexCntDTO;
 import com.mycompany.gofarm.user.dto.UserDTO;
 
 @Repository
@@ -93,6 +95,21 @@ public class MypageDaoImp implements MypageDAO{
 	@Override
 	public List<MyDonationDTO> myDonationListMethod(int usercode) {
 		return sqlsession.selectList("mypage.myDonation_list", usercode);
+	}
+
+	@Override
+	public myIndexCntDTO myIndexCntMethod(int usercode) {
+		return sqlsession.selectOne("mypage.myIndexCnt", usercode);
+	}
+
+	@Override
+	public List<MileageDTO> myDailyMileageMethod(int usercode) {
+		return sqlsession.selectList("mypage.myDailyMileage", usercode);
+	}
+
+	@Override
+	public List<BoardDTO> myBoardListMethod(int usercode) {
+		return sqlsession.selectList("mypage.myBoardList", usercode);
 	}
 
 

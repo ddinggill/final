@@ -35,19 +35,28 @@ public interface RecruitService {
 	public void insert_personProcess(JobDTO dto);
 
 	public void insert_careerProcess(List<CareerDTO> list);
-	
+
 	public void insert_jobchkProcess(JobCheckDTO dto);
-	
-	public int jcountProcess(int usercode); //중복확인
+
+	public int jcountProcess(int usercode); // 중복확인
+
 	public int jscountProcess(int usercode);
-	
+
 	public int view_chkProcess(JobCheckDTO jdto);
 
 	public int chk(JobCheckDTO jdto);
-	
+
 	public UserDTO getuserInfoProcess(int usercode);
 
 	public List<CareerDTO> careerlist(int jobsearchcode);
 
 	public int same_chkProcess(JobCheckDTO jdto);
+
+	public Object jobupdateSelectProcess(int job);
+
+	public void jobupdateProcess(JobDTO dto);
+
+	public void jobdeleteProcess(int job);
+
+	public void jsdeleteProcess(int jobsearchcode);
 }

@@ -131,4 +131,24 @@ public class RecruitServiceImp implements RecruitService {
 		return recruitDAO.samechk(jdto);
 	}
 
+	@Override
+	public Object jobupdateSelectProcess(int job) {
+		return recruitDAO.jobupdateSelect(job);
+	}
+
+	@Override
+	public void jobupdateProcess(JobDTO dto) {
+		recruitDAO.jobupdate(dto);
+	}
+
+	@Override
+	public void jobdeleteProcess(int job) {
+		recruitDAO.jobdelete(job);
+	}
+
+	@Override
+	public void jsdeleteProcess(int jobsearchcode) {
+		recruitDAO.jsdelete(jobsearchcode);
+	}
+
 }
