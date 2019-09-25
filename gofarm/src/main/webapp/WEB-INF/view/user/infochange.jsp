@@ -216,13 +216,13 @@ $(document).ready(function(){
 		<form action="infochangepro.do" method="post">
 			<div class="left">
 				<h2>회원정보</h2>
-				<br><input type="text" name="userid" value="${loginOk.userid }"/> 
-					<input type="password" name="userpw" value="${loginOk.userpw }"/> 
-					<input type="text" name="name" value="${loginOk.name }"/> 
-					<input type="email" name="email" value="${loginOk.email }"/> 
-					<input type="date" name="birth" value="${loginOk.birth }"/> 
-					<input type="text" name="phone" value="${loginOk.phone }"/> 
-					<input type="text" name="nickname" value="${loginOk.nickname }"/> 
+				<br><input type="text" name="userid" value="${loginOk.userid }" required="required"/> 
+					<input type="password" name="userpw" value="${loginOk.userpw }" required="required"/> 
+					<input type="text" name="name" value="${loginOk.name }" required="required"/> 
+					<input type="email" name="email" value="${loginOk.email }" required="required"/> 
+					<input type="date" name="birth" value="${loginOk.birth }" required="required"/> 
+					<input type="text" name="phone" value="${loginOk.phone }" required="required"/> 
+					<input type="text" name="nickname" value="${loginOk.nickname }" required="required"/> 
 					<input type="submit" name="signup_submit" value="정보 수정" />
 			</div>
 		</form>

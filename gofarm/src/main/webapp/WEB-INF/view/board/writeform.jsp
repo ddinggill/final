@@ -6,18 +6,17 @@
 <head>
 <meta charset="UTF-8">
 
-
 <!-- SCIPTS -->
 <script src="main/plugin-frameworks/jquery-3.2.1.min.js"></script>
 <script src="main/plugin-frameworks/bootstrap.min.js"></script>
+<script src="main/plugin-frameworks/swiper.js"></script>
+<script src="main/common/scripts.js"></script>
 
+<!-- Stylesheets -->
 <link href="main/plugin-frameworks/bootstrap.min.css" rel="stylesheet">
 <link href="main/fonts/ionicons.css" rel="stylesheet">
 <link href="main/common/styles.css" rel="stylesheet">
 <link href="main/common/main_nav.css" rel="stylesheet">
-
-
-
 <!-- 스마트 에디터 적용 -->
 <!--  include libraries(jQuery, bootstrap)-->
 <link
@@ -153,8 +152,5 @@ tr {
 			</form>
 		</div>
 	</section>
-	<jsp:include page="/WEB-INF/view/common/footer.jsp"></jsp:include>
-	<script src="main/plugin-frameworks/swiper.js"></script>
-	<script src="main/common/scripts.js"></script>
 </body>
 </html>

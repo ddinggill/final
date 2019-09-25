@@ -7,14 +7,15 @@
 <title>W3.CSS Template</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet"
 	href="https://www.w3schools.com/lib/w3-theme-black.css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
 <!-- Font -->
-<link href="https://fonts.googleapis.com/css?family=Poppins:400,700"
-	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Poppins:400,700">
 <!-- Stylesheets -->
 <link href="main/plugin-frameworks/bootstrap.min.css" rel="stylesheet">
 <link href="main/fonts/ionicons.css" rel="stylesheet">
@@ -24,12 +25,23 @@
 
 <script src="main/plugin-frameworks/jquery-3.2.1.min.js"></script>
 
+<script type="text/javascript">
+	$(document).ready(function() {
+		/* if("${userOK}"=="fail"){
+		 alert("이미 채용글을 작성하셨습니다.");
+		} */
+		/*    $('.re_title').on('click',function(){
+		      console.log("로그인을 하세여");
+		   }); */
+
+	});
+</script>
 </head>
 <body style="background-color: #A2BBCA;">
 	<!--common 네비바 -->
 	<!-- ----------------------------------------------------------------------------------- -->
 	<jsp:include page="/WEB-INF/view/common/main_nav.jsp"></jsp:include>
-	<div style="height: 1000px; margin-top: 300px;">
+	<div style="height: 1000px; margin-top: 240px;">
 
 		<p>${userOK }</p>
 		<div class="w3-row-padding"
@@ -51,7 +63,9 @@
 					<ul class="w3-ul w3-border-top">
 						<c:forEach var="dto" items="${aList}" varStatus="status" begin="0"
 							end="4">
-							<li style="display: block;">
+
+							<li onclick="javascript:location.href='${path}'"
+								style="display: block;">
 								<p>${dto.j_company}</p>
 								<p>${dto.j_area }&nbsp;>&nbsp;${dto.j_type }</p> <br>
 							</li>
@@ -80,9 +94,12 @@
 
 						<c:forEach var="dto" items="${aList2}" varStatus="status"
 							begin="0" end="4">
-							<li style="display: block;">
+
+
+							<li onclick="javascript:location.href='${path}'"
+								style="display: block;">
 								<p>${dto.js_name}</p>
-								<p>${dto.js_area }&nbsp;> &nbsp;${dto.js_crop }</p> <br>
+								<p>${dto.js_area }&nbsp;>&nbsp;${dto.js_crop }</p> <br>
 							</li>
 						</c:forEach>
 					</ul>

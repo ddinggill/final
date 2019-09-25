@@ -6,24 +6,33 @@
 
 <head>
 
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
 
-  <title></title>
-
+<title>paymentPorm</title>
+<style type="text/css">
+input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button {
+	-webkit-appearance: none;
+}
+</style>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="mypage/js/paymentPorm.js"></script>
 </head>
 
 <body>
        <!-- ▼ 마일리지 출금 정보 //-->
-				<form id="frmPayment" name="frmPayment" method="post" action="mileage_payment_end.do">
+				<form id="frmPayment" name="frmPayment" method="post" action="mileage_payment_end.do" >
 					<input type="hidden" name="total_mileage" id="total_mileage" value="0"> 
 					<input type="hidden" name="enable_mileage" id="enable_mileage" value="0"> 
 					<input type="hidden" name="charge" id="charge" value="1000"> 
 					<input type="hidden" name="creditrating" id="creditrating" value="0">
 					<input type="hidden" name="dailycount" id="dailycount" value="0">
+					<input type="button" alt="서브밋" hidden="hidden">
 					<div class="g_subtitle first">나의 계좌정보</div>
 					<table class="g_blue_table">
 						<colgroup>
@@ -37,9 +46,9 @@
 								<th>은행명</th><td colspan="3"><span>${userDTO.bank}은행</span>
 									<div class="g_right">
 										*본인 명의 계좌가 아니면 출금이 불가능합니다. 
-										<img src="https://img3.itemmania.com/images/btn/btn_bank_edit.gif"
+										<!-- <img src="https://img3.itemmania.com/images/btn/btn_bank_edit.gif"
 											width="84" height="18" alt="출금계좌수정" class="g_button"
-											id="bankmodify_btn">
+											id="bankmodify_btn"> -->
 									</div>
 								</td>
 							</tr>
@@ -64,14 +73,9 @@
 							</tr>
 							<tr>
 								<th>출금할 마일리지</th>
-								<td><input type="text" name="m_list" id="m_list"
-									class="g_text" maxlength="13" value="0" max="${userDTO.mileage}"> 원</td>
+								<td><input type="number" name="m_list" id="m_list" class="g_text" 
+									maxlength="13" value="0" step="1000" min="1000" max="${userDTO.mileage}"  > 원</td>
 							</tr>
-							<!-- <tr>
-								<th colspan="2">실제 출금 마일리지 : <span id="spnPayment_mileage"
-									class="spnPayment_mileage">0</span> 원
-								</th>
-							</tr> -->
 						</tbody>
 					</table>
 					<!-- ▲ 마일리지 출금 정보 //-->

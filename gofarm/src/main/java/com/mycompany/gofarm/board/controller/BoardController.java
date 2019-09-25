@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.http.HttpRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
@@ -26,6 +27,7 @@ import com.mycompany.gofarm.board.dto.BoardDTO;
 import com.mycompany.gofarm.board.dto.CommentsDTO;
 import com.mycompany.gofarm.board.service.BoardService;
 import com.mycompany.gofarm.board.service.FileUpload;
+import com.mycompany.gofarm.job.service.RecruitService;
 import com.mycompany.gofarm.board.dto.PageDTO;
 import com.mycompany.gofarm.user.dto.UserDTO;
 
@@ -144,7 +146,7 @@ public class BoardController {
 	@RequestMapping("/board_talk.do")
 	public ModelAndView btalk(PageDTO pv, ModelAndView mav) {
 
-		String go = "수다";
+		String go = "사담";
 		int totalRecord = boardService.boardcount(go);
 		// System.out.println("총 레코드수"+totalRecord);
 		int currentPage = 0;
@@ -157,7 +159,7 @@ public class BoardController {
 			}
 			// System.out.println("currpage: "+currentPage);
 			pdto = new PageDTO(currentPage, totalRecord);
-			pdto.setB_category("수다");
+			pdto.setB_category("사담");
 			mav.addObject("pv", pdto);
 			mav.addObject("aList", boardService.boardlistProcess(pdto));
 			mav.addObject("category", go);
@@ -193,6 +195,28 @@ public class BoardController {
 		return boardService.replyListProcess(rdto);
 	}
 
+	// 댓글 update
+	@RequestMapping("/cUpdate.do")
+	public @ResponseBody List<CommentsDTO> cUpdate(CommentsDTO rdto, int commentcode, String content,
+			HttpServletRequest req) {
+		System.out.println("댓글 update컨트롤러");
+
+		HttpSession session = req.getSession();
+		rdto.setUsercode(((UserDTO) session.getAttribute("loginOk")).getUsercode());
+
+		rdto.setCommentcode(commentcode);
+		rdto.setContent(content);
+
+		return boardService.replyUpProcess(rdto);
+	}
+
+	// 댓글 delete
+	@RequestMapping("/cDelate.do")
+	public @ResponseBody void cDelete(int commentcode, HttpServletRequest req) {
+		System.out.println("코멘트번호" + commentcode);
+		boardService.replyDelProcess(commentcode);
+
+	}
 	////////////////////// 게시판
 	////////////////////// 작성///////////////////////////////////////////////////////
 
@@ -206,18 +230,8 @@ public class BoardController {
 			out.println("<script>alert('로그인 정보를 확인해주세요.'); history.go(-1);</script>");
 			out.flush();
 
-		} else {
-
-			int usercode = ((UserDTO) session.getAttribute("loginOk")).getUsercode();
-
-			if (boardService.bcountProcess(usercode) != 0) {
-				res.setContentType("text/html; charset=UTF-8");
-				PrintWriter out = res.getWriter();
-				out.println("<script>alert('이미 작성되었습니다'); history.go(-1);</script>");
-				out.flush();
-			}
-
 		}
+
 		return "board/writeform";
 	}
 
@@ -236,15 +250,20 @@ public class BoardController {
 	}
 
 	@RequestMapping(value = "/write.do", method = RequestMethod.POST)
-	public String write(BoardDTO dto, HttpServletRequest req, HttpServletResponse res) throws IOException {
+	public String write(BoardDTO dto, HttpServletRequest req, HttpServletResponse res, HttpServletRequest request)
+			throws IOException {
 		HttpSession session = req.getSession();
 		MultipartFile file = dto.getUp_file();
 
+		System.out.println("파일 들어감?: " + dto.getUp_file());
+
 		if (!file.isEmpty()) {
 			String filename = file.getOriginalFilename();
+			System.out.println("확인:" + filename);
 			UUID random = UUID.randomUUID();
-			String root = "C:\\Users\\user1\\git\\final\\gofarm\\src\\main\\webapp\\board\\";
-			String saveDrectory = root + "images" + File.separator;
+			String root = "C:\\";
+			String saveDrectory = root + "temp" + File.separator;
+			System.out.println("save: " + saveDrectory);
 			File fe = new File(saveDrectory);
 			File ff = new File(saveDrectory, random + "_" + filename);
 
@@ -255,6 +274,7 @@ public class BoardController {
 				e.printStackTrace();
 			}
 			dto.setB_file(random + "_" + filename);
+
 		}
 
 		session.getAttribute("loginOK");
@@ -263,6 +283,7 @@ public class BoardController {
 		System.out.println("보드 들어갔는지 확인 1");
 		System.out.println(dto.getUsercode());
 		boardService.insert_boardProcess(dto);
+
 		System.out.println("보드 들어갔는지 확인 2");
 
 		return "redirect:/board.do";
@@ -271,7 +292,7 @@ public class BoardController {
 	@RequestMapping("/board_view.do")
 	public ModelAndView main22_index(int currentPage, int boardcode, ModelAndView mav, HttpServletRequest req,
 			HttpServletResponse res) throws IOException {
-		HttpSession session = req.getSession();
+		/*HttpSession session = req.getSession();
 
 		if ((session.getAttribute("loginOk")) == null) {
 			res.setContentType("text/html; charset=UTF-8");
@@ -279,13 +300,96 @@ public class BoardController {
 			out.println("<script>alert('로그인 정보를 확인해주세요.'); history.go(-1);</script>");
 			out.flush();
 
-		}
+		}*/
 		System.out.println("자유게시판 상세뷰 입장");
-		mav.addObject("nickname", ((UserDTO) session.getAttribute("loginOk")).getNickname());
 		mav.addObject("dto", boardService.contentProcess(boardcode));
 		mav.addObject("cdto", boardService.commentList(boardcode));
 		mav.addObject("currentPage", currentPage);
 		mav.setViewName("board/boardview");
+		return mav;
+	}
+
+	@RequestMapping(value = "/board_up.do", method = RequestMethod.GET)
+	public ModelAndView board_updateMethod(int boardcode, int currentPage, ModelAndView mav) {
+
+		mav.addObject("dto", boardService.updatenumProcess(boardcode));
+		mav.addObject("currentPage", currentPage);
+		mav.setViewName("board/boardupdate");
+
+		return mav;
+
+	}
+
+	@RequestMapping(value = "/board_up.do", method = RequestMethod.POST)
+	public ModelAndView updatecont(BoardDTO dto, int currentPage, HttpServletRequest request, ModelAndView mav) {
+		// 기존 첨부파일
+
+		System.out.println("업뎃 입장");
+		System.out.println("보드코드: " + dto.getBoardcode());
+		System.out.println("테스트" + boardService.fileSelectProcess(dto.getBoardcode()));
+		String filename = boardService.fileSelectProcess(dto.getBoardcode());
+		System.out.println("upload: " + dto.getUp_file());
+		System.out.println("filename" + filename);
+		String root = "C:\\";
+		String saveDirectory = root + "temp" + File.separator;
+
+		// 수정할 첨부파일
+		MultipartFile file = dto.getUp_file();
+
+		System.out.println("file" + file);
+		// 수정할 첨부파일이 있으면
+		if (!file.isEmpty()) {
+			// 중복파일명을 처리하기 위해 난수발생
+			UUID random = UUID.randomUUID();
+			// 기존 첨부파일이 있으면....
+			if (filename != null) {
+				File fe = new File(saveDirectory, filename);
+				fe.delete();
+			}
+			String fileName = file.getOriginalFilename();
+			dto.setB_file(random + "_" + fileName);
+			File ff = new File(saveDirectory, random + "_" + fileName);
+			try {
+				FileCopyUtils.copy(file.getInputStream(), new FileOutputStream(ff));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		boardService.bupdateProcess(dto);
+		mav.addObject("currentPage", currentPage);
+		mav.setViewName("redirect:/board.do");
+		return mav;
+
+	}
+
+	@RequestMapping(value = "/board_del.do")
+	public ModelAndView delete(int boardcode, int currentPage, HttpServletRequest request, ModelAndView mav) {
+
+		System.out.println("삭제 입장");
+		String up_file = boardService.fileSelectProcess(boardcode);
+		System.out.println("삭ㅈ ㅔ up_file" + up_file);
+		if (up_file != null) {
+			String root = "C:\\";
+			String saveDirectory = root + "temp" + File.separator;
+			File fe = new File(saveDirectory, up_file);
+			fe.delete();
+
+		}
+		System.out.println("upfile2: " + up_file);
+		System.out.println(boardcode);
+
+		boardService.bdeleteProcess(boardcode);
+
+		System.out.println("3: ");
+		PageDTO pv = new PageDTO(currentPage, boardService.countProcess());
+
+		System.out.println(pv.getCurrentPage());
+		if (pv.getTotalPage() <= currentPage) {
+			mav.addObject("currentPage", pv.getTotalPage());
+		} else
+			mav.addObject("currentPage", currentPage);
+
+		mav.setViewName("redirect:/board.do");
 		return mav;
 	}
 

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.mycompany.gofarm.board.dto.BoardDTO;
 import com.mycompany.gofarm.job.dto.JobDTO;
 import com.mycompany.gofarm.job.dto.JobSearchDTO;
 import com.mycompany.gofarm.mypage.dao.MypageDAO;
@@ -12,6 +13,7 @@ import com.mycompany.gofarm.mypage.dto.MileageDTO;
 import com.mycompany.gofarm.mypage.dto.MyAuctionDTO;
 import com.mycompany.gofarm.mypage.dto.MyDonationDTO;
 import com.mycompany.gofarm.mypage.dto.MySellDTO;
+import com.mycompany.gofarm.mypage.dto.myIndexCntDTO;
 import com.mycompany.gofarm.user.dto.UserDTO;
 
 @Service
@@ -97,6 +99,21 @@ public class MypageServiceImp implements MypageService{
 	@Override
 	public List<MyDonationDTO> myDonationListService(int usercode) {
 		return mypageDao.myDonationListMethod(usercode);
+	}
+
+	@Override
+	public myIndexCntDTO myIndexCntService(int usercode) {
+		return mypageDao.myIndexCntMethod(usercode);
+	}
+
+	@Override
+	public List<MileageDTO> myDailyMileageService(int usercode) {
+		return mypageDao.myDailyMileageMethod(usercode);
+	}
+
+	@Override
+	public List<BoardDTO> myBoardListService(int usercode) {
+		return mypageDao.myBoardListMethod(usercode);
 	}
 
 }

@@ -10,4 +10,5 @@ public interface UserService {
 	public UserDTO loginCheckProcess(UserDTO dto);
 	public UserDTO kakaologinProcess(UserDTO dto);
 	public void updateProcess(UserDTO dto);
+	public int idchkProcess(String userid);
 }

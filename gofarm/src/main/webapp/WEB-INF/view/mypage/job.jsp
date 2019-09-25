@@ -120,6 +120,10 @@
 		<!-- /.content-wrapper -->
 	</div>
 	<!-- /#wrapper -->
+	
+	<!-- logOut -->
+  	<jsp:include page="/WEB-INF/view/mypage/common/mypage_logOut.jsp"></jsp:include>
+  
 	<!-- Bootstrap core JavaScript-->
 	<script src="mypage/vendor/jquery/jquery.min.js"></script>
 	<script src="mypage/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

@@ -1,10 +1,7 @@
 $(document).ready(function() {
-	$('#payment_btn').on('click', function() {
-		$('#frmPayment').submit();
-	});
 	
 	acyncMovePage('paymentPorm.do');
-
+	
 }); 
 
 function acyncMovePage(url) {

@@ -3,7 +3,7 @@
 <!DOCTYPE html >
 <html>
 <head>
-    <title>구매정보 페이지</title>
+    <title>상품 등록</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
@@ -45,7 +45,7 @@
   <body class="goto-here">
   
  <jsp:include page="/WEB-INF/view/common/main_nav.jsp"></jsp:include> 
-    <br>
+    
     <!-- END nav -->
 
     <div class="hero-wrap hero-bread" style="background-image: url('product/images/bg_1.jpg');">

@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.github.scribejava.core.model.OAuth2AccessToken;
 import com.google.gson.JsonElement;
@@ -209,5 +210,15 @@ public class UserController {
 		dto.setUsercode(((UserDTO)session.getAttribute("loginOk")).getUsercode());
 		userService.updateProcess(dto);
 		return "redirect:/logout.do";
+	}
+	
+	@RequestMapping(value = "/idchk.do" ,method=RequestMethod.POST)
+	public @ResponseBody boolean idchk(String userid){
+		System.out.println("회원가입아이디체크:" + userid);
+		if(userService.idchkProcess(userid) >0) {
+			return false;
+		}else {
+			return true;
+		}
 	}
 }//end class

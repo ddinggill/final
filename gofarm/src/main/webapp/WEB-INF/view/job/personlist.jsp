@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+
 <script src="main/plugin-frameworks/jquery-3.2.1.min.js"></script>
 
 <!-- Stylesheets -->
@@ -15,6 +16,8 @@
 
 <!--===============================================================================================-->
 <title>구직 리스트</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 <style type="text/css">
 .arrow {
@@ -48,7 +51,6 @@
 table {
 	border: 1px solid #8c8c8c;
 }
-
 </style>
 </head>
 
@@ -105,7 +107,8 @@ table {
 				<div class="pageList" align="center">
 					<c:if test="${pd.startPage >1 }">
 						<a
-							href="personsearch.do?currentPage=${pd.startPage-pd.blockPage }"  style="font-size: 15px;">&laquo;</a>
+							href="personsearch.do?currentPage=${pd.startPage-pd.blockPage }"
+							style="font-size: 15px;">&laquo;</a>
 					</c:if>
 					<!-- 이전 출력끝 -->
 
@@ -140,7 +143,7 @@ table {
 		</div>
 	</div>
 
-<!-- Footer -->
+	<!-- Footer -->
 	<jsp:include page="/WEB-INF/view/common/footer.jsp"></jsp:include>
 	<!-- SCIPTS -->
 	<script src="main/plugin-frameworks/bootstrap.min.js"></script>

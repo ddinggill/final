@@ -19,7 +19,7 @@ public class PageDTO {
 
 	}
 
-
+	
 	public PageDTO(int currentPage, int totalCount) {
 		this.currentPage = currentPage;
 		this.totalCount = totalCount;

@@ -132,4 +132,24 @@ public class RecruitDaoImp implements RecruitDAO {
 		return sqlSession.selectOne("recruit.samechk", jdto);
 	}
 
+	@Override
+	public JobDTO jobupdateSelect(int job) {
+		return sqlSession.selectOne("recruit.jobupdateselect", job);
+	}
+
+	@Override
+	public void jobupdate(JobDTO dto) {
+		sqlSession.update("recruit.jobupdate", dto);
+	}
+
+	@Override
+	public void jobdelete(int job) {
+		sqlSession.delete("recruit.jobdelete", job);
+	}
+
+	@Override
+	public void jsdelete(int jobsearchcode) {
+		sqlSession.delete("recruit.jsdelete", jobsearchcode);
+	}
+
 }

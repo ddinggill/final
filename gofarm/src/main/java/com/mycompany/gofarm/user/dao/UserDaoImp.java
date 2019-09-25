@@ -65,5 +65,10 @@ public class UserDaoImp implements UserDAO{
 		sqlSession.update("user.updateinfo", dto);
 	}
 
+	@Override
+	public int idchk(String userid) {
+		return sqlSession.selectOne("user.idchk", userid);
+	}
+
 
 }//end class

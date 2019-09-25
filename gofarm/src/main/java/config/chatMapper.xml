@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="chat">
 	<select id="roomlist" resultType="com.mycompany.gofarm.chat.dto.ChatRoomDTO">
-		select * from chat
+		select * from chat order by chatcode desc
 	</select>
 	
 	<insert id="createroom" parameterType="com.mycompany.gofarm.chat.dto.ChatRoomDTO">
@@ -23,6 +23,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	
 	<select id="dbchat" parameterType="int" resultType="com.mycompany.gofarm.chat.dto.ChatDTO">
-		select * from chat_cont where chatcode=#{chatcode}
+		select * from chat_cont where chatcode=#{chatcode} order by ct_time 
 	</select>
 </mapper>

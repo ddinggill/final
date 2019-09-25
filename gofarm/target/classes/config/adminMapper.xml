@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper    
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"    
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="admin">
+ 	
+ 	<select id="userList" resultType="com.mycompany.gofarm.user.dto.UserDTO">
+ 	 select * from users order by usercode asc
+ 	</select>
+ 	
+ 	<delete id="userDelete" parameterType="int">
+ 		delete from users where usercode = #{usercode} 
+ 	</delete>
+ 	
+ 	
+ 	<select id="productList" resultType="com.mycompany.gofarm.product.dto.ProductDTO">
+ 		select * from product order by prod_code desc
+ 	</select>
+ 	
+ 	<delete id="productDelete" parameterType="int">
+ 		delete from product where prod_code = #{prod_code}
+ 	</delete>
+ 	
+ 	<select id="auctionList" resultType="com.mycompany.gofarm.auction.dto.AuctionDTO">
+ 		select * from auction order by auctioncode desc
+ 	</select>
+ 	
+ 	
+ 	<select id="donationList" resultType="com.mycompany.gofarm.donation.dto.DonationDTO">
+ 		select * from donation order by docode desc
+ 	</select>
+ 	
+ 	<delete id="donationDelete" parameterType="int">
+ 		delete from donation where docode = #{docode} 
+ 	</delete>
+ 	
+ 	<select id="JobList" resultType="com.mycompany.gofarm.job.dto.JobDTO">
+ 		select * from job order by job desc 
+ 	</select>
+ 	
+ 	<delete id="jobDelete" parameterType="int">
+ 		delete from job where job = #{job}
+ 	</delete>
+ 	
+ 	<select id="jobsearchList" resultType="com.mycompany.gofarm.job.dto.JobSearchDTO">
+ 		select * from jobsearch order by JOBSEARCHCODE desc
+ 	</select>
+ 	
+ 	<delete id="jobsearchDelete" parameterType="int">
+ 		delete from jobsearch where JOBSEARCHCODE = #{jobsearchcode}
+ 	</delete>
+ 	
+ 	<select id="mileageCharge" resultType="com.mycompany.gofarm.mypage.dto.MileageDTO">
+ 			select * from MILEAGE where m_content like '마일리지 충전' order by m_day desc
+ 	</select>
+ 	
+ 	<select id="mileagePayment" resultType="com.mycompany.gofarm.mypage.dto.MileageDTO">
+ 		select * from MILEAGE where m_content like '마일리지 출금' order by m_day desc
+ 	</select>
+ 	
+ 	<select id="boardList" resultType="com.mycompany.gofarm.board.dto.BoardDTO">
+ 		select * from board order by boardcode desc 
+ 	</select>
+ 	
+ 	<delete id="boardDelete" parameterType="int">
+ 		delete from board where boardcode = #{boardcode}
+ 	</delete>
+ 	
+ 	<select id="chatList" resultType="com.mycompany.gofarm.chat.dto.ChatRoomDTO">
+ 		select * from chat order by chatcode desc
+ 	</select>
+ 	
+ 	<delete id="chatDelete" parameterType="int">
+ 		delete from chat where chatcode = #{chatcode}
+ 	
+ 	</delete>
+ 	
+ 	
+ 	
+</mapper>

@@ -47,4 +47,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				birth=#{birth}, phone=#{phone}, email=#{email}, nickname=#{nickname}
 		where usercode=#{usercode}
 	</update>
+	
+	<select id="idchk" parameterType="string" resultType="int">
+		select count(*) from users where userid=#{userid}
+	</select>
 </mapper>

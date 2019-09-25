@@ -48,24 +48,32 @@ public interface RecruitDAO {
 
 	// 경력
 	public void insert_career(List<CareerDTO> list);
-	
-	//이력서 구독자 체크
+
+	// 이력서 구독자 체크
 	public void insert_jobcheck(JobCheckDTO dto);
-	
+
 	public int jcount(int usercode);
 
 	public int jscount(int usercode);
-	
-	 //view 한번만 count 체크
+
+	// view 한번만 count 체크
 	public int view_check(JobCheckDTO jdto);
 
 	public int check(JobCheckDTO jdto);
-	
-	//구인글 작성자의 정보 얻어오기
+
+	// 구인글 작성자의 정보 얻어오기
 	public UserDTO getuserInfo(int usercode);
 
 	public List<CareerDTO> careerlist(int jobsearchcode);
 
 	public int samechk(JobCheckDTO jdto);
+
+	public JobDTO jobupdateSelect(int job);
+
+	public void jobupdate(JobDTO dto);
+
+	public void jobdelete(int job);
+
+	public void jsdelete(int jobsearchcode);
 
 }

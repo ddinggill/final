@@ -65,5 +65,9 @@ public class UserServiceImp implements UserService{
 	public void updateProcess(UserDTO dto) {
 		userDao.updateinfo(dto);
 	}
+	@Override
+	public int idchkProcess(String userid) {
+		return userDao.idchk(userid);
+	}
 	
 }//end class

@@ -201,10 +201,10 @@ button.social-signin.kakao {
 		<form action="detailsignuppro.do" method="post">
 			<div class="left">
 				<h2>회원정보</h2>
-				<br><input type="text" name="bank" placeholder="계좌은행"/> 
-					<input type="text" name="account" placeholder="계좌번호 - 없이 입력하세요." /> 
-					<input type="text" name="user_home" placeholder="주소" /> 
-					<input type="submit" name="signup_submit" value="상세회원가입" />
+				<br><input type="text" name="bank" placeholder="계좌은행" required="required"/> 
+					<input type="text" name="account" placeholder="계좌번호 - 없이 입력하세요." required="required"/> 
+					<input type="text" name="user_home" placeholder="주소" required="required"/> 
+					<input type="submit" name="signup_submit" value="상세회원가입" required="required"/>
 			</div>
 		</form>
 		<div class="right">

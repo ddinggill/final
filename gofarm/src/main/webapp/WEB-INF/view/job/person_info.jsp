@@ -5,10 +5,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>인력정보</title>
 
 <script src="main/plugin-frameworks/jquery-3.2.1.min.js"></script>
-
 
 <!-- Stylesheets -->
 <link href="main/plugin-frameworks/bootstrap.min.css" rel="stylesheet">
@@ -17,6 +16,17 @@
 <link href="main/common/main_nav.css" rel="stylesheet">
 
 <!--===============================================================================================-->
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#deletejs').on('click', deleteRun);
+	});
+
+	function deleteRun() {
+		$('#frm').attr('action', "deleteviewperson.do").submit();
+	}
+</script>
+
 <style type="text/css">
 .arrow {
 	border: solid black;
@@ -36,7 +46,8 @@
 	font-weight: bolder;
 	text-align: center;
 }
-.t2{
+
+.t2 {
 	background-color: white;
 	text-align: center;
 }
@@ -44,12 +55,8 @@
 table {
 	border: 1px solid #8c8c8c;
 }
-
-
 </style>
 </head>
-
-
 
 <body style="background-color: #FDF5E6;">
 
@@ -57,8 +64,7 @@ table {
 
 
 
-	<div class="container"
-	style="margin-top: 200px; margin-bottom: 200px;">
+	<div class="container" style="margin-top: 200px; margin-bottom: 200px;">
 		<div class="main" id="main">
 			<span style="color: black; font-size: 25px; margin-bottom: 10px;">인력정보&nbsp;&nbsp;<i
 				class="arrow right"></i></span> <span
@@ -95,41 +101,40 @@ table {
 			</tr>
 			<tr>
 				<td class="t2" colspan="5"><c:forEach var="car" items="${car}">
-							<div class="career" style="border-bottom: 1px solid #E6E6E6;">
+						<div class="career" style="border-bottom: 1px solid #E6E6E6;">
 							<p>회사명 : ${car.career}</p>
 							<p>입사일 : ${car.startdate}</p>
 							<p>퇴사일 : ${car.enddate}</p>
-							</div>							
-						</c:forEach>
-						</td>
+						</div>
+					</c:forEach></td>
 			</tr>
 
 			<tr>
 				<td class="t1" colspan="5">상세소개</td>
 			</tr>
-			
+
 			<tr>
 				<td class="t2" colspan="5">${dto.js_intro}</td>
 			</tr>
 		</table>
 
-
-
-		<%-- 
-   <div class="memo">
-      <p class="memo_title">우대 사항</p>
-      ${dto.j_Preferential}
-   </div> --%>
-	<div class="btn" align="right">
-		<a href="personsearch.do"><input type="button" value="목록가기" class="btn btn-success" /></a>
+		<form name="frm" id="frm" method="get">
+			<input type="hidden" name="jobsearchcode"
+				value="${dto.jobsearchcode}" /> <input type="hidden"
+				name="currentPage" id="currentPage" value="${currentPage}" /> <a
+				href="personsearch.do"><input type="button" value="목록가기"
+				class="btn btn-success" /></a>
+			<c:choose>
+				<c:when test="${sessionScope.loginOk.usercode eq dto.usercode}">
+					<input type="button" value="삭제하기" id="deletejs"
+						class="btn btn-success" />
+				</c:when>
+			</c:choose>
+		</form>
 	</div>
-	<form name="frm" id="frm" method="get">
-		<input type="hidden" name="jobsearchcode" value="${dto.jobsearchcode}" />
-		<input type="hidden" name="currentPage" id="currentPage"
-			value="${currentPage}" /> 
-	</form>
-</div>
-<!-- Footer -->
+
+
+	<!-- Footer -->
 	<jsp:include page="/WEB-INF/view/common/footer.jsp"></jsp:include>
 	<!-- SCIPTS -->
 	<script src="main/plugin-frameworks/bootstrap.min.js"></script>

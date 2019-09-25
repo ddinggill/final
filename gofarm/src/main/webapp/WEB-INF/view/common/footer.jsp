@@ -20,7 +20,7 @@
 						<div class="dplay-tbl">
 							<div class="dplay-tbl-cell">
 
-								<a href="#"><img src="images/logo-white.png"></a>
+								
 								<p class="color-ash mt-25">
 									<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 									Copyright &copy;

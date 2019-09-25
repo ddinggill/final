@@ -58,8 +58,8 @@ $(document).ready(function(){
    <br/>
    <br/>
    
-    <input type="text" name="userid" placeholder="ID" />
-    <input type="password" name="userpw" placeholder="PASSWORD" />
+    <input type="text" name="userid" placeholder="ID" required="required"/>
+    <input type="password" name="userpw" placeholder="PASSWORD" required="required"/>
  
     
     <input type="submit" name="signup_submit" value="로그인" />
