@@ -105,7 +105,7 @@ header>#topNav>ul.main-munu>li>a {
    <header class="fixed-top">
 
       <nav id="topNav" >
-        <p class="logo nav" href="#"><img src="main/images/logo.png"><a style="margin-top:20px">GO FARM</a></p>
+        <p class="logo nav"><img src="main/images/logo.png"><a href="main.do" style="margin-top:20px">GO FARM</a></p>
          <ul class="main-menu" id="main-menu"
           style="margin-left: 27%;">
           

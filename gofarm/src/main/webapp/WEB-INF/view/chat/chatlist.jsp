@@ -92,8 +92,8 @@
 			<!-- 상품 들어가는곳 -->
 			<div class="row">
 			<c:forEach items="${roomlist}" var="dto" varStatus="status">
-			
-				<div class="col-md-6 col-lg-3 ftco-animate">
+				<%-- ${status.count} --%>
+				<div class="col-md-6 col-lg-3 ftco-animate" style="max-width: 20%">
 				<input type="hidden" value="${dto.chatcode }" id="chatcode">
 				<input type="hidden" value="${dto.usercode }">
 				<input type="hidden" value="${dto.ct_title }">
@@ -104,16 +104,20 @@
 				</c:url>
 					<div class="product">
 						<a href="${path}" class="img-prod"><img class="img-fluid"
-							src="chat/images/chatimg.png" alt="Colorlib Template"> 
+							src="chat/images/10.png" alt="Colorlib Template"> 
 						</a>
 						<div class="text py-3 pb-4 px-3 text-center">
 							<p class="price">${dto.ct_title}</p>
 							<div class="d-flex">
 								<div class="pricing">
-									<h3>
+									<h3 style="font-size:9px">
 									<label>최대참가인원</label>
 										<span class="price-sale">${dto.ct_limit}</span>
 									</h3>
+									<hr>
+									<h3>
+                              			<span class="price-sale" style="color:gray">채팅내용 ㅎㅎ</span>
+                          		 	</h3>
 								</div>
 							</div>
 						</div>

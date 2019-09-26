@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -64,8 +65,8 @@
 						<tr>
 							<td>${status.count}</td>
 							<td>${dto.do_product}</td>
-							<td>${dto.do_cnt}</td>
-							<td>${dto.app_cnt}</td>
+							<td><fmt:formatNumber value="${dto.do_cnt}" pattern="###,###"/> 개</td>
+							<td><fmt:formatNumber value="${dto.app_cnt}" pattern="###,###"/> 명</td>
 							<td><input type="button" value="나눔글 가기" id="moveBtn" name="moveBtn" onclick='location.href = "donationView.do?currentPage=1&docode=${dto.docode}"' /></td>
 						</tr>
 					</c:forEach>

@@ -40,7 +40,7 @@ body{
    <br/>
    <br/>
    
-    <input type="text" name=ct_title placeholder="방제목" />
+    <input type="text" name=ct_title placeholder="방제목" required="required"/>
     <p>참가인원
 	 	<select name="ct_limit">
 	 		<option value="1">1</option>

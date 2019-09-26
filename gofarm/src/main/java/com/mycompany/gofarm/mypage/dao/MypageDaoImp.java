@@ -112,6 +112,17 @@ public class MypageDaoImp implements MypageDAO{
 		return sqlsession.selectList("mypage.myBoardList", usercode);
 	}
 
+	@Override
+	public void userDetailUpdateMethod(UserDTO dto) {
+		sqlsession.update("mypage.userDetail_update", dto);
+		
+	}
+
+	@Override
+	public void userDeleteMethod(int usercode) {
+		sqlsession.update("mypage.userDelete", usercode);
+	}
+
 
 	
 

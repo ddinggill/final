@@ -6,6 +6,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+<link href="mypage/css/nav.css" rel="stylesheet">
+
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
@@ -18,10 +21,18 @@
       <i class="fas fa-bars"></i>
     </button>
 
+	<ul class="main-menu" id="main-menu" style="margin-left: 27%;">
+			<li><a href="main.do" class="nav">HOME</a></li>
+			<li><a href="info.do" class="nav">INFO</a></li>
+			<li><a href="recruit2.do" class="nav">구인 | 구직</a></li>
+			<li><a href="productList.do" class="nav">장터</a></li>
+			<li><a href="board.do" class="nav">게시판</a></li>
+			<li><a href="chatlist.do" class="nav">오픈채팅</a></li>
+		</ul>
     <!-- Navbar Search -->
     <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
-      
-    </form>
+		
+	</form>
 
     <!-- Navbar -->
     <ul class="navbar-nav ml-auto ml-md-0">
@@ -31,8 +42,7 @@
           <i class="fas fa-user-circle fa-fw"></i>
         </a>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-          <a class="dropdown-item" href="#">Settings</a>
-          <a class="dropdown-item" href="#">Activity Log</a>
+          <a class="dropdown-item" href="intro.do">myInfo</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="logout.do" data-toggle="modal" data-target="#logoutModal">Logout</a>
         </div>

@@ -1,6 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>	
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="mm" value="${labelData}" />
 <!DOCTYPE html>
 <html lang="en">
@@ -99,6 +99,7 @@ $(document).ready(function() {
 	});
 });
 
+
 </script>	
 	
 </head>
@@ -124,7 +125,9 @@ $(document).ready(function() {
                 <div class="card-body-icon">
                   <i class="fas fa-fw fa-life-ring"></i>
                 </div>
-                <div class="mr-5"> 내 마일리지   : ${myCnt_dto.mileage} 원!</div>
+                <div class="mr-5"> 내 마일리지   : <fmt:formatNumber value="${myCnt_dto.mileage}" pattern="###,###"/> 원!</div>
+                
+
               </div>
               <a class="card-footer text-white clearfix small z-1" href="mileage.do">
                 <span class="float-left">View Details	</span>
@@ -140,7 +143,8 @@ $(document).ready(function() {
                 <div class="card-body-icon">
                   <i class="fas fa-fw fa-list"></i>
                 </div>
-                <div class="mr-5">내 이력서 열람인원 ${myCnt_dto.jk_cnt} 명!</div>
+                <div class="mr-5">내 이력서 열람인원  <fmt:formatNumber value="${myCnt_dto.jk_cnt}" pattern="###,###"/> 명!</div>
+               
               </div>
               <a class="card-footer text-white clearfix small z-1" href="jobSearchView.do">
                 <span class="float-left">View Details</span>
@@ -156,7 +160,7 @@ $(document).ready(function() {
                 <div class="card-body-icon">
                   <i class="fas fa-fw fa-shopping-cart"></i>
                 </div>
-                <div class="mr-5">판매된 물건 ${myCnt_dto.prod_cnt} 건!</div>
+                <div class="mr-5">판매된 물건 <fmt:formatNumber value="${myCnt_dto.prod_cnt}" pattern="###,###"/> 건!</div>
               </div>
               <a class="card-footer text-white clearfix small z-1" href="product.do">
                 <span class="float-left">View Details</span>
@@ -172,7 +176,7 @@ $(document).ready(function() {
                 <div class="card-body-icon">
                   <i class="fas fa-fw fa-shopping-cart"></i>
                 </div>
-                <div class="mr-5">진행중인 경매 ${myCnt_dto.auction_cnt} 건!</div>
+                <div class="mr-5">진행중인 경매 <fmt:formatNumber value="${myCnt_dto.auction_cnt}" pattern="###,###"/> 건!</div>
               </div>
               <a class="card-footer text-white clearfix small z-1" href="myAuction.do">
                 <span class="float-left">View Details</span>

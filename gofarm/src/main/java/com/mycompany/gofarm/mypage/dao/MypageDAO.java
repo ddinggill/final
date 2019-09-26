@@ -30,5 +30,7 @@ public interface MypageDAO {
 	public myIndexCntDTO myIndexCntMethod(int usercode);
 	public List<MileageDTO> myDailyMileageMethod(int usercode);
 	public List<BoardDTO> myBoardListMethod(int usercode);
+	public void userDetailUpdateMethod(UserDTO dto);
+	public void userDeleteMethod(int usercode);
 	
 }

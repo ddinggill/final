@@ -58,12 +58,14 @@
 
 				});
 				function sendFile(file, el) {
+					console.log("수정");
 					var form_data = new FormData();
+					var address = '<%=request.getServerName()+":"+request.getServerPort()%>';
 					form_data.append('file', file);
 					$.ajax({
 						data : form_data,
 						type : 'POST',
-						url : 'http://localhost:8090/gofarm/writeform.do',
+						url : 'http://'+address+'/gofarm/writeform.do',
 						cache : false,
 						contentType : false,
 						processData : false,

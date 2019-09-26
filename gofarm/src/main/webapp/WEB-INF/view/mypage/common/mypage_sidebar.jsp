@@ -6,16 +6,11 @@
 <head>
 <meta charset="UTF-8">
 <title>sidebar</title>
+
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
-	/* $('#side_mileage').on('click', function() {
-		if($('#userLv').val()!=2){
-			alert('해당 기능을 사용하기에는 권한이 부족합니다.');
-			return false;
-		}
-	}); */
 	
 	$('#side_mileage').on('click', function() {
 		if('${loginOk.userlvl}' != 2){
@@ -27,19 +22,22 @@ $(document).ready(function() {
 </script>
 </head>
 <body>
-	<%-- <input type="hidden" name="userLv" id="userLv" value="${sessionScope.loginOk.userlvl }" /> --%>	
 	 <ul class="sidebar navbar-nav">
-	 <li class="nav-item active">
+	 <li class="nav-item">
         <a class="nav-link"  href="mypage.do" >
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>마이페이지</span>
         </a>
       </li>
-      <li class="nav-item active">
-        <a class="nav-link"  href="intro.do" >
-          <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>내 정보</span>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-fw fa-folder"></i>
+          <span>회원 정보</span>
         </a>
+        <div class="dropdown-menu" aria-labelledby="pagesDropdown">
+          <a class="dropdown-item" href="intro.do" id="myInfo"> 내 정보 보기</a>
+          <a class="dropdown-item" href="withdrawal.do" id="jobSearch"> 회원 탈퇴</a>
+        </div>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

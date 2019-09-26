@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -30,13 +31,7 @@
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <!-- <script type="text/javascript" src="http://code.jquery.com/jquery-3.4.1.js"></script> -->
 <script src="https://cdn.bootpay.co.kr/js/bootpay-3.0.5.min.js" type="application/javascript"></script>
-<!-- mileage JavaScript-->
-<!-- <script src="mypage/js/mileage.js"></script> -->
-<script type="text/javascript">
-$(document).ready(function() {
-	$('#my_mileage_2').append('${userDetail_dto.mileage}');
-});
-</script>
+
 <body id="page-top">
 	<!-- Navbar -->
 	<jsp:include page="/WEB-INF/view/mypage/common/mypage_nav.jsp"></jsp:include>
@@ -53,7 +48,7 @@ $(document).ready(function() {
           <div class="card-body">
           <div class="my_mileage">
 				<p id="my_mileage_1">내 마일리지</p>
-				<p id="my_mileage_2"></p>
+				<p id="my_mileage_2"><fmt:formatNumber value="${userDetail_dto.mileage}" pattern="###,###"/> 원</p>
 				<p id="mileage_btn">
 					<input type="button" id="mileage_charge_btn" value="충전하기" onClick="location.href='mileage_charge.do'" /> 
 					<input type="button" id="mileage_payment_btn" value="출금하기" onClick="location.href='mileage_payment.do'" />
@@ -86,13 +81,13 @@ $(document).ready(function() {
 						<tr>
 							<td>${status.count}</td>
 
-							<td>${dto.m_total-dto.m_list}</td>
+							<td><fmt:formatNumber value="${dto.m_total-dto.m_list}" pattern="###,###"/> 원</td>
 							<c:choose>
-								<c:when test="${dto.m_list} > 0"><td>+${dto.m_list}</td></c:when>
-								<c:otherwise><td>${dto.m_list}</td></c:otherwise>
+								<c:when test="${dto.m_list} >= 1"><td> * <fmt:formatNumber value="${dto.m_list}" pattern="###,###"/> 원</td></c:when>
+								<c:otherwise><td><fmt:formatNumber value="${dto.m_list}" pattern="###,###"/> 원</td></c:otherwise>
 							</c:choose>
 							<td>${dto.m_content}</td>
-							<td>${dto.m_total}</td>
+							<td><fmt:formatNumber value="${dto.m_total}" pattern="###,###"/> 원</td>
 							<td>${dto.m_day}</td>
 						</tr>
 					</c:forEach>

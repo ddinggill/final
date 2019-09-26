@@ -23,6 +23,7 @@ import com.mycompany.gofarm.auction.dto.AuctionDTO;
 import com.mycompany.gofarm.auction.dto.MileageDTO;
 import com.mycompany.gofarm.auction.dto.PageDTO;
 import com.mycompany.gofarm.auction.service.AuctionService;
+import com.mycompany.gofarm.board.service.FileUpload;
 import com.mycompany.gofarm.user.dto.UserDTO;
 
 @Controller
@@ -35,6 +36,13 @@ public class AuctionController {
 	private int currentPage;
 	
 	private PageDTO pageDTO;
+	
+	@Autowired
+	private FileUpload fileUpload;
+	
+	public void setFileUpload(FileUpload fileUpload) {
+		this.fileUpload = fileUpload;
+	}
 	
 	public void setAuctionService(AuctionService auctionService) {
 		this.auctionService = auctionService;
@@ -132,26 +140,15 @@ public class AuctionController {
 		}
 	}
 	@RequestMapping(value="AuctionProduce.do" , method = RequestMethod.POST)
-	public String auctionProducePro(HttpServletRequest req , AuctionDTO adto) {
+	public String auctionProducePro(HttpServletRequest req , AuctionDTO adto) throws Exception {
 		
 		HttpSession session = req.getSession();
 		MultipartFile file = adto.getUpload();
 		
 		if(!file.isEmpty()) {
-			String filename = file.getOriginalFilename();
-			UUID random = UUID.randomUUID();
-			String root = "C:\\Users\\user1\\git\\final\\gofarm\\src\\main\\webapp\\auction\\";
-			String saveDrectory = root + "images" + File.separator;
-			File fe = new File(saveDrectory);
-			File ff = new File(saveDrectory, random+"_"+filename);
-			
-			try {
-				FileCopyUtils.copy(file.getInputStream(), new FileOutputStream(ff));
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			adto.setAu_file(random+"_"+filename);
+			System.out.println("파일있음");
+			String filename = fileUpload.profileUpload(file, req);
+			adto.setAu_file(filename);
 		}
 		
 		UserDTO udto = (UserDTO) session.getAttribute("loginOk");

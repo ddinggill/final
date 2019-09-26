@@ -257,8 +257,8 @@ display: none;
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-6 mb-5 ftco-animate">
-					<a href="donation/images/${do_dto.do_file}" class="image-popup"><img
-						src="donation/images/${do_dto.do_file}" class="img-fluid"
+					<a href="/gofarm/profileUpload/${do_dto.do_file}" class="image-popup"><img
+						src="/gofarm/profileUpload/${do_dto.do_file}" class="img-fluid"
 						alt="Colorlib Template"></a>
 				</div>
 

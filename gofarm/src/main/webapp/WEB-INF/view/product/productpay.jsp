@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html >
 <html>
 <head>
@@ -120,7 +121,7 @@ function total(){
           <div class="col-md-3 d-flex">
           	<div class="info bg-white p-4">
           	<input type="hidden" value="${pd_dto.pd_price}" id="price" >
-	            <p><span>총금액:</span> <input type="text" value="${pd_dto.pd_price}" class="totalmoney"> </p>
+	            <p><span>총금액:</span> <input type="text" value="<fmt:formatNumber value="${pd_dto.pd_price}" pattern="###,###"/>" class="totalmoney" readonly="readonly"> </p>
 	          </div>
           </div>
         </div>
@@ -155,7 +156,7 @@ function total(){
               </div>
                <div class="form-group">
                <label><h4>현재 마일리지</h4></label>
-                <input type="text" class="form-control" placeholder="마일리지" value="${detail.mileage}">
+                <input type="text" class="form-control" placeholder="마일리지" value="<fmt:formatNumber value="${detail.mileage}" pattern="###,###"/>">
               </div>
               <div class="form-group">
                 <input type="submit" value="구 매 하 기" class="btn btn-primary py-3 px-5" id="payGo">
@@ -165,7 +166,7 @@ function total(){
           </div>
 
           <div class="col-md-6 d-flex">
-          		<img alt="상품이미지" src="product/images/${pd_dto.pd_file}" >
+          		<img alt="상품이미지" src="/gofarm/profileUpload/${pd_dto.pd_file}" >
           </div>
         </div>
       </div>
