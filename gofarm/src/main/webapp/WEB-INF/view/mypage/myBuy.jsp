@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -71,7 +72,7 @@
 						</c:url>
 							<td>${status.count}</td>
 							<td><a href="productView.do?currentPage=1&prod_code=${dto.prod_code}">${dto.pd_name}</a></td>
-							<td>${dto.de_cnt}</td>
+							<td><fmt:formatNumber value="${dto.de_cnt}" pattern="###,###"/>개</td>
 							<td>${dto.name}</td>
 							<td>${dto.phone}</td>
 							<td>${dto.de_date}</td>

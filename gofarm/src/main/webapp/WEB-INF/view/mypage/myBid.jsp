@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -65,7 +66,7 @@
 						<tr>
 							<td>${status.count}</td>
 							<td><a href="auctionView.do?currentPage=1&auctioncode=${dto.auctioncode}">${dto.au_name}</a></td>
-							<td>${dto.ctprice}</td>
+							<td><fmt:formatNumber value="${dto.ctprice}" pattern="###,###"/> 원</td>
 							<td>${dto.fin_time}</td>
 							<td><c:choose>
 									<c:when test="${dto.state == 1}"> 경매 종료 </c:when>

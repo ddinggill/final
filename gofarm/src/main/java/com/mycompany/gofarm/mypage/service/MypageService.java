@@ -30,4 +30,6 @@ public interface MypageService {
 	public myIndexCntDTO myIndexCntService(int usercode);
 	public List<MileageDTO> myDailyMileageService(int usercode);
 	public List<BoardDTO> myBoardListService(int usercode);
+	public void userDetailUpdateService(UserDTO dto);
+	public void userDeleteService(int usercode);
 }

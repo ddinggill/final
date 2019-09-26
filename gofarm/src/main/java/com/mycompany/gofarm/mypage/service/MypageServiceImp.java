@@ -116,4 +116,14 @@ public class MypageServiceImp implements MypageService{
 		return mypageDao.myBoardListMethod(usercode);
 	}
 
+	@Override
+	public void userDetailUpdateService(UserDTO dto) {
+		mypageDao.userDetailUpdateMethod(dto);
+	}
+
+	@Override
+	public void userDeleteService(int usercode) {
+		mypageDao.userDeleteMethod(usercode);
+	}
+
 }

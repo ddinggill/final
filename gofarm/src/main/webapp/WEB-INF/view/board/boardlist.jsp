@@ -90,7 +90,7 @@ table {
 		</table>
 		<hr />
 		<div align="right">
-			<a href="writeform.do"><input type="button" value="글쓰기"
+			<a href="writeform.do?category=${category }"><input type="button" value="글쓰기"
 				class="btn " style="cursor: pointer; background-color: #6495ED" /></a>
 		</div>
 		<div class="text-center">

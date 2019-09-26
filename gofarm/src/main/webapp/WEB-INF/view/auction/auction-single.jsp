@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -253,7 +254,7 @@ $(document).ready(function() {
 		$("#bidding").on('click' , function(){
 			if("${sessionScope.loginOk}" !=""){
 				console.log("로그인햇음");
-				if(${dto.ctprice} >= $("#price").val()){
+				if("${dto.ctprice}" >= $("#price").val()){
 					alert("현재가 보다 낮거나 같은 값의 입찰은 불가합니다.");
 					return false;
 				}
@@ -278,8 +279,8 @@ $(document).ready(function() {
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-6 mb-5 ftco-animate">
-					<a href="auction/images/${dto.au_file}" class="image-popup"><img
-						src="auction/images/${dto.au_file}" class="img-fluid"
+					<a href="/gofarm/profileUpload/${dto.au_file}" class="image-popup"><img
+						src="/gofarm/profileUpload/${dto.au_file}" class="img-fluid"
 						alt="Colorlib Template"></a>
 				</div>
             <form action="auctionRecipe.do" method="get"  >
@@ -289,11 +290,11 @@ $(document).ready(function() {
 						<tbody>
 						<tr>
 								<th scope="row" class="goods-view-form-table-heading">시작가</th>
-								<td class="goods-price">${dto.stprice}</td>
+								<td class="goods-price"><fmt:formatNumber value="${dto.stprice}" pattern="###,###"/> 원</td>
 							</tr>
 							<tr>
 								<th scope="row" class="goods-view-form-table-heading">현재가</th>
-								<td class="goods-price" >${dto.ctprice}</td>
+								<td class="goods-price" ><fmt:formatNumber value="${dto.ctprice}" pattern="###,###"/> 원</td>
 							</tr>
 							<tr>
 								<th scope="row" class="goods-view-form-table-heading">시작일</th>
@@ -315,7 +316,7 @@ $(document).ready(function() {
 										class="input-group col-md-6 d-flex mb-3">
 										<span class="input-group-btn mr-2">
 										</span> <input type="text" id="price" name="price"
-											class="form-control input-number" value="${dto.ctprice}"  >
+											class="form-control input-number" value="<fmt:formatNumber value="${dto.ctprice}" pattern="###,###"/>"  readonly="readonly">원
 										<span class="input-group-btn ml-2">
 											<input type="hidden" value="${dto.auctioncode}" name="auctioncode">
 										</span>
@@ -351,7 +352,7 @@ $(document).ready(function() {
 							<c:forEach items="${aurelist }" var="adto">
 								<tr>
 									<th scope="row">${adto.nickname }</th>
-									<th scope="row">${adto.br_price }</th>
+									<th scope="row"><fmt:formatNumber value="${adto.br_price}" pattern="###,###"/> 원</th>
 									<th scope="row">${adto.br_date}</th>
 								</tr>
 							</c:forEach>

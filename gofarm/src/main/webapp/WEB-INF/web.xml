@@ -66,8 +66,11 @@
 		<url-pattern>*.css</url-pattern>
 		<url-pattern>*.js</url-pattern>
 		<url-pattern>*.gif</url-pattern>
+		<url-pattern>*.GIF</url-pattern>
 		<url-pattern>*.jpg</url-pattern>
+		<url-pattern>*.JPG</url-pattern>
 		<url-pattern>*.png</url-pattern>
+		<url-pattern>*.PNG</url-pattern>
 		<url-pattern>*.xsl</url-pattern>
 		<url-pattern>*.ttf</url-pattern>
 		<url-pattern>*.woff</url-pattern>

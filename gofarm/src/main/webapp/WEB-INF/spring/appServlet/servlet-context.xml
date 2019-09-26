@@ -24,5 +24,5 @@
    <context:component-scan base-package="com.mycompany.gofarm" />
    
    
-   
+   <!-- <Context docBase="C:\data\testProject\fileFoler" path="/fileFolder" reloadable="true"/> -->
 </beans:beans>

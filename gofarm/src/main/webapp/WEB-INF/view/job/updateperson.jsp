@@ -53,11 +53,12 @@
 
 				function sendFile(file, el) {
 					var form_data = new FormData();
+					var address = '<%=request.getServerName()+":"+request.getServerPort()%>';
 					form_data.append('file', file);
 					$.ajax({
 						data : form_data,
 						type : 'POST',
-						url : 'http://localhost:8090/gofarm/personform.do',
+						url : 'http://'+address+'/gofarm/writeform.do',
 						cache : false,
 						contentType : false,
 						processData : false,
@@ -78,6 +79,14 @@
 					var ss = $('#summernote').val();
 					alert(ss);
 				});
+				
+				if("${dto.j_gender}" =='남'){
+					$('input:radio[name=j_gender]').eq(0).attr("checked", true);
+				}else if("${dto.j_gender}" =='여'){
+					$('input:radio[name=j_gender]').eq(1).attr("checked", true);
+				}else{
+					$('input:radio[name=j_gender]').eq(2).attr("checked", true);
+				}
 			});
 </script>
 <style type="text/css">
@@ -176,8 +185,10 @@ h2 {
 
 					<tr>
 						<td class="ttt" align="center">성별</td>
-						<td><input type="radio" name="j_gender" value="m">남자
-							<input type="radio" name="j_gender" value="f">여자</td>
+						<td><input type="radio" name="j_gender" value="남">남자
+							<input type="radio" name="j_gender" value="여">여자
+							<input type="radio" name="j_gender" value="무관">성별무관
+						</td>
 					</tr>
 
 					<tr>

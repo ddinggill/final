@@ -39,7 +39,7 @@ public class AdminDaoImp implements AdminDAO{
 	//유저 삭제
 	@Override
 	public void adminUserDeleteMethod(int usercode) {
-		sqlsession.delete("admin.userDelete", usercode);
+		sqlsession.update("admin.userDelete", usercode);
 		
 	}
 	//판매 목록

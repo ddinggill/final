@@ -158,13 +158,13 @@ table {
    </div> -->
 
 		<form name="frm" id="frm" method="post" action="jobrequest.do">
-			<input type="hidden" name="job" value="${dto.job}" /> <input
-				type="hidden" name="currentPage" id="currentPage"
-				value="${currentPage}" /> <input type="hidden" name="usercode"
-				value="${dto.usercode }"> <input type="submit"
-				class="btn btn-success" id="jobrequest" value="신청하기 " /> <a
-				href="jobsearch.do"><input type="button" value="목록가기"
-				class="btn btn-success" /></a>
+			<input type="hidden" name="job" value="${dto.job}" /> 
+			<input type="hidden" name="currentPage" id="currentPage" value="${currentPage}" /> 
+			<input type="hidden" name="usercode" value="${dto.usercode }">
+			<c:if test="${dto.usercode != loginOk.usercode}"> 
+				<input type="submit" class="btn btn-success" id="jobrequest" value="신청하기 " /> 
+			</c:if>
+			<a href="jobsearch.do"><input type="button" value="목록가기" class="btn btn-success" /></a>
 		</form>
 		<form name="frm2" id="frm2" method="get">
 			<input type="hidden" name="job" value="${dto.job}" /> <input

@@ -147,6 +147,7 @@
 .test{
 	width: 100%;
 	height: 500px;
+	overflow: auto;
 }
 </style>
 
@@ -182,11 +183,11 @@
 							<span
 								style="font: 600 15px/20px 'Open Sans', sans-serif; color: #363636; text-align: left; padding: 1em 0 0.5em;">${dto.nickname }</span>
 						</div>
-						<div class="content" style="border: 1px solid gray; margin-top: 70px;">
+						<div class="content" style="border: 1px solid gray; margin-top: 10px;">
 							<div class="test">${dto.content }</div>
 						</div>
 
-						<div class="file">${dto.b_file}</div>
+						<div class="file"><a href="download.do?boardcode=${dto.boardcode }">${fn:substringAfter(dto.b_file,"_")}</a></div>
 					</div>
 				</div>
 

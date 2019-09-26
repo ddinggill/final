@@ -5,6 +5,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,6 +16,7 @@ import org.apache.http.HttpRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -25,17 +27,26 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.mycompany.gofarm.board.dto.BoardDTO;
 import com.mycompany.gofarm.board.dto.CommentsDTO;
+import com.mycompany.gofarm.board.service.BoardDownLoadView;
 import com.mycompany.gofarm.board.service.BoardService;
 import com.mycompany.gofarm.board.service.FileUpload;
 import com.mycompany.gofarm.job.service.RecruitService;
 import com.mycompany.gofarm.board.dto.PageDTO;
 import com.mycompany.gofarm.user.dto.UserDTO;
 
+@CrossOrigin("*")
 @Controller
 public class BoardController {
 	@Autowired
 	private BoardService boardService;
 
+	@Autowired
+	private BoardDownLoadView boardDownLoadView;
+	
+	public void setBoardDownLoadView(BoardDownLoadView boardDownLoadView) {
+		this.boardDownLoadView = boardDownLoadView;
+	}
+	
 	@Autowired
 	private FileUpload fileUpload;
 
@@ -221,7 +232,7 @@ public class BoardController {
 	////////////////////// 작성///////////////////////////////////////////////////////
 
 	@RequestMapping("/writeform.do")
-	public String doGet4(HttpServletRequest req, HttpServletResponse res) throws IOException {
+	public ModelAndView doGet4(HttpServletRequest req, HttpServletResponse res, String category, ModelAndView mav) throws IOException {
 		HttpSession session = req.getSession();
 
 		if ((session.getAttribute("loginOk")) == null) {
@@ -231,8 +242,9 @@ public class BoardController {
 			out.flush();
 
 		}
-
-		return "board/writeform";
+		mav.addObject("category",category);
+		mav.setViewName("board/writeform");
+		return mav;
 	}
 
 	@ResponseBody
@@ -251,29 +263,16 @@ public class BoardController {
 
 	@RequestMapping(value = "/write.do", method = RequestMethod.POST)
 	public String write(BoardDTO dto, HttpServletRequest req, HttpServletResponse res, HttpServletRequest request)
-			throws IOException {
+			throws Exception {
 		HttpSession session = req.getSession();
 		MultipartFile file = dto.getUp_file();
 
 		System.out.println("파일 들어감?: " + dto.getUp_file());
 
 		if (!file.isEmpty()) {
-			String filename = file.getOriginalFilename();
-			System.out.println("확인:" + filename);
-			UUID random = UUID.randomUUID();
-			String root = "C:\\";
-			String saveDrectory = root + "temp" + File.separator;
-			System.out.println("save: " + saveDrectory);
-			File fe = new File(saveDrectory);
-			File ff = new File(saveDrectory, random + "_" + filename);
-
-			try {
-				FileCopyUtils.copy(file.getInputStream(), new FileOutputStream(ff));
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			dto.setB_file(random + "_" + filename);
+			System.out.println("파일있음");
+			String filename = fileUpload.profileUpload(file, req);
+			dto.setB_file(filename);
 
 		}
 
@@ -321,7 +320,7 @@ public class BoardController {
 	}
 
 	@RequestMapping(value = "/board_up.do", method = RequestMethod.POST)
-	public ModelAndView updatecont(BoardDTO dto, int currentPage, HttpServletRequest request, ModelAndView mav) {
+	public ModelAndView updatecont(BoardDTO dto, int currentPage, HttpServletRequest request, ModelAndView mav) throws Exception {
 		// 기존 첨부파일
 
 		System.out.println("업뎃 입장");
@@ -330,8 +329,7 @@ public class BoardController {
 		String filename = boardService.fileSelectProcess(dto.getBoardcode());
 		System.out.println("upload: " + dto.getUp_file());
 		System.out.println("filename" + filename);
-		String root = "C:\\";
-		String saveDirectory = root + "temp" + File.separator;
+		String saveDirectory = request.getSession().getServletContext().getRealPath("profileUpload");
 
 		// 수정할 첨부파일
 		MultipartFile file = dto.getUp_file();
@@ -339,21 +337,13 @@ public class BoardController {
 		System.out.println("file" + file);
 		// 수정할 첨부파일이 있으면
 		if (!file.isEmpty()) {
-			// 중복파일명을 처리하기 위해 난수발생
-			UUID random = UUID.randomUUID();
 			// 기존 첨부파일이 있으면....
 			if (filename != null) {
 				File fe = new File(saveDirectory, filename);
 				fe.delete();
 			}
-			String fileName = file.getOriginalFilename();
-			dto.setB_file(random + "_" + fileName);
-			File ff = new File(saveDirectory, random + "_" + fileName);
-			try {
-				FileCopyUtils.copy(file.getInputStream(), new FileOutputStream(ff));
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+			String fileName = fileUpload.profileUpload(file, request);
+			dto.setB_file(fileName);
 		}
 		boardService.bupdateProcess(dto);
 		mav.addObject("currentPage", currentPage);
@@ -369,8 +359,7 @@ public class BoardController {
 		String up_file = boardService.fileSelectProcess(boardcode);
 		System.out.println("삭ㅈ ㅔ up_file" + up_file);
 		if (up_file != null) {
-			String root = "C:\\";
-			String saveDirectory = root + "temp" + File.separator;
+			String saveDirectory = request.getSession().getServletContext().getRealPath("profileUpload");
 			File fe = new File(saveDirectory, up_file);
 			fe.delete();
 
@@ -391,6 +380,13 @@ public class BoardController {
 
 		mav.setViewName("redirect:/board.do");
 		return mav;
+	}
+	
+	@RequestMapping("download.do")
+	public void downMethod(HttpServletRequest req, HttpServletResponse res) throws Exception
+	{
+		
+		boardDownLoadView.renderMergedOutputModel(null, req, res);
 	}
 
 }

@@ -2,6 +2,8 @@ package com.mycompany.gofarm.board.service;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.UUID;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Service;
@@ -18,12 +20,13 @@ public class FileUploadImp implements FileUpload {
 
 		// 업로드할 파일 이름
 		String org_filename = file.getOriginalFilename();
-		String str_filename = org_filename;
+		UUID random = UUID.randomUUID();
+		String str_filename = random+"_"+org_filename;
 
 		System.out.println("원본 파일명 : " + org_filename);
 		System.out.println("저장할 파일명 : " + str_filename);
 
-		String filepath = realFolder + "\\" + str_filename;
+		String filepath = realFolder + "\\" +str_filename;
 
 		System.out.println("파일 경로: " + filepath);
 		File f = new File(realFolder);

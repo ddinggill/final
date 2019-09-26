@@ -9,9 +9,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	 select * from users order by usercode asc
  	</select>
  	
- 	<delete id="userDelete" parameterType="int">
- 		delete from users where usercode = #{usercode} 
- 	</delete>
+ 	<update id="userDelete" parameterType="int">
+ 		update users set userlvl = -1 where usercode = #{usercode}
+ 	</update>
  	
  	
  	<select id="productList" resultType="com.mycompany.gofarm.product.dto.ProductDTO">

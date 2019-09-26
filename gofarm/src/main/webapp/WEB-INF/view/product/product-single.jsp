@@ -231,8 +231,8 @@ display: none;
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-6 mb-5 ftco-animate">
-					<a href="product/images/${pd_dto.pd_file}" class="image-popup"><img
-						src="product/images/${pd_dto.pd_file}" class="img-fluid"
+					<a href="/gofarm/profileUpload/${pd_dto.pd_file}" class="image-popup"><img
+						src="/gofarm/profileUpload/${pd_dto.pd_file}" class="img-fluid"
 						alt="Colorlib Template"></a>
 				</div>
 
@@ -268,7 +268,7 @@ display: none;
 										<span class="input-group-btn mr-2">
 											
 										</span> <input type="text" id="quantity" name="cnt"
-											class="form-control input-number" value="${pd_dto.pd_cnt}"  >
+											class="form-control input-number" value="${pd_dto.pd_cnt}"   readonly="readonly">
 										<span class="input-group-btn ml-2">
 											
 										</span>

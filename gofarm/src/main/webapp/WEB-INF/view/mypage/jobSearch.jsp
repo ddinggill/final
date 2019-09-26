@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -64,7 +65,7 @@
 											<td class="t1">희망 근무 시간</td>
 											<td class="t2">${jobSearch_dto.js_time}</td>
 											<td class="t1">희망 급여</td>
-											<td class="t2">${jobSearch_dto.js_salary}</td>
+											<td class="t2"><fmt:formatNumber value="${jobSearch_dto.js_salary}" pattern="###,###"/> 원</td>
 										</tr>
 										<tr>
 											<td class="t1">거주지</td>

@@ -207,15 +207,6 @@ button.social-signin.kakao {
 					<input type="submit" name="signup_submit" value="상세회원가입" required="required"/>
 			</div>
 		</form>
-		<div class="right">
-			<span class="loginwith">Sign in with<br />social network
-			</span>
-
-			<button class="social-signin naver">네이버 회원가입</button>
-			<button class="social-signin kakao">카카오 회원가입</button>
-
-		</div>
-		<div class="or">OR</div>
 	</div>
 
 	<jsp:include page="/WEB-INF/view/common/footer.jsp" />

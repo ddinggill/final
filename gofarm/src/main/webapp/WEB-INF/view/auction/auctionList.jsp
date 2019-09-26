@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+	
 <!DOCTYPE html>
 <html>
 <head>
@@ -187,7 +189,7 @@
 					
 					<div class="product">
 						<a href="${path}" class="img-prod"><img class="img-fluid"
-							src="auction/images/${dto.au_file}" alt="Colorlib Template"> 
+							src="/gofarm/profileUpload/${dto.au_file}" alt="Colorlib Template" style="width: 200px; height: 250px;"> 
 							 </a>
 						<div class="text py-3 pb-4 px-3 text-center">
 							<h3>
@@ -197,11 +199,11 @@
 								<div class="pricing">
 									<p class="price">
 									<label>시작가</label>
-										<span class="price-sale">${dto.stprice}</span>
+										<span class="price-sale"><fmt:formatNumber value="${dto.stprice}" pattern="###,###"/> 원</span>
 									</p>
 									<p class="price">
 									<label>현재가</label>
-										<span class="price-sale">${dto.ctprice}</span>
+										<span class="price-sale"><fmt:formatNumber value="${dto.ctprice}" pattern="###,###"/> 원</span>
 									</p>
 									<input type="hidden" value="${dto.fin_time}" id="end">
 									<p class="price" >

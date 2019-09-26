@@ -1,14 +1,12 @@
 package com.mycompany.gofarm.mypage.controller;
 
 import java.text.DateFormat;
-import static javax.swing.JOptionPane.*;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +16,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 import com.mycompany.gofarm.board.dto.BoardDTO;
-import com.mycompany.gofarm.job.dto.JobCheckDTO;
 import com.mycompany.gofarm.job.dto.JobDTO;
 import com.mycompany.gofarm.job.dto.JobSearchDTO;
 import com.mycompany.gofarm.mypage.dto.MileageDTO;
@@ -58,8 +55,13 @@ public class MypageController {
 	}
 	
 	@RequestMapping("/intro.do")
-	public String intro() {
-		return "mypage/intro";
+	public ModelAndView intro(HttpSession session, ModelAndView mav) {
+		UserDTO user = (UserDTO) session.getAttribute("loginOk");
+		if (user.getUserlvl() == 2) {
+			mav.addObject("userDTO", mypageService.userDetailViewService(user.getUsercode()));
+		}
+		mav.setViewName("mypage/userInfo");
+		return mav;
 	}
 	
 	@RequestMapping("/mileage.do")
@@ -167,6 +169,7 @@ public class MypageController {
 	public ModelAndView product(HttpSession session, ModelAndView mav) {
 		UserDTO user = (UserDTO)session.getAttribute("loginOk");
 		List<MySellDTO> mySellDto = mypageService.mySellListService(user.getUsercode());
+		System.out.println(user.getUsercode());
 		mav.addObject("mySell_dto", mySellDto);
 		mav.setViewName("mypage/product");
 		return mav;
@@ -226,5 +229,28 @@ public class MypageController {
 		mav.addObject("myBoard_dto", myBoardDto);  
 		mav.setViewName("mypage/myBoard");
 		return mav;
+	}
+	
+	@RequestMapping("/detailInfochange.do")
+	public ModelAndView infochangeForm(HttpSession session, ModelAndView mav) {
+		UserDTO user = (UserDTO) session.getAttribute("loginOk");
+		mav.addObject("userDTO", mypageService.userDetailViewService(user.getUsercode()));
+		mav.setViewName("mypage/detailInfochange");
+		return mav;
+	}
+	
+	@RequestMapping("/detailInfochangepro.do")
+	public String infochangeProc(UserDTO dto, HttpServletRequest req) {
+		HttpSession session = req.getSession();
+		dto.setUsercode(((UserDTO)session.getAttribute("loginOk")).getUsercode());
+		mypageService.userDetailUpdateService(dto);
+		return "redirect:/logout.do";
+	}
+	
+	@RequestMapping("/withdrawal.do")
+	public String membershipWithdrawal(HttpSession session) {
+		UserDTO user = (UserDTO) session.getAttribute("loginOk");
+		mypageService.userDeleteService(user.getUsercode());
+		return "redirect:/logout.do";
 	}
 }

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -57,12 +58,14 @@
 
 				});
 				function sendFile(file, el) {
+					var address = '<%=request.getServerName()+":"+request.getServerPort()%>';
+					console.log("서버주소"+address);
 					var form_data = new FormData();
 					form_data.append('file', file);
 					$.ajax({
 						data : form_data,
 						type : 'POST',
-						url : 'http://localhost:8090/gofarm/writeform.do',
+						url : 'http://'+address+'/gofarm/writeform.do',
 						cache : false,
 						contentType : false,
 						processData : false,
@@ -72,7 +75,7 @@
 
 							var filePath = '/gofarm/profileUpload/'
 									+ result.image_name;
-							console.log(filePath);
+							console.log("파일경로"+filePath);
 							$(el).summernote('editor.insertImage', filePath);
 						}
 					});
@@ -83,6 +86,16 @@
 					var ss = $('#summernote').val();
 					alert(ss);
 				});
+				
+				if("${category}" == '구인구직'){
+					$("select[name=b_category]").val('구인구직').prop("selected",true);
+				}else if("${category}" == '판매경매'){
+					$("select[name=b_category]").val('판매경매').prop("selected",true);
+				}else if("${category}" == '사담'){
+					$("select[name=b_category]").val('사담').prop("selected",true);
+				}else{
+					$("select[name=b_category]").val('나눔').prop("selected",true);
+				}
 			});
 </script>
 

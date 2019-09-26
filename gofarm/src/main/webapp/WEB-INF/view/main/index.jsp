@@ -53,6 +53,11 @@ width: 50px;
 height: 50px;
 	
 }
+#chatimg{
+	width: 50px;
+	height: 50px;
+}
+
 
 </style>
 <body>
@@ -125,10 +130,6 @@ height: 50px;
 													<h5 class="color-ash">
 														<b class="plan"><strong>정보수집</strong> </b>
 													</h5>
-													<h4 class="mtb-10">
-														<a href="#"><b>STEP1</b></a>
-													</h4>
-
 												</div>
 
 												<!-- hot-news -->
@@ -399,7 +400,7 @@ height: 50px;
 								</div>
 								<!-- mx-w-200x -->
 
-								<div class="all-scroll pos-relative mt-50">
+								<div class="all-scroll pos-relative " style="height: 500px; margin-top: 150px" >
 									<h5 class="mb-50">
 										<b>MORE VIDEO</b>
 									</h5>
@@ -495,12 +496,7 @@ height: 50px;
 										<div class="s-left color-ash text-center">
 											<div class="dplay-tbl">
 												<div class="dplay-tbl-cell">
-													<h2>
-														<b>16</b>
-													</h2>
-													<h4>
-														<b>JAN</b>
-													</h4>
+													<img alt="/gofarm/profileUpload/chatimg.png" src="/gofarm/profileUpload/chatimg.png" id="chatimg">
 												</div>
 												<!-- dplay-tbl-cell -->
 											</div>
@@ -538,7 +534,7 @@ height: 50px;
 									<h4 class="mb-30 mt-30 clearfix">
 										<b class="blink">실시간 인기상품</b>
 									</h4>
-							<c:forEach items="${pList}" begin="1"  end="2" step="1" var="cdto">
+							<c:forEach items="${pList}" begin="1"  end="3" step="1" var="cdto">
 								<c:url value="productView.do" var="product">
 									<c:param name="currentPage" value="1" />
 									<c:param name="prod_code" value="${cdto.prod_code}" />
@@ -546,7 +542,7 @@ height: 50px;
 							
 									<div class="sided-80x mb-20">
 										<div class="s-left">
-											<img src="product/images/${cdto.pd_file}" alt="">
+											<img src="/gofarm/profileUpload/${cdto.pd_file}" alt="">
 										</div>
 										<!-- s-left -->
 										<div class="s-right">

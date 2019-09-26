@@ -34,7 +34,7 @@ public class UserController {
 	
 	private String apiResult = null;
 	
-	private void setNaverLoginBO(NaverLoginBO naverLoginBO) {
+	public void setNaverLoginBO(NaverLoginBO naverLoginBO) {
 		this.naverLoginBO = naverLoginBO;
 	}
 	

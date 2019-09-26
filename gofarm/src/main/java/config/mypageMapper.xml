@@ -150,6 +150,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	]]>
  	</select>
  	
+ 	<update id="userDetail_update" parameterType="com.mycompany.gofarm.user.dto.UserDTO">
+ 		update USER_DETAIL set bank = #{bank}, account = #{account}, user_home = #{user_home} where usercode=#{usercode}
+ 	</update>
+ 	
+ 	<update id="userDelete" parameterType="int">
+ 		update users set userlvl = -1 where usercode = #{usercode}
+ 	</update>
+ 	
  	
  	
 </mapper>

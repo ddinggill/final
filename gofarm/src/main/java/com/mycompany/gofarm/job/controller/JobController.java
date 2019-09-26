@@ -289,8 +289,8 @@ public class JobController {
 
 	@RequestMapping("/jobrequest.do")
 	public String jobsendmail(HttpServletRequest req, int usercode, UserDTO dto) {
-		System.out.println("구직글작성한사람 코드: " + usercode);
-		System.out.println(mailSender);
+		System.out.println("구인글작성한사람 코드: " + usercode);
+		//System.out.println(mailSender);
 		String from = "gofarm16@gmail.com";
 		String subject = "회원님의 구인글에 지원하신분의 정보입니다.";
 		HttpSession session = req.getSession();

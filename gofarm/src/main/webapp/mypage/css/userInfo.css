@@ -1,0 +1,161 @@
+.m_chargelist li {
+	display: inline;
+	width: 130px;
+	margin-top: 5px;
+	margin-right: 50px;
+}
+table {
+    table-layout: fixed;
+    width: 100%;
+    border-spacing: 0;
+    border-collapse: collapse;
+    border-top: 2px solid #e1e1e1;
+    color: #1d1d1d;
+}
+
+table tr td {
+	box-sizing: border-box;
+	position: relative;
+	padding: 7px 0 7px 10px;
+	border-bottom: 1px solid #e1e1e1;
+	text-align: left;
+}
+
+div.g_content{
+	margin-left:80px;
+	margin-right:80px;
+}
+
+div.g_right{
+	float: right;
+}
+table tr th {
+    box-sizing: border-box;
+    padding: 7px 0;
+    height: 40px;
+    border-bottom: 1px solid #e1e1e1;
+    background-color: #f0f0f0;
+    text-align: center;
+}
+.g_subtitle, .g_subtitle_blue {
+    box-sizing: border-box;
+    position: relative;
+    min-height: 30px;
+    margin-top: 15px;
+    padding: 11px 0 8px;
+    color: #2f2f2f;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.g_btn_wrap, .g_btn {
+    margin: 45px 0;
+    text-align: center;
+}
+
+.g_blue_table, .g_blue_table tr th, .g_blue_table tr td {
+    border-color: #d5e2f2;
+}
+
+.g_blue_table tr th {
+    background-color: #e8f2ff;
+}
+.box6 {
+    padding: 15px;
+    border: 1px solid #e1e1e1;
+    background-color: #f0f0f0;
+    margin-top: 10px;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+}
+
+.g_notice_box1 {
+    box-sizing: border-box;
+    position: relative;
+    background: #f0f0f0;
+    padding: 15px 20px;
+    border: 1px solid #e1e1e1;
+    font-size: 12px;
+    color: #636363;
+}
+.g_tab {
+    position: relative;
+    overflow: hidden;
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+    margin: 20px 0;
+}
+
+.g_tab>*>a {
+    display: block;
+    padding: 10px 0;
+    text-align: center;
+    line-height: 22px;
+}
+
+body, div, input, ul, li, dl, dt, dd, form, fieldset, label, strong, span, button, a, p {
+    margin: 0;
+    padding: 0;
+    text-align: left;
+}
+
+.g_tab>.selected {
+    border: 2px solid #666;
+    border-bottom: 0;
+    background-color: #FFF;
+    font-weight: 700;
+}
+
+.g_tab>* {
+    box-sizing: border-box;
+    position: relative;
+    display: table-cell;
+    height: 45px;
+    border-top: 1px solid #e1e1e1;
+    border-left: 1px solid #e1e1e1;
+    border-bottom: 2px solid #666;
+    background-color: #f1f0f3;
+    vertical-align: middle;
+}
+
+body {
+    position: relative;
+    height: 100%;
+    color: #1d1d1d;
+    font-family: '맑은 고딕','Malgun Gothic',돋움,dotum,sans-serif;
+    font-size: 1rem;
+    letter-spacing: -0.08em;
+}
+
+
+.inputBtn {
+	height: 40px;
+	text-align: center;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+#userChangeBtn {
+	width: 150px;
+	color: white;
+	background-color: #5882FA;;
+}
+
+#basicInfoMod {
+	width: 130px;
+}
+
+#detailInfoMod {
+	width: 130px;
+} 

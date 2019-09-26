@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.mycompany.gofarm.board.service.FileUpload;
 import com.mycompany.gofarm.donation.dto.Do_conditionDTO;
 import com.mycompany.gofarm.donation.dto.DonationDTO;
 import com.mycompany.gofarm.donation.dto.PageDTO;
@@ -33,6 +34,13 @@ public class DonationController {
 	private PageDTO pageDTO;
 	
 	private int currentPage;
+	
+	@Autowired
+	private FileUpload fileUpload;
+	
+	public void setFileUpload(FileUpload fileUpload) {
+		this.fileUpload = fileUpload;
+	}
 	
 	public void setDonationService(DonationService donationService) {
 		this.donationService = donationService;
@@ -105,29 +113,15 @@ public class DonationController {
 	
 	//나눔글 등록
 	@RequestMapping(value= "donationProducePro.do" , method = RequestMethod.POST )
-	public String donationProducePro(HttpServletRequest req , DonationDTO dodto) {
+	public String donationProducePro(HttpServletRequest req , DonationDTO dodto) throws Exception {
 		
 		HttpSession session = req.getSession();
 		MultipartFile file = dodto.getUpload();
 		
 		if(!file.isEmpty()) {
 			System.out.println("파일있음");
-			String filename = file.getOriginalFilename();
-			System.out.println("filename "+ filename); //filename test1.jpg
-			UUID random = UUID.randomUUID();
-			String root = "C:\\Users\\user1\\git\\final\\gofarm\\src\\main\\webapp\\donation\\";
-			System.out.println("root :"+ root); //root :C:\Lim\spring_workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\gofarm\
-			
-			String saveDriectory = root+"images"+File.separator;
-			File fe = new File(saveDriectory);
-			File ff = new File(saveDriectory, random +"_"+filename);
-			
-			try {
-				FileCopyUtils.copy(file.getInputStream(), new FileOutputStream(ff));
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			dodto.setDo_file(random +"_"+filename);
+			String filename = fileUpload.profileUpload(file, req);
+			dodto.setDo_file(filename);
 		}
 		
 		UserDTO udto = (UserDTO) session.getAttribute("loginOk");

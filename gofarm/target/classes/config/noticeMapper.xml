@@ -44,7 +44,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		c.usercode,c.n_title,c.content,to_char(c.n_day,'yyyy.mm.dd') as
 		n_day,c.n_file,( select nickname from users u
 		where u.usercode
-		= c.usercode) nickname
+		=
+		c.usercode) nickname
 		from notice c where
 		noticecode=#{noticecode}
 
@@ -55,23 +56,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 게시판 작성 -->
 	<insert id="n_insert" parameterType="com.mycompany.gofarm.notice.dto.NoticeDTO">
 		insert into notice
-		(noticecode, usercode, n_title, content,n_day,
-		<if test="n_file==null">
-			n_file
-		</if>
-		<if test="n_file!=null">
-			n_file
-		</if>
-		)
+		(noticecode, usercode, n_title, content,n_day,n_file)
 		values(NOTICE_SEQ.nextval,#{usercode},#{n_title}
-		,#{content},sysdate,
-		<if test="n_file==null">
-			null
-		</if>
-		<if test="n_file!=null">
-			#{n_file}
-		</if>
-		)
+		,#{content},sysdate,#{n_file,jdbcType=VARCHAR})
 
 	</insert>
 

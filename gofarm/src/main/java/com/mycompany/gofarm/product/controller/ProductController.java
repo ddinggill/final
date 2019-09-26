@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.mycompany.gofarm.board.service.FileUpload;
 import com.mycompany.gofarm.mypage.dto.MileageDTO;
 import com.mycompany.gofarm.mypage.service.MypageService;
 import com.mycompany.gofarm.product.dto.DealDTO;
@@ -38,6 +39,13 @@ public class ProductController {
 	
 	/*@Autowired*/
 	private PageDTO pageDTO;
+	
+	@Autowired
+	private FileUpload fileUpload;
+	
+	public void setFileUpload(FileUpload fileUpload) {
+		this.fileUpload = fileUpload;
+	}
 	
 	public void setProductService(ProductService productService) {
 		this.productService = productService;
@@ -192,29 +200,15 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value="productProducePro.do" , method = RequestMethod.POST)
-	public String productProducePro(HttpServletRequest req, ProductDTO prodto) {
+	public String productProducePro(HttpServletRequest req, ProductDTO prodto) throws Exception {
 		System.out.println("컨트롤러 오니?");
 		HttpSession session = req.getSession();
 		MultipartFile file = prodto.getUpload();
 		
 		if(!file.isEmpty()) {
 			System.out.println("파일있음");
-			String filename = file.getOriginalFilename();
-			System.out.println("filename "+ filename); //filename test1.jpg
-			UUID random = UUID.randomUUID();
-			String root = "C:\\Users\\user1\\git\\final\\gofarm\\src\\main\\webapp\\product\\";
-			System.out.println("root :"+ root); //root :C:\Lim\spring_workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\gofarm\
-			
-			String saveDriectory = root+"images"+File.separator;
-			File fe = new File(saveDriectory);
-			File ff = new File(saveDriectory, random +"_"+filename);
-			
-			try {
-				FileCopyUtils.copy(file.getInputStream(), new FileOutputStream(ff));
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			prodto.setPd_file(random+"_"+filename);
+			String filename = fileUpload.profileUpload(file, req);
+			prodto.setPd_file(filename);
 			
 		}
 		UserDTO udto =  (UserDTO) session.getAttribute("loginOk");
