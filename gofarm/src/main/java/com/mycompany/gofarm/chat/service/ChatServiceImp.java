@@ -44,4 +44,10 @@ public class ChatServiceImp implements ChatService{
 		return chatDAO.getdbchat(chatcode);
 	}
 
+	@Override
+	public String getlastchatProcess(int chatcode) {
+		// TODO Auto-generated method stub
+		return chatDAO.getlastchat(chatcode);
+	}
+
 }

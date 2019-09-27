@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -69,7 +69,7 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 						<tbody>
 							<tr>
 								<th>출금가능 마일리지</th>
-								<td><span id="mileage_total">${userDTO.mileage} 원</span></td>
+								<td><span id="mileage_total"><fmt:formatNumber value="${userDTO.mileage}" pattern="###,###"/> 원</span></td>
 							</tr>
 							<tr>
 								<th>출금할 마일리지</th>
@@ -108,5 +108,7 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 					<li>오후 10:50 이후부터 오전 04:00까지는 은행의 전산망 점검 시간으로 출금이 되지 않습니다.</li>
 				</ul>
 				<!-- ▲ 알아두기 //-->
+
+
 </body>
 </html>

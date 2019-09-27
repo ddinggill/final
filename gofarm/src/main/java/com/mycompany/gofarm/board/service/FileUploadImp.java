@@ -26,8 +26,8 @@ public class FileUploadImp implements FileUpload {
 		System.out.println("원본 파일명 : " + org_filename);
 		System.out.println("저장할 파일명 : " + str_filename);
 
-		String filepath = realFolder + "\\" +str_filename;
-
+		//String filepath = realFolder + "\\" +str_filename;
+		String filepath = realFolder + "/" +str_filename;
 		System.out.println("파일 경로: " + filepath);
 		File f = new File(realFolder);
 		if (!f.exists()) {

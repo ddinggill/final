@@ -75,7 +75,7 @@
 							<td><fmt:formatNumber value="${dto.de_cnt}" pattern="###,###"/>개</td>
 							<td>${dto.name}</td>
 							<td>${dto.phone}</td>
-							<td>${dto.de_date}</td>
+							<td><fmt:formatDate value="${dto.de_date}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
 							<td><a href="${write}" ><input type="button" value="쓰기" id="reviewBtn" name="reviewBtn" /></a></td>
 						</tr>
 					</c:forEach>

@@ -51,12 +51,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		select * from users where usercode = #{usercode}
  	</select>
  	
- 	<select id="aurelist" parameterType="int" resultType="com.mycompany.gofarm.auction.dto.Au_recipeDTO">
- 		<![CDATA[
- 		select autioncode,br_user,br_price,to_char(br_date,'yyyy.mm.dd hh24:mi:ss')as br_date from au_recipe
- 		where autioncode = #{auctioncode} and rownum<=5 order by br_price desc
- 		]]>
- 	</select>
+ 	 <select id="aurelist" parameterType="int" resultType="com.mycompany.gofarm.auction.dto.Au_recipeDTO">
+       <![CDATA[
+       select b.autioncode autioncode, b.br_user br_user, b.br_price br_price, b.br_date br_date  
+       from (select a.*, rownum rm 
+          from (select autioncode,br_user,br_price,to_char(br_date,'yyyy.mm.dd hh24:mi:ss')as br_date 
+             from au_recipe 
+             where autioncode = #{autioncode} 
+             order by br_price desc)a
+          )b 
+       where rm<=5 order by rm asc
+       ]]>
+    </select>
  	
  	<!-- 경매정보에 낙찰자 코드 넣기 -->
  	<update id="finnameUpd" parameterType="com.mycompany.gofarm.auction.dto.Au_recipeDTO">

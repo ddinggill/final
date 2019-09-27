@@ -70,116 +70,125 @@ public class BoardController {
 	}
 
 	// 게시판-구인구직
-	@RequestMapping("/board_job.do")
-	public ModelAndView bjob(PageDTO pv, ModelAndView mav) {
+	 @RequestMapping("/board_job.do")
+	   public ModelAndView bjob(PageDTO pv, ModelAndView mav) {
 
-		String go = "구인구직";
-		int totalRecord = boardService.boardcount(go);
-		// System.out.println("총 레코드수"+totalRecord);
-		int currentPage = 0;
-		PageDTO pdto = null;
-		if (totalRecord >= 1) {
-			if (pv.getCurrentPage() == 0) {
-				currentPage = 1;
-			} else {
-				currentPage = pv.getCurrentPage();
-			}
-			// System.out.println("currpage: "+currentPage);
-			pdto = new PageDTO(currentPage, totalRecord);
-			pdto.setB_category("구인구직");
-			mav.addObject("pv", pdto);
-			mav.addObject("aList", boardService.boardlistProcess(pdto));
-			mav.addObject("category", go);
-		}
-		// System.out.println("채용글리스트: "+recruitService.listProcess(pdto).size());
-		mav.setViewName("board/boardlist");
+	      String go = "구인구직";
+	      String gowhere = "board_job.do";
+	      int totalRecord = boardService.boardcount(go);
+	      // System.out.println("총 레코드수"+totalRecord);
+	      int currentPage = 0;
+	      PageDTO pdto = null;
+	      if (totalRecord >= 1) {
+	         if (pv.getCurrentPage() == 0) {
+	            currentPage = 1;
+	         } else {
+	            currentPage = pv.getCurrentPage();
+	         }
+	         // System.out.println("currpage: "+currentPage);
+	         pdto = new PageDTO(currentPage, totalRecord);
+	         pdto.setB_category("구인구직");
+	         mav.addObject("pv", pdto);
+	         mav.addObject("aList", boardService.boardlistProcess(pdto));
+	      }
+	      mav.addObject("category", go);
+	      mav.addObject("gowhere", gowhere);
+	      // System.out.println("채용글리스트: "+recruitService.listProcess(pdto).size());
+	      mav.setViewName("board/boardlist");
 
-		return mav;
-	}
+	      return mav;
+	   }
 
-	// 게시판-판매경매
-	@RequestMapping("/board_trade.do")
-	public ModelAndView bsale(PageDTO pv, ModelAndView mav) {
 
-		String go = "판매경매";
-		int totalRecord = boardService.boardcount(go);
-		// System.out.println("총 레코드수"+totalRecord);
-		int currentPage = 0;
-		PageDTO pdto = null;
-		if (totalRecord >= 1) {
-			if (pv.getCurrentPage() == 0) {
-				currentPage = 1;
-			} else {
-				currentPage = pv.getCurrentPage();
-			}
-			// System.out.println("currpage: "+currentPage);
-			pdto = new PageDTO(currentPage, totalRecord);
-			pdto.setB_category("판매경매");
-			mav.addObject("pv", pdto);
-			mav.addObject("aList", boardService.boardlistProcess(pdto));
-			mav.addObject("category", go);
-		}
-		// System.out.println("채용글리스트: "+recruitService.listProcess(pdto).size());
-		mav.setViewName("board/boardlist");
+	  // 게시판-판매경매
+	   @RequestMapping("/board_trade.do")
+	   public ModelAndView bsale(PageDTO pv, ModelAndView mav) {
 
-		return mav;
-	}
+	      String go = "판매경매";
+	      String gowhere = "board_trade.do";
+	      int totalRecord = boardService.boardcount(go);
+	      // System.out.println("총 레코드수"+totalRecord);
+	      int currentPage = 0;
+	      PageDTO pdto = null;
+	      if (totalRecord >= 1) {
+	         if (pv.getCurrentPage() == 0) {
+	            currentPage = 1;
+	         } else {
+	            currentPage = pv.getCurrentPage();
+	         }
+	         // System.out.println("currpage: "+currentPage);
+	         pdto = new PageDTO(currentPage, totalRecord);
+	         pdto.setB_category("판매경매");
+	         mav.addObject("pv", pdto);
+	         mav.addObject("aList", boardService.boardlistProcess(pdto));
+	      }
+	      mav.addObject("category", go);
+	      mav.addObject("gowhere", gowhere);
+	      // System.out.println("채용글리스트: "+recruitService.listProcess(pdto).size());
+	      mav.setViewName("board/boardlist");
 
-	// 게시판-나눔
-	@RequestMapping("/board_shard.do")
-	public ModelAndView bshare(PageDTO pv, ModelAndView mav) {
+	      return mav;
+	   }
 
-		String go = "나눔";
-		int totalRecord = boardService.boardcount(go);
-		// System.out.println("총 레코드수"+totalRecord);
-		int currentPage = 0;
-		PageDTO pdto = null;
-		if (totalRecord >= 1) {
-			if (pv.getCurrentPage() == 0) {
-				currentPage = 1;
-			} else {
-				currentPage = pv.getCurrentPage();
-			}
-			// System.out.println("currpage: "+currentPage);
-			pdto = new PageDTO(currentPage, totalRecord);
-			pdto.setB_category("나눔");
-			mav.addObject("pv", pdto);
-			mav.addObject("aList", boardService.boardlistProcess(pdto));
-			mav.addObject("category", go);
-		}
-		// System.out.println("채용글리스트: "+recruitService.listProcess(pdto).size());
-		mav.setViewName("board/boardlist");
+	   // 게시판-나눔
+	   @RequestMapping("/board_shard.do")
+	   public ModelAndView bshare(PageDTO pv, ModelAndView mav) {
 
-		return mav;
-	}
+	      String go = "나눔";
+	      String gowhere = "board_shard.do";
+	      int totalRecord = boardService.boardcount(go);
+	      // System.out.println("총 레코드수"+totalRecord);
+	      int currentPage = 0;
+	      PageDTO pdto = null;
+	      if (totalRecord >= 1) {
+	         if (pv.getCurrentPage() == 0) {
+	            currentPage = 1;
+	         } else {
+	            currentPage = pv.getCurrentPage();
+	         }
+	         // System.out.println("currpage: "+currentPage);
+	         pdto = new PageDTO(currentPage, totalRecord);
+	         pdto.setB_category("나눔");
+	         mav.addObject("pv", pdto);
+	         mav.addObject("aList", boardService.boardlistProcess(pdto));
+	      }
+	      mav.addObject("category", go);
+	      mav.addObject("gowhere", gowhere);
+	      // System.out.println("채용글리스트: "+recruitService.listProcess(pdto).size());
+	      mav.setViewName("board/boardlist");
 
-	// 게시판-수다
-	@RequestMapping("/board_talk.do")
-	public ModelAndView btalk(PageDTO pv, ModelAndView mav) {
+	      return mav;
+	   }
 
-		String go = "사담";
-		int totalRecord = boardService.boardcount(go);
-		// System.out.println("총 레코드수"+totalRecord);
-		int currentPage = 0;
-		PageDTO pdto = null;
-		if (totalRecord >= 1) {
-			if (pv.getCurrentPage() == 0) {
-				currentPage = 1;
-			} else {
-				currentPage = pv.getCurrentPage();
-			}
-			// System.out.println("currpage: "+currentPage);
-			pdto = new PageDTO(currentPage, totalRecord);
-			pdto.setB_category("사담");
-			mav.addObject("pv", pdto);
-			mav.addObject("aList", boardService.boardlistProcess(pdto));
-			mav.addObject("category", go);
-		}
-		// System.out.println("채용글리스트: "+recruitService.listProcess(pdto).size());
-		mav.setViewName("board/boardlist");
+	   // 게시판-수다
+	   @RequestMapping("/board_talk.do")
+	   public ModelAndView btalk(PageDTO pv, ModelAndView mav) {
 
-		return mav;
-	}
+	      String go = "사담";
+	      String gowhere = "board_talk.do";
+	      int totalRecord = boardService.boardcount(go);
+	      // System.out.println("총 레코드수"+totalRecord);
+	      int currentPage = 0;
+	      PageDTO pdto = null;
+	      if (totalRecord >= 1) {
+	         if (pv.getCurrentPage() == 0) {
+	            currentPage = 1;
+	         } else {
+	            currentPage = pv.getCurrentPage();
+	         }
+	         // System.out.println("currpage: "+currentPage);
+	         pdto = new PageDTO(currentPage, totalRecord);
+	         pdto.setB_category("사담");
+	         mav.addObject("pv", pdto);
+	         mav.addObject("aList", boardService.boardlistProcess(pdto));
+	      }
+	      mav.addObject("category", go);
+	      mav.addObject("gowhere", gowhere);
+	      // System.out.println("채용글리스트: "+recruitService.listProcess(pdto).size());
+	      mav.setViewName("board/boardlist");
+
+	      return mav;
+	   }
 	/*
 	 * //댓글보여지는 창
 	 * 

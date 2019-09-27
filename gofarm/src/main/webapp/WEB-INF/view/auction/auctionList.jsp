@@ -189,7 +189,7 @@
 					
 					<div class="product">
 						<a href="${path}" class="img-prod"><img class="img-fluid"
-							src="/gofarm/profileUpload/${dto.au_file}" alt="Colorlib Template" style="width: 200px; height: 250px;"> 
+							src="/gofarm/profileUpload/${dto.au_file}" alt="Colorlib Template" style="width: 250px; height: 250px;"> 
 							 </a>
 						<div class="text py-3 pb-4 px-3 text-center">
 							<h3>

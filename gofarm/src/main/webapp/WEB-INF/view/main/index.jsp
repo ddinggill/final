@@ -496,7 +496,7 @@ height: 50px;
 										<div class="s-left color-ash text-center">
 											<div class="dplay-tbl">
 												<div class="dplay-tbl-cell">
-													<img alt="/gofarm/profileUpload/chatimg.png" src="/gofarm/profileUpload/chatimg.png" id="chatimg">
+													<img alt="" src="main/images/chatimg.png" id="chatimg">
 												</div>
 												<!-- dplay-tbl-cell -->
 											</div>

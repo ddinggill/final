@@ -34,7 +34,11 @@ public class ChatController {
 			mav.setViewName("redirect:login.do");
 		}
 		else {
-			mav.addObject("roomlist", chatService.roomlistProcess());
+			List<ChatRoomDTO> roomlist = chatService.roomlistProcess();
+			for(ChatRoomDTO dto : roomlist) {
+				dto.setLast_message(chatService.getlastchatProcess(dto.getChatcode()));
+			}
+			mav.addObject("roomlist", roomlist);
 			mav.setViewName("chat/chatlist");
 		}
 		
