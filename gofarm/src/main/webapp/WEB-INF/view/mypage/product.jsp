@@ -73,7 +73,7 @@
 							<td>${dto.name}</td>
 							<td>${dto.user_home}</td>
 							<td>${dto.phone}</td>
-							<td>${dto.de_date}</td>
+							<td><fmt:formatDate value="${dto.de_date}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
 						</tr>
 					</c:forEach>
                 </tbody>

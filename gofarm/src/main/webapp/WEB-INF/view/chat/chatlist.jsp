@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -107,7 +108,14 @@
 							src="chat/images/10.png" alt="Colorlib Template"> 
 						</a>
 						<div class="text py-3 pb-4 px-3 text-center">
-							<p class="price">${dto.ct_title}</p>
+							<c:choose>
+								<c:when test="${fn:length(dto.ct_title) gt 6}">
+									<p class="price">${fn:substring(dto.ct_title,0,5)}...</p>
+								</c:when>
+								<c:otherwise>
+									<p class="price">${dto.ct_title}</p>
+								</c:otherwise>							
+							</c:choose>
 							<div class="d-flex">
 								<div class="pricing">
 									<h3 style="font-size:9px">
@@ -115,8 +123,9 @@
 										<span class="price-sale">${dto.ct_limit}</span>
 									</h3>
 									<hr>
+										<span class="price-sale" style="color:green; font-size: 9px">last message..</span>
 									<h3>
-                              			<span class="price-sale" style="color:gray">채팅내용 ㅎㅎ</span>
+                              			<span class="price-sale" style="color:gray; display: inline">${dto.last_message }</span>
                           		 	</h3>
 								</div>
 							</div>

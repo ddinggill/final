@@ -6,7 +6,16 @@ public class ChatRoomDTO {
 	private int usercode;
 	private String ct_title;
 	private int ct_limit;
+	private String last_message;
 	
+	public String getLast_message() {
+		return last_message;
+	}
+
+	public void setLast_message(String last_message) {
+		this.last_message = last_message;
+	}
+
 	public ChatRoomDTO() {
 		
 	}

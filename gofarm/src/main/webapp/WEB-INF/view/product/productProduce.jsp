@@ -69,35 +69,35 @@
            
               <div class="form-group">
               <label><h4>상품명</h4></label>
-                <input type="text" class="form-control" placeholder="ex)풍년쌀 골드 10kg 등" name="pd_name" >
+                <input type="text" class="form-control" placeholder="ex)풍년쌀 골드 10kg 등" name="pd_name" required="required" >
               </div>
                <div class="form-group">
                <label><h4>상품 이미지</h4></label>
-                <input type="file" class="form-control" placeholder="상품의 메인 이미지" name="upload" >
+                <input type="file" class="form-control" placeholder="상품의 메인 이미지" name="upload"  required="required">
               </div>
               <div class="form-group">
               <label><h4>생산자</h4></label>
-                <input type="text" class="form-control" placeholder="ex)회사명 및 개인 사업자명" name="producer" >
+                <input type="text" class="form-control" placeholder="ex)회사명 및 개인 사업자명" name="producer"required="required" >
               </div>
               <div class="form-group">
               <label><h4>원산지</h4></label>
-                <input type="text" class="form-control" placeholder="ex)전라남도 완도군" name="origin" >
+                <input type="text" class="form-control" placeholder="ex)전라남도 완도군" name="origin"  required="required">
               </div>
               <div class="form-group">
               <label><h4>회사 전화번호</h4></label>
-                <input type="text" class="form-control" placeholder="문의전화 번호" name="pd_phone" >
+                <input type="text" class="form-control" placeholder="문의전화 번호" name="pd_phone"  required="required">
               </div>
               <div class="form-group">
               <label><h4>판매개수</h4></label>
-				<input type="number" id="quantity" name="pd_cnt" class="form-control input-number" value="1" min="1"  >
+				<input type="number" id="quantity" name="pd_cnt" class="form-control input-number" value="1" min="1" required="required"  >
               </div>
               <div class="form-group">
               <label><h4>상세내용</h4></label>
-                <textarea   cols="50" rows="20" class="form-control" placeholder="상품의 상세내용" name="pd_detail" ></textarea>
+                <textarea   cols="50" rows="20" class="form-control" placeholder="상품의 상세내용" name="pd_detail"  required="required"></textarea>
               </div>
                <div class="form-group">
                <label><h4>가격</h4></label>
-                <input type="text" class="form-control" placeholder="상품의 개당 가격" name="pd_price" >
+                <input type="text" class="form-control" placeholder="상품의 개당 가격" name="pd_price"  required="required">
               </div>
               <div class="form-group">
                 <input type="submit" value="등 록 하 기" class="btn btn-primary py-3 px-5">

@@ -68,11 +68,15 @@ public class UserController {
 	public String loginProc(UserDTO dto, HttpServletRequest req, Model model) {
 		if(userService.loginCheckProcess(dto) != null) {
 			dto = userService.loginCheckProcess(dto);
-			System.out.println(dto.getBirth());
-			HttpSession session = req.getSession();
-			session.setMaxInactiveInterval(30*60);//로그인유지시간 30분
-			session.setAttribute("loginOk", dto);
-			return "redirect:/main.do";
+			//System.out.println(dto.getBirth());
+			if(dto.getUserlvl() <0) {
+				model.addAttribute("loginCheck", "fail");
+			}else {
+				HttpSession session = req.getSession();
+				session.setMaxInactiveInterval(30*60);//로그인유지시간 30분
+				session.setAttribute("loginOk", dto);
+				return "redirect:/main.do";
+			}
 		}else {
 			//req.setAttribute("loginCheck","fail");
 			model.addAttribute("loginCheck", "fail");
@@ -111,6 +115,9 @@ public class UserController {
 		System.out.println(((String)userInfo.get("birthday")).substring(2));
 		System.out.println(dto.getBirth());*/
 		dto = userService.kakaologinProcess(dto);
+		if(dto.getUserlvl() < 0) {
+			return "redirect:/main.do";
+		}
 		HttpSession session = req.getSession();
 		session.setMaxInactiveInterval(30*60);//로그인유지시간 30분
 		session.setAttribute("loginOk", dto);
@@ -173,6 +180,9 @@ public class UserController {
 		
 		dto = userService.kakaologinProcess(dto);
 		
+		if(dto.getUserlvl() < 0) {
+			return "redirect:/main.do";
+		}
 		HttpSession serversession = req.getSession();
 		serversession.setMaxInactiveInterval(30*60);//로그인유지시간 30분
 		serversession.setAttribute("loginOk", dto);

@@ -15,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -222,5 +223,30 @@ public class AuctionController {
 		
 	}
 
+	//입찰하기 클릭시 입찰금액 보다 마일리지가 많은지 확인한다.
+	   @RequestMapping( value ="monetCheck.do" , method = RequestMethod.GET)
+	   public @ResponseBody boolean moneyCheck(int money , HttpServletRequest req) {
+	      boolean res = false;
+	      
+	      HttpSession session = req.getSession();
+	      UserDTO usermoney = (UserDTO) session.getAttribute("loginOk");      
+	      //System.out.println("유저 코드"+usermoney.getUsercode());
+	      UserDTO user = auctionService.auctionTotalMileageProcess(usermoney.getUsercode());
+	      int mileage = user.getMileage();
+	      System.out.println("유저 마일리지" + mileage);
+	      System.out.println("money = "+money);
+	      //int realmoney = Integer.parseInt(money);
+	      if(mileage >= money) {
+	         res = true;
+	      }
+	      System.out.println("여기까지 오나");
+	      
+	      return res;
+	   }
+
+	
+	
+	
+	
 	
 }

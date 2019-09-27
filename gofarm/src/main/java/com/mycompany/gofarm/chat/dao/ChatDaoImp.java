@@ -40,4 +40,10 @@ public class ChatDaoImp implements ChatDAO{
 		return sqlSession.selectList("chat.dbchat", chatcode);
 	}
 
+	@Override
+	public String getlastchat(int chatcode) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("chat.lastchat", chatcode);
+	}
+
 }

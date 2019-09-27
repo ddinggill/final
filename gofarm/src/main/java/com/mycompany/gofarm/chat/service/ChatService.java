@@ -12,4 +12,5 @@ public interface ChatService {
 	public ChatRoomDTO getroominfoProcess(int chatcode);
 	public void insertmsgProcess(ChatDTO dto);
 	public List<ChatDTO> getdbchatProcess(int chatcode);
+	public String getlastchatProcess(int chatcode);
 }

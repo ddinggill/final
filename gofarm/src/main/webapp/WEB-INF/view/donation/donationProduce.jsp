@@ -68,19 +68,19 @@
            
               <div class="form-group">
               <label><h4>나눔명</h4></label>
-                <input type="text" class="form-control" placeholder="ex)풍년쌀 골드 10kg 등" name="do_product" >
+                <input type="text" class="form-control" placeholder="ex)풍년쌀 골드 10kg 등" name="do_product" required="required" >
               </div>
                <div class="form-group">
                <label><h4>나눔 이미지</h4></label>
-                <input type="file" class="form-control" placeholder="상품의 메인 이미지" name="upload" >
+                <input type="file" class="form-control" placeholder="상품의 메인 이미지" name="upload" required="required" >
               </div>
               <div class="form-group">
               <label><h4>나눔개수</h4></label>
-				<input type="number" id="quantity" name="do_cnt" class="form-control input-number" value="1" min="1"  >
+				<input type="number" id="quantity" name="do_cnt" class="form-control input-number" value="1" min="1"  required="required" >
               </div>
               <div class="form-group">
               <label><h4>상세내용</h4></label>
-                <textarea   cols="50" rows="20" class="form-control" placeholder="상품의 상세내용" name="content" ></textarea>
+                <textarea   cols="50" rows="20" class="form-control" placeholder="상품의 상세내용" name="content" required="required"></textarea>
               </div>
               <div class="form-group">
                 <input type="submit" value="등 록 하 기" class="btn btn-primary py-3 px-5">

@@ -36,7 +36,7 @@ $(document).ready(function() {
         </a>
         <div class="dropdown-menu" aria-labelledby="pagesDropdown">
           <a class="dropdown-item" href="intro.do" id="myInfo"> 내 정보 보기</a>
-          <a class="dropdown-item" href="withdrawal.do" id="jobSearch"> 회원 탈퇴</a>
+          <a class="dropdown-item" href="withdrawal.do" id="jobSearch" data-toggle="modal" data-target="#WithdrawalModal"> 회원 탈퇴</a>
         </div>
       </li>
       <li class="nav-item dropdown">

@@ -88,7 +88,7 @@
 							</c:choose>
 							<td>${dto.m_content}</td>
 							<td><fmt:formatNumber value="${dto.m_total}" pattern="###,###"/> 원</td>
-							<td>${dto.m_day}</td>
+							<td><fmt:formatDate value="${dto.m_day}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
 						</tr>
 					</c:forEach>
                 </tbody>

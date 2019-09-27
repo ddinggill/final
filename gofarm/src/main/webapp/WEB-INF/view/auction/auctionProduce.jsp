@@ -70,23 +70,23 @@
            
               <div class="form-group">
               <label><h4>경매 상품명</h4></label>
-                <input type="text" class="form-control" placeholder="ex)풍년쌀 골드 10kg 등" name="au_name" >
+                <input type="text" class="form-control" placeholder="ex)풍년쌀 골드 10kg 등" name="au_name" required="required">
               </div>
                <div class="form-group">
                 <label><h4>상품 이미지</h4></label>
-                <input type="file" class="form-control" placeholder="상품의 메인 이미지" name="upload" >
+                <input type="file" class="form-control" placeholder="상품의 메인 이미지" name="upload" required="required">
               </div> 
               <div class="form-group">
               <label><h4>시작가</h4></label>
-                <input type="number" class="form-control"  name="stprice" >
+                <input type="number" class="form-control"  name="stprice" required="required" >
               </div>
               <div class="form-group">
               <label><h4>종료시간</h4></label>
-                <input type="time" class="form-control" name="fin_time" >
+                <input type="time" class="form-control" name="fin_time"  required="required">
               </div>
               <div class="form-group">
               <label><h4>상세내용</h4></label>
-                <textarea   cols="50" rows="20" class="form-control" placeholder="상품의 상세내용" name="content" ></textarea>
+                <textarea   cols="50" rows="20" class="form-control" placeholder="상품의 상세내용" name="content" required="required"></textarea>
               </div>
               
               <div class="form-group">
