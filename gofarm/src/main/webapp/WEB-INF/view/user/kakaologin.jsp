@@ -31,7 +31,7 @@ body{
 		<a id="kakao-login-btn"
 			href="https://kauth.kakao.com/oauth/authorize?
 		client_id=a472371a544d55e94dc88a22579f02ff&
-		redirect_uri=http://localhost:8090/gofarm/kakao.do&
+		redirect_uri=http://54.180.168.41:8080/gofarm/kakao.do&
 		response_type=code">
 			<img
 			src="//mud-kage.kakao.com/14/dn/btqbjxsO6vP/KPiGpdnsubSq3a0PHEGUK1/o.jpg"

@@ -66,7 +66,7 @@
         <div class="row block-9">
           <div class="col-md-12 order-md-last d-flex">
             <form action="reviewWritePro.do"  class="bg-white p-5 contact-form"  enctype="multipart/form-data" method="post" >
-           <input type="text" value="${prod_code}" name="prod_code">
+           <input type="hidden" value="${prod_code}" name="prod_code">
               <div class="form-group">
               <label><h4>제목</h4></label>
                 <input type="text" class="form-control"  name="re_title" >

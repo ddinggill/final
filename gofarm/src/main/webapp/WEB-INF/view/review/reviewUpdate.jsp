@@ -79,8 +79,8 @@ $(document).ready(function() {
         <div class="row block-9">
           <div class="col-md-12 order-md-last d-flex">
             <form action="reviewUpdatePro.do"  class="bg-white p-5 contact-form"  enctype="multipart/form-data" method="post" >
-           <input type="text" value="${redto.prod_code}" name="prod_code">
-           <input type="text" value="${redto.re_code}" name="re_code">
+           <input type="hidden" value="${redto.prod_code}" name="prod_code">
+           <input type="hidden" value="${redto.re_code}" name="re_code">
               <div class="form-group">
               <label><h4>제목</h4></label>
                 <input type="text" class="form-control"  name="re_title" value="${redto.re_title}">

@@ -20,9 +20,10 @@
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="oracle.jdbc.OracleDriver"></property>
-		<property name="url" value="jdbc:oracle:thin://@192.168.30.67:1521:xe"></property>
-		<property name="username" value="gofarm"></property>
-		<property name="password" value="a1234"></property>
+		<!-- <property name="url" value="jdbc:oracle:thin://@192.168.30.67:1521:xe"></property> -->
+		<property name="url" value="jdbc:oracle:thin://@oracle11g.chiwqvq84axk.ap-northeast-2.rds.amazonaws.com:1521:gofarm"></property>
+		<property name="username" value="sm"></property>
+		<property name="password" value="gofarm123"></property>
 	</bean>
 
 	<!-- 2. SqlSessionFactoryBean 빈 선언 -->

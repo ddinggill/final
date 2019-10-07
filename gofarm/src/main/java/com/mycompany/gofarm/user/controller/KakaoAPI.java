@@ -36,7 +36,7 @@ public class KakaoAPI {
 			StringBuilder sb = new StringBuilder();
 			sb.append("grant_type=authorization_code");
 			sb.append("&client_id=a472371a544d55e94dc88a22579f02ff");
-			sb.append("&redirect_uri=http://localhost:8090/gofarm/kakao.do");
+			sb.append("&redirect_uri=http://54.180.168.41:8080/gofarm/kakao.do");
 			sb.append("&code=" + authorize_code);
 			bw.write(sb.toString());
 			bw.flush();
