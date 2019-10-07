@@ -168,6 +168,9 @@ public class AuctionController {
 	
 	@RequestMapping("stateUpdate.do")
 	public void auctionStateUpdate(int auctioncode) {
+		AuctionDTO testDTO = auctionService.auctionViewProcess(auctioncode);
+		if(testDTO.getState() == 0) {
+		
 		System.out.println(auctioncode);
 		auctionService.stateUpdeteProcess(auctioncode);
 		//옥션 정보에 낙찰상태와 최종낙찰자 코드 추가
@@ -220,6 +223,7 @@ public class AuctionController {
 		
 		//판매자 마일리지 + 기록 남기기
 		auctionService.mileageAddProcess(sellerMilDto);
+		}
 		
 	}
 

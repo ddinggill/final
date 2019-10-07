@@ -487,7 +487,7 @@ height: 50px;
 										<img src="main/images/up.png" style="width:15%; height:100%"/>
 									</h4>
 
-							<c:forEach items="${cList}" var="cdto" begin="1" end="4" step="1">
+							<c:forEach items="${cList}" var="cdto" begin="0" end="3" step="1">
 							<c:url value="chatjoin.do" var="chatList">
 							<c:param name="chatcode" value="${cdto.chatcode}" />
 							</c:url>

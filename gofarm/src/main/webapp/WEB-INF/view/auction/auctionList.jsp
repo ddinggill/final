@@ -169,7 +169,9 @@
 						<li><a href="productList.do" >판매</a></li>
 						<li><a href="donationList.do">나눔</a></li>
 						<li><a href="auctionList.do" class="active">경매</a></li>
+						<c:if test="${loginOk.userlvl == 2 }">
 						<li><a href="AuctionProduce.do">경매등록</a></li>
+						</c:if>
 					</ul>
 				</div>
 			</div> 

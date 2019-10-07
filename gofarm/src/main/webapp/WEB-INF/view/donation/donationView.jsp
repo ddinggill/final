@@ -299,7 +299,7 @@ table.type08 td {
                   <c:param name="docode" value="${do_dto.docode}" />
                </c:url>
                <c:if
-                  test="${do_dto.do_cnt ne 0 && do_dto.usercode ne user.usercode}">
+                  test="${do_dto.do_cnt ne 0 && do_dto.usercode ne user.usercode && loginOk ne null}">
                   <p>
                      <input type="hidden" value="${do_dto.docode}"> <a
                         href="${path}" class="btn btn-black py-3 px-5" id="chk">나눔신청</a>

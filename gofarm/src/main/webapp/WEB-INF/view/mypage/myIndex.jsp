@@ -49,6 +49,7 @@ $(document).ready(function() {
 		mileageArr[i] = dto[i].m_total;
 		dayArr[i] = dto[i].m_day;
 	}
+	var maxMileage = Math.max.apply(null, mileageArr);
 	var myLineChart = new Chart(ctx, {
 	  type: 'line',
 	  data: {
@@ -84,7 +85,7 @@ $(document).ready(function() {
 	      yAxes: [{
 	        ticks: {
 	          min: 0,
-	          max: 1000000,
+	          max: maxMileage*1.5,
 	          maxTicksLimit: 5
 	        },
 	        gridLines: {
